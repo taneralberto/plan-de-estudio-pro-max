@@ -12,7 +12,7 @@ Este archivo registra los problemas estructurales y metodológicos identificados
 
 ## 🔴 Mejora 1 — El plan sufre de "Scope Creep Académico"
 
-- [ ] Pendiente de implementación
+- [x] **Implementado:** 20/04/2026 — Creada sección "🎯 Core Path vs Advanced Track" en el plan principal con tabla de 17 temas Core Path y tabla de Advanced Track. Actualizados todos los archivos individuales con badges [CORE] o [ADVANCED]. Actualizadas referencias en el plan principal y la leyenda.
 
 ### El problema
 
@@ -88,7 +88,7 @@ El criterio de éxito es: alguien que completa el Core Path en 15 meses siente q
 
 ## 🔴 Mejora 2 — La Fase 1 está posicionada para generar abandono
 
-- [ ] Pendiente de implementación
+- [x] **Implementado:** 20/04/2026 — Reordenada la sección "Primeros 30 Días" en METODOLOGIA.md con nuevo orden: Fase 0 → Fase 2.1 (JS Internals) + scaffold → Fase 1.1 (Algoritmos) → Fase 5.1 (Auth). Actualizadas tablas en Plan de Estudio Pro Max.md y PROYECTOS.md con filas para Fase 2.1 y Fase 5.1 separadas. Agregado principio explicativo del reordenamiento.
 
 ### El problema
 
@@ -147,7 +147,7 @@ El criterio de éxito es: alguien que llega a la Semana 4 tiene FreePress corrie
 
 ## 🔴 Mejora 3 — Falta un sistema de tracking activo (PROGRESS.md)
 
-- [ ] Pendiente de implementación
+- [x] **Implementado:** 20/04/2026 — Creado `PROGRESS.md` con secciones para tema actual, completados, estadísticas, log de sesiones, y lista del Core Path (17 temas esenciales). Agregada referencia en el plan principal.
 
 ### El problema
 
@@ -231,7 +231,7 @@ El criterio de éxito es: alguien que abre el proyecto después de 2 semanas sin
 
 ## 🔴 Mejora 4 — FreePress necesita un MVP con Definition of Done
 
-- [ ] Pendiente de implementación
+- [x] **Implementado:** 20/04/2026 — Agregada sección "Definition of Done — El MVP de FreePress" en PROYECTOS.md con checkboxes para funcionalidad mínima (6 features), calidad mínima (4 items), y deployment (3 items). Separadas features BONUS como opcionales. Agregada tabla de criterios del MVP.
 
 ### El problema
 
@@ -310,7 +310,7 @@ El criterio de éxito es: alguien que completa las features del MVP puede marcar
 
 ## 🟡 Mejora 5 — La numeración de fases genera confusión cognitiva
 
-- [ ] Pendiente de implementación
+- [x] ~~**Implementado y revertido:** 20/04/2026~~ — Se probó una versión con nombres descriptivos y tabla de mapeo, pero agregaba complejidad innecesaria. Se revirtió a la versión original con fases numeradas. La tabla de secuencia ya es clara.
 
 ### El problema
 
@@ -373,7 +373,7 @@ El criterio de éxito es: alguien puede referenciar una fase sin tener que verif
 
 ## 🟡 Mejora 6 — Falta un tema: "Leer código ajeno y Code Review"
 
-- [ ] Pendiente de implementación
+- [x] **Implementado:** 20/04/2026 — Creado archivo `9.5 — Leer Código Ajeno y Code Review 🔴.md` con 5 subtemas: archaeology de codebases, code review efectivo, detectar code smells, revisar código generado por AI, debugging en código ajeno. Agregado al plan principal como [CORE]. Actualizada tabla Core Path (ahora 18 temas).
 
 ### El problema
 
@@ -424,7 +424,7 @@ El criterio de éxito es: alguien que completa el plan sabe no solo escribir có
 
 ## 🟡 Mejora 7 — La Fase 8 (AI) necesita integrarse transversalmente
 
-- [ ] Pendiente de implementación
+- [x] **Implementado:** 20/04/2026 — Agregada sección "🤖 Fundamentos vs AI — ¿Por qué aprender si la AI lo hace?" en la portada del plan con tabla de lo que AI puede y no puede hacer. Agregado subtema "Prompts para arquitectura" en 8.2 con patrones de prompts efectivos. Referencia cruzada a 9.5 para revisar código AI.
 
 ### El problema
 
@@ -480,7 +480,7 @@ El criterio de éxito es: alguien que completa el plan entiende que la AI es una
 
 ## 🟢 Mejora 8 — Agregar alternativas en español donde existan
 
-- [ ] Pendiente de implementación
+- [x] **Implementado:** 20/04/2026 — Agregadas alternativas en español (🇪🇸) a los archivos principales del Core Path: 0.1 (Documentación), 1.1 (Algoritmos), 2.1 (JS Internals), 3.1 (DDD), 5.1 (Seguridad). Recursos con traducción oficial o contenido similar en español disponibles.
 
 ### El problema
 

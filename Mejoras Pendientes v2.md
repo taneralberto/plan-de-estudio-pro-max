@@ -12,7 +12,7 @@ Este archivo registra los problemas estructurales y metodológicos identificados
 
 ## 🔴 Mejora 1 — El plan da tres respuestas distintas a "¿por dónde empiezo?"
 
-- [ ] Implementada
+- [x] Implementada — 20/04/2026. Se agregó la sección **"🚀 Por Dónde Empezar — Los Primeros 30 días"** en `Plan de Estudio Pro Max.md`, entre el bloque del ciclo de aprendizaje y la Fase 0. Prescriptiva: semana a semana, con entregables concretos, desvío táctico a Fase 2.1 en semana 4, y protocolo de retoma si se interrumpe.
 
 ### El problema
 
@@ -51,7 +51,7 @@ El criterio de éxito es: alguien que abre el plan por primera vez puede saber e
 
 ## 🔴 Mejora 2 — El ciclo de 4 pasos describe el ideal, no lo cotidiano
 
-- [ ] Implementada
+- [x] Implementada — 20/04/2026. Se agregaron dos secciones nuevas en `Plan de Estudio Pro Max.md` después del Paso 4: **"Cómo se ve el ciclo en el tiempo real"** (ejemplo día a día con Hash Tables como caso concreto, duraciones orientativas por prioridad) y **"Qué es una sesión bien usada"** (criterio positivo y negativo para evaluar si una sesión de 2 horas fue productiva).
 
 ### El problema
 
@@ -94,7 +94,7 @@ El criterio de éxito es: alguien que termina su primera sesión de estudio de 2
 
 ## 🟡 Mejora 3 — FreePress no tiene un estado esperado por fase
 
-- [ ] Implementada
+- [x] Implementada — 20/04/2026. Se agregó la sección **"Estado esperado de FreePress por fase"** en `Plan de Estudio Pro Max.md`, dentro del bloque "Proyecto Principal — FreePress", después del párrafo de cuándo arrancar. Tabla con 10 filas (Fases 0-9 en orden de secuencia recomendada), cada una con un estado concreto y verificable de FreePress al terminar la fase.
 
 ### El problema
 
@@ -140,7 +140,7 @@ El criterio de éxito es: al terminar cualquier fase, el estudiante puede mirar 
 
 ## 🟡 Mejora 4 — La Fase 9 debería ser transversal, no secuencial
 
-- [ ] Implementada
+- [x] Implementada — 20/04/2026. Se eligió la Opción B (más simple): se agregó un segundo bloque en la sección "Temas Transversales" de la portada (`Plan de Estudio Pro Max.md`) mencionando 9.2 y 9.3 como prácticas continuas con instrucciones de cuándo empezar cada una. Se agregó un banner de "Práctica continua" al inicio de `9.2 — Debugging Avanzado 🔴.md` y `9.3 — Mantenibilidad y Deuda Técnica 🟡.md`. Los archivos quedan en Fase 9 como referencia de contenido — el mensaje es que la práctica empieza antes.
 
 ### El problema
 
@@ -184,7 +184,7 @@ El criterio de éxito es: alguien que empieza la Fase 1 sabe que Debugging y Man
 
 ## 🟡 Mejora 5 — Los checkpoints por fase son demasiado genéricos
 
-- [ ] Implementada
+- [x] Implementada — 20/04/2026. Se reemplazó el callout genérico de checkpoints en `Plan de Estudio Pro Max.md` con una tabla de 10 filas (una por fase, en orden de secuencia recomendada) con checkpoints específicos, observables y anclados en FreePress. El callout original se conservó como intro, reformulado para apuntar a la tabla. Cada checkpoint describe un entregable difícil de fingir sin haber realmente internalizado la fase.
 
 ### El problema
 
@@ -220,7 +220,7 @@ El criterio de éxito es: el checkpoint de cada fase es lo suficientemente espec
 
 ## 🟢 Mejora 6 — Testing en Fase 6 no tiene referencia cruzada visible
 
-- [ ] Implementada
+- [x] Implementada — 20/04/2026. Se agregó un banner al inicio de `6.4 — Testing Frontend 🟡.md` que indica explícitamente que es la continuación directa de `5.3 — Testing Backend y API` y que el marco conceptual no se repite en `6.4`.
 
 ### El problema
 
@@ -250,7 +250,7 @@ El criterio de éxito es: alguien que llega a `6.4` directamente (sin pasar por 
 
 ## 🔴 Mejora 7 — El rol de la AI en el proceso de aprendizaje no está definido
 
-- [ ] Implementada
+- [x] Implementada — 20/04/2026. Se agregó un nuevo tema **"La AI como herramienta de desarrollo"** al final de `0.2 — Metodologías y Procesos 🔴.md`, con la regla central, los 3 roles válidos, los roles inválidos, cómo revisar código generado por AI, y el objetivo correcto (dirigir la AI, no sobrevivirla). Se agregó también un callout 🤖 en la portada (`Plan de Estudio Pro Max.md`) inmediatamente después del callout de filosofía, con la regla resumida y referencia a `0.2` para el detalle completo.
 
 ### El problema
 

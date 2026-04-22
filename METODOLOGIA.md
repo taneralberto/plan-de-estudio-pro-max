@@ -44,6 +44,27 @@ La curva del olvido es brutal: si no practicás en 24 horas, perdés el 70%.
 
 **La regla:** no escribas notas bonitas, no hagas resúmenes. **Escribí código.**
 
+#### Tipos de práctica efectiva
+
+No toda práctica es igual. Copiar código del video NO es práctica efectiva.
+
+| Tipo | Qué es | Ejemplo |
+|------|--------|---------|
+| **Variación** | El recurso mostró X → vos implementás X con una variación | Video muestra Stack con array → vos implementás Stack con linked list |
+| **From scratch** | Cerrá todo y escribí X desde cero sin mirar nada | Implementá HashMap sin ver el código del video o tutorial |
+| **Debugging intencional** | Escribí código que USE el concepto y ROMPELO a propósito | Escribí un closure con memory leak, después arreglalo entendiendo por qué |
+| **Enseñar** | Explicá el concepto en voz alta como si le enseñaras a un junior | Si te trabás, no lo entendiste bien |
+
+#### La regla de oro del Paso 2
+
+Una sesión cuenta como "Paso 2 completo" solo si produciste código que **NO es copia directa** del recurso que consumiste.
+
+**Señales de que estás practicando mal:**
+- Escribís lo mismo que el video/tutorial palabra por palabra
+- No probaste casos diferentes a los del ejemplo
+- No rompiste nada ni tuviste que arreglar nada
+- No podrías explicar por qué funciona tu código
+
 ### Paso 3 — Lectura profunda SI algo no quedó claro (variable)
 
 Recién acá entran los libros. Leé el **capítulo específico** que necesitás, no todo el libro.
@@ -127,107 +148,6 @@ Al terminar cada fase, validá tu aprendizaje con un entregable concreto. No alc
 
 ---
 
-## 🚀 Primeros 30 Días
-
-Esta sección responde una sola pregunta: **¿qué estudio mañana?**
-
-El orden está diseñado para crear **victorias tangibles tempranas**. La Fase 1 (CS Fundamentals) es la más abstracta — hacerla ANTES de tener código funcionando genera abandono. Por eso el plan arranca con mentalidad, después código real, y DESPUÉS la teoría pesada.
-
-### Semana 1 — Fase 0 completa (Mentalidad y Proceso)
-
-**Qué estudiar:**
-- `0.1 — Documentación Técnica Profesional 🔴`
-- `0.2 — Metodologías y Procesos 🔴`
-- `0.3 — Soft Skills Técnicos 🟡`
-
-**Qué hacés en la práctica:**
-- Día 1-2: `0.1` — aprendés PRD, RFC, ADR. Escribís tu primer ADR para FreePress.
-- Día 3-4: `0.2` — metodologías. Al final del día 4, tenés un PRD borrador del editor WYSIWYG.
-- Día 5: `0.3` — soft skills técnicos. Sesión más ligera.
-- Día 6-7: Creás el repo de FreePress, scaffold básico, y dejás los documentos commiteados.
-
-**Entregable de la semana:**
-Repo de FreePress creado, con scaffold funcionando (`docker-compose up` levanta el stack) y al menos un ADR + un PRD borrador en `/docs`.
-
-### Semanas 2-3 — Fase 2.1 (JavaScript Internals) + Scaffold de FreePress
-
-**Qué estudiar:**
-- `2.1 — JavaScript Internals 🔴`
-
-**Por qué esto ANTES de la Fase 1:**
-- La Fase 1 (CS Fundamentals) es densa y abstracta
-- **Victorias tangibles tempranas crean momentum**
-- Escribir JS real, que falla y se arregla, genera contexto práctico
-- Cuando llegues a algoritmos, vas a tener código real de referencia
-
-**Qué hacés en la práctica:**
-- Event Loop: escribí 10 ejemplos con `setTimeout`, `Promise`, `queueMicrotask`
-- Closures: implementá un sistema de caching simple
-- Prototypes: extendé funcionalidad sin clases
-- Memory: inspeccioná heap snapshots en Chrome DevTools
-- **Paralelamente:** scaffold de FreePress funcional con Angular + NestJS + PostgreSQL + Redis
-
-**Entregable:**
-FreePress corriendo localmente (`docker-compose up` levanta todo). Al menos un bug que arreglaste entendiendo JS Internals. Podés explicar qué pasa cuando el event loop procesa un `Promise.resolve().then()` vs un `setTimeout(() => {}, 0)`.
-
-### Semanas 4-6 — Fase 1.1 (Estructuras de Datos y Algoritmos)
-
-**Qué estudiar:**
-- `1.1 — Estructuras de Datos y Algoritmos 🔴`
-
-**Por qué AHORA sí:** Ya tenés FreePress funcionando y contexto de JS real. Los algoritmos dejan de ser teoría abstracta y pasan a ser herramientas que entendés para qué sirven.
-
-**Qué hacés en la práctica:**
-- Ciclo estándar: overview → práctica → profundidad → aplicar en FreePress
-- Cada estructura de datos: escribila desde cero en TypeScript antes de usar la nativa
-- Terminada la semana 4: Arrays, Linked Lists, Stacks, Queues, Hash Tables
-- Terminada la semana 5-6: Trees, Graphs, Heaps + al menos 5 ejercicios de LeetCode/NeetCode Easy por estructura
-
-**Entregable:**
-Podés tomar cualquier estructura de datos del plan, implementarla en TypeScript sin mirar nada, y explicar su complejidad Big O en 2 minutos.
-
-### Semanas 7-8 — Fase 5.1 (Seguridad Aplicada — Auth en FreePress)
-
-**Qué estudiar:**
-- `5.1 — Seguridad Aplicada 🔴` (enfocado en auth)
-
-**Por qué este desvío:**
-- Auth es una **victoria tangible y útil** — algo que podés mostrar y usar
-- Rompe la secuencia de teoría pura con algo práctico
-- Genera momentum antes de continuar con SO y Redes (más abstractos)
-
-**Qué hacés en la práctica:**
-- JWT: implementá login, refresh tokens, logout
-- RBAC: roles admin/editor/autor/lector con al menos un endpoint protegido
-- Password storage: bcrypt o argon2, nunca texto plano
-- OWASP Top 10: identificá superficies de ataque en tu auth
-
-**Entregable:**
-FreePress con auth funcional. Podés loguearte, el token se renueva, los endpoints protegidos responden 401 sin token. Al menos 2 tests de integración para el flujo de auth.
-
-### Semana 9+ — Continuar Fase 1 (SO, Redes) y seguir la tabla de secuencia
-
-Ahora sí, con **FreePress funcionando + auth implementado + algoritmos en el cinturón**, tenés el contexto y el momentum para aguantar la Fase 1 completa:
-
-- `1.2 — Sistemas Operativos (Profundizar) 🔴`
-- `1.3 — Redes en Profundidad 🔴`
-- Y seguís la tabla de secuencia del plan principal
-
----
-
-## El principio detrás del reordenamiento
-
-El cerebro aprende mejor con **victorias tangibles tempranas**. Estudiar SO, redes y algoritmos ANTES de tener código funcionando que se rompe y se arregla es pedir paciencia donde no debería ser necesaria.
-
-El nuevo orden garantiza que:
-1. **Semana 1:** Mentalidad de ingeniero → ADR, PRD, repo creado
-2. **Semana 2-3:** Código real que falla → JS Internals + FreePress scaffold
-3. **Semana 4-6:** Teoría con contexto → Algoritmos sabiendo PARA QUÉ
-4. **Semana 7-8:** Feature útil → Auth que podés mostrar y usar
-5. **Semana 9+:** Teoría profunda → SO y Redes con momentum establecido
-
----
-
 ## Cómo retomar si se interrumpe
 
 Si la vida interrumpe el plan:
@@ -236,3 +156,82 @@ Si la vida interrumpe el plan:
 2. **No volvás al principio.** Continuá desde donde dejaste.
 3. **Si pasaron más de 2 semanas**, hacé una sesión de repaso de 1 hora del último tema — no más.
 4. **La consistencia gana sobre la intensidad.** 3 sesiones de 2 horas por semana durante un año > 2 meses intensos + 4 meses de parálisis.
+
+---
+
+## 🧪 Temas Transversales
+
+### Testing
+
+El testing NO se aprende al final. Se practica desde el día 1.
+
+**La regla:** Desde la Fase 2 (Lenguaje), cada feature que agregues a FreePress incluye:
+- Al menos **1 test unitario** para la lógica core
+- Al menos **1 test de integración** para el endpoint o flujo completo
+
+No es "agregar tests después" — es "escribir tests como parte del desarrollo".
+
+#### ¿Por qué desde el principio?
+
+Escribir código sin tests durante 6 meses genera código **no testeable por diseño**. Cuando llegues a las fases de testing avanzado, vas a tener que reescribir todo.
+
+Si escribís tests desde el día 1:
+- Tu código es testeable por construcción
+- Aprendés a pensar en edge cases naturalmente
+- Los tests se convierten en documentación viva
+- El refactoring es seguro porque tenés red
+
+#### Testing básico que necesitás saber desde Fase 2
+
+Antes de profundizar en testing (Fases 5 y 6), necesitás lo mínimo:
+
+1. **Jest básico:** `describe`, `it`, `expect`, `beforeEach`
+2. **Testing de funciones puras:** input → output esperado
+3. **Testing de endpoints:** supertest o equivalente para tu stack
+4. **Un test double simple:** mock básico para dependencias
+
+Con eso alcanza para escribir tests útiles desde el principio. Los patrones avanzados vienen en `5.3 — Testing Backend` y `6.4 — Testing Frontend`.
+
+### Validación externa — No te auto-engañes
+
+El "Done cuando" dice "podés explicar X sin mirar apuntes". ¿Pero cómo sabés que realmente podés? La auto-evaluación es traicionera: podés creer que entendés algo cuando no lo entendés.
+
+**La regla:** Un tema no está completo hasta que RECIBISTE VALIDACIÓN EXTERNA de que lo entendés.
+
+#### Formas de validar
+
+| Método | Cómo funciona | Cuándo usarlo |
+|--------|---------------|---------------|
+| **Explicar a otra persona** | Le contás el concepto a un amigo/colega. ¿Lo entendió? | Ideal, pero requiere tener alguien disponible |
+| **Explicar a una AI** | Le pedís a Claude/ChatGPT: "Voy a explicarte X. Decime si mi explicación es correcta o si me falta algo" | Rápido, disponible siempre, feedback inmediato |
+| **Escribir un mini-artículo** | Redactás el concepto como si fuera un blog post. Si alguien lo lee y lo entiende, válido | Útil para temas complejos que querés recordar |
+| **Enseñar en un video** | Grabáte explicando el tema. Si podés explicarlo fluido sin trabarte, lo dominás | Para temas que querés dominar en profundidad |
+| **Code review cruzado** | Le pedís a alguien que revise el código que escribiste para ese tema | Útil para temas de código específicos |
+
+#### El prompt para validar con AI
+
+```
+Voy a explicarte [CONCEPTO] con mis propias palabras. 
+Después de leer mi explicación, evaluá:
+1. ¿Es técnicamente correcta?
+2. ¿Hay algo importante que me falta?
+3. ¿Hay algo que entendí mal?
+
+Mi explicación:
+[TU EXPLICACIÓN ACÁ]
+```
+
+#### Señales de que NO entendés (aunque creas que sí)
+
+- Solo podés explicarlo con las mismas palabras del recurso original
+- Te trabás cuando alguien te hace una pregunta de seguimiento
+- No podés dar un ejemplo diferente al del tutorial
+- No podés conectar el concepto con TU código real
+
+**La prueba de fuego:** Si no podés explicar el concepto a un junior sin usar jerga técnica que él no entienda, no lo dominás todavía.
+
+### Evaluar código AI
+
+Cada línea de código que la AI genera y vos aceptás, LA APROBASTE VOS.
+
+> **Para el checklist completo de verificación, ejercicio de "bug hunt" y patrones de error típicos, ver `9.5 — Leer Código Ajeno y Code Review` → sección "Revisar código generado por AI".**

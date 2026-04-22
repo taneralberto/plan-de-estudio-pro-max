@@ -3,6 +3,8 @@
 > 🎯 **Filosofía:** Los conceptos PRIMERO, las herramientas DESPUÉS. No se toca código hasta entender el PORQUÉ. Cada fase construye sobre la anterior — no saltes fases.
 >
 > 🤖 **Regla de AI:** Primero lo construís vos. Después la AI puede entrar. [Ver detalle →](METODOLOGIA.md#la-regla-de-ai)
+>
+> 🗺️ **¿Qué estudio y cuándo?** Ver [ROADMAP.md →](ROADMAP.md) — tu mapa completo del camino.
 
 ---
 
@@ -43,65 +45,6 @@ La pregunta que todos se hacen: *"¿Por qué aprender algoritmos si la AI puede 
 
 **Leer también:** `9.5 — Leer Código Ajeno y Code Review 🔴` incluye una sección específica sobre revisar código generado por AI.
 
-## 🎯 Core Path vs Advanced Track
-
-Este plan tiene **dos tracks** porque un plan de 12-24 meses que intenta cubrir TODO genera frustración y abandono. La realidad: **un tema bien entendido vale más que diez leídos por encima**.
-
-### Core Path — 18 temas esenciales (~12-15 meses)
-
-Lo que FORMA un ingeniero de software completo. Completar el Core Path es el objetivo del plan.
-
-| Fase | Temas Core | Por qué es esencial |
-|------|-----------|---------------------|
-| **0 — Mentalidad** | 0.1, 0.2, 0.3 | Cambia cómo pensás ANTES de programar |
-| **1 — CS Fundamentals** | 1.1 | La base de TODO: algoritmos y estructuras |
-| **2 — Lenguaje** | 2.1, 2.2 | Entender el runtime donde vivís |
-| **5 — Seguridad** | 5.1, 5.2 | Seguridad y performance NO son opcionales |
-| **7 — Bases de Datos** | 7.1 | SQL es ubicuo, modelar bien es raro |
-| **3 — Arquitectura** | 3.1, 3.2 | DDD y patrones: de dev a arquitecto |
-| **4 — Infra** | 4.1, 4.5, 4.6 | Containers, CI/CD, observabilidad: producción real |
-| **6 — Frontend** | 6.1 | Entender el browser para debuggear mejor |
-| **8 — AI** | 8.2 | AI Engineering: construir con AI, no solo usarla |
-| **9 — Completo** | 9.2, 9.5 | Debugging avanzado + evaluar código (propio, ajeno, AI) |
-
-**El éxito:** Alguien que completa el Core Path siente que es un ingeniero de software completo, no que "le faltó la mitad del plan".
-
-### Advanced Track — Profundización optativa
-
-El resto de los temas. Se exploran según intereses, dirección de carrera, o curiosidad. **No son deuda pendiente.**
-
-| Fase | Temas Advanced | Cuándo profundizar |
-|------|---------------|-------------------|
-| **1 — CS Fundamentals** | 1.2, 1.3, 1.4, 1.5 | Si querés ir más profundo en SO, redes, Linux |
-| **2 — Lenguaje** | 2.3, 2.4, 2.5 | Build tools, Git avanzado, concurrency |
-| **3 — Arquitectura** | 3.3, 3.4, 3.5, 3.6 | System Design avanzado, APIs, messaging, distribuidos |
-| **4 — Infra** | 4.2, 4.3, 4.4 | K8s, IaC, cloud específico |
-| **5 — Seguridad** | 5.3 | Testing backend en profundidad |
-| **6 — Frontend** | 6.2, 6.3, 6.4 | State management, a11y, testing frontend |
-| **7 — Bases de Datos** | 7.2, 7.3 | NoSQL, migraciones complejas |
-| **8 — AI** | 8.1, 8.3 | ML fundamentals, proyectos AI |
-| **9 — Completo** | 9.1, 9.3, 9.4 | Open source, deuda técnica, temas avanzados |
-
-**El punto:** Completar el Core Path es "graduarse". El Advanced Track es especialización.
-
----
-
-## 🚀 Por Dónde Empezar
-
-**La respuesta corta:** Fase 0 completa, después JS Internals + FreePress scaffold, DESPUÉS CS Fundamentals.
-
-| Semana | Qué estudiar | Entregable |
-|--------|--------------|------------|
-| 1 | Fase 0 completa | Repo de FreePress creado con ADR + PRD en `/docs` |
-| 2-3 | Fase 2.1 (JS Internals) + scaffold de FreePress | FreePress corriendo localmente, código que falla y se arregla |
-| 4-6 | Fase 1.1 (Estructuras de Datos y Algoritmos) | Implementar estructuras desde cero, explicar Big O |
-| 7-8 | Fase 5.1 (Seguridad básica — auth en FreePress) | Auth funcional: login, JWT, refresh tokens |
-| 9+ | Continuar Fase 1 (SO, Redes), luego seguir tabla de secuencia | — |
-
-**Por qué este orden:** Victorias tangibles tempranas crean momentum. FreePress funcionando + auth básico ANTES de la Fase 1 más abstracta = motivación establecida para aguantar CS Fundamentals.
-
-**Guía completa paso a paso:** [Ver METODOLOGIA.md →](METODOLOGIA.md#primeros-30-días)
-
 ---
 
 ## Las 10 Fases
@@ -132,6 +75,7 @@ La deuda técnica más grande. Algoritmos, SO, redes. Es duro pero es la base de
 
 De "usuario del lenguaje" a "entender la máquina por debajo".
 
+- [[Fase 2 — Lenguaje y Runtime/2.0 — Debugging Básico 🔴]] **[CORE]**
 - [[Fase 2 — Lenguaje y Runtime/2.1 — JavaScript Internals 🔴]] **[CORE]**
 - [[Fase 2 — Lenguaje y Runtime/2.2 — TypeScript Avanzado 🔴]] **[CORE]**
 - [[Fase 2 — Lenguaje y Runtime/2.3 — Build Tools y Module Bundlers 🟡]] *[ADVANCED]*
@@ -219,25 +163,6 @@ Los temas que hacen la diferencia entre un buen programador y un ingeniero COMPL
 
 ---
 
-## Secuencia Recomendada
-
-Las fases están numeradas por tema, no por orden de estudio. **Seguí esta tabla, no los números.**
-
-| Orden | Fase | Por qué este orden |
-|-------|------|-------------------|
-| 1ro | Fase 0 — Mentalidad | Cambia cómo pensás ANTES de cambiar cómo programás |
-| 2do | Fase 2 — Lenguaje y Runtime | JS/TS internals — victorias tangibles tempranas |
-| 3ro | Fase 1 — CS Fundamentals | La base de TODO, ahora con contexto de código real |
-| 4to | Fase 5 — Seguridad y Performance | Importa más en práctica diaria que arquitectura avanzada |
-| 5to | Fase 7 — Bases de Datos | SQL avanzado, aplicable directamente a FreePress |
-| 6to | Fase 3 — Arquitectura | Necesitás las bases anteriores para que haga clic |
-| 7mo | Fase 6 — Frontend Avanzado | Browser internals, state management, a11y |
-| 8vo | Fase 4 — Infraestructura | K8s, IaC, cloud — deployá FreePress en infra real |
-| 9no | Fase 8 — AI y Agentes | Ya tenés base, ahora profundizá con proyectos |
-| 10mo | Fase 9 — Completar | Debugging avanzado, code review, refactoring |
-
----
-
 ## Temas Transversales
 
 Algunos temas se practican a lo largo de todo el plan, no en una fase única:
@@ -298,7 +223,7 @@ Trackeo de temas completados, sesiones de estudio y estadísticas.
 | 🟡 | **Importante** — estudiar bien, no bloquea |
 | 🟢 | **Complementario** — profundizar cuando haya tiempo |
 | 🔵 | **Proyecto satélite** — práctica complementaria |
-| **[CORE]** | **Core Path** — tema esencial del plan (17 en total) |
+| **[CORE]** | **Core Path** — tema esencial del plan (19 en total) |
 | *[ADVANCED]* | *Advanced Track* — profundización optativa |
 
 **Regla de oro:** no marques un tema como completado hasta que puedas EXPLICARLO a otro programador sin mirar apuntes.

@@ -32,7 +32,7 @@
 
 | Métrica | Valor |
 |---------|-------|
-| Temas Core completados | 0 / 18 |
+| Temas Core completados | 0 / 19 |
 | Horas de estudio totales | 0h |
 | Días activos | 0 |
 | Sesiones registradas | 0 |
@@ -49,7 +49,7 @@
 
 ## 🎯 Próximos temas (Core Path)
 
-El Core Path son los 18 temas esenciales que forman un ingeniero de software completo. Estimaría ~12-15 meses a ritmo sostenido.
+El Core Path son los 19 temas esenciales que forman un ingeniero de software completo. Estimaría ~12-15 meses a ritmo sostenido.
 
 **Fase 0 — Mentalidad y Proceso:**
 1. [ ] 0.1 — Documentación Técnica Profesional 🔴
@@ -60,34 +60,35 @@ El Core Path son los 18 temas esenciales que forman un ingeniero de software com
 4. [ ] 1.1 — Estructuras de Datos y Algoritmos 🔴
 
 **Lenguaje y Runtime:**
-5. [ ] 2.1 — JavaScript Internals 🔴
-6. [ ] 2.2 — TypeScript Avanzado 🔴
+5. [ ] 2.0 — Debugging Básico 🔴
+6. [ ] 2.1 — JavaScript Internals 🔴
+7. [ ] 2.2 — TypeScript Avanzado 🔴
 
 **Seguridad y Performance:**
-7. [ ] 5.1 — Seguridad Aplicada 🔴
-8. [ ] 5.2 — Performance Engineering 🔴
+8. [ ] 5.1 — Seguridad Aplicada 🔴
+9. [ ] 5.2 — Performance Engineering 🔴
 
 **Bases de Datos:**
-9. [ ] 7.1 — SQL y Modelado Relacional 🔴
+10. [ ] 7.1 — SQL y Modelado Relacional 🔴
 
 **Arquitectura:**
-10. [ ] 3.1 — Domain-Driven Design (DDD) 🔴
-11. [ ] 3.2 — Patrones de Arquitectura Avanzados 🔴
+11. [ ] 3.1 — Domain-Driven Design (DDD) 🔴
+12. [ ] 3.2 — Patrones de Arquitectura Avanzados 🔴
 
 **Infraestructura:**
-12. [ ] 4.1 — Containerización Avanzada 🔴
-13. [ ] 4.5 — CI/CD 🔴
-14. [ ] 4.6 — Observabilidad 🔴
+13. [ ] 4.1 — Containerización Avanzada 🔴
+14. [ ] 4.5 — CI/CD 🔴
+15. [ ] 4.6 — Observabilidad 🔴
 
 **Frontend:**
-15. [ ] 6.1 — Cómo funciona el Browser 🔴
+16. [ ] 6.1 — Cómo funciona el Browser 🔴
 
 **AI:**
-16. [ ] 8.2 — AI Engineering 🔴
+17. [ ] 8.2 — AI Engineering 🔴
 
 **El Programador Completo:**
-17. [ ] 9.2 — Debugging Avanzado 🔴
-18. [ ] 9.5 — Leer Código Ajeno y Code Review 🔴
+18. [ ] 9.2 — Debugging Avanzado 🔴
+19. [ ] 9.5 — Leer Código Ajeno y Code Review 🔴
 
 ---
 

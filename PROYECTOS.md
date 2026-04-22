@@ -78,6 +78,35 @@ Al terminar la Fase 0, arrancás con Fase 2.1 (JS Internals) **en paralelo con e
 
 ---
 
+## 🆘 Plan B — Si FreePress se traba
+
+Si FreePress te está frenando más de lo que te está enseñando, no abandones el plan. Tenés alternativas:
+
+| Problema | Solución alternativa | Por qué funciona |
+|----------|---------------------|------------------|
+| **Docker no te anda** | Usá SQLite local + Node directo | Docker no es el objetivo, el objetivo es el concepto. Docker específico se aprende en la Fase 4 de infraestructura. |
+| **Angular te frustra** | Cambiá a React, Vue, o Svelte | El framework NO importa para el 80% del plan. Lo importante es la arquitectura, los patrones, los conceptos — no la sintaxis del framework. |
+| **PostgreSQL te complica** | Empezá con SQLite | El modelado relacional, las migraciones, los índices — todo aplica igual. PostgreSQL específico se profundiza en la Fase 7. |
+| **NestJS te parece mucho** | Usá Express simple primero | NestJS agrega estructura que puede abrumar al principio. Express pelado te deja focalizar en el concepto, y después migrás o refactorizás. |
+| **El proyecto completo te abruma** | Hacé mini-proyectos por tema | No es todo o nada. Cada tema del plan se puede practicar con un mini-proyecto enfocado, sin necesitar FreePress. |
+
+### La regla de oro
+
+> **FreePress es el vehículo, no el destino.**
+> 
+> Si el vehículo se rompe, cambiá de vehículo. Lo importante es que estés aprendiendo, no que uses exactamente este stack.
+
+### Cuándo volver a FreePress
+
+Si tuviste que usar un Plan B, cuando el tema que te trababa se cubra más adelante en el plan, podés volver a intentarlo:
+
+- Docker se ve en **Fase 4 — Infraestructura**
+- El framework específico importa menos que los patrones (se ven en **Fase 3 — Arquitectura**)
+- PostgreSQL en profundidad se ve en **Fase 7 — Bases de Datos**
+- NestJS/patrones backend se ven en **Fase 3 — Arquitectura**
+
+---
+
 ## Estado esperado de FreePress por Fase
 
 Esta tabla es tu ancla de calibración. Al terminar cada fase, mirá FreePress y preguntate: *¿refleja esto lo que aprendí?*
@@ -87,6 +116,7 @@ Esta tabla es tu ancla de calibración. Al terminar cada fase, mirá FreePress y
 | Fase completada | Estado esperado de FreePress |
 |-----------------|------------------------------|
 | **Fase 0** | Repo creado. Scaffold funcional: `docker-compose up` levanta Angular + NestJS + PostgreSQL + Redis. Carpeta `/docs` con al menos 1 ADR (decisión de stack) y 1 PRD borrador (el editor WYSIWYG). README mínimo que explica cómo levantar el proyecto. |
+| **Fase 2.0** (Debugging Básico) | FreePress corriendo localmente. Sabés usar Chrome DevTools breakpoints, call stack y scope. Configuraste debugging en VS Code para el backend. Usás `console.table`, `console.time` apropiadamente. No necesitás `console.log` para debuggear. |
 | **Fase 2.1** (JS Internals) | FreePress corriendo localmente con código funcional. Al menos un bug arreglado entendiendo JS Internals. Configuración de TypeScript inicial. Git history con commits convencionales. Entendés el event loop y cómo afecta tu código. |
 | **Fase 1** | Análisis de complejidad documentado en lugares donde importa. Estructuras de datos elegidas con justificación. El código refleja comprensión de cómo el event loop de Node.js maneja requests concurrentes. |
 | **Fase 5.1** (Seguridad — Auth) | Auth básico funcionando: registro, login, JWT, refresh tokens. Al menos un endpoint protegido con RBAC. Passwords con hash seguro. Al menos 2 tests de integración para el flujo de auth. |

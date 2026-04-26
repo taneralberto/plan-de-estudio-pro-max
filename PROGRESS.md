@@ -1,6 +1,16 @@
 # Progreso — Plan de Estudio Pro Max
 
-> Última actualización: 20/04/2026
+> Última actualización: 23/04/2026
+
+---
+
+## 🎯 Próximo paso
+
+**Tema sugerido:** 0.1 — Documentación Técnica Profesional 🔴
+**Por qué:** Es el primer tema de la Fase 0 (Mentalidad), que se completa en la Semana 1 del Roadmap.
+**Tiempo estimado:** 2-3 sesiones (~4-6 horas)
+
+> Cuando termines este tema, actualizá este campo con el siguiente.
 
 ---
 

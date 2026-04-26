@@ -4,6 +4,23 @@
 
 ---
 
+## Tu Ritmo Realista
+
+El plan está diseñado para **2-3 horas, 3-4 días por semana**. No necesitás 3 horas diarias.
+
+| Día | Tiempo | Nota |
+|-----|--------|------|
+| Lunes a Jueves | 1h trabajo + 1h noche = **2h** | Aprovechá que la AI te adelanta tareas |
+| Viernes | **1h** | Descanso mental, más ligero |
+| Sábado | **Libre** | Baile, familia, descanso |
+| Domingo | **2-3h** | Si se puede, profundizar |
+
+**Total semanal:** ~9-11 horas → **DENTRO del rango del plan** (6-12h)
+
+> **Consistencia > intensidad.** Mejor 1 hora todos los días que 4 horas un domingo y nada más.
+
+---
+
 ## El Camino en una Vista
 
 | Etapa | Duración | Qué estudiás | Entregable clave |

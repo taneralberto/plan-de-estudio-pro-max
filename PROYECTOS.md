@@ -72,7 +72,7 @@ Si completaste el MVP y querés seguir agregando features por gusto personal, da
 
 ### 🚀 Cuándo arrancar
 
-Al terminar la Fase 0, arrancás con Fase 2.1 (JS Internals) **en paralelo con el scaffold de FreePress**. No necesitás saber todo para empezar — pero sí necesitás la mentalidad de ingeniero de la Fase 0.
+Al terminar la Fase 0, arrancás con **Debugging Básico (2.0) + JS Internals (2.1) + Scaffold de FreePress** en paralelo (semanas 2-3 del Roadmap). No necesitás saber todo para empezar — pero sí necesitás la mentalidad de ingeniero de la Fase 0.
 
 **El scaffold funcional (`docker-compose up` levanta todo) es un entregable de las semanas 2-3**, no algo que se pospone. Eso garantiza que cuando llegues a CS Fundamentals, ya tenés código real de referencia.
 
@@ -121,7 +121,7 @@ Esta tabla es tu ancla de calibración. Al terminar cada fase, mirá FreePress y
 | **Fase 1** | Análisis de complejidad documentado en lugares donde importa. Estructuras de datos elegidas con justificación. El código refleja comprensión de cómo el event loop de Node.js maneja requests concurrentes. |
 | **Fase 5.1** (Seguridad — Auth) | Auth básico funcionando: registro, login, JWT, refresh tokens. Al menos un endpoint protegido con RBAC. Passwords con hash seguro. Al menos 2 tests de integración para el flujo de auth. |
 | **Fase 5** (completa) | Suite de tests backend con cobertura de los flujos críticos. Un reporte de `npm audit` sin vulnerabilidades críticas. Benchmark con Artillery o k6 sobre el endpoint más lento y podés leer el reporte. |
-| **Fase 2** (completa) | Configuración de TypeScript en modo estricto. Build pipeline configurado (esbuild o webpack según corresponda). Al menos un módulo refactorizado para demostrar comprensión de closures, prototypes o concurrencia. |
+| **Fase 2.2** (TypeScript Avanzado) | Configuración de TypeScript en modo estricto. Build pipeline configurado (esbuild o webpack según corresponda). Al menos un módulo refactorizado para demostrar comprensión de closures, prototypes o concurrencia. |
 | **Fase 7** | Schema de base de datos con migraciones versionadas. Índices justificados con `EXPLAIN ANALYZE`. Al menos una query compleja optimizada. Sistema básico de caché con Redis para queries de lectura frecuente. |
 | **Fase 3** | Arquitectura refactorizada a capas claras (domain / application / infrastructure). Al menos un Bounded Context identificado y documentado en un ADR. Event-driven para al menos una feature (ej: notificaciones al publicar un artículo). Context Map en `/docs`. |
 | **Fase 6** | Frontend Angular con state management implementado (NgRx o signals según ADR). Componentes con tests de integración usando Angular Testing Library. Storybook configurado con stories para los componentes principales del sistema de diseño. |

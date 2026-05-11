@@ -1,243 +1,114 @@
-# Plan de Estudio Pro Max
+# Plan de Estudio Pro Max — Contenido por Etapa
 
-> 🎯 **Filosofía:** Los conceptos PRIMERO, las herramientas DESPUÉS. No se toca código hasta entender el PORQUÉ. Cada fase construye sobre la anterior — no saltes fases.
->
-> 🤖 **Regla de AI:** Primero lo construís vos. Después la AI puede entrar. [Ver detalle →](METODOLOGIA.md#la-regla-de-ai)
->
-> 🗺️ **¿Qué estudio y cuándo?** Ver [ROADMAP.md →](ROADMAP.md) — tu mapa completo del camino.
+> El método de estudio está en [METODOLOGIA.md](METODOLOGIA.md). Los proyectos en [PROYECTOS.md](PROYECTOS.md). Este archivo es el QUÉ y el ORDEN.
 
----
+## Etapa 1 — Entrada 🧠
 
-## 🤖 Fundamentos vs AI — ¿Por qué aprender si la AI lo hace?
+Victorias tangibles tempranas. Código que falla y se arregla. **Código desde el minuto 1** — la documentación viene al cierre.
 
-La pregunta que todos se hacen: *"¿Por qué aprender algoritmos si la AI puede implementarlos?"*
+**Primero (código y herramientas):**
 
-**La respuesta corta:** La AI puede implementar, pero no puede decidir CUÁNDO ni CÓMO para TU contexto específico.
+| Tema | Prioridad | Tipo |
+|------|-----------|------|
+| [1.4 — Debugging Básico](Etapa%201%20—%20Entrada/1.4%20—%20Debugging%20Básico%20🔴.md) | 🔴 Core | Lenguaje |
+| [1.5 — JavaScript Internals](Etapa%201%20—%20Entrada/1.5%20—%20JavaScript%20Internals%20🔴.md) | 🔴 Core | Lenguaje |
+| [1.8 — Testing Fundamentals](Etapa%201%20—%20Entrada/1.8%20—%20Testing%20Fundamentals%20🟡.md) | 🟡 Importante | Testing |
+| [1.9 — AI Literacy](Etapa%201%20—%20Entrada/1.9%20—%20AI%20Literacy%20🟡.md) | 🟡 Importante | AI |
+| [1.6 — Estructuras de Datos y Algoritmos](Etapa%201%20—%20Entrada/1.6%20—%20Estructuras%20de%20Datos%20y%20Algoritmos%20🔴.md) | 🔴 Core | CS Fundamentals |
+| [1.7 — Seguridad Aplicada](Etapa%201%20—%20Entrada/1.7%20—%20Seguridad%20Aplicada%20🔴.md) | 🔴 Core | Seguridad |
 
-### Lo que la AI SÍ puede hacer
+**Al cierre (documentación con contexto real):**
 
-- Implementar un HashMap, un QuickSort, un sistema de caching
-- Generar código que compile y funcione para casos comunes
-- Explicar conceptos con ejemplos
-- Escribir tests si le pedís
-
-### Lo que la AI NO puede hacer
-
-| Limitación | Ejemplo |
-|------------|---------|
-| **Decidir arquitectura** | No sabe si tu caso necesita un HashMap vs un Trie vs un B-Tree — necesita contexto que no tiene |
-| **Detectar su propio error** | Puede generar código con bugs y no darse cuenta (hallucinations, APIs inexistentes) |
-| **Entender tu proyecto** | No conoce tus convenciones, tu deuda técnica, tus tradeoffs históricos |
-| **Evaluar tradeoffs** | Puede listar opciones, pero no sabe cuál es mejor PARA VOS |
-
-### El conocimiento que TE sirve
-
-1. **Evaluar código AI** — ¿Es correcto? ¿Respeta tu arquitectura? ¿Tiene los patrones de error típicos?
-2. **Detectar hallucinations** — APIs que no existen, parámetros inventados, edge cases ignorados
-3. **Tomar decisiones** — La AI propone, vos decidís. Pero para decidir necesitás saber.
-4. **Promptar mejor** — "Implementá X siguiendo el patrón que usamos en [archivo]" solo funciona si entendés el patrón.
-
-### La realidad de 2026
-
-- La AI va a estar presente en tu trabajo desde el día 1
-- La regla "primero vos, después AI" es para el APRENDIZAJE — no es negación de la realidad
-- El objetivo: ser el humano que sabe **qué pedirle, cómo verificarlo, y qué decidir**
-
-**Leer también:** `9.5 — Leer Código Ajeno y Code Review 🔴` incluye una sección específica sobre revisar código generado por AI.
+| Tema | Prioridad | Tipo |
+|------|-----------|------|
+| [1.1 — Documentación Técnica Profesional](Etapa%201%20—%20Entrada/1.1%20—%20Documentación%20Técnica%20Profesional%20🔴.md) | 🔴 Core | Mentalidad |
+| [1.2 — Metodologías y Procesos](Etapa%201%20—%20Entrada/1.2%20—%20Metodologías%20y%20Procesos%20🔴.md) | 🔴 Core | Mentalidad |
+| [1.3 — Soft Skills Técnicos](Etapa%201%20—%20Entrada/1.3%20—%20Soft%20Skills%20Técnicos%20🟡.md) | 🟡 Importante | Mentalidad |
 
 ---
 
-## Las 10 Fases
+## Etapa 2 — Fundamentos 🏗️
 
-### Fase 0 — Mentalidad y Proceso de Ingeniería 🧠
+Ahora tenés FreePress funcionando. Los fundamentos tienen contexto.
 
-El framework mental que separa un programador de un ingeniero.
+**Core (estudiar en orden):**
 
-- [[Fase 0 — Mentalidad y Proceso/0.1 — Documentación Técnica Profesional 🔴]] **[CORE]**
-- [[Fase 0 — Mentalidad y Proceso/0.2 — Metodologías y Procesos 🔴]] **[CORE]**
-- [[Fase 0 — Mentalidad y Proceso/0.3 — Soft Skills Técnicos 🟡]] **[CORE]**
+| Tema | Tipo |
+|------|------|
+| [2.1 — Performance Engineering](Etapa%202%20—%20Fundamentos/2.1%20—%20Performance%20Engineering%20🔴.md) | Seguridad |
+| [2.2 — SQL y Modelado Relacional](Etapa%202%20—%20Fundamentos/2.2%20—%20SQL%20y%20Modelado%20Relacional%20🔴.md) | Bases de Datos |
+| [2.3 — TypeScript Avanzado](Etapa%202%20—%20Fundamentos/2.3%20—%20TypeScript%20Avanzado%20🔴.md) | Lenguaje |
 
----
+**Advanced (profundización optativa):**
 
-### Fase 1 — Ciencias de la Computación que te Salteaste ⚠️
-
-La deuda técnica más grande. Algoritmos, SO, redes. Es duro pero es la base de TODO.
-
-- [[Fase 1 — CS Fundamentals/1.1 — Estructuras de Datos y Algoritmos 🔴]] **[CORE]**
-- [[Fase 1 — CS Fundamentals/1.2 — Sistemas Operativos (Profundizar) 🔴]] *[ADVANCED]*
-- [[Fase 1 — CS Fundamentals/1.3 — Redes en Profundidad 🔴]] *[ADVANCED]*
-- [[Fase 1 — CS Fundamentals/1.4 — Paradigmas de Programación 🟡]] *[ADVANCED]*
-- [[Fase 1 — CS Fundamentals/1.5 — Linux y Shell Productivo 🟡]] *[ADVANCED]*
-
----
-
-### Fase 2 — Dominio Profundo del Lenguaje y Runtime 🔥
-
-De "usuario del lenguaje" a "entender la máquina por debajo".
-
-- [[Fase 2 — Lenguaje y Runtime/2.0 — Debugging Básico 🔴]] **[CORE]**
-- [[Fase 2 — Lenguaje y Runtime/2.1 — JavaScript Internals 🔴]] **[CORE]**
-- [[Fase 2 — Lenguaje y Runtime/2.2 — TypeScript Avanzado 🔴]] **[CORE]**
-- [[Fase 2 — Lenguaje y Runtime/2.3 — Build Tools y Module Bundlers 🟡]] *[ADVANCED]*
-- [[Fase 2 — Lenguaje y Runtime/2.4 — Git Avanzado y Modelo de Objetos 🟡]] *[ADVANCED]*
-- [[Fase 2 — Lenguaje y Runtime/2.5 — Concurrency y Parallelism 🟡]] *[ADVANCED]*
+| Tema | Tipo |
+|------|------|
+| [2.4 — Sistemas Operativos](Etapa%202%20—%20Fundamentos/2.4%20—%20Sistemas%20Operativos%20(Profundizar)%20🔴.md) | CS Fundamentals |
+| [2.5 — Redes en Profundidad](Etapa%202%20—%20Fundamentos/2.5%20—%20Redes%20en%20Profundidad%20🔴.md) | CS Fundamentals |
+| [2.6 — Paradigmas de Programación](Etapa%202%20—%20Fundamentos/2.6%20—%20Paradigmas%20de%20Programación%20🟡.md) | CS Fundamentals |
+| [2.7 — Linux y Shell Productivo](Etapa%202%20—%20Fundamentos/2.7%20—%20Linux%20y%20Shell%20Productivo%20🟡.md) | CS Fundamentals |
+| [2.8 — Build Tools y Module Bundlers](Etapa%202%20—%20Fundamentos/2.8%20—%20Build%20Tools%20y%20Module%20Bundlers%20🟡.md) | Lenguaje |
+| [2.9 — Git Avanzado y Modelo de Objetos](Etapa%202%20—%20Fundamentos/2.9%20—%20Git%20Avanzado%20y%20Modelo%20de%20Objetos%20🟡.md) | Lenguaje |
+| [2.10 — Concurrency y Parallelism](Etapa%202%20—%20Fundamentos/2.10%20—%20Concurrency%20y%20Parallelism%20🟡.md) | Lenguaje |
+| [2.11 — Bases de Datos No-Relacionales](Etapa%202%20—%20Fundamentos/2.11%20—%20Bases%20de%20Datos%20No-Relacionales%20🟡.md) | Bases de Datos |
+| [2.12 — Data Migrations y Schema Evolution](Etapa%202%20—%20Fundamentos/2.12%20—%20Data%20Migrations%20y%20Schema%20Evolution%20🔴.md) | Bases de Datos |
 
 ---
 
-### Fase 3 — Arquitectura y Diseño de Sistemas 🏗️
+## Etapa 3 — Arquitectura 🏛️
 
-Patrones y decisiones que definen sistemas que escalan y sobreviven años en producción.
+Patrones y decisiones que definen sistemas que escalan y sobreviven.
 
-- [[Fase 3 — Arquitectura y Diseño de Sistemas/3.1 — Domain-Driven Design (DDD) 🔴]] **[CORE]**
-- [[Fase 3 — Arquitectura y Diseño de Sistemas/3.2 — Patrones de Arquitectura Avanzados 🔴]] **[CORE]**
-- [[Fase 3 — Arquitectura y Diseño de Sistemas/3.3 — System Design en Profundidad 🔴]] *[ADVANCED]*
-- [[Fase 3 — Arquitectura y Diseño de Sistemas/3.4 — API Design 🔴]] *[ADVANCED]*
-- [[Fase 3 — Arquitectura y Diseño de Sistemas/3.5 — Messaging y Event Streaming 🟡]] *[ADVANCED]*
-- [[Fase 3 — Arquitectura y Diseño de Sistemas/3.6 — Sistemas Distribuidos 🔴]] *[ADVANCED]*
+**Core (estudiar en orden):**
 
----
+| Tema | Tipo |
+|------|------|
+| [3.1 — Domain-Driven Design](Etapa%203%20—%20Arquitectura/3.1%20—%20Domain-Driven%20Design%20(DDD)%20🔴.md) | Arquitectura |
+| [3.2 — Patrones de Arquitectura Avanzados](Etapa%203%20—%20Arquitectura/3.2%20—%20Patrones%20de%20Arquitectura%20Avanzados%20🔴.md) | Arquitectura |
+| [3.3 — Cómo funciona el Browser](Etapa%203%20—%20Arquitectura/3.3%20—%20Cómo%20funciona%20el%20Browser%20🔴.md) | Frontend |
 
-### Fase 4 — Infraestructura, DevOps y Cloud ☁️
+**Advanced (profundización optativa):**
 
-Diseñar, desplegar, monitorear y mantener sistemas en producción.
-
-- [[Fase 4 — Infraestructura, DevOps y Cloud/4.1 — Containerización Avanzada 🔴]] **[CORE]**
-- [[Fase 4 — Infraestructura, DevOps y Cloud/4.2 — Orquestación de Containers 🟡]] *[ADVANCED]*
-- [[Fase 4 — Infraestructura, DevOps y Cloud/4.3 — Infrastructure as Code (IaC) 🟡]] *[ADVANCED]*
-- [[Fase 4 — Infraestructura, DevOps y Cloud/4.4 — Cloud Fundamentals 🔴]] *[ADVANCED]*
-- [[Fase 4 — Infraestructura, DevOps y Cloud/4.5 — CI-CD (Integración y Entrega Continua) 🔴]] **[CORE]**
-- [[Fase 4 — Infraestructura, DevOps y Cloud/4.6 — Observabilidad (Los 3 Pilares) 🔴]] **[CORE]**
-
----
-
-### Fase 5 — Seguridad y Performance 🔒
-
-Dos áreas que la mayoría de devs ignoran hasta que algo explota.
-
-- [[Fase 5 — Seguridad y Performance/5.1 — Seguridad Aplicada 🔴]] **[CORE]**
-- [[Fase 5 — Seguridad y Performance/5.2 — Performance Engineering 🔴]] **[CORE]**
-- [[Fase 5 — Seguridad y Performance/5.3 — Testing Backend y API 🔴]] *[ADVANCED]*
+| Tema | Tipo |
+|------|------|
+| [3.4 — State Management](Etapa%203%20—%20Arquitectura/3.4%20—%20State%20Management%20🔴.md) | Frontend |
+| [3.5 — Accesibilidad (a11y)](Etapa%203%20—%20Arquitectura/3.5%20—%20Accesibilidad%20(a11y)%20🟡.md) | Frontend |
+| [3.6 — Testing Frontend](Etapa%203%20—%20Arquitectura/3.6%20—%20Testing%20Frontend%20🟡.md) | Frontend |
+| [3.7 — System Design en Profundidad](Etapa%203%20—%20Arquitectura/3.7%20—%20System%20Design%20en%20Profundidad%20🔴.md) | Arquitectura |
+| [3.8 — API Design](Etapa%203%20—%20Arquitectura/3.8%20—%20API%20Design%20🔴.md) | Arquitectura |
+| [3.9 — Messaging y Event Streaming](Etapa%203%20—%20Arquitectura/3.9%20—%20Messaging%20y%20Event%20Streaming%20🟡.md) | Arquitectura |
+| [3.10 — Sistemas Distribuidos](Etapa%203%20—%20Arquitectura/3.10%20—%20Sistemas%20Distribuidos%20🔴.md) | Arquitectura |
 
 ---
 
-### Fase 6 — Frontend Avanzado 🎨
-
-Ingeniería frontend seria: state management, rendering pipelines, accesibilidad.
-
-- [[Fase 6 — Frontend Avanzado/6.1 — Cómo funciona el Browser 🔴]] **[CORE]**
-- [[Fase 6 — Frontend Avanzado/6.2 — State Management 🔴]] *[ADVANCED]*
-- [[Fase 6 — Frontend Avanzado/6.3 — Accesibilidad (a11y) 🟡]] *[ADVANCED]*
-- [[Fase 6 — Frontend Avanzado/6.4 — Testing Frontend 🟡]] *[ADVANCED]*
-
----
-
-### Fase 7 — Bases de Datos en Profundidad 🗄️
-
-Modelado avanzado, diferentes paradigmas, cuándo usar cada uno.
-
-- [[Fase 7 — Bases de Datos en Profundidad/7.1 — SQL y Modelado Relacional 🔴]] **[CORE]**
-- [[Fase 7 — Bases de Datos en Profundidad/7.2 — Bases de Datos No-Relacionales 🟡]] *[ADVANCED]*
-- [[Fase 7 — Bases de Datos en Profundidad/7.3 — Data Migrations y Schema Evolution 🔴]] *[ADVANCED]*
-
----
-
-### Fase 8 — AI y Agentes 🤖
-
-Construir con AI, no solo "usarla". RAG, agentes, evals, safety.
-
-- [[Fase 8 — AI y Agentes/8.1 — Fundamentos de ML-AI que necesitás como Dev 🟡]] *[ADVANCED]*
-- [[Fase 8 — AI y Agentes/8.2 — AI Engineering (la nueva disciplina) 🔴]] **[CORE]**
-- [[Fase 8 — AI y Agentes/8.3 — Construir con AI — Proyectos reales 🔴]] *[ADVANCED]*
-
----
-
-### Fase 9 — El Programador Completo 🌟
+## Etapa 4 — Profundización 🚀
 
 Los temas que hacen la diferencia entre un buen programador y un ingeniero COMPLETO.
 
-- [[Fase 9 — El Programador Completo/9.1 — Open Source 🟡]] *[ADVANCED]*
-- [[Fase 9 — El Programador Completo/9.2 — Debugging Avanzado 🔴]] **[CORE]**
-- [[Fase 9 — El Programador Completo/9.3 — Mantenibilidad y Deuda Técnica 🟡]] *[ADVANCED]*
-- [[Fase 9 — El Programador Completo/9.4 — Temas que Pocos Dominan 🟢]] *[ADVANCED]*
-- [[Fase 9 — El Programador Completo/9.5 — Leer Código Ajeno y Code Review 🔴]] **[CORE]**
+**Core (estudiar en orden):**
 
----
+| Tema | Tipo |
+|------|------|
+| [4.1 — Containerización Avanzada](Etapa%204%20—%20Profundización/4.1%20—%20Containerización%20Avanzada%20🔴.md) | Infraestructura |
+| [4.2 — CI/CD](Etapa%204%20—%20Profundización/4.2%20—%20CI-CD%20(Integración%20y%20Entrega%20Continua)%20🔴.md) | Infraestructura |
+| [4.3 — Observabilidad](Etapa%204%20—%20Profundización/4.3%20—%20Observabilidad%20(Los%203%20Pilares)%20🔴.md) | Infraestructura |
+| [4.4 — AI Engineering](Etapa%204%20—%20Profundización/4.4%20—%20AI%20Engineering%20(la%20nueva%20disciplina)%20🔴.md) | AI |
+| [4.5 — Debugging Avanzado](Etapa%204%20—%20Profundización/4.5%20—%20Debugging%20Avanzado%20🔴.md) | Completo |
+| [4.6 — Code Review](Etapa%204%20—%20Profundización/4.6%20—%20Leer%20Código%20Ajeno%20y%20Code%20Review%20🔴.md) | Completo |
 
-## Temas Transversales
+**Advanced (profundización optativa):**
 
-Algunos temas se practican a lo largo de todo el plan, no en una fase única:
-
-### Testing
-
-- `5.3 — Testing Backend y API 🔴` — marco conceptual + backend
-- `6.4 — Testing Frontend 🟡` — continuación natural para frontend
-
-**Estudiarlos como unidad.** El marco conceptual de 5.3 aplica igual al frontend.
-
-### Debugging y Mantenibilidad
-
-- `9.2 — Debugging Avanzado 🔴` — leelo antes de tu primer bug difícil en FreePress
-- `9.3 — Mantenibilidad y Deuda Técnica 🟡` — leelo antes de construir FreePress en serio
-
-Los hábitos se forman desde el día 1, no se aprenden al final.
-
----
-
-## Proyectos de Práctica
-
-**FreePress** es el proyecto principal donde aplicás el 80% del plan. Un CMS/Blog open source que crece con tu aprendizaje.
-
-Ver detalle completo: [PROYECTOS.md →](PROYECTOS.md)
-
----
-
-## Recursos
-
-Libros, cursos, plataformas y newsletters que aplican a todo el plan.
-
-Ver listado completo: [RECURSOS.md →](RECURSOS.md)
-
----
-
-## Cómo Estudiar
-
-El método de 4 pasos, cómo se ve en tiempo real, qué es una sesión bien usada, checkpoints por fase.
-
-Ver metodología completa: [METODOLOGIA.md →](METODOLOGIA.md)
-
----
-
-## 📋 Template: Paso a Paso de un Tema
-
-Cuando empieces una fase, pedile a la AI: *"Armame el paso a paso para [NOMBRE DEL TEMA] siguiendo el template del plan"*
-
-**Ejemplo: Hash Tables (1.1)**
-
-| Día | Paso | Qué hacer | Tiempo |
-|-----|------|-----------|--------|
-| Día 1 | Paso 1 | Video de overview + leer capítulo 5 de *Grokking Algorithms* | 1.5h |
-| Día 2 | Paso 2 | Implementar `HashMap` desde cero en TypeScript | 2h |
-| Día 3 | Paso 2 | Arreglar bug con colisiones + 3 ejercicios NeetCode Easy | 1.5h |
-| Día 4 | Paso 3 | (Opcional) Leer sobre amortized O(1) si quedó duda | 45min |
-| Día 5-6 | Paso 4 | Implementar búsqueda en FreePress usando Map como índice | 2-3h |
-| Domingo | Validación | Explicar qué pasa internamente en `map.set(key, value)` | 30min |
-
-**Recursos:**
-- Video: [Hash Tables explicadas en 10 min](https://youtube.com/...)
-- Libro: *Grokking Algorithms*, capítulo 5
-- Práctica: NeetCode — Hash Table section
-
-**Done cuando:** Podés explicar qué pasa internamente cuando hacés `map.set(key, value)` — colisiones, resizing, hashing function — sin mirar apuntes.
-
-Este formato te ahorra tiempo buscando recursos y te deja claro qué hacer cada día.
-
----
-
-## Progreso
-
-Trackeo de temas completados, sesiones de estudio y estadísticas.
-
-**Ver:** [PROGRESS.md →](PROGRESS.md)
+| Tema | Tipo |
+|------|------|
+| [4.7 — Orquestación de Containers](Etapa%204%20—%20Profundización/4.7%20—%20Orquestación%20de%20Containers%20🟡.md) | Infraestructura |
+| [4.8 — Infrastructure as Code](Etapa%204%20—%20Profundización/4.8%20—%20Infrastructure%20as%20Code%20(IaC)%20🟡.md) | Infraestructura |
+| [4.9 — Cloud Fundamentals](Etapa%204%20—%20Profundización/4.9%20—%20Cloud%20Fundamentals%20🔴.md) | Infraestructura |
+| [4.10 — Testing Backend y API](Etapa%204%20—%20Profundización/4.10%20—%20Testing%20Backend%20y%20API%20🔴.md) | Seguridad |
+| [4.11 — Fundamentos de ML-AI](Etapa%204%20—%20Profundización/4.11%20—%20Fundamentos%20de%20ML-AI%20que%20necesitás%20como%20Dev%20🟡.md) | AI |
+| [4.12 — Construir con AI — Proyectos reales](Etapa%204%20—%20Profundización/4.12%20—%20Construir%20con%20AI%20—%20Proyectos%20reales%20🔴.md) | AI |
+| [4.13 — Open Source](Etapa%204%20—%20Profundización/4.13%20—%20Open%20Source%20🟡.md) | Completo |
+| [4.14 — Mantenibilidad y Deuda Técnica](Etapa%204%20—%20Profundización/4.14%20—%20Mantenibilidad%20y%20Deuda%20Técnica%20🟡.md) | Completo |
+| [4.15 — Temas que Pocos Dominan](Etapa%204%20—%20Profundización/4.15%20—%20Temas%20que%20Pocos%20Dominan%20🟢.md) | Completo |
 
 ---
 
@@ -248,8 +119,3 @@ Trackeo de temas completados, sesiones de estudio y estadísticas.
 | 🔴 | **Crítico** — no avanzar sin dominar |
 | 🟡 | **Importante** — estudiar bien, no bloquea |
 | 🟢 | **Complementario** — profundizar cuando haya tiempo |
-| 🔵 | **Proyecto satélite** — práctica complementaria |
-| **[CORE]** | **Core Path** — tema esencial del plan (19 en total) |
-| *[ADVANCED]* | *Advanced Track* — profundización optativa |
-
-**Regla de oro:** no marques un tema como completado hasta que puedas EXPLICARLO a otro programador sin mirar apuntes.

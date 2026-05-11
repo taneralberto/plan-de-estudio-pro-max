@@ -6,90 +6,84 @@ description: >
 license: Apache-2.0
 metadata:
   author: gentleman-programming
-  version: "1.0"
+  version: "2.0"
 ---
 
 ## Arquitectura del Plan de Estudio
 
-El plan tiene una arquitectura modular donde cada archivo tiene un propósito único y específico.
+El plan tiene una arquitectura donde cada archivo responde UNA pregunta. Sin overlap. Sin drift.
 
-### Archivos raíz (proposito único)
+### Archivos raíz (una pregunta → un archivo)
 
-| Archivo | Propósito | Contenido |
-|---------|-----------|-----------|
-| `ROADMAP.md` | **QUÉ y CUÁNDO estudiar** | Secuencia, etapas, Core Path, Advanced Track |
-| `METODOLOGIA.md` | **CÓMO estudiar** | Ciclo de 4 pasos, checkpoints, temas transversales |
-| `Plan de Estudio Pro Max.md` | Catálogo de fases | Qué contiene cada fase + filosofía + leyenda |
-| `PROGRESS.md` | Tracking | Estado actual, completados, estadísticas |
-| `PROYECTOS.md` | Proyectos | FreePress MVP, Plan B, estado por fase |
-| `RECURSOS.md` | Recursos | Libros, cursos, plataformas |
+| Archivo | Pregunta que responde | Propósito |
+|---------|----------------------|-----------|
+| `Plan de Estudio Pro Max.md` | **¿QUÉ estudio y en qué ORDEN?** | Temas por etapa, prioridad 🔴🟡🟢, overview de duración |
+| `METODOLOGIA.md` | **¿CÓMO estudio?** | Ciclo de 4 pasos, ritmo, checkpoints, AI usage, spaced repetition |
+| `PROYECTOS.md` | **¿QUÉ construyo?** | FreePress MVP, Plan B, checkpoints por etapa, migración de stack |
+| `PROGRESO.md` | **¿DÓNDE estoy?** | Tracking de los 19 temas Core con niveles de profundidad |
+| `Referencia/RECURSOS.md` | **¿CON QUÉ estudio?** | Libros, cursos, plataformas por tema |
 
-### Directorios por fase
+### Directorios por etapa
 
 ```
-Fase {N} — {Nombre}/
-├── {N}.{M} — {Tema} 🔴.md     # [CORE]
-├── {N}.{M} — {Tema} 🟡.md     # [ADVANCED]
-└── {N}.{M} — {Tema} 🟢.md     # [ADVANCED]
+Etapa {N} — {Nombre}/
+├── {N}.{M} — {Tema} 🔴.md     # [CORE] - tema esencial
+├── {N}.{M} — {Tema} 🟡.md     # [ADVANCED] - tema importante
+└── {N}.{M} — {Tema} 🟢.md     # [ADVANCED] - tema complementario
 ```
 
 **Convención de nombres:**
-- `{N}` = número de fase (0-9)
-- `{M}` = número de tema dentro de la fase
+- `{N}` = número de etapa (1-4)
+- `{M}` = número de tema dentro de la etapa
 - Emoji de prioridad: 🔴 crítico, 🟡 importante, 🟢 complementario
 - Badge al inicio: `**[CORE]**` o `*[ADVANCED]*`
 
 ---
 
-## Acción: Agregar una NUEVA FASE
+## Acción: Agregar una NUEVA ETAPA
 
-Cuando se agrega una fase completamente nueva (ej: Fase 10), modificar en orden:
+Cuando se agrega una etapa completamente nueva, modificar en orden:
 
 ### 1. Crear directorio
 ```bash
-mkdir "Fase {N} — {Nombre}"
+mkdir "Etapa {N} — {Nombre}"
 ```
 
 ### 2. Crear archivo(s) de tema
 ```
-Fase {N} — {Nombre}/{N}.1 — {Tema} 🔴.md
+Etapa {N} — {Nombre}/{N}.1 — {Tema} 🔴.md
 ```
 
 ### 3. Actualizar `Plan de Estudio Pro Max.md`
-Agregar sección después de Fase 9:
+Agregar sección después de la última etapa:
 ```markdown
-### Fase {N} — {Nombre} {emoji}
+## Etapa {N} — {Nombre} {emoji}
 
-Descripción de la fase.
+Descripción de la etapa.
 
-- [[Fase {N} — {Nombre}/{N}.1 — {Tema} 🔴]] **[CORE]**
-- [[Fase {N} — {Nombre}/{N}.2 — {Tema} 🟡]] *[ADVANCED]*
+**Core (estudiar en orden):**
+
+| Tema | Prioridad | Tipo |
+|------|-----------|------|
+| [{N}.1 — {Tema}](...) | 🔴 Core | {Tipo} |
 ```
 
-### 4. Actualizar `ROADMAP.md`
-- Agregar en tabla de etapas si corresponde
-- Agregar temas en la etapa correspondiente
-- Si es Core, agregar a lista "El Core Path"
-- Agregar a tabla "El Advanced Track" si aplica
+### 4. Actualizar `PROYECTOS.md`
+- Agregar fila en tabla "Checkpoints de Validación por Etapa"
 
-### 5. Actualizar `PROGRESS.md`
-- Agregar temas nuevos a "Próximos temas (Core Path)" si son CORE
+### 5. Actualizar `PROGRESO.md`
+- Agregar sección de la nueva etapa con los temas Core
 
-### 6. Actualizar `PROYECTOS.md`
-- Agregar fila en tabla "Estado esperado de FreePress por fase"
-
-### 7. Actualizar `METODOLOGIA.md`
-- Agregar checkpoint en tabla "Checkpoints por Fase"
+### 6. Actualizar `METODOLOGIA.md`
+- Agregar checkpoint en tabla de checkpoints si aplica
 
 ---
 
-## Acción: Agregar un NUEVO TEMA a una fase existente
-
-Cuando se agrega un tema nuevo a una fase que ya existe:
+## Acción: Agregar un NUEVO TEMA a una etapa existente
 
 ### 1. Crear archivo de tema
 ```
-Fase {N} — {Nombre}/{N}.{M} — {Tema} 🔴.md
+Etapa {N} — {Nombre}/{N}.{M} — {Tema} 🔴.md
 ```
 
 ### 2. Template del archivo
@@ -111,24 +105,21 @@ Fase {N} — {Nombre}/{N}.{M} — {Tema} 🔴.md
 
 ---
 
-- [ ] **{Subtema 2}**
+## 🎯 Checkpoint Social
 
-{...}
+> **Este tema NO está completo hasta que valides externamente tu comprensión.**
+
+Ver [METODOLOGIA.md → Checkpoint Social](../METODOLOGIA.md#-checkpoint-social--validación-externa-por-tema) para los pasos completos.
 ```
 
 ### 3. Actualizar `Plan de Estudio Pro Max.md`
-Agregar línea en la fase correspondiente:
+Agregar línea en la etapa correspondiente:
 ```markdown
-- [[Fase {N} — {Nombre}/{N}.{M} — {Tema} 🔴]] **[CORE]**
+| [{N}.{M} — {Tema}](...) | 🔴 Core | {Tipo} |
 ```
 
-### 4. Actualizar `ROADMAP.md`
-- Si es CORE: agregar a lista Core Path + tabla de etapa correspondiente
-- Si es ADVANCED: agregar a tabla Advanced Track
-
-### 5. Actualizar `PROGRESS.md`
-- Si es CORE: agregar a "Próximos temas (Core Path)"
-- Actualizar contador de temas Core
+### 4. Actualizar `PROGRESO.md`
+Si es Core, agregar a la sección de la etapa correspondiente.
 
 ---
 
@@ -136,12 +127,12 @@ Agregar línea en la fase correspondiente:
 
 Solo modificar el archivo del tema:
 ```
-Fase {N} — {Nombre}/{N}.{M} — {Tema} 🔴.md
+Etapa {N} — {Nombre}/{N}.{M} — {Tema} 🔴.md
 ```
 
 NO es necesario actualizar otros archivos a menos que:
-- Cambie de CORE a ADVANCED (o viceversa) → actualizar ROADMAP.md + PROGRESS.md
-- Cambie el nombre significativamente → actualizar links en Plan de Estudio Pro Max.md
+- Cambie de CORE a ADVANCED (o viceversa) → actualizar PROGRESO.md y Plan de Estudio
+- Cambie el nombre significativamente → actualizar links en Plan de Estudio
 
 ---
 
@@ -149,19 +140,14 @@ NO es necesario actualizar otros archivos a menos que:
 
 ### 1. Eliminar archivo
 ```bash
-rm "Fase {N} — {Nombre}/{N}.{M} — {Tema} 🔴.md"
+rm "Etapa {N} — {Nombre}/{N}.{M} — {Tema} 🔴.md"
 ```
 
 ### 2. Actualizar `Plan de Estudio Pro Max.md`
-Eliminar la línea correspondiente en la fase.
+Eliminar la línea correspondiente en la etapa.
 
-### 3. Actualizar `ROADMAP.md`
-- Si era CORE: eliminar de lista Core Path + tabla de etapa
-- Si era ADVANCED: eliminar de tabla Advanced Track
-
-### 4. Actualizar `PROGRESS.md`
-- Si era CORE: eliminar de lista Core Path
-- Actualizar contador
+### 3. Actualizar `PROGRESO.md`
+Si era Core, eliminar de la sección correspondiente.
 
 ---
 
@@ -169,11 +155,11 @@ Eliminar la línea correspondiente en la fase.
 
 | Pregunta | Archivo | NO duplicar en |
 |----------|---------|----------------|
-| "¿Qué estudio?" | `ROADMAP.md` | Plan principal, Metodología |
-| "¿Cómo estudio?" | `METODOLOGIA.md` | Plan principal, temas |
-| "¿Qué contiene la fase X?" | `Plan de Estudio Pro Max.md` | ROADMAP |
-| "¿En qué estaba?" | `PROGRESS.md` | — |
-| "¿Qué es FreePress?" | `PROYECTOS.md` | — |
+| "¿Qué estudio?" | `Plan de Estudio Pro Max.md` | Metodología, temas |
+| "¿Cómo estudio?" | `METODOLOGIA.md` | Plan, temas |
+| "¿Qué construyo?" | `PROYECTOS.md` | — |
+| "¿Dónde estoy?" | `PROGRESO.md` | — |
+| "¿Qué recurso uso?" | `Referencia/RECURSOS.md` | Temas |
 
 **Si el contenido ya existe en un archivo, referenciarlo, no duplicarlo.**
 
@@ -188,8 +174,6 @@ Cada archivo de tema tiene checkboxes para subtemas:
 ```
 
 El estado de estos checkboxes es LOCAL al archivo. No se trackea globalmente.
-
-Para tracking global, usar `PROGRESS.md`.
 
 ---
 
@@ -217,25 +201,7 @@ Para tracking global, usar `PROGRESS.md`.
 
 | Acción | Archivos a modificar |
 |--------|---------------------|
-| Nueva fase | Dir + tema + Plan + ROADMAP + PROGRESS + PROYECTOS + METODOLOGIA |
-| Nuevo tema | Tema + Plan + ROADMAP (+ PROGRESS si es CORE) |
+| Nueva etapa | Dir + tema + Plan + PROYECTOS + METODOLOGIA + PROGRESO |
+| Nuevo tema | Tema + Plan + PROGRESO (si es Core) |
 | Modificar tema | Solo el tema (salvo cambio de CORE/ADVANCED) |
-| Eliminar tema | Tema + Plan + ROADMAP + PROGRESS |
-
----
-
-## Comandos útiles
-
-```bash
-# Ver estructura de fases
-ls -d Fase*/
-
-# Contar temas por fase
-ls Fase\ */*.md | wc -l
-
-# Buscar un tema específico
-find . -name "*{termino}*.md"
-
-# Ver todos los archivos CORE
-grep -l "\*\*\[CORE\]\*\*" Fase\ */*.md
-```
+| Eliminar tema | Tema + Plan + PROGRESO |

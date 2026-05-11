@@ -1,106 +1,163 @@
 # Metodología de Aprendizaje
 
-Este archivo describe CÓMO estudiar, no QUÉ estudiar. El contenido de temas está en `Plan de Estudio Pro Max.md`. Acá está el método.
+> CÓMO estudiar, no QUÉ estudiar. El contenido y orden de temas está en [Plan de Estudio Pro Max.md](Plan%20de%20Estudio%20Pro%20Max.md). Acá está el método.
 
 ---
 
-## 🤖 La Regla de AI
+## Tu Ritmo Realista
 
-> **Primero lo construís vos. Después la AI puede entrar.**
+El plan está diseñado para **2-3 horas, 3-4 días por semana**.
 
-La AI es válida como:
-1. **Revisor de código** — *"Implementé este sistema de cache. ¿Qué problemas ves?"*
-2. **Desbloqueador** — cuando llevás 30+ minutos trabado sin avance real
-3. **Generador de casos edge** — *"¿Qué inputs romperían esta función?"*
+| Día | Tiempo | Nota |
+|-----|--------|------|
+| Lunes a Jueves | 1h trabajo + 1h noche = **2h** | Aprovechá que la AI te adelanta tareas |
+| Viernes | **1h** | Descanso mental, más ligero |
+| Sábado | **Libre** | Baile, familia, descanso |
+| Domingo | **2-3h** | Si se puede, profundizar |
 
-La AI NO es válida para:
-- Escribir el código que el plan espera que vos escribas
-- Explicar un concepto antes de que intentes entenderlo solo
+**Total semanal:** ~9-11 horas → **DENTRO del rango del plan** (6-12h)
 
-**Por qué importa:** El aprendizaje ocurre en la fricción. Si la AI elimina la fricción antes de que ocurra, elimina el aprendizaje junto con ella. Código que funciona + programador que no aprendió = falsa confianza peligrosa.
-
-**El objetivo correcto:** No es "que la AI no pueda hacer lo que yo hago" — es "ser el humano que sabe qué pedirle a la AI, verificar lo que produce, y tomar las decisiones que ella no puede tomar sola". Eso requiere conocimiento real.
+> **Consistencia > intensidad.** Mejor 1 hora todos los días que 4 horas un domingo y nada más.
 
 ---
 
-## 🔄 El Ciclo de Aprendizaje (4 Pasos)
+## Filosofía: Los conceptos PRIMERO
 
-No leas cada libro de tapa a tapa. Los libros son recursos de REFERENCIA. La estrategia es este ciclo:
+1. **Conceptos antes que código** — No se toca un framework sin entender qué problema resuelve. No se copia código sin entender POR QUÉ funciona. Un framework es una herramienta; si no entendés el problema que resuelve, no podés evaluar si es la correcta.
+
+2. **Cada etapa construye sobre la anterior** — El plan tiene un orden por una razón. Saltar etapas es como construir el segundo piso sin cimientos: parece que funciona hasta que no.
+
+3. **La regla de oro** — No marques un tema como completado hasta que puedas EXPLICARLO a otro programador sin mirar apuntes. Si no podés explicarlo, no lo dominás.
+
+---
+
+## ¿Por qué aprender si la AI lo hace?
+
+La AI puede implementar, pero no puede decidir CUÁNDO ni CÓMO para TU contexto específico.
+
+| La AI SÍ puede | La AI NO puede |
+|----------------|-----------------|
+| Implementar un HashMap, un QuickSort, un sistema de caching | Decidir si tu caso necesita HashMap vs Trie vs B-Tree |
+| Generar código que compile y funcione para casos comunes | Detectar su propio error (hallucinations, APIs inexistentes) |
+| Explicar conceptos con ejemplos | Entender tu proyecto, tus convenciones, tu deuda técnica |
+| Escribir tests si le pedís | Evaluar tradeoffs PARA VOS |
+
+El conocimiento que TE sirve: evaluar código AI, detectar hallucinations, tomar decisiones arquitectónicas, y promptar mejor. La AI va a estar presente en tu trabajo desde el día 1 — el objetivo es ser el humano que sabe **qué pedirle, cómo verificarlo, y qué decidir**.
+
+---
+
+## La Regla de AI — Progresión por Etapas
+
+> La AI evoluciona con vos. No es una regla binaria — es una progresión que crece con tu conocimiento.
+
+### Etapa 1: Entrada — AI como VALIDADOR
+
+La AI NO escribe código por vos. La AI valida lo que vos entendiste.
+
+✅ Válido:
+- "Voy a explicarte Hash Tables. Decime si mi explicación es correcta."
+- "¿Qué casos edge no consideré en esta función?"
+- "Este código falla con X input. ¿Ves por qué?" (después de intentarlo vos primero)
+
+❌ NO válido:
+- "Implementame un HashMap"
+- "¿Cómo se resuelve este ejercicio?"
+- "Explicame Big O"
+
+**Regla:** Si la AI te está explicando antes de que vos intentaste entender, estás perdiendo el aprendizaje.
+
+### Etapa 2: Fundamentos — AI como CODE REVIEWER
+
+Tu código, sus ojos.
+
+✅ Válido:
+- "Este es mi código para X. ¿Qué problemas ves?"
+- "¿Esta query SQL es eficiente? ¿Por qué?"
+- "Encontrá 3 bugs potenciales en esta función"
+
+❌ NO válido:
+- "Escribí la función por mí"
+- "Optimizame esta query" (sin entender la original)
+
+**Regla:** El código tiene que ser tuyo. La crítica puede ser de ella.
+
+### Etapa 3: Arquitectura — AI como PAIR PROGRAMMER
+
+Vos conducís, ella sugiere.
+
+✅ Válido:
+- "¿Cómo implementarías este patrón en NestJS? Mostrame alternativas"
+- "¿Qué trade-offs ves entre option A y B?"
+- "Ayudame a diseñar la interfaz de este servicio"
+
+**Regla:** Pedís sugerencias, pero la decisión arquitectónica sigue siendo tuya. Si no podés explicar por qué elegiste X, no entendiste.
+
+### Etapa 4: Profundización — AI como TEAMMATE
+
+Construyen juntos. Ya no hay restricción de uso.
+
+✅ Válido:
+- "Armemos un agente que haga X" — entendiendo cada parte
+- "¿Cómo implemento RAG con estos documentos?" — leyendo los docs oficiales
+- "Escribí tests para esta feature" — verificando que los tests sean correctos
+
+**Regla:** Ya no hay restricción. Pero ahora sí entendés CUÁNDO usarla, QUÉ pedirle, y CÓMO verificar lo que produce.
+
+### Resumen
+
+| Etapa | Uso permitido | Habilidad que desarrollás | Regla |
+|-------|---------------|---------------------------|-------|
+| **Entrada** | Validar tu explicación | Pensamiento independiente | "Primero vos, después AI" |
+| **Fundamentos** | Code reviewer de tu código | Evaluar feedback técnico | "Tu código, su crítica" |
+| **Arquitectura** | Pair programmer, vos decidís | Dirigir la herramienta | "Vos conducís, ella sugiere" |
+| **Profundización** | Teammate, construir juntos | AI Engineering completo | "Entendés CUÁNDO, QUÉ y CÓMO" |
+
+---
+
+## El Ciclo de Aprendizaje (4 Pasos)
+
+No leas cada libro de tapa a tapa. Los libros son recursos de REFERENCIA.
 
 ### Paso 1 — Video o artículo de overview (1-2 horas)
 
-Buscá un video de 20-40 minutos que te dé el mapa mental general. No necesitás entender todo — necesitás saber DE QUÉ SE TRATA, cuál es el problema que resuelve, y por qué importa.
+Buscá un video de 20-40 minutos que te dé el mapa mental general. No necesitás entender todo — necesitás saber DE QUÉ SE TRATA.
 
-**Dónde buscar:**
-- **YouTube:** Fireship, ByteByteGo, ThePrimeagen, Traversy Media, 3Blue1Brown
-- **Blogs:** Martin Fowler, web.dev, blogs oficiales de cada tecnología
-- **Newsletters:** ByteByteGo, TLDR, JavaScript Weekly
+**Dónde buscar:** Fireship, ByteByteGo, ThePrimeagen, Traversy Media, 3Blue1Brown, Martin Fowler, web.dev.
 
 ### Paso 2 — Práctica hands-on INMEDIATA (2-4 horas)
 
-**Esta es la parte más importante.** Si miraste un video sobre el Event Loop, abrí la consola y escribí 10 ejemplos AHORA. No mañana — **AHORA**.
+**La parte más importante.** Si miraste un video sobre el Event Loop, abrí la consola y escribí 10 ejemplos AHORA.
 
-La curva del olvido es brutal: si no practicás en 24 horas, perdés el 70%.
+La regla: no escribas notas bonitas. **Escribí código.**
 
-**La regla:** no escribas notas bonitas, no hagas resúmenes. **Escribí código.**
-
-#### Tipos de práctica efectiva
-
-No toda práctica es igual. Copiar código del video NO es práctica efectiva.
-
-| Tipo | Qué es | Ejemplo |
-|------|--------|---------|
+| Tipo de práctica | Qué es | Ejemplo |
+|------------------|--------|---------|
 | **Variación** | El recurso mostró X → vos implementás X con una variación | Video muestra Stack con array → vos implementás Stack con linked list |
-| **From scratch** | Cerrá todo y escribí X desde cero sin mirar nada | Implementá HashMap sin ver el código del video o tutorial |
-| **Debugging intencional** | Escribí código que USE el concepto y ROMPELO a propósito | Escribí un closure con memory leak, después arreglalo entendiendo por qué |
+| **From scratch** | Cerrá todo y escribí X desde cero | Implementá HashMap sin ver el código del tutorial |
+| **Debugging intencional** | Escribí código que USE el concepto y ROMPELO a propósito | Escribí un closure con memory leak, después arreglalo |
 | **Enseñar** | Explicá el concepto en voz alta como si le enseñaras a un junior | Si te trabás, no lo entendiste bien |
 
-#### La regla de oro del Paso 2
+**Una sesión cuenta como "Paso 2 completo" solo si produciste código que NO es copia directa del recurso.**
 
-Una sesión cuenta como "Paso 2 completo" solo si produciste código que **NO es copia directa** del recurso que consumiste.
-
-**Señales de que estás practicando mal:**
-- Escribís lo mismo que el video/tutorial palabra por palabra
-- No probaste casos diferentes a los del ejemplo
-- No rompiste nada ni tuviste que arreglar nada
-- No podrías explicar por qué funciona tu código
+Señales de práctica mala: escribís lo mismo que el video palabra por palabra · no probaste casos diferentes · no rompiste nada · no podrías explicar por qué funciona.
 
 ### Paso 3 — Lectura profunda SI algo no quedó claro (variable)
 
-Recién acá entran los libros. Leé el **capítulo específico** que necesitás, no todo el libro.
-
-**Alternativas cuando el tema no requiere tanta profundidad:**
-- Documentación oficial — siempre la más actualizada
-- Cursos estructurados — Frontend Masters, Pluralsight, MIT OCW
+Recién acá entran los libros. Leé el **capítulo específico** que necesitás, no todo el libro. Alternativas: documentación oficial, cursos estructurados (Frontend Masters, MIT OCW).
 
 ### Paso 4 — Aplicar en FreePress (el cierre del ciclo)
 
-El aprendizaje se CEMENTA cuando lo aplicás en un proyecto real. FreePress es tu proyecto principal. Los mini-proyectos satélite cubren lo que no encaja ahí.
-
-Si no podés aplicar lo que aprendiste, es señal de que necesitás volver al paso 2 o 3.
+El aprendizaje se CEMENTA cuando lo aplicás en un proyecto real. Si no podés aplicar lo que aprendiste, volvé al paso 2 o 3.
 
 ---
 
-## Cómo se ve el ciclo en el tiempo real
-
-El ciclo no ocurre en una sentada. Para un tema 🔴:
-
-> **Ejemplo: Hash Tables (1.1)**
->
-> - **Día 1 (lunes):** Paso 1 — video de overview + leer capítulo 5 de *Grokking Algorithms*. 1.5 horas.
-> - **Día 2 (martes):** Paso 2 — implementás tu propio `HashMap` desde cero en TypeScript. 2 horas.
-> - **Día 3 (miércoles):** Paso 2 continúa — el `HashMap` tiene un bug con colisiones. Lo arreglás. Hacés 3 ejercicios de NeetCode. 1.5 horas.
-> - **Día 4 (jueves):** Paso 3 (opcional) — algo no quedó claro sobre amortized O(1). Leés la sección específica de MDN. 45 minutos.
-> - **Día 5-6:** Paso 4 — implementás búsqueda de artículos en FreePress usando un Map para el índice. Comparás con búsqueda lineal.
-> - **Domingo:** "Done cuando" — verificás el criterio de completitud. Si podés explicar qué pasa internamente cuando hacés `map.set(key, value)`, marcás el checkbox.
-
-**Tiempos orientativos (con ritmo de 2h/día, 4-5 días/semana):**
+## Tiempos orientativos
 
 | Tipo | Tiempo real | Por qué |
 |------|-------------|---------|
-| 🔴 Crítico | **1.5-2 semanas** | Requiere práctica profunda + aplicación en FreePress |
-| 🟡 Importante | **1 semana** | Menos profundidad, pero necesita hands-on |
-| 🟢 Complementario | **2-3 días** | Lectura + ejercicio ligero |
+| 🔴 Crítico | 1.5-2 semanas | Requiere práctica profunda + aplicación en FreePress |
+| 🟡 Importante | 1 semana | Menos profundidad, pero necesita hands-on |
+| 🟢 Complementario | 2-3 días | Lectura + ejercicio ligero |
 
 **No apures los tiempos.** Un tema 🔴 que te lleva 3 semanas pero lo dominás es mejor que uno que "completás" en 5 días sin entender.
 
@@ -108,117 +165,73 @@ El ciclo no ocurre en una sentada. Para un tema 🔴:
 
 ## Qué es una sesión bien usada
 
-Una sesión de 2 horas donde **escribiste código** es una sesión bien usada.
+✅ Escribiste código que no existía antes (aunque esté roto) · Rompiste algo y lo arreglaste entendiendo por qué · Aplicaste algo en FreePress que antes solo "entendías en teoría"
 
-Una sesión de 2 horas donde solo miraste videos o leíste artículos es útil — pero no es suficiente sola, y no cuenta como avance real.
-
-**Señales positivas:**
-- Escribiste código que no existía antes (aunque esté roto)
-- Rompiste algo y lo arreglaste entendiendo por qué
-- Aplicaste algo en FreePress que antes solo "entendías en teoría"
-
-**Señales negativas:**
-- Pasaste 2 horas "tomando notas" o haciendo resúmenes
-- Miraste el ejercicio y dijiste "esto lo entiendo, no hace falta hacerlo"
-- Saltaste el Paso 2 porque "ya sabés de qué se trata"
+❌ Pasaste 2 horas tomando notas o haciendo resúmenes · Miraste el ejercicio y dijiste "esto lo entiendo, no hace falta hacerlo" · Saltaste el Paso 2 porque "ya sabés de qué se trata"
 
 ---
 
----
+## Temas Transversales
 
-## 🏁 Checkpoints por Fase
+### Testing — desde la Etapa 1
 
-Al terminar cada fase, validá tu aprendizaje con un entregable concreto. No alcanza con "lo leí y lo entendí" — necesitás DEMOSTRAR que lo internalizaste.
-
-| Fase | Checkpoint — lo que tenés que poder producir o demostrar |
-|------|----------------------------------------------------------|
-| **Fase 0** | Abrís el repo de FreePress y encontrás en `/docs`: un ADR que justifica el stack con alternativas consideradas, y un PRD del editor WYSIWYG. Podés explicar la diferencia entre PRD, RFC y ADR en 2 minutos sin mirar apuntes. |
-| **Fase 1** | Tomás cualquier función del backend de FreePress y decís su complejidad Big O temporal y espacial en menos de 2 minutos, justificando el razonamiento. Podés explicar con un diagrama propio cómo el event loop de Node.js maneja dos requests HTTP concurrentes. |
-| **Fase 2** | Abrís Chrome DevTools, ponés un breakpoint en el código compilado, y traceás la ejecución de una acción del usuario hasta la respuesta del servidor. Podés explicar qué hace el compilador de TypeScript con un generic condicional que usaste. |
-| **Fase 5** | Abrís el código de auth de FreePress y señalás al menos 2 superficies de ataque potenciales. Corrés la suite de tests — pasan todos. `npm audit` sin críticos. Corrés un benchmark con Artillery o k6 sobre el endpoint más lento y podés leer el reporte. |
-| **Fase 7** | Abrís psql contra la base de FreePress, ejecutás `EXPLAIN ANALYZE` sobre la query más pesada, y podés leer el plan de ejecución: identificás Seq Scans donde no deberían estar y sabés qué índice agregarías. Podés mostrar una migración de schema versionada que no rompe datos existentes. |
-| **Fase 3** | Dibujás en el momento el Context Map de FreePress con sus Bounded Contexts y el tipo de relación entre ellos, justificando cada límite. Podés abrir cualquier módulo y decir si viola el Dependency Rule de Clean Architecture — y si viola, explicar exactamente cuál dependencia apunta en la dirección incorrecta. |
-| **Fase 6** | Abrís el test de un componente Angular de FreePress y determinás en 5 minutos si está testeando comportamiento o implementación. Podés mostrar en Storybook las variantes del componente principal del sistema de diseño. Podés explicar qué pasa en el render pipeline del browser cuando Angular actualiza un componente con OnPush. |
-| **Fase 4** | Hacés un deploy de FreePress a producción desde cero (desde `git push` hasta el sistema corriendo) en menos de 10 minutos usando el pipeline de CI/CD. Podés abrir el dashboard de observabilidad y responder: ¿qué endpoint tiene la latencia P99 más alta esta semana y por qué? |
-| **Fase 8** | Mostrás `fp-ai-assistant` funcionando con al menos una feature real integrada a FreePress. Podés explicar qué es RAG, por qué existe, y qué problema resuelve que un LLM sin contexto no puede resolver — con el código de FreePress como ejemplo concreto. |
-| **Fase 9** | Abrís el módulo más viejo de FreePress, mostrás que tiene characterization tests, y explicás al menos una decisión de diseño que cambiarías hoy y por qué. Podés abrir un PR y hacer un code review escrito con comentarios en formato Conventional Comments. |
-
----
-
-## Cómo retomar si se interrumpe
-
-Si la vida interrumpe el plan:
-
-1. **Abrí `PROGRESS.md`** y mirá en qué estabas.
-2. **No volvás al principio.** Continuá desde donde dejaste.
-3. **Si pasaron más de 2 semanas**, hacé una sesión de repaso de 1 hora del último tema — no más.
-4. **La consistencia gana sobre la intensidad.** 3 sesiones de 2 horas por semana durante un año > 2 meses intensos + 4 meses de parálisis.
-
----
-
-## 🧪 Temas Transversales
-
-### Testing
-
-El testing NO se aprende al final. Se practica desde el día 1.
-
-**La regla:** Desde la Fase 2 (Lenguaje), cada feature que agregues a FreePress incluye:
+Desde que empezás a escribir código en FreePress, cada feature incluye:
 - Al menos **1 test unitario** para la lógica core
 - Al menos **1 test de integración** para el endpoint o flujo completo
 
-No es "agregar tests después" — es "escribir tests como parte del desarrollo".
+Escribir código sin tests durante meses genera código no testeable por diseño. Los temas de profundización (Testing Backend 4.10, Testing Frontend 3.6) expanden esto, pero la práctica arranca desde el día 1.
 
-#### ¿Por qué desde el principio?
+Lo mínimo que necesitás desde el inicio: Jest básico (`describe`, `it`, `expect`, `beforeEach`), testing de funciones puras, testing de endpoints con supertest, un mock simple para dependencias.
 
-Escribir código sin tests durante 6 meses genera código **no testeable por diseño**. Cuando llegues a las fases de testing avanzado, vas a tener que reescribir todo.
+### Debugging y Mantenibilidad
 
-Si escribís tests desde el día 1:
-- Tu código es testeable por construcción
-- Aprendés a pensar en edge cases naturalmente
-- Los tests se convierten en documentación viva
-- El refactoring es seguro porque tenés red
+- `4.5 — Debugging Avanzado 🔴` — leelo antes de tu primer bug difícil en FreePress
+- `4.3 — Mantenibilidad y Deuda Técnica 🟡` — leelo antes de construir FreePress en serio
 
-#### Testing básico que necesitás saber desde Fase 2
+Los hábitos se forman desde el día 1, no se aprenden al final.
 
-Antes de profundizar en testing (Fases 5 y 6), necesitás lo mínimo:
+---
 
-1. **Jest básico:** `describe`, `it`, `expect`, `beforeEach`
-2. **Testing de funciones puras:** input → output esperado
-3. **Testing de endpoints:** supertest o equivalente para tu stack
-4. **Un test double simple:** mock básico para dependencias
+## Checkpoint Social — Validación externa por tema
 
-Con eso alcanza para escribir tests útiles desde el principio. Los patrones avanzados vienen en `5.3 — Testing Backend` y `6.4 — Testing Frontend`.
+Un tema no está completo hasta que alguien más validó tu comprensión.
 
-### Validación externa — No te auto-engañes
+**Temas 🔴 Core:**
+- [ ] Publicaste un micro-post en redes contando qué aprendiste (280-500 caracteres)
+- [ ] Validaste tu explicación con alguien externo (persona o AI con el prompt de validación)
 
-El "Done cuando" dice "podés explicar X sin mirar apuntes". ¿Pero cómo sabés que realmente podés? La auto-evaluación es traicionera: podés creer que entendés algo cuando no lo entendés.
+**Temas 🟡/🟢 Advanced:**
+- [ ] Validaste tu explicación con alguien externo (AI o persona)
+- La publicación en redes es opcional pero recomendada
 
-**La regla:** Un tema no está completo hasta que RECIBISTE VALIDACIÓN EXTERNA de que lo entendés.
+### El micro-post debe incluir:
+1. **Un concepto clave** que aprendiste
+2. **Qué te sorprendió** o qué pensabas diferente antes
+3. **Un link o referencia** a tu trabajo
 
-#### Formas de validar
-
-| Método | Cómo funciona | Cuándo usarlo |
-|--------|---------------|---------------|
-| **Explicar a otra persona** | Le contás el concepto a un amigo/colega. ¿Lo entendió? | Ideal, pero requiere tener alguien disponible |
-| **Explicar a una AI** | Le pedís a Claude/ChatGPT: "Voy a explicarte X. Decime si mi explicación es correcta o si me falta algo" | Rápido, disponible siempre, feedback inmediato |
-| **Escribir un mini-artículo** | Redactás el concepto como si fuera un blog post. Si alguien lo lee y lo entiende, válido | Útil para temas complejos que querés recordar |
-| **Enseñar en un video** | Grabáte explicando el tema. Si podés explicarlo fluido sin trabarte, lo dominás | Para temas que querés dominar en profundidad |
-| **Code review cruzado** | Le pedís a alguien que revise el código que escribiste para ese tema | Útil para temas de código específicos |
-
-#### El prompt para validar con AI
+### Prompt de validación (para AI):
 
 ```
-Voy a explicarte [CONCEPTO] con mis propias palabras. 
-Después de leer mi explicación, evaluá:
-1. ¿Es técnicamente correcta?
-2. ¿Hay algo importante que me falta?
-3. ¿Hay algo que entendí mal?
+Voy a explicarte un concepto técnico. Tu trabajo es:
+
+1. Evaluar si mi explicación es técnicamente correcta
+2. Identificar cualquier concepto erróneo o confuso
+3. Decirme qué profundicé bien y qué me faltó profundizar
+4. Si algo está mal, corregirme con la explicación correcta
+
+El concepto es: [TU TEMA]
 
 Mi explicación:
-[TU EXPLICACIÓN ACÁ]
+[TU EXPLICACIÓN - intentá que sea de 2-3 párrafos]
 ```
 
-#### Señales de que NO entendés (aunque creas que sí)
+### ¿Por qué importa?
+
+Sin validación externa, es fácil marcarse un tema como "completado" cuando solo se consumió contenido. La validación fuerza a: **articular** lo que aprendiste en tus propias palabras, **recibir feedback** sobre huecos, y **publicar** evidencia de tu aprendizaje.
+
+**Tiempo estimado:** 15-20 minutos por tema.
+
+### Señales de que NO entendés (aunque creas que sí)
 
 - Solo podés explicarlo con las mismas palabras del recurso original
 - Te trabás cuando alguien te hace una pregunta de seguimiento
@@ -227,8 +240,28 @@ Mi explicación:
 
 **La prueba de fuego:** Si no podés explicar el concepto a un junior sin usar jerga técnica que él no entienda, no lo dominás todavía.
 
-### Evaluar código AI
+---
+
+## Evaluar código AI
 
 Cada línea de código que la AI genera y vos aceptás, LA APROBASTE VOS.
 
-> **Para el checklist completo de verificación, ejercicio de "bug hunt" y patrones de error típicos, ver `9.5 — Leer Código Ajeno y Code Review` → sección "Revisar código generado por AI".**
+Patrones de error típico en código AI: hallucinations (APIs que no existen), parámetros inventados, edge cases ignorados, soluciones genéricas que no respetan tu arquitectura. Ver tema `4.6 — Code Review` para el checklist completo.
+
+---
+
+## Cómo retomar si se interrumpe
+
+1. Abrí [Plan de Estudio Pro Max.md](Plan%20de%20Estudio%20Pro%20Max.md) y mirá en qué etapa estabas
+2. No volvás al principio. Continuá desde donde dejaste
+3. Si pasaron más de 2 semanas, hacé una sesión de repaso de 1 hora del último tema — no más
+4. La consistencia gana sobre la intensidad. 3 sesiones de 2 horas por semana durante un año > 2 meses intensos + 4 meses de parálisis
+
+---
+
+## Cómo usar este archivo
+
+- **Primera vez:** Leé completo para entender el método
+- **Cada sesión:** Volvé a "El Ciclo de Aprendizaje" si necesitás recordar los 4 pasos
+- **Al completar un tema:** Usá "Checkpoint Social" para validar tu comprensión
+- **Al usar AI:** Volvé a "La Regla de AI" para verificar que estás en la etapa correcta

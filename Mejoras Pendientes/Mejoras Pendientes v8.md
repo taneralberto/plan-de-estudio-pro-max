@@ -1,7 +1,7 @@
 # Mejoras Pendientes v8 — Plan de Estudio Pro Max
 
 > Revisión crítica pedagógica realizada el 10/05/2026
-> **Estado:** 🔲 Pendiente de implementación (Mejoras 1 y 2 completadas, ROADMAP.md eliminado — su contenido se distribuyó entre Plan de Estudio Pro Max.md y METODOLOGIA.md)
+> **Estado:** ✅ Ciclo cerrado — Mejoras 1, 2, 3, 4, 6 y 10 implementadas. Mejoras 5, 7, 8, 9 y 11 derogadas por decisión del autor.
 
 ---
 
@@ -123,7 +123,7 @@ Contenido:
 
 ---
 
-### 🟡 Mejora 4: Spaced Repetition — Ritual de Repaso
+### 🟡 Mejora 4: Spaced Repetition — Ritual de Repaso ✅ COMPLETADA
 
 **Problema:**
 
@@ -147,7 +147,7 @@ Agregar un "Ritual de Repaso" que se integra en el flujo de estudio sin agregar 
 
 ---
 
-### 🟡 Mejora 5: Niveles de profundidad en "Done cuando"
+### 🟡 Mejora 5: Niveles de profundidad en "Done cuando" ❌ DEROGADA
 
 **Problema:**
 
@@ -176,7 +176,7 @@ No hace falta alcanzar L3 en todos — pero el estudiante debería saber en qué
 
 ---
 
-### 🟡 Mejora 6: AI Literacy — Mini-tema nuevo en Etapa 1
+### 🟡 Mejora 6: AI Literacy — Mini-tema nuevo en Etapa 1 ✅ COMPLETADA
 
 **Problema:**
 
@@ -211,7 +211,7 @@ Contenido:
 
 ---
 
-### 🟡 Mejora 7: Perfiles Sugeridos para los 26 temas Advanced
+### 🟡 Mejora 7: Perfiles Sugeridos para los 26 temas Advanced ❌ DEROGADA
 
 **Problema:**
 
@@ -238,7 +238,7 @@ Cada perfil tiene 4-7 temas — manejable en 2-3 meses adicionales.
 
 ---
 
-### 🟡 Mejora 8: Retrospectiva Mensual — Reflexión metacognitiva
+### 🟡 Mejora 8: Retrospectiva Mensual — Reflexión metacognitiva ❌ DEROGADA
 
 **Problema:**
 
@@ -266,7 +266,7 @@ Documentar las respuestas en PROGRESO.md o un journal separado.
 
 ---
 
-### 🟢 Mejora 9: Reorganizar Etapa 2 en 2A y 2B
+### 🟢 Mejora 9: Reorganizar Etapa 2 en 2A y 2B ❌ DEROGADA
 
 **Problema:**
 
@@ -297,7 +297,7 @@ Dividir Etapa 2 en dos sub-etapas con identidad propia.
 
 ---
 
-### 🟢 Mejora 10: Corregir errores de categorización
+### 🟢 Mejora 10: Corregir errores de categorización ✅ COMPLETADA
 
 **Problema:**
 
@@ -317,7 +317,7 @@ Corregir los tipos en la tabla de Etapa 2 y Etapa 4.
 
 ---
 
-### 🟢 Mejora 11: Nota de honestidad sobre el timeline
+### 🟢 Mejora 11: Nota de honestidad sobre el timeline ❌ DEROGADA
 
 **Problema:**
 

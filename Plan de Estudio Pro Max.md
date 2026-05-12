@@ -35,7 +35,7 @@ Ahora tenés FreePress funcionando. Los fundamentos tienen contexto.
 
 | Tema | Tipo |
 |------|------|
-| [2.1 — Performance Engineering](Etapa%202%20—%20Fundamentos/2.1%20—%20Performance%20Engineering%20🔴.md) | Seguridad |
+| [2.1 — Performance Engineering](Etapa%202%20—%20Fundamentos/2.1%20—%20Performance%20Engineering%20🔴.md) | Performance |
 | [2.2 — SQL y Modelado Relacional](Etapa%202%20—%20Fundamentos/2.2%20—%20SQL%20y%20Modelado%20Relacional%20🔴.md) | Bases de Datos |
 | [2.3 — TypeScript Avanzado](Etapa%202%20—%20Fundamentos/2.3%20—%20TypeScript%20Avanzado%20🔴.md) | Lenguaje |
 
@@ -103,7 +103,7 @@ Los temas que hacen la diferencia entre un buen programador y un ingeniero COMPL
 | [4.7 — Orquestación de Containers](Etapa%204%20—%20Profundización/4.7%20—%20Orquestación%20de%20Containers%20🟡.md) | Infraestructura |
 | [4.8 — Infrastructure as Code](Etapa%204%20—%20Profundización/4.8%20—%20Infrastructure%20as%20Code%20(IaC)%20🟡.md) | Infraestructura |
 | [4.9 — Cloud Fundamentals](Etapa%204%20—%20Profundización/4.9%20—%20Cloud%20Fundamentals%20🔴.md) | Infraestructura |
-| [4.10 — Testing Backend y API](Etapa%204%20—%20Profundización/4.10%20—%20Testing%20Backend%20y%20API%20🔴.md) | Seguridad |
+| [4.10 — Testing Backend y API](Etapa%204%20—%20Profundización/4.10%20—%20Testing%20Backend%20y%20API%20🔴.md) | Testing |
 | [4.11 — Fundamentos de ML-AI](Etapa%204%20—%20Profundización/4.11%20—%20Fundamentos%20de%20ML-AI%20que%20necesitás%20como%20Dev%20🟡.md) | AI |
 | [4.12 — Construir con AI — Proyectos reales](Etapa%204%20—%20Profundización/4.12%20—%20Construir%20con%20AI%20—%20Proyectos%20reales%20🔴.md) | AI |
 | [4.13 — Open Source](Etapa%204%20—%20Profundización/4.13%20—%20Open%20Source%20🟡.md) | Completo |

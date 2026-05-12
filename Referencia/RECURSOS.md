@@ -1,8 +1,8 @@
 # Recursos Transversales
 
-Libros, cursos, plataformas y newsletters que aplican a todo el plan — no a una fase específica.
+Libros, cursos, plataformas y newsletters que aplican a todo el plan.
 
-> **Nota:** Estos recursos aplican a múltiples fases. Para recursos específicos por tema (libros, cursos, artículos), ver cada archivo de tema individual — cada uno tiene su sección de **Recursos** al final.
+> Para recursos específicos por tema, ver cada archivo de tema individual — cada uno tiene su sección de **Recursos** al final.
 
 ---
 
@@ -10,51 +10,19 @@ Libros, cursos, plataformas y newsletters que aplican a todo el plan — no a un
 
 https://100cosas.dev/
 
+---
+
 ## 📖 Libros Esenciales
 
 En orden de prioridad:
 
-### 1. Designing Data-Intensive Applications — Martin Kleppmann
-
-*El libro más importante de esta lista.* Cubre bases de datos, sistemas distribuidos, consistency, replication, partitioning.
-
-**Si solo leés un libro, que sea este.**
-
----
-
-### 2. Clean Code + Clean Architecture — Robert C. Martin
-
-Controversiales pero fundamentales. Tomalos como guías, no como dogma.
-
----
-
-### 3. The Pragmatic Programmer — David Thomas & Andrew Hunt
-
-Mentalidad de ingeniero. Tips prácticos que aplican a cualquier lenguaje.
-
----
-
-### 4. System Design Interview Vol. 1 y 2 — Alex Xu
-
-Práctico, visual, casos reales. Excelente para pensar en sistemas.
-
----
-
-### 5. Grokking Algorithms — Aditya Bhargava
-
-El mejor libro para aprender algoritmos si nunca los estudiaste formalmente. Visual, accesible.
-
----
-
-### 6. A Philosophy of Software Design — John Ousterhout
-
-Corto, denso, brillante. Sobre complejidad y cómo manejarla.
-
----
-
-### 7. Staff Engineer / The Staff Engineer's Path
-
-Para cuando estés listo para el siguiente nivel de tu carrera.
+1. **Designing Data-Intensive Applications** — Martin Kleppmann — *Si solo leés un libro, que sea este.* Bases de datos, sistemas distribuidos, consistency, replication.
+2. **Clean Code + Clean Architecture** — Robert C. Martin — Controversiales pero fundamentales. Guías, no dogma.
+3. **The Pragmatic Programmer** — David Thomas & Andrew Hunt — Mentalidad de ingeniero, tips prácticos.
+4. **System Design Interview Vol. 1 y 2** — Alex Xu — Práctico, visual, casos reales.
+5. **Grokking Algorithms** — Aditya Bhargava — El mejor para aprender algoritmos si nunca los estudiaste formalmente.
+6. **A Philosophy of Software Design** — John Ousterhout — Corto, denso, brillante. Sobre complejidad.
+7. **Staff Engineer / The Staff Engineer's Path** — Para el siguiente nivel de carrera.
 
 ---
 

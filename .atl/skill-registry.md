@@ -46,22 +46,22 @@ Para cargar manualmente:
 ## Plan de Estudio — Arquitectura
 
 Archivos raíz con propósito único (una pregunta → un archivo):
-- Plan de Estudio Pro Max.md → QUÉ estudiar y en qué ORDEN
+- ROADMAP.md → QUÉ estudiar y en qué ORDEN
 - METODOLOGIA.md → CÓMO estudiar
 - PROYECTOS.md → QUÉ construir
 - PROGRESO.md → DÓNDE estás
-- Referencia/RECURSOS.md → CON QUÉ estudiar
+- RECURSOS.md → CON QUÉ estudiar
 
 Al agregar NUEVA ETAPA:
 1. Crear directorio + archivos de tema
-2. Actualizar Plan de Estudio Pro Max.md (catálogo)
+2. Actualizar ROADMAP.md (catálogo)
 3. Actualizar PROYECTOS.md (checkpoints)
 4. Actualizar PROGRESO.md (temas Core)
 5. Actualizar METODOLOGIA.md (checkpoint si aplica)
 
 Al agregar NUEVO TEMA:
 1. Crear archivo de tema
-2. Actualizar Plan de Estudio Pro Max.md
+2. Actualizar ROADMAP.md
 3. Si es Core: actualizar PROGRESO.md
 
 Regla de oro: Una pregunta → Un archivo. No duplicar contenido.

@@ -1,12 +1,12 @@
 ---
 name: plan-estudio
 description: >
-  Estructura y mantenimiento del Plan de Estudio Pro Max.
+  Estructura y mantenimiento del Roadmap del Plan de Estudio.
   Trigger: Cuando se agrega, modifica o elimina una fase, tema/sección del plan de estudio.
 license: Apache-2.0
 metadata:
   author: gentleman-programming
-  version: "2.0"
+  version: "3.0"
 ---
 
 ## Arquitectura del Plan de Estudio
@@ -17,26 +17,22 @@ El plan tiene una arquitectura donde cada archivo responde UNA pregunta. Sin ove
 
 | Archivo | Pregunta que responde | Propósito |
 |---------|----------------------|-----------|
-| `Plan de Estudio Pro Max.md` | **¿QUÉ estudio y en qué ORDEN?** | Temas por etapa, prioridad 🔴🟡🟢, overview de duración |
+| `ROADMAP.md` | **¿QUÉ estudio, en qué ORDEN, y DÓNDE estoy?** | Temas por etapa, prioridad 🔴🟡🟢, estado de progreso |
 | `METODOLOGIA.md` | **¿CÓMO estudio?** | Ciclo de 4 pasos, ritmo, checkpoints, AI usage, spaced repetition |
-| `PROYECTOS.md` | **¿QUÉ construyo?** | FreePress MVP, Plan B, checkpoints por etapa, migración de stack |
-| `PROGRESO.md` | **¿DÓNDE estoy?** | Tracking de los 19 temas Core con niveles de profundidad |
-| `Referencia/RECURSOS.md` | **¿CON QUÉ estudio?** | Libros, cursos, plataformas por tema |
+| `PROYECTOS.md` | **¿QUÉ construyo?** | FreePress MVP, mini-proyectos, migración de stack |
+| `RECURSOS.md` | **¿CON QUÉ estudio?** | Libros, cursos, plataformas de referencia |
 
 ### Directorios por etapa
 
 ```
 Etapa {N} — {Nombre}/
-├── {N}.{M} — {Tema} 🔴.md     # [CORE] - tema esencial
-├── {N}.{M} — {Tema} 🟡.md     # [ADVANCED] - tema importante
-└── {N}.{M} — {Tema} 🟢.md     # [ADVANCED] - tema complementario
+├── {N}.{M} — {Tema}.md     # tema (prioridad en ROADMAP.md)
 ```
 
 **Convención de nombres:**
 - `{N}` = número de etapa (1-4)
 - `{M}` = número de tema dentro de la etapa
-- Emoji de prioridad: 🔴 crítico, 🟡 importante, 🟢 complementario
-- Badge al inicio: `**[CORE]**` o `*[ADVANCED]*`
+- Sin emoji ni badge en el filename ni en el H1 — la prioridad vive en `ROADMAP.md`
 
 ---
 
@@ -54,7 +50,7 @@ mkdir "Etapa {N} — {Nombre}"
 Etapa {N} — {Nombre}/{N}.1 — {Tema} 🔴.md
 ```
 
-### 3. Actualizar `Plan de Estudio Pro Max.md`
+### 3. Actualizar `ROADMAP.md`
 Agregar sección después de la última etapa:
 ```markdown
 ## Etapa {N} — {Nombre} {emoji}
@@ -63,18 +59,15 @@ Descripción de la etapa.
 
 **Core (estudiar en orden):**
 
-| Tema | Prioridad | Tipo |
-|------|-----------|------|
-| [{N}.1 — {Tema}](...) | 🔴 Core | {Tipo} |
+| Tema | Prioridad | Estado |
+|------|-----------|--------|
+| [{N}.1 — {Tema}](...) | 🔴 Core | ☐ |
 ```
 
 ### 4. Actualizar `PROYECTOS.md`
-- Agregar fila en tabla "Checkpoints de Validación por Etapa"
+- Agregar nota de estado de FreePress al terminar la etapa (como blockquote al final de la sección en el Plan)
 
-### 5. Actualizar `PROGRESO.md`
-- Agregar sección de la nueva etapa con los temas Core
-
-### 6. Actualizar `METODOLOGIA.md`
+### 5. Actualizar `METODOLOGIA.md`
 - Agregar checkpoint en tabla de checkpoints si aplica
 
 ---
@@ -88,7 +81,7 @@ Etapa {N} — {Nombre}/{N}.{M} — {Tema} 🔴.md
 
 ### 2. Template del archivo
 ```markdown
-# {N}.{M} — {Tema} {emoji} [{CORE|ADVANCED}]
+# {N}.{M} — {Tema}
 
 - [ ] **{Subtema 1}**
 
@@ -102,24 +95,13 @@ Etapa {N} — {Nombre}/{N}.{M} — {Tema} 🔴.md
 
 **Recursos:**
 - [Nombre](URL) — {por qué este recurso}
-
----
-
-## 🎯 Checkpoint Social
-
-> **Este tema NO está completo hasta que valides externamente tu comprensión.**
-
-Ver [METODOLOGIA.md → Checkpoint Social](../METODOLOGIA.md#-checkpoint-social--validación-externa-por-tema) para los pasos completos.
 ```
 
-### 3. Actualizar `Plan de Estudio Pro Max.md`
+### 3. Actualizar `ROADMAP.md`
 Agregar línea en la etapa correspondiente:
 ```markdown
-| [{N}.{M} — {Tema}](...) | 🔴 Core | {Tipo} |
+| [{N}.{M} — {Tema}](...) | 🔴 Core | ☐ |
 ```
-
-### 4. Actualizar `PROGRESO.md`
-Si es Core, agregar a la sección de la etapa correspondiente.
 
 ---
 
@@ -127,12 +109,12 @@ Si es Core, agregar a la sección de la etapa correspondiente.
 
 Solo modificar el archivo del tema:
 ```
-Etapa {N} — {Nombre}/{N}.{M} — {Tema} 🔴.md
+Etapa {N} — {Nombre}/{N}.{M} — {Tema}.md
 ```
 
 NO es necesario actualizar otros archivos a menos que:
-- Cambie de CORE a ADVANCED (o viceversa) → actualizar PROGRESO.md y Plan de Estudio
-- Cambie el nombre significativamente → actualizar links en Plan de Estudio
+- Cambie la prioridad → actualizar ROADMAP.md
+- Cambie el nombre significativamente → actualizar links en ROADMAP.md
 
 ---
 
@@ -140,14 +122,11 @@ NO es necesario actualizar otros archivos a menos que:
 
 ### 1. Eliminar archivo
 ```bash
-rm "Etapa {N} — {Nombre}/{N}.{M} — {Tema} 🔴.md"
+rm "Etapa {N} — {Nombre}/{N}.{M} — {Tema}.md"
 ```
 
-### 2. Actualizar `Plan de Estudio Pro Max.md`
+### 2. Actualizar `ROADMAP.md`
 Eliminar la línea correspondiente en la etapa.
-
-### 3. Actualizar `PROGRESO.md`
-Si era Core, eliminar de la sección correspondiente.
 
 ---
 
@@ -155,11 +134,10 @@ Si era Core, eliminar de la sección correspondiente.
 
 | Pregunta | Archivo | NO duplicar en |
 |----------|---------|----------------|
-| "¿Qué estudio?" | `Plan de Estudio Pro Max.md` | Metodología, temas |
+| "¿Qué estudio y dónde estoy?" | `ROADMAP.md` | Metodología, temas |
 | "¿Cómo estudio?" | `METODOLOGIA.md` | Plan, temas |
 | "¿Qué construyo?" | `PROYECTOS.md` | — |
-| "¿Dónde estoy?" | `PROGRESO.md` | — |
-| "¿Qué recurso uso?" | `Referencia/RECURSOS.md` | Temas |
+| "¿Qué recurso uso?" | `RECURSOS.md` | Temas |
 
 **Si el contenido ya existe en un archivo, referenciarlo, no duplicarlo.**
 
@@ -173,7 +151,7 @@ Cada archivo de tema tiene checkboxes para subtemas:
 - [ ] **Subtema 2**
 ```
 
-El estado de estos checkboxes es LOCAL al archivo. No se trackea globalmente.
+El estado de estos checkboxes es LOCAL al archivo. El tracking global de progreso está en la columna `Estado` de `ROADMAP.md`.
 
 ---
 
@@ -181,14 +159,12 @@ El estado de estos checkboxes es LOCAL al archivo. No se trackea globalmente.
 
 ### Título
 ```markdown
-# {N}.{M} — {Tema} {emoji} [{CORE|ADVANCED}]
+# {N}.{M} — {Tema}
 ```
 
-### Badge
-- `**[CORE]**` = tema esencial del Core Path
-- `*[ADVANCED]*` = tema optativo de profundización
+Sin emoji ni badge — la prioridad (🔴/🟡/🟢, Core/Advanced) vive en `ROADMAP.md`.
 
-### Emoji de prioridad
+### Prioridad (en ROADMAP.md solamente)
 | Emoji | Significado | Cuándo usar |
 |-------|-------------|-------------|
 | 🔴 | Crítico | No avanzar sin dominar |
@@ -201,7 +177,7 @@ El estado de estos checkboxes es LOCAL al archivo. No se trackea globalmente.
 
 | Acción | Archivos a modificar |
 |--------|---------------------|
-| Nueva etapa | Dir + tema + Plan + PROYECTOS + METODOLOGIA + PROGRESO |
-| Nuevo tema | Tema + Plan + PROGRESO (si es Core) |
-| Modificar tema | Solo el tema (salvo cambio de CORE/ADVANCED) |
-| Eliminar tema | Tema + Plan + PROGRESO |
+| Nueva etapa | Dir + tema + ROADMAP + PROYECTOS + METODOLOGIA |
+| Nuevo tema | Tema + ROADMAP |
+| Modificar tema | Solo el tema (salvo cambio de prioridad o nombre) |
+| Eliminar tema | Tema + ROADMAP |

@@ -1,39 +1,22 @@
 # Plan de Estudio Pro Max
 
-Un plan de aprendizaje personal para convertirte en un ingeniero de software completo.
+Un plan de aprendizaje para convertirte en un ingeniero de software completo en la era de AI. 4 etapas, ~46 temas, un proyecto real (FreePress) que crece con vos.
 
----
+## Filosofía
 
-## ¿Qué hago AHORA?
+1. **Conceptos antes que código** — No se toca un framework sin entender qué problema resuelve. Un framework es una herramienta; si no entendés el problema, no podés evaluar si es la correcta.
 
-| Si es tu... | Hacé esto |
-|-------------|-----------|
-| **Primera vez** | Leé [Plan de Estudio Pro Max.md](Plan%20de%20Estudio%20Pro%20Max.md) para entender QUÉ vas a estudiar |
-| **No sabés CÓMO estudiar** | Leé [METODOLOGIA.md](METODOLOGIA.md) — el método, la filosofía, el ritmo |
-| **No sabés qué construir** | Leé [PROYECTOS.md](PROYECTOS.md) — FreePress y los proyectos satélite |
-| **Querés ver tu progreso** | Abrí [PROGRESO.md](PROGRESO.md) — tracking de los temas Core |
+2. **Cada etapa construye sobre la anterior** — Saltar etapas es como construir el segundo piso sin cimientos.
 
----
+3. **Si no podés explicarlo, no lo dominás** — No marques un tema como completado hasta que puedas explicarlo a otro programador sin mirar apuntes.
 
-## Los 4 archivos del plan
+4. **La AI implementa, vos decidís** — La AI puede escribir código, pero no puede decidir cuándo ni cómo para tu contexto. Tu trabajo es saber qué pedirle, cómo verificarlo, y qué decidir. Cada línea de código AI que aceptás, la aprobaste VOS.
 
-| Archivo | Para qué sirve |
-|---------|----------------|
-| [Plan de Estudio Pro Max.md](Plan%20de%20Estudio%20Pro%20Max.md) | **QUÉ estudiar y en qué ORDEN** — temas por etapa con prioridad |
-| [METODOLOGIA.md](METODOLOGIA.md) | **CÓMO estudiar** — el método, la filosofía, la regla de AI, el ritmo |
-| [PROYECTOS.md](PROYECTOS.md) | **QUÉ construir** — FreePress, checkpoints, migración de stack |
-| [PROGRESO.md](PROGRESO.md) | **DÓNDE estás** — tracking de los 19 temas Core |
+## Empieza aquí
 
-> Los recursos (libros, cursos, plataformas) están en [Referencia/RECURSOS.md](Referencia/RECURSOS.md).
+1. Abrí [ROADMAP.md](ROADMAP.md) — es el mapa completo: qué estudiar, en qué orden, y tu progreso
+2. Leé [METODOLOGIA.md](METODOLOGIA.md) — cómo estudiar, el ritmo, las reglas de AI
+3. Abrí el primer tema de la Etapa 1 y empezá
 
----
-
-## Una pregunta → Un archivo
-
-| Pregunta | Ir a |
-|----------|------|
-| ¿Qué estudio? ¿En qué orden? | `Plan de Estudio Pro Max.md` |
-| ¿Cómo estudio? ¿Cuántas horas? | `METODOLOGIA.md` |
-| ¿Qué construyo? | `PROYECTOS.md` |
-| ¿En qué estaba? | `PROGRESO.md` |
-| ¿Qué libro/course uso para el tema X? | `Referencia/RECURSOS.md` |
+> FreePress (el proyecto que vas a construir) está en [PROYECTOS.md](PROYECTOS.md).
+> Recursos (libros, cursos, plataformas) en [RECURSOS.md](RECURSOS.md).

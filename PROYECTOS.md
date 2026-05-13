@@ -74,44 +74,6 @@ Semana 1 de la Etapa 1. El scaffold funcional (`npm start` levanta Express + SQL
 
 ---
 
-## Checkpoints de Validación por Etapa
-
-### Etapa 1: Entrada
-
-| Tema completado | Habilidad demostrable | Estado de FreePress |
-|-----------------|----------------------|---------------------|
-| **1.4 + 1.5** | Traceás la ejecución desde frontend hasta backend con DevTools. Explicás el event loop con un diagrama propio. | FreePress corriendo (Express + SQLite). Al menos 1 bug arreglado con JS Internals. |
-| **1.8 + 1.9** | Escribís un test AAA sin mirar ejemplos. Explicás por qué un LLM alucina. | Tests de integración para health check. |
-| **1.6** | Decís la complejidad Big O de cualquier función del backend en <2 minutos. | Análisis de complejidad documentado. |
-| **1.7** | Señalás al menos 2 superficies de ataque en el código de auth. | Auth funcionando: registro, login, JWT, refresh tokens, RBAC. |
-| **1.1 + 1.2** | Explicás la diferencia entre PRD, RFC y ADR en 2 minutos sin apuntes. | `/docs` con ADRs, PRD del editor, README completo. |
-
-### Etapa 2: Fundamentos
-
-| Tema completado | Habilidad demostrable | Estado de FreePress |
-|-----------------|----------------------|---------------------|
-| **Migración** | Explicás POR QUÉ cada componente nuevo resuelve problemas que el anterior no. | FreePress migrado. Cada migración con ADR. |
-| **2.1** | Corrés un benchmark con Artillery/k6 y explicás el reporte. | Suite de tests con cobertura de flujos críticos. |
-| **2.2** | Ejecutás `EXPLAIN ANALYZE`, identificás Seq Scans, y sabés qué índice agregar. | Schema con migraciones versionadas. Caché Redis. |
-| **2.3** | Explicás qué hace el compilador de TS con un generic condicional que usaste. | TypeScript en modo estricto. |
-
-### Etapa 3: Arquitectura
-
-| Tema completado | Habilidad demostrable | Estado de FreePress |
-|-----------------|----------------------|---------------------|
-| **3.1 + 3.2** | Dibujás el Context Map con Bounded Contexts. Decís si un módulo viola el Dependency Rule. | Arquitectura en capas. Context Map en `/docs`. |
-| **3.3** | Explicás el render pipeline del browser con OnPush. | Frontend con state management. |
-
-### Etapa 4: Profundización
-
-| Tema completado | Habilidad demostrable | Estado de FreePress |
-|-----------------|----------------------|---------------------|
-| **4.1 + 4.2 + 4.3** | Deployás FreePress a producción en <10 minutos. Respondés qué endpoint tiene latencia P99 más alta. | Docker Compose + CI/CD + Deploy automatizado + Logs con correlación. |
-| **4.4** | Explicás qué es RAG, por qué existe, y qué problema resuelve. | `fp-ai-assistant` con RAG básico. |
-| **4.6** | Hacés code review con Conventional Comments. | Docs y ADRs actualizados. |
-
----
-
 ## Mini-Proyectos Satélite
 
 Para temas que no encajan naturalmente en FreePress:

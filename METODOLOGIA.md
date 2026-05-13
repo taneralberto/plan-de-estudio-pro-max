@@ -1,9 +1,5 @@
 # Metodología de Aprendizaje
 
-> CÓMO estudiar, no QUÉ estudiar. El contenido y orden de temas está en [Plan de Estudio Pro Max.md](Plan%20de%20Estudio%20Pro%20Max.md).
-
----
-
 ## Tu Ritmo Realista
 
 El plan está diseñado para **2-3 horas, 3-4 días por semana**.
@@ -16,18 +12,6 @@ El plan está diseñado para **2-3 horas, 3-4 días por semana**.
 | Domingo | **2-3h** | Si se puede, profundizar |
 
 **Total semanal:** ~9-11 horas. **Consistencia > intensidad.**
-
----
-
-## Filosofía
-
-1. **Conceptos antes que código** — No se toca un framework sin entender qué problema resuelve. Un framework es una herramienta; si no entendés el problema, no podés evaluar si es la correcta.
-
-2. **Cada etapa construye sobre la anterior** — Saltar etapas es como construir el segundo piso sin cimientos.
-
-3. **Si no podés explicarlo, no lo dominás** — No marques un tema como completado hasta que puedas explicarlo a otro programador sin mirar apuntes.
-
-4. **La AI implementa, vos decidís** — La AI puede escribir código, pero no puede decidir cuándo ni cómo para tu contexto. Tu trabajo es saber qué pedirle, cómo verificarlo, y qué decidir. Cada línea de código AI que aceptás, la aprobaste VOS.
 
 ---
 
@@ -99,19 +83,6 @@ El aprendizaje se CEMENTA cuando lo aplicás en un proyecto real. Si no podés a
 
 ---
 
-## Temas Transversales
-
-### Testing — desde la Etapa 1
-
-Desde que empezás a escribir código, cada feature incluye al menos **1 test unitario** y **1 test de integración**. Lo mínimo: Jest básico (`describe`, `it`, `expect`), testing de funciones puras, testing de endpoints con supertest.
-
-### Debugging y Mantenibilidad
-
-- `4.5 — Debugging Avanzado 🔴` — leelo antes de tu primer bug difícil en FreePress
-- `4.14 — Mantenibilidad y Deuda Técnica 🟡` — leelo antes de construir FreePress en serio
-
----
-
 ## Checkpoint Social — Validación externa por tema
 
 Un tema no está completo hasta que alguien más validó tu comprensión.
@@ -160,13 +131,11 @@ Antes de arrancar contenido nuevo, elegí el último tema que completaste y expl
 
 Elegí **2-3 temas de etapas anteriores** y hacé: explicación oral de 2 minutos + un ejercicio de código desde cero. No releas de entrada — intentá primero.
 
-Registrá la fecha del último repaso en [PROGRESO.md](PROGRESO.md).
-
 ---
 
 ## Cómo retomar si se interrumpe
 
-1. Abrí [Plan de Estudio Pro Max.md](Plan%20de%20Estudio%20Pro%20Max.md) y mirá en qué etapa estabas
+1. Abrí [ROADMAP.md](ROADMAP.md) y mirá en qué etapa estabas
 2. Continuá desde donde dejaste — no volvás al principio
 3. Si pasaron más de 2 semanas, hacé una sesión de repaso de 1 hora del último tema
 4. La consistencia gana: 3 sesiones de 2 horas/semana durante un año > 2 meses intensos + 4 meses de parálisis

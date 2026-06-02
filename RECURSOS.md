@@ -5,27 +5,24 @@ Libros, cursos, plataformas y newsletters que aplican a todo el plan.
 > Para recursos específicos por tema, ver cada archivo de tema individual — cada uno tiene su sección de **Recursos** al final.
 
 ---
-
 ## 100cosas.dev
 
 https://100cosas.dev/
 
 ---
-
 ## 📖 Libros Esenciales
 
 En orden de prioridad:
 
-1. **Designing Data-Intensive Applications** — Martin Kleppmann — *Si solo leés un libro, que sea este.* Bases de datos, sistemas distribuidos, consistency, replication.
+1. **Designing Data-Intensive Applications** — Martin Kleppmann — *Si solo lees un libro, que sea este.* Bases de datos, sistemas distribuidos, consistency, replication.
 2. **Clean Code + Clean Architecture** — Robert C. Martin — Controversiales pero fundamentales. Guías, no dogma.
 3. **The Pragmatic Programmer** — David Thomas & Andrew Hunt — Mentalidad de ingeniero, tips prácticos.
 4. **System Design Interview Vol. 1 y 2** — Alex Xu — Práctico, visual, casos reales.
-5. **Grokking Algorithms** — Aditya Bhargava — El mejor para aprender algoritmos si nunca los estudiaste formalmente.
+5. **Grokking Algorithms** — Aditya Bhargava — El mejor para aprender algoritmos si nunca los has estudiado formalmente.
 6. **A Philosophy of Software Design** — John Ousterhout — Corto, denso, brillante. Sobre complejidad.
 7. **Staff Engineer / The Staff Engineer's Path** — Para el siguiente nivel de carrera.
 
 ---
-
 ## 🎓 Plataformas y Cursos
 
 ### Cursos estructurados
@@ -60,7 +57,6 @@ En orden de prioridad:
 - **CSS-Tricks** — artículos prácticos
 
 ---
-
 ## 📬 Newsletters
 
 - **ByteByteGo** — system design, arquitectura
@@ -69,7 +65,6 @@ En orden de prioridad:
 - **Node Weekly** — novedades de Node.js
 
 ---
-
 ## 🎧 Podcasts
 
 - **[Syntax.fm](https://syntax.fm)** — frontend, desarrollo web
@@ -77,7 +72,6 @@ En orden de prioridad:
 - **The Changelog** — open source, comunidad
 
 ---
-
 ## 📺 Canales de YouTube
 
 - **Fireship** — overviews en 100 segundos y tutoriales profundos

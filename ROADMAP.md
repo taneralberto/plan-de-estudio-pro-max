@@ -12,8 +12,8 @@
 
 Victorias tangibles tempranas. Código que falla y se arregla. **Código desde el minuto 1** — la documentación viene al cierre.
 
-- [ ] 🔴 [1.1 — JavaScript Internals](Etapa%201%20—%20Entrada/1.1%20—%20JavaScript%20Internals.md)
-- [ ] 🔴 [1.2 — Debugging Básico](Etapa%201%20—%20Entrada/1.2%20—%20Debugging%20Básico.md)
+- [ ] 🔴 [1.1 — Debugging Básico](Etapa%201%20—%20Entrada/1.1%20—%20Debugging%20Básico.md)
+- [ ] 🔴 [1.2 — JavaScript Internals](Etapa%201%20—%20Entrada/1.2%20—%20JavaScript%20Internals.md)
 - [ ] 🔴 [1.3 — Testing Fundamentals](Etapa%201%20—%20Entrada/1.3%20—%20Testing%20Fundamentals.md)
 - [ ] 🔴 [1.4 — Seguridad Aplicada](Etapa%201%20—%20Entrada/1.4%20—%20Seguridad%20Aplicada.md)
 - [ ] 🔴 [1.5 — Estructuras de Datos y Algoritmos](Etapa%201%20—%20Entrada/1.5%20—%20Estructuras%20de%20Datos%20y%20Algoritmos.md)
@@ -47,9 +47,9 @@ Convertir código que funciona en criterio técnico sólido: tipos, build, perfo
 
 Patrones y decisiones que definen sistemas que escalan y sobreviven.
 
-- [ ] 🔴 [3.1 — Domain-Driven Design](Etapa%203%20—%20Arquitectura/3.1%20—%20Domain-Driven%20Design%20(DDD).md)
+- [ ] 🔴 [3.1 — API Design](Etapa%203%20—%20Arquitectura/3.1%20—%20API%20Design.md)
 - [ ] 🔴 [3.2 — Patrones de Arquitectura Avanzados](Etapa%203%20—%20Arquitectura/3.2%20—%20Patrones%20de%20Arquitectura%20Avanzados.md)
-- [ ] 🔴 [3.3 — API Design](Etapa%203%20—%20Arquitectura/3.3%20—%20API%20Design.md)
+- [ ] 🔴 [3.3 — Domain-Driven Design](Etapa%203%20—%20Arquitectura/3.3%20—%20Domain-Driven%20Design%20(DDD).md)
 - [ ] 🔴 [3.4 — Cómo funciona el Browser](Etapa%203%20—%20Arquitectura/3.4%20—%20Cómo%20funciona%20el%20Browser.md)
 - [ ] 🔴 [3.5 — State Management](Etapa%203%20—%20Arquitectura/3.5%20—%20State%20Management.md)
 - [ ] 🔴 [3.6 — System Design en Profundidad](Etapa%203%20—%20Arquitectura/3.6%20—%20System%20Design%20en%20Profundidad.md)

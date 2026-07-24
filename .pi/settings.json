@@ -3,10 +3,10 @@
     "defaultModel": "gpt-5.6-terra",
     "agentOverrides": {
       "scout": {
-        "model": "gpt-5.6-luna",
+        "model": "claude-sonnet-5",
         "thinking": "high",
         "fallbackModels": [
-          "claude-sonnet-5"
+          "gpt-5.6-luna"
         ]
       },
       "planner": {

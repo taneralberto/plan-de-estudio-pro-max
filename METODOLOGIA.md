@@ -11,16 +11,26 @@
 
 ---
 
-## Regla de AI — Progresión por Etapas
+## Cómo usar AI y coding agents — Tres modos desde la Etapa 1
 
-La AI evoluciona contigo. No es binaria: crece con tu conocimiento.
+Los tres modos aplican en todas las etapas. La habilidad a entrenar es dirigir y verificar trabajo, no desbloquear gradualmente más ayuda.
 
-| Etapa                  | Rol de la AI    | Regla                                                                 |
-| ---------------------- | --------------- | --------------------------------------------------------------------- |
-| **1 — Entrada**        | Validador       | Primero tú, después AI. Ella valida tu explicación, no explica por ti |
-| **2 — Fundamentos**    | Code Reviewer   | Tu código, su crítica. No escribe código por ti                       |
-| **3 — Arquitectura**   | Pair Programmer | Tú conduces, ella sugiere. La decisión arquitectónica es tuya         |
-| **4 — Profundización** | Teammate        | Construyen juntos. Ya entiendes cuándo, qué y cómo usarla             |
+| Modo | Cuándo | Regla |
+|------|--------|-------|
+| **Gimnasio** | Fundamento nuevo | Haz una repetición corta sin AI para formar el modelo mental y detectar qué no sabes. |
+| **Trabajo** | Tarea delegable | Antes de delegar, escribe objetivo, restricciones, archivos permitidos, criterios de aceptación y comandos de verificación. |
+| **Auditoría** | Después de una entrega de AI | Inspecciona el diff, ejecuta checks, agrega un caso adversarial, compara con documentación y decide aceptar, corregir o revertir. |
+
+### Protocolo mínimo para una tarea delegada
+
+1. Escribe primero una predicción, hipótesis o contrato de tarea.
+2. Da el mínimo contexto necesario y limita alcance, archivos, herramientas, permisos, tiempo y presupuesto.
+3. Exige que el agente reporte archivos cambiados y checks realmente ejecutados.
+4. No confíes en “tests passed” sin ejecutar o revisar la evidencia.
+5. Busca cambios fuera de alcance y dependencias nuevas.
+6. Agrega un caso negativo o adversarial que el agente probablemente omitió.
+7. Registra en una frase por qué aceptaste, corregiste o revertiste.
+8. Exige aprobación humana explícita para acciones irreversibles o externas.
 
 ---
 
@@ -57,7 +67,18 @@ Aquí entran los libros. Lee el **capítulo específico** que necesitas, no todo
 
 El aprendizaje se CONSOLIDA cuando lo aplicas en un proyecto real. Si estás siguiendo FreePress, cada tema tiene una línea **FreePress** con la aplicación concreta. Si no, aplica el ejercicio en cualquier proyecto que estés construyendo. Si no puedes aplicar lo que aprendiste, vuelve al paso 2 o 3.
 
-> **Criterio de completitud:** El "Done cuando" de cada tema es el criterio principal. Un tema se marca ☑ cuando cumples el "Done cuando". El Checkpoint Social es un refuerzo: valida que puedes explicar lo que aprendiste a otra persona, pero no reemplaza el "Done cuando".
+> **Criterio local:** Los “Done cuando” de cada archivo comprueban el dominio inmediato de sus subtemas. En temas 🔴 no bastan para marcar el tema completo.
+
+## Cierre de un tema crítico
+
+Un tema 🔴 se marca completo en [ROADMAP.md](ROADMAP.md) solo cuando cumple este contrato:
+
+- [ ] **Artefacto:** código, benchmark, diagrama, ADR, runbook o informe enlazado.
+- [ ] **Verificación independiente:** tests, documentación primaria, medición o revisión humana. La AI puede criticar, pero no ser la única prueba.
+- [ ] **Caso negativo:** una forma documentada de romper la solución o falsar la explicación.
+- [ ] **R1:** recuperación breve sin apuntes al día siguiente.
+- [ ] **R7:** variante con datos o restricciones diferentes, sin tutorial paso a paso.
+- [ ] **R30:** recuperación breve treinta días después.
 
 ---
 
@@ -67,9 +88,11 @@ Los símbolos 🔴 🟡 🟢 están definidos en [ROADMAP.md](ROADMAP.md).
 
 | Tipo | Tiempo real |
 |------|-------------|
-| 🔴 Crítico | 1.5-2 semanas |
+| 🔴 Crítico | 1.5-2 semanas de trabajo activo + cierre R30 |
 | 🟡 Importante | 1 semana |
 | 🟢 Complementario | 2-3 días |
+
+Estos tiempos estiman trabajo activo, no días calendario: un tema 🔴 no se marca completo hasta R30, aunque ya hayas empezado el siguiente.
 
 **No aceleres los tiempos.** Un tema 🔴 que te lleva 3 semanas pero dominas es mejor que uno que "completas" en 5 días sin entender.
 
@@ -83,17 +106,12 @@ Los símbolos 🔴 🟡 🟢 están definidos en [ROADMAP.md](ROADMAP.md).
 
 ---
 
-## Checkpoint Social — Validación externa por tema
+## Checkpoint social — Refuerzo opcional
 
-Un tema no está completo hasta que alguien más validó tu comprensión.
+Explicar a otra persona puede aportar una revisión humana independiente, pero no es obligatorio publicar ni sustituye tests, documentación primaria o mediciones. Una validación hecha solo por AI tampoco basta como evidencia independiente.
 
-**Temas 🔴 Core (recomendado):**
-- [ ] Publicaste un micro-post en redes contando qué aprendiste (280-500 caracteres)
-- [ ] Validaste tu explicación con alguien externo (persona o AI con el prompt de validación)
-
-**Temas 🟡/🟢 Advanced (opcional):**
-- Validaste tu explicación con alguien externo (AI o persona)
-- La publicación en redes es opcional pero recomendada
+- [ ] Explicaste el tema a otra persona o publicaste un micro-post, si te aporta feedback útil.
+- [ ] Contrastaste el feedback recibido con la evidencia del artefacto.
 
 ### El micro-post debe incluir:
 1. **Un concepto clave** que aprendiste
@@ -118,18 +136,19 @@ Mi explicación:
 
 ---
 
-## Spaced Repetition — Ritual de Repaso
+## Interleaving sin caos
 
-### Al inicio de cada sesión (5-10 minutos)
+Reserva alrededor del 20 % de una sesión para discriminar conceptos relacionados, no para mezclar temas al azar: Debugging ↔ JavaScript internals; SQL ↔ migraciones/concurrencia; API Design ↔ seguridad; Observabilidad ↔ debugging avanzado; Evals ↔ seguridad de agentes.
 
-Antes de empezar contenido nuevo, elige el último tema que completaste y explícalo en 2 minutos en voz alta, **sin mirar apuntes**.
+## Spaced Repetition — R1/R7/R30
 
-- ✅ Si puedes explicarlo con fluidez → empieza con el tema nuevo
-- ⚠️ Si te bloqueas → dedica 20-30 minutos a revisar, escribe un ejemplo de código y vuelve a intentarlo
+Para cada tema 🔴 usa las marcas de [ROADMAP.md](ROADMAP.md):
 
-### Una vez por mes (~1 hora)
+- **R1 (+1 día):** recupera la idea y el artefacto sin mirar apuntes; si te bloqueas, revisa y repite.
+- **R7 (+7 días):** resuelve una variante con datos o restricciones diferentes. Esta es la prueba de transferencia.
+- **R30 (+30 días):** explica y verifica de nuevo una parte crítica sin releer primero.
 
-Elige **2-3 temas de etapas anteriores** y haz: explicación oral de 2 minutos + un ejercicio de código desde cero. No releas de entrada: inténtalo primero.
+Los repasos pueden ocupar 5–10 minutos. Si fallas uno, corrige el artefacto o la explicación y vuelve a programar esa marca; no reinicies el plan.
 
 ---
 

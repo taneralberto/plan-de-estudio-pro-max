@@ -1,97 +1,53 @@
 # Proyectos de Práctica
 
-Cada tema del plan es autosuficiente: el "Done cuando" es tu criterio de dominio. Si quieres un proyecto continuo para validar el conocimiento, FreePress es el proyecto recomendado, pero es **opcional**.
+Para demostrar un tema, elige **una** vía: ejercicio aislado, un proyecto real que ya uses o FreePress. No repitas las tres. Lo que cuenta es la evidencia exigida por [METODOLOGIA.md](METODOLOGIA.md#cierre-de-un-tema-crítico), no acumular tecnologías.
 
 ---
 
-## FreePress — Proyecto de Seguimiento (Opcional)
+## FreePress — Laboratorio longitudinal opcional
 
-Una **plataforma CMS/Blog open source** estilo WordPress, construida desde cero. Lo suficientemente complejo para ejercitar el 80% del plan.
+FreePress es un CMS/blog para integrar aprendizajes durante varias etapas. Empieza con el stack más simple que puedas ejecutar y desplegar; Express + SQLite es una opción, no un requisito.
 
-**Temas que se practican naturalmente aquí:**
-- Etapa 1: 1.1 JS Internals, 1.2 Debugging, 1.3 Testing, 1.4 Seguridad, 1.5 ED&A, 1.7 Documentación
-- Etapa 2: 2.1 TypeScript, 2.2 Build Tools, 2.4 SQL, 2.6 Migrations, 2.7 Concurrency
-- Etapa 3: 3.1 DDD, 3.2 Patrones, 3.3 API Design, 3.5 State Management, 3.7 Testing Frontend
-- Etapa 4: 4.1 Containers, 4.2 CI/CD, 4.3 Cloud, 4.4 Testing Backend, 4.5 Observabilidad, 4.6 Debugging Avanzado
+### Regla para introducir tecnología
 
-**Stack progresivo sugerido:**
+Antes de agregar un framework, PostgreSQL, Redis, Kafka, Kubernetes u otra herramienta:
 
-| Etapa                  | Stack                                                       | Por qué                                                                                                           |
-| ---------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| **1 — Entrada**        | HTML + CSS + Express + SQLite                               | Minimalista, se levanta sin Docker, el estudiante entiende cada pieza                                             |
-| **2 — Fundamentos**    | Frontend Framework + Backend Framework + PostgreSQL + Redis | Migración justificada por necesidades reales: componentización, estructura que escala, concurrencia y performance |
-| **4 — Profundización** | + Docker + CI/CD + Observabilidad                           | Infraestructura profesional                                                                                       |
+1. registra una métrica, limitación o requisito real;
+2. define un baseline y qué mejora esperas;
+3. prueba la opción en una rama de laboratorio si solo buscas aprenderla;
+4. documenta la decisión en un ADR, incluido **“no usarlo todavía”** cuando no haya evidencia.
 
-El proyecto CRECE con tu aprendizaje. Empiezas con lo mínimo y migras cuando entiendes POR QUÉ.
+El resultado correcto puede ser no migrar. Una herramienta que no resuelve un problema no es progreso curricular.
 
----
+## Evidencia por etapa
 
-## Milestones de FreePress por Etapa
+### Etapa 1 — Construir y verificar
 
-### Etapa 1 — Entrada
+- [ ] MVP mínimo desplegado temprano en un PaaS sencillo.
+- [ ] Pipeline mínimo reproducible: `lint + typecheck + tests + build`.
+- [ ] Healthcheck y logs básicos accesibles desde la primera versión.
+- [ ] Un artefacto crítico enlazado con verificación independiente y caso negativo.
+- [ ] README que permite ejecutar, verificar y recuperar el proyecto.
 
-- [ ] Express + SQLite corriendo (scaffold funcional)
-- [ ] Auth con roles (admin, editor, autor, lector)
-- [ ] CRUD de artículos funcionando
-- [ ] Tests de integración para auth y CRUD
-- [ ] README que permite levantar el proyecto sin preguntas
-- [ ] ADRs retroactivos documentando las decisiones del stack
+### Etapa 2 — Diagnosticar y decidir
 
-### Etapa 2 — Fundamentos
+- [ ] Diagnóstico reproducible de una degradación que combine SQL, concurrencia y SO/red.
+- [ ] Al menos una decisión de stack respaldada por medición; un ADR de “no migrar” es válido.
+- [ ] Si hubo migración, comparación antes/después y plan de rollback verificado.
 
-- [ ] Migración completa al frontend framework elegido
-- [ ] Migración completa al backend framework elegido
-- [ ] Migración a PostgreSQL completa (DB)
-- [ ] Redis implementado para caché
-- [ ] TypeScript en modo estricto
-- [ ] Cada migración con su ADR justificando el cambio
+### Etapa 3 — Evolucionar contratos
 
-### Etapa 3 — Arquitectura
+- [ ] Cambio de API compatible con clientes existentes, con evidencia de seguridad, datos y operación.
+- [ ] Decisión arquitectónica que parta de una necesidad observada, no de una herramienta prevista.
+- [ ] Feedback de 3–5 usuarios reales o de un stakeholder que cambie al menos un requisito.
 
-- [ ] Arquitectura en capas implementada
-- [ ] Context Map en `/docs`
-- [ ] Frontend con state management
-- [ ] API REST diseñada con convenciones claras
+### Etapa 4 — Operar y supervisar agentes
 
-### Etapa 4 — Profundización
+- [ ] Incidente reproducible con SLO o umbral, detección, causa raíz, recuperación y prevención.
+- [ ] Cambio producido por un coding agent con contrato de tarea, diff revisado, checks ejecutados, caso adversarial, revisión de seguridad y rollback.
+- [ ] Tecnología de especialización adoptada o rechazada mediante baseline, medición y ADR.
 
-- [ ] Docker Compose para levantar todo con un comando
-- [ ] CI/CD que corre tests en cada PR
-- [ ] Desplegado en un cloud real
-- [ ] Logs estructurados accesibles
-- [ ] Al menos un endpoint monitoreado
-- [ ] `npm audit` sin vulnerabilidades críticas
-- [ ] `fp-ai-assistant` con RAG básico funcional
-
-### 🎁 BONUS (optativo)
-
-- Sistema de plugins/extensiones
-- Comentarios en tiempo real
-- Dashboard de analytics
-- API pública documentada
-- Sistema de notificaciones
-- Media library avanzada
-
-### 🚀 Cuándo empezar
-
-Si decidiste seguir FreePress, empiézalo en paralelo con los primeros temas de la Etapa 1. El scaffold funcional (`npm start` levanta Express + SQLite) es un entregable natural de las primeras semanas.
-
----
-
-## Migración de Stack — Etapa 1 → Etapa 2
-
-| Componente        | Etapa 1                      | Etapa 2                    | Por qué migrar                                              |
-| ----------------- | ---------------------------- | -------------------------- | ----------------------------------------------------------- |
-| **Frontend**      | HTML + CSS plano o UI mínima | Frontend framework elegido | Componentización, routing SPA, state management             |
-| **Backend**       | Backend mínimo               | Backend framework elegido  | Módulos, DI, middlewares/decoradores, estructura que escala |
-| **Base de datos** | SQLite                       | PostgreSQL                 | Concurrent writes, JSONB, connection pooling                |
-| **Caché**         | Ninguna                      | Redis                      | Queries frecuentes con O(1)                                 |
-
-**Orden:** DB primero → Backend después → Frontend último. Cada migración genera un ADR. Tiempo estimado: ~10-15 horas.
-
-**Nota sobre los ADRs de FreePress:** El stack inicial (Express + SQLite) está predefinido antes de que estudies el tema de ADRs. Los primeros ADRs que escribas son retroactivos: articulas y justificas decisiones ya tomadas. Eso está bien como ejercicio: aprendes a estructurar razonamiento arquitectónico. Cuando FreePress crezca y tengas que tomar decisiones nuevas (¿Redis Streams o RabbitMQ? ¿microservicios o monolito?), ahí escribirás ADRs reales antes de decidir.
-
-> Si un componente del stack te frustra, cámbialo. FreePress es el vehículo, no el destino. Lo importante son los conceptos.
+> FreePress reemplaza el ejercicio universal cuando produce la misma evidencia; nunca se suma como trabajo duplicado.
 
 ---
 
@@ -121,6 +77,6 @@ Agente de AI / servidor MCP para FreePress.
 
 **Temas que se practican naturalmente aquí:**
 - Etapa 1: 1.6 AI Literacy (conceptos base de LLMs)
-- Etapa 4: 4.8 AI Engineering, 4.9 Construir con AI
+- Etapa 4: 4.13 Fundamentos de ML-AI, 4.8 AI Engineering, 4.9 Construir con AI
 
-**Cuándo empezar:** Al llegar al tema 4.8 (AI Engineering). Los conceptos de 1.6 (AI Literacy) dan la base conceptual, pero el proyecto empieza cuando estudias AI Engineering en profundidad y estás listo para diseñar un sistema que interactúe con LLMs de forma estructurada.
+**Cuándo empezar:** Después de completar 4.13 (Fundamentos de ML-AI), al llegar a 4.8 (AI Engineering). El tema 1.6 da la alfabetización inicial; 4.13 aporta los fundamentos necesarios antes de diseñar un sistema con LLMs.

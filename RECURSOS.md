@@ -1,81 +1,40 @@
 # Recursos Transversales
 
-Libros, cursos, plataformas y newsletters que aplican a todo el plan.
+Usa los recursos para resolver una necesidad, no como otra checklist. Por subtema elige como máximo:
 
-> Para recursos específicos por tema, ver cada archivo de tema individual — cada uno tiene su sección de **Recursos** al final.
+1. **una fuente primaria**: documentación oficial, RFC o libro de referencia;
+2. **una práctica guiada**;
+3. **una profundización opcional**.
 
----
-## 100cosas.dev
+Los recursos específicos viven en cada tema. Prefiere la documentación vigente cuando una herramienta cambie.
 
-https://100cosas.dev/
+## Fuentes de referencia
 
----
-## 📖 Libros Esenciales
+- **Designing Data-Intensive Applications** — Martin Kleppmann — datos y sistemas distribuidos.
+- **A Philosophy of Software Design** — John Ousterhout — modularidad y costo de complejidad.
+- **The Pragmatic Programmer** — David Thomas y Andrew Hunt — prácticas generales de ingeniería.
+- **Clean Code / Clean Architecture** — Robert C. Martin — leer como una postura para contrastar con Ousterhout, Fowler y código real, no como reglas universales.
+- **Grokking Algorithms** — Aditya Bhargava — introducción visual; profundiza solo cuando el problema lo exija.
+- **Staff Engineer / The Staff Engineer's Path** — liderazgo técnico, para cuando el rol lo requiera.
 
-En orden de prioridad:
+## Práctica y documentación
 
-1. **Designing Data-Intensive Applications** — Martin Kleppmann — *Si solo lees un libro, que sea este.* Bases de datos, sistemas distribuidos, consistency, replication.
-2. **Clean Code + Clean Architecture** — Robert C. Martin — Controversiales pero fundamentales. Guías, no dogma.
-3. **The Pragmatic Programmer** — David Thomas & Andrew Hunt — Mentalidad de ingeniero, tips prácticos.
-4. **System Design Interview Vol. 1 y 2** — Alex Xu — Práctico, visual, casos reales.
-5. **Grokking Algorithms** — Aditya Bhargava — El mejor para aprender algoritmos si nunca los has estudiado formalmente.
-6. **A Philosophy of Software Design** — John Ousterhout — Corto, denso, brillante. Sobre complejidad.
-7. **Staff Engineer / The Staff Engineer's Path** — Para el siguiente nivel de carrera.
+_Revisado en julio de 2026; verifica versiones y disponibilidad._
 
----
-## 🎓 Plataformas y Cursos
+- **[MDN Web Docs](https://developer.mozilla.org/)** y **[web.dev](https://web.dev)** — plataforma web.
+- **PortSwigger Academy** y **OWASP** — seguridad web.
+- **MIT OpenCourseWare** — fundamentos estructurados.
+- **Frontend Masters** — práctica web guiada.
+- **LeetCode / NeetCode** — práctica puntual de algoritmos, no medida general de ingeniería.
+- **System Design Interview** y **ByteByteGo** — practicar comunicación de trade-offs; no representan por sí solos cómo se opera un sistema real.
+- **100cosas.dev** — índice complementario en español.
 
-### Cursos estructurados
+## Enriquecimiento opcional
 
-- **MIT OCW** — gratis, clase mundial
-- **Stanford Online** — gratis, clase mundial
-- **Frontend Masters** — pago, calidad premium
-- **Pluralsight** — pago, buen catálogo
-- **Coursera** (auditar gratis) — universidades top
+Newsletters, podcasts y canales sirven para descubrir ideas o contexto. No cuentan como sesión ni como evidencia de dominio.
 
-### Práctica de algoritmos
+- **Newsletters:** ByteByteGo, JavaScript Weekly, Node Weekly.
+- **Podcasts:** Syntax.fm, Software Engineering Daily, The Changelog.
+- **Canales:** Fireship, ByteByteGo, ThePrimeagen, Traversy Media, 3Blue1Brown.
 
-- **[NeetCode.io](https://neetcode.io)** — mejor organizado que LeetCode, con roadmap por tema
-- **LeetCode** — el estándar de la industria
-- **HackerRank** — alternativo, bueno para calentar
-
-### System Design
-
-- **ByteByteGo** (YouTube y sitio web) — visual, excelente
-- **Grokking System Design** — curso pagado, muy completo
-
-### Seguridad
-
-- **PortSwigger Academy** — gratis, práctica real de Web Security
-- **OWASP** — guías y recursos
-- **HackTheBox** — práctica ofensiva
-
-### Frontend
-
-- **[web.dev](https://web.dev)** — guías de Google
-- **MDN Web Docs** — la referencia oficial
-- **CSS-Tricks** — artículos prácticos
-
----
-## 📬 Newsletters
-
-- **ByteByteGo** — system design, arquitectura
-- **TLDR** — resumen diario de tech
-- **JavaScript Weekly** — novedades del ecosistema JS
-- **Node Weekly** — novedades de Node.js
-
----
-## 🎧 Podcasts
-
-- **[Syntax.fm](https://syntax.fm)** — frontend, desarrollo web
-- **Software Engineering Daily** — entrevistas profundas
-- **The Changelog** — open source, comunidad
-
----
-## 📺 Canales de YouTube
-
-- **Fireship** — overviews en 100 segundos y tutoriales profundos
-- **ByteByteGo** — system design visual
-- **ThePrimeagen** — opiniones técnicas con profundidad
-- **Traversy Media** — tutoriales prácticos
-- **3Blue1Brown** — conceptos matemáticos visualizados
+Cuando un contenido secundario haga una afirmación importante, contrástala con documentación primaria, una medición o el sistema real.

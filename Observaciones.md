@@ -559,7 +559,7 @@ Fuentes útiles para mantener la metodología y la parte de IA:
 9. Fusionar duplicados.
 10. Crear especializaciones y pasar tecnologías avanzadas a complementarias.
 11. Reducir recursos y lenguaje hiperbólico.
-12. Pilotear primero seis u ocho semanas y registrar tiempo real, fallos de repaso y abandono antes de reescribir los 46 temas.
+12. Pilotear primero ocho semanas y registrar tiempo real, fallos de repaso y abandono en [PILOTO.md](PILOTO.md) antes de reescribir los 46 temas.
 
 ---
 

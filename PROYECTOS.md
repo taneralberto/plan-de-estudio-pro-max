@@ -1,82 +1,138 @@
 # Proyectos de Práctica
 
-Para demostrar un tema, elige **una** vía: ejercicio aislado, un proyecto real que ya uses o FreePress. No repitas las tres. Lo que cuenta es la evidencia exigida por [METODOLOGIA.md](METODOLOGIA.md#cierre-de-un-tema-crítico), no acumular tecnologías.
+Los proyectos producen evidencia, no otra lista de tecnologías. Para cerrar una unidad elige **una** vía:
+
+1. ejercicio aislado;
+2. aplicación en uno de estos proyectos;
+3. problema laboral reproducido sin código ni datos privados.
+
+No repitas el mismo aprendizaje en varias vías. La evidencia debe cumplir [METODOLOGIA.md](METODOLOGIA.md#cierre-de-una-unidad-crítica) cuando la unidad sea crítica.
+
+## Límites comunes
+
+- **Timebox máximo de 8–12 horas.** Si la evidencia está lista antes, detente; al llegar al límite, elimina alcance.
+- Sin frontend: `curl`, OpenAPI y tests son interfaz suficiente.
+- Usa un stack conocido por defecto. NestJS + PostgreSQL es válido; Python puede usarse cuando aporte al aprendizaje de AI o automatización.
+- No agregues Redis, Kafka, Kubernetes, microservicios ni otra dependencia sin una necesidad demostrada.
+- Un servicio, una base de datos y un flujo principal bastan.
+- Cada proyecto debe poder ejecutarse y verificarse con comandos documentados.
 
 ---
 
-## FreePress — Laboratorio longitudinal opcional
+## Proyecto A — `safe-change-api`
 
-FreePress es un CMS/blog para integrar aprendizajes durante varias etapas. Empieza con el stack más simple que puedas ejecutar y desplegar; Express + SQLite es una opción, no un requisito.
+Una API pequeña para reservar unidades de stock sin permitir cantidades negativas.
 
-### Regla para introducir tecnología
+### Alcance
 
-Antes de agregar un framework, PostgreSQL, Redis, Kafka, Kubernetes u otra herramienta:
+- `POST /reservations`: reserva una cantidad de un SKU.
+- `GET /stock/:sku`: muestra disponible y reservado.
+- PostgreSQL como única dependencia de datos.
+- Un identificador de idempotencia evita reservas duplicadas.
+- Una migración compatible añade un campo como `expires_at`.
+- Deploy en Cloud Run mediante GitHub Actions.
 
-1. registra una métrica, limitación o requisito real;
-2. define un baseline y qué mejora esperas;
-3. prueba la opción en una rama de laboratorio si solo buscas aprenderla;
-4. documenta la decisión en un ADR, incluido **“no usarlo todavía”** cuando no haya evidencia.
+No necesita usuarios, pagos, panel administrativo ni catálogo completo.
 
-El resultado correcto puede ser no migrar. Una herramienta que no resuelve un problema no es progreso curricular.
+### Evidencia mínima
 
-## Evidencia por etapa
+- [ ] Spec de una página: objetivo, no-objetivos, invariantes, ejemplos y aceptación.
+- [ ] Contrato OpenAPI y modelo SQL con constraints justificados.
+- [ ] Tests del caso feliz, stock insuficiente y petición duplicada.
+- [ ] Migración con estrategia de rollback o roll-forward.
+- [ ] Pipeline reproducible y URL o registro del deploy.
+- [ ] Log estructurado con request ID y un runbook corto para una entrega fallida.
+- [ ] ADR de una decisión real, incluida la opción de no introducir otra tecnología.
 
-### Etapa 1 — Construir y verificar
+### Unidades que puede cubrir
 
-- [ ] MVP mínimo desplegado temprano en un PaaS sencillo.
-- [ ] Pipeline mínimo reproducible: `lint + typecheck + tests + build`.
-- [ ] Healthcheck y logs básicos accesibles desde la primera versión.
-- [ ] Un artefacto crítico enlazado con verificación independiente y caso negativo.
-- [ ] README que permite ejecutar, verificar y recuperar el proyecto.
+3 — Testing · 7 — Requirements · 9 — Diseño modular · 10 — SQL · 11 — Migraciones · 14 — API/dominio · 17 — Entrega/GCP · 18 — Observabilidad/SRE.
 
-### Etapa 2 — Diagnosticar y decidir
-
-- [ ] Diagnóstico reproducible de una degradación que combine SQL, concurrencia y SO/red.
-- [ ] Al menos una decisión de stack respaldada por medición; un ADR de “no migrar” es válido.
-- [ ] Si hubo migración, comparación antes/después y plan de rollback verificado.
-
-### Etapa 3 — Evolucionar contratos
-
-- [ ] Cambio de API compatible con clientes existentes, con evidencia de seguridad, datos y operación.
-- [ ] Decisión arquitectónica que parta de una necesidad observada, no de una herramienta prevista.
-- [ ] Feedback de 3–5 usuarios reales o de un stakeholder que cambie al menos un requisito.
-
-### Etapa 4 — Operar y supervisar agentes
-
-- [ ] Incidente reproducible con SLO o umbral, detección, causa raíz, recuperación y prevención.
-- [ ] Cambio producido por un coding agent con contrato de tarea, diff revisado, checks ejecutados, caso adversarial, revisión de seguridad y rollback.
-- [ ] Tecnología de especialización adoptada o rechazada mediante baseline, medición y ADR.
-
-> FreePress reemplaza el ejercicio universal cuando produce la misma evidencia; nunca se suma como trabajo duplicado.
+Usa el proyecto solo para la unidad que estés cerrando. No vuelvas a implementar una evidencia que ya exista.
 
 ---
 
-## Mini-Proyectos Satélite
+## Proyecto B — `reliable-worker`
 
-Para temas que no encajan naturalmente en FreePress:
+Un worker que procesa trabajos con fallos reproducibles sin ejecutar dos veces el efecto final.
 
-### `freepress-cli`
-CLI tool para gestionar FreePress (crear posts, deployar, migrar datos).
-**Practica:** Node.js internals, streams, file system, argument parsing.
+### Alcance
 
-**Temas que se practican naturalmente aquí:**
-- Etapa 1: 1.5 ED&A (estructuras de datos para parsing de argumentos)
-- Etapa 2: 2.8 Git Avanzado, 2.9 Linux y Shell Productivo
+- Una tabla PostgreSQL funciona como cola inicial.
+- El worker reclama un trabajo, ejecuta un efecto local y registra el resultado.
+- Retry con backoff acotado y estado final de error.
+- Clave de idempotencia para evitar efectos duplicados.
+- Inyección deliberada de un fallo después del efecto y antes del acknowledgement.
 
-### `fp-ui`
-Librería de componentes UI publicada en npm.
-**Practica:** Open source, semantic versioning, CI/CD de paquetes, API design.
+RabbitMQ puede reemplazar la tabla si ya existe una necesidad concreta. Kafka, Avro y Schema Registry quedan fuera.
 
-**Temas que se practican naturalmente aquí:**
-- Etapa 2: 2.1 TypeScript (tipos genéricos para componentes), 2.2 Build Tools (packaging de librería)
-- Etapa 3: 3.5 State Management, 3.7 Testing Frontend, 3.8 Accesibilidad
+### Evidencia mínima
 
-### `fp-ai-assistant`
-Agente de AI / servidor MCP para FreePress.
-**Practica:** API de Claude, MCP, RAG, embeddings, agentic patterns.
+- [ ] Diagrama del flujo normal y de un fallo parcial.
+- [ ] Test que demuestra que el efecto no se duplica al reintentar.
+- [ ] Métrica o log que permite ver pendientes, reintentos y errores finales.
+- [ ] Explicación de las garantías reales: qué puede perderse, repetirse o retrasarse.
+- [ ] Benchmark pequeño antes de proponer caché, paralelismo o cambio de broker.
+- [ ] ADR que justifica conservar PostgreSQL o adoptar otra cola.
 
-**Temas que se practican naturalmente aquí:**
-- Etapa 1: 1.6 AI Literacy (conceptos base de LLMs)
-- Etapa 4: 4.13 Fundamentos de ML-AI, 4.8 AI Engineering, 4.9 Construir con AI
+### Unidades que puede cubrir
 
-**Cuándo empezar:** Después de completar 4.13 (Fundamentos de ML-AI), al llegar a 4.8 (AI Engineering). El tema 1.6 da la alfabetización inicial; 4.13 aporta los fundamentos necesarios antes de diseñar un sistema con LLMs.
+2 — Runtime/concurrencia · 13 — Performance/datos · 15 — Distribuidos/mensajería · 16 — System Design.
+
+---
+
+## Proyecto C — `agent-change-audit`
+
+Auditar un cambio pequeño producido por un coding agent. Reutiliza el Proyecto A o B; **no crea un tercer sistema**.
+
+### Cambio sugerido
+
+Pide al agente una sola modificación con impacto observable, por ejemplo:
+
+- expirar reservas vencidas en `safe-change-api`; o
+- permitir reprocesar un trabajo en error en `reliable-worker`.
+
+### Evidencia mínima
+
+- [ ] Contrato de tarea con objetivo, no-objetivos, invariantes, archivos permitidos y aceptación.
+- [ ] Ejecución aislada en rama o worktree con permisos y herramientas limitados.
+- [ ] Diff revisado, incluidos cambios fuera de alcance y dependencias nuevas.
+- [ ] Registro de los checks ejecutados y su salida relevante.
+- [ ] Un test adversarial añadido o modificado por ti.
+- [ ] Trazado manual de un happy path y un fallo a través del código.
+- [ ] Decisión escrita: aceptar, corregir o revertir, con evidencia.
+- [ ] Rollback demostrado o ensayado.
+
+### Unidades que puede cubrir
+
+1 — Debugging · 6 — AI/ML · 8 — Git/shell · 19 — Ingeniería con coding agents.
+
+No requiere construir un chatbot, servidor MCP, RAG ni sistema multiagente. El producto es la auditoría verificable del cambio.
+
+---
+
+## Cómo acotar cada proyecto
+
+Antes de empezar, escribe:
+
+```md
+Objetivo:
+No-objetivos:
+Invariante principal:
+Resultado observable:
+Comandos de verificación:
+Tiempo máximo:
+```
+
+Si el proyecto supera 12 horas, conserva solo el flujo necesario para producir la evidencia de la unidad actual. Autenticación completa, UI, infraestructura avanzada y generalización para futuros casos se eliminan primero.
+
+## Usar experiencia laboral
+
+Un incidente, migración, query lenta o cambio de API del trabajo puede reemplazar estos proyectos si:
+
+- se reproduce en un laboratorio mínimo;
+- no contiene propiedad intelectual, secretos ni datos reales;
+- deja un artefacto verificable que puedes explicar;
+- cumple el mismo resultado mínimo de la unidad.
+
+El objetivo es demostrar criterio transferible, no publicar código de la empresa.

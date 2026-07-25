@@ -26,8 +26,6 @@ Antes de empezar, demuestra esos prerrequisitos con una tarea corta: clona y eje
 4. Lee [METODOLOGIA.md](METODOLOGIA.md) — cómo estudiar, el ritmo y las reglas de AI
 5. Empieza por `1.1 — Debugging Básico`
 
-> **P2 en piloto:** registra ocho semanas en [PILOTO.md](PILOTO.md) antes de reescribir más temas. Corrige errores factuales cuando aparezcan, pero decide nuevos recortes con datos reales.
->
 > Cada tema define su alcance y criterio de dominio en "Done cuando"; respeta los prerrequisitos explícitos.
 > Si quieres un proyecto continuo para validar el conocimiento, FreePress está en [PROYECTOS.md](PROYECTOS.md).
 > Recursos (libros, cursos, plataformas) en [RECURSOS.md](RECURSOS.md).

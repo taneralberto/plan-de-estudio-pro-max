@@ -1,7 +1,5 @@
 # Roadmap — Contenido por Etapa
 
-> **P2 en piloto:** registra ocho semanas en [PILOTO.md](PILOTO.md) antes de hacer otra reescritura global.
-
 | Símbolo | Significado |
 |---------|-------------|
 | 🔴 | **Núcleo crítico** — bloqueante dentro del núcleo o de la ruta elegida |

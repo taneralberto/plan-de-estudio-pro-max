@@ -10,10 +10,10 @@
         ]
       },
       "planner": {
-        "model": "gpt-5.6-sol",
+        "model": "claude-opus-4-8",
         "thinking": "high",
         "fallbackModels": [
-          "claude-opus-4-8"
+          "gpt-5.6-sol"
         ]
       },
       "worker": {
@@ -25,7 +25,10 @@
       },
       "reviewer": {
         "model": "claude-opus-4-8",
-        "thinking": "high"
+        "thinking": "high",
+        "fallbackModels": [
+          "gpt-5.6-sol"
+        ]
       },
       "oracle": {
         "model": "claude-opus-4-8",

@@ -1,159 +1,166 @@
 # Metodología de Aprendizaje
 
-## Tu Ritmo Realista - **Consistencia > intensidad.**
+El objetivo es convertir experiencia en criterio recuperable, no acumular horas de contenido. La práctica empieza antes que la lectura larga.
 
-| Día            | Tiempo                         | Nota                                   |
-| -------------- | ------------------------------ | -------------------------------------- |
-| Lunes a jueves | 1h trabajo + 1h noche = **2h** | Aprovecha que la AI te adelanta tareas |
-| Viernes        | **1h**                         | Descanso mental, más ligero            |
-| Sábado         | **Libre**                      | Baile, familia, descanso               |
-| Domingo        | **2-3h**                       | Si se puede, profundizar               |
+## Presupuesto semanal
 
----
+Usa unas **10 horas semanales** como presupuesto flexible, no como calendario diario obligatorio:
 
-## Cómo usar AI y coding agents — Tres modos desde la Etapa 1
+| Uso | Horas orientativas |
+|---|---:|
+| Práctica principal y debugging | 5–6 h |
+| Aplicación en un artefacto pequeño | 2 h |
+| R1/R7/R30 e interleaving | 1 h |
+| Matemáticas aplicadas, explicación o margen | 1–2 h |
 
-Los tres modos aplican en todas las etapas. La habilidad a entrenar es dirigir y verificar trabajo, no desbloquear gradualmente más ayuda.
+Una semana difícil puede tener menos horas. Continúa desde la última evidencia; no compenses reiniciando ni duplicando sesiones.
+
+## Diagnóstico antes de estudiar
+
+Cuando [ROADMAP.md](ROADMAP.md) marque una unidad como `DIAGNÓSTICO`:
+
+1. Lee únicamente el resultado mínimo.
+2. Inténtalo durante 30–60 minutos con documentación disponible.
+3. Guarda el artefacto y explica qué hiciste, qué evidencia tienes y qué no sabes.
+4. Si lo demuestras, cierra la unidad. Si no, convierte solo el hueco observado en trabajo activo.
+
+Los años de experiencia no prueban dominio, pero tampoco obligan a repetir material conocido.
+
+## Ciclo de una sesión práctica
+
+### 1. Pregunta o predicción — 5–10 minutos
+
+Antes de buscar una respuesta, escribe qué esperas que ocurra, qué evidencia lo confirmaría y qué podría falsarlo.
+
+### 2. Mapa mínimo — 15–30 minutos
+
+Consulta una fuente primaria, artículo o video corto para obtener vocabulario y modelo general. Detente cuando puedas empezar a probar; no consumas un curso completo por defecto.
+
+### 3. Práctica inmediata — 45–90 minutos
+
+Produce algo observable: código, query, benchmark, diagrama, ADR, runbook o informe. Modifica condiciones, rompe el caso feliz o reproduce un fallo. Copiar un tutorial no cuenta como evidencia.
+
+### 4. Lectura puntual — según la duda
+
+Vuelve a documentación, libro o curso solo para resolver una pregunta surgida en la práctica. Puedes consultar documentación durante ejercicios y Done; dominio no significa memorizar APIs.
+
+### 5. Cierre — 5 minutos
+
+Explica en voz alta durante unos dos minutos:
+
+1. problema;
+2. decisión;
+3. evidencia;
+4. incertidumbre o límite conocido.
+
+Anota una pregunta para R1. Evita resúmenes largos que no cambien el artefacto.
+
+## Cómo usar AI y coding agents
+
+Los tres modos aplican desde la primera unidad:
 
 | Modo | Cuándo | Regla |
-|------|--------|-------|
-| **Gimnasio** | Fundamento nuevo | Haz una repetición corta sin AI para formar el modelo mental y detectar qué no sabes. |
-| **Trabajo** | Tarea delegable | Antes de delegar, escribe objetivo, restricciones, archivos permitidos, criterios de aceptación y comandos de verificación. |
-| **Auditoría** | Después de una entrega de AI | Inspecciona el diff, ejecuta checks, agrega un caso adversarial, compara con documentación y decide aceptar, corregir o revertir. |
+|---|---|---|
+| **Gimnasio** | Fundamento nuevo | Haz una repetición corta sin AI para formar un modelo mental y descubrir el hueco. |
+| **Trabajo** | Tarea delegable | Escribe contrato, alcance y aceptación antes de delegar. |
+| **Auditoría** | Después de una entrega | Inspecciona el cambio y exige evidencia independiente antes de aceptarlo. |
 
-### Protocolo mínimo para una tarea delegada
+### Contrato mínimo de una tarea delegada
 
-1. Escribe primero una predicción, hipótesis o contrato de tarea.
-2. Da el mínimo contexto necesario y limita alcance, archivos, herramientas, permisos, tiempo y presupuesto.
-3. Exige que el agente reporte archivos cambiados y checks realmente ejecutados.
-4. No confíes en “tests passed” sin ejecutar o revisar la evidencia.
-5. Busca cambios fuera de alcance y dependencias nuevas.
-6. Agrega un caso negativo o adversarial que el agente probablemente omitió.
-7. Registra en una frase por qué aceptaste, corregiste o revertiste.
-8. Exige aprobación humana explícita para acciones irreversibles o externas.
+1. Objetivo y no-objetivos.
+2. Restricciones, invariantes y casos de aceptación.
+3. Archivos, herramientas, permisos, tiempo y presupuesto permitidos.
+4. Checks que deben ejecutarse y formato del reporte.
+5. Acciones externas o irreversibles que requieren aprobación humana.
 
----
+### Gate para aceptar código generado
 
-## El Ciclo de Aprendizaje (4 Pasos)
+No aceptes el cambio hasta poder:
 
-No leas cada libro de principio a fin. Los libros son recursos de REFERENCIA.
+- señalar el propósito de los archivos modificados;
+- trazar un happy path y un fallo;
+- revisar el diff y detectar cambios fuera de alcance o dependencias nuevas;
+- ejecutar los checks y revisar su evidencia, no solo leer “tests passed”;
+- añadir o modificar al menos un caso negativo/adversarial;
+- decidir y registrar en una frase por qué aceptas, corriges o reviertes.
 
-### Paso 1 — Video o artículo de overview (1-2 horas)
+La AI puede proponer, implementar y criticar. No puede ser la única fuente que confirme que su propio resultado es correcto.
 
-Busca un video de 20-40 minutos que te dé el mapa mental general. No necesitas entender todo: necesitas saber DE QUÉ SE TRATA.
+## Un ejercicio o una aplicación, no ambos
 
-**Dónde buscar:** Fireship, ByteByteGo, ThePrimeagen, Traversy Media, 3Blue1Brown, Martin Fowler, web.dev.
+Cada unidad exige un solo artefacto principal. Puedes obtenerlo mediante:
 
-### Paso 2 — Práctica hands-on INMEDIATA (2-4 horas)
+- el ejercicio aislado del tema;
+- una aplicación pequeña en un proyecto;
+- un problema laboral reproducido sin datos ni código privados.
 
-**La parte más importante.** Si viste un video sobre el Event Loop, abre la consola y escribe 10 ejemplos AHORA.
+No hagas el ejercicio y luego repitas lo mismo en un proyecto solo para completar dos casillas.
 
-| Tipo de práctica | Ejemplo |
-|------------------|---------|
-| **Variación** | El video muestra Stack con array → tú implementas Stack con linked list |
-| **From scratch** | Cierra todo y escribe X desde cero |
-| **Debugging intencional** | Escribe código que USE el concepto y RÓMPELO a propósito |
-| **Enseñar** | Explica el concepto en voz alta como si se lo enseñaras a un junior |
+## Regla antiatasco
 
-Una sesión cuenta como completa solo si produciste código que NO es copia directa del recurso.
+Después de unas **8 horas de primera pasada** en una unidad sin alcanzar el resultado:
 
-**Señales de sesión mala:** copiaste el tutorial palabra por palabra · no probaste casos diferentes · no rompiste nada · no podrías explicar por qué funciona.
+1. escribe exactamente qué falta;
+2. reduce el ejercicio al caso mínimo que conserva ese hueco;
+3. entrega la evidencia parcial y programa una recuperación;
+4. continúa con la siguiente dependencia útil.
 
-### Paso 3 — Lectura profunda SI algo no quedó claro (variable)
+El tiempo es una alarma, no aprobación automática. No reinicies la unidad ni conviertas una duda en semanas de consumo pasivo.
 
-Aquí entran los libros. Lee el **capítulo específico** que necesitas, no todo el libro. Alternativas: documentación oficial, cursos estructurados (Frontend Masters, MIT OCW).
+## Cierre de una unidad crítica
 
-### Paso 4 — Aplicar en un proyecto
-
-El aprendizaje se CONSOLIDA cuando lo aplicas en un proyecto real. Si estás siguiendo FreePress, cada tema tiene una línea **FreePress** con la aplicación concreta. Si no, aplica el ejercicio en cualquier proyecto que estés construyendo. Si no puedes aplicar lo que aprendiste, vuelve al paso 2 o 3.
-
-> **Criterio local:** Los “Done cuando” de cada archivo comprueban el dominio inmediato de sus subtemas. En temas 🔴 no bastan para marcar el tema completo.
-
-## Cierre de un tema crítico
-
-Un tema 🔴 se marca completo en [ROADMAP.md](ROADMAP.md) solo cuando cumple este contrato:
+Una unidad marcada con `★` se cierra cuando cumple:
 
 - [ ] **Artefacto:** código, benchmark, diagrama, ADR, runbook o informe enlazado.
-- [ ] **Verificación independiente:** tests, documentación primaria, medición o revisión humana. La AI puede criticar, pero no ser la única prueba.
-- [ ] **Caso negativo:** una forma documentada de romper la solución o falsar la explicación.
-- [ ] **R1:** recuperación breve sin apuntes al día siguiente.
-- [ ] **R7:** variante con datos o restricciones diferentes, sin tutorial paso a paso.
+- [ ] **Evidencia independiente:** test, documentación primaria, medición o revisión humana.
+- [ ] **Caso negativo:** una forma comprobada de romper la solución o falsar la explicación.
+- [ ] **Explicación:** problema, decisión, evidencia e incertidumbre.
+- [ ] **R1:** recuperación breve al día siguiente.
+- [ ] **R7:** variante con datos o restricciones diferentes.
 - [ ] **R30:** recuperación breve treinta días después.
 
----
+Puedes avanzar mientras llega R30. No esperes un mes para abrir la siguiente unidad.
 
-## Tiempos orientativos
+## R1/R7/R30 sin administración excesiva
 
-Los símbolos 🔴 🟡 🟢 están definidos en [ROADMAP.md](ROADMAP.md).
+- **R1 (+1 día, 5–10 min):** recupera la idea y la evidencia antes de mirar apuntes.
+- **R7 (+7 días, 5–10 min):** resuelve o explica una variante.
+- **R30 (+30 días, 5–10 min):** verifica de nuevo la parte con mayor riesgo de olvido.
 
-| Tipo | Tiempo real |
-|------|-------------|
-| 🔴 Crítico | 1.5-2 semanas de trabajo activo + cierre R30 |
-| 🟡 Importante | 1 semana |
-| 🟢 Complementario | 2-3 días |
-
-Estos tiempos estiman trabajo activo, no días calendario: un tema 🔴 no se marca completo hasta R30, aunque ya hayas empezado el siguiente.
-
-**No aceleres los tiempos.** Un tema 🔴 que te lleva 3 semanas pero dominas es mejor que uno que "completas" en 5 días sin entender.
-
----
-
-## Qué es una sesión bien usada
-
-✅ Escribiste código que no existía antes (aunque esté roto) · Rompiste algo y lo arreglaste entendiendo por qué · Aplicaste algo en un proyecto que antes solo "entendías en teoría"
-
-❌ Pasaste 2 horas tomando notas o haciendo resúmenes · Viste el ejercicio y dijiste "esto lo entiendo, no hace falta hacerlo" · Saltaste el Paso 2 porque "ya sabes de qué se trata"
-
----
-
-## Checkpoint social — Refuerzo opcional
-
-Explicar a otra persona puede aportar una revisión humana independiente, pero no es obligatorio publicar ni sustituye tests, documentación primaria o mediciones. Una validación hecha solo por AI tampoco basta como evidencia independiente.
-
-- [ ] Explicaste el tema a otra persona o publicaste un micro-post, si te aporta feedback útil.
-- [ ] Contrastaste el feedback recibido con la evidencia del artefacto.
-
-### El micro-post debe incluir:
-1. **Un concepto clave** que aprendiste
-2. **Qué te sorprendió** o qué pensabas diferente antes
-3. **Un link o referencia** a tu trabajo
-
-### Prompt de validación (para AI):
-
-```
-Voy a explicarte un concepto técnico. Tu trabajo es:
-
-1. Evaluar si mi explicación es técnicamente correcta
-2. Identificar cualquier concepto erróneo o confuso
-3. Decirme qué profundicé bien y qué me faltó profundizar
-4. Si algo está mal, corregirme con la explicación correcta
-
-El concepto es: [TU TEMA]
-
-Mi explicación:
-[TU EXPLICACIÓN - intenta que sea de 2-3 párrafos]
-```
-
----
+Crea las preguntas desde errores reales. Si fallas un repaso, corrige el artefacto o la explicación y reprograma esa marca; no reinicies el plan.
 
 ## Interleaving sin caos
 
-Reserva alrededor del 20 % de una sesión para discriminar conceptos relacionados, no para mezclar temas al azar: Debugging ↔ JavaScript internals; SQL ↔ migraciones/concurrencia; API Design ↔ seguridad; Observabilidad ↔ debugging avanzado; Evals ↔ seguridad de agentes.
+Usa alrededor del 20 % de una sesión de repaso para distinguir conceptos cercanos:
 
-## Spaced Repetition — R1/R7/R30
+- debugging ↔ runtime;
+- SQL ↔ migraciones ↔ concurrencia;
+- API ↔ seguridad;
+- observabilidad ↔ incidentes;
+- evals ↔ seguridad de agentes.
 
-Para cada tema 🔴 usa las marcas de [ROADMAP.md](ROADMAP.md):
+No mezcles temas aleatorios ni abras varias unidades nuevas a la vez.
 
-- **R1 (+1 día):** recupera la idea y el artefacto sin mirar apuntes; si te bloqueas, revisa y repite.
-- **R7 (+7 días):** resuelve una variante con datos o restricciones diferentes. Esta es la prueba de transferencia.
-- **R30 (+30 días):** explica y verifica de nuevo una parte crítica sin releer primero.
+## Señales de una sesión útil
 
-Los repasos pueden ocupar 5–10 minutos. Si fallas uno, corrige el artefacto o la explicación y vuelve a programar esa marca; no reinicies el plan.
+**Útil:** hiciste una predicción, produjo evidencia, falló algo, cambiaste una hipótesis o pudiste explicar un límite.
 
----
+**Poco útil:** copiaste un tutorial, consumiste dos horas sin probar nada, aceptaste una respuesta de AI sin verificarla o escribiste notas que no ayudaron a decidir.
 
-## Cómo retomar si se interrumpe
+## Explicación y feedback
 
-1. Abre [ROADMAP.md](ROADMAP.md) y revisa en qué etapa estabas
-2. Continúa desde donde lo dejaste; no vuelvas al principio
-3. Si pasaron más de 2 semanas, haz una sesión de repaso de 1 hora del último tema
+Explicar a otra persona, grabar una nota de voz o publicar un texto corto son opciones equivalentes. La publicación no es obligatoria. La explicación debe incluir:
+
+1. qué problema resolviste;
+2. qué decisión tomaste y qué alternativa descartaste;
+3. qué evidencia respalda el resultado;
+4. qué cambiaría tu decisión.
+
+La AI puede señalar ambigüedades, pero contrasta cualquier corrección con el artefacto o una fuente primaria.
+
+## Cómo retomar tras una interrupción
+
+1. Abre [ROADMAP.md](ROADMAP.md) y localiza la última evidencia, no la última página leída.
+2. Si pasaron más de dos semanas, intenta durante 30 minutos el resultado mínimo de esa unidad.
+3. Revisa únicamente el hueco que aparezca.
+4. Continúa desde ahí; nunca vuelvas al principio por defecto.

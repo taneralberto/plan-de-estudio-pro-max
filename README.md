@@ -1,31 +1,45 @@
 # Plan de Estudio Pro Max
 
-Un plan de aprendizaje para convertirte en un ingeniero capaz de transformar problemas ambiguos en especificaciones verificables, tomar decisiones bajo restricciones, dirigir trabajo humano o automatizado, exigir evidencia y responder por el resultado.
+Un plan personal para convertir experiencia práctica en criterio de ingeniería: entender sistemas, diseñar backend, operar cambios seguros y dirigir coding agents con evidencia.
 
-## Filosofía
+## Objetivo
 
-1. **Conceptos antes que código** — No se toca un framework sin entender qué problema resuelve. Un framework es una herramienta; si no entiendes el problema, no puedes evaluar si es la correcta.
+La ruta predeterminada prepara para dos capacidades complementarias:
 
-2. **Núcleo antes que amplitud** — Los temas 🔴 son el núcleo bloqueante. Los 🟡 y 🟢 se estudian según el proyecto, el trabajo o la especialización elegida.
+1. **Backend senior:** diseñar servicios, datos y límites; diagnosticar fallos; operar cambios; explicar decisiones y trade-offs.
+2. **Ingeniería con coding agents:** especificar tareas, limitar contexto y permisos, revisar cambios, verificar resultados y decidir aceptar, corregir o revertir.
 
-3. **Si no puedes explicarlo, no lo dominas** — No marques un tema como completado hasta que puedas explicarlo a otro programador sin mirar apuntes.
-
-4. **La AI puede proponer, implementar y revisar** — Tú defines objetivos y límites, aportas contexto, exiges evidencia, decides el riesgo aceptable y asumes la responsabilidad del resultado.
+TypeScript, Angular y NestJS son herramientas conocidas para practicar, no la identidad ni el límite del plan. Python, Rust u otro lenguaje pueden usarse cuando enseñen mejor un concepto.
 
 ## Audiencia y prerrequisitos
 
-Este plan está dirigido a un **desarrollador web TypeScript de nivel intermedio** que quiere profundizar en sistemas, arquitectura y AI. Presupone JavaScript, HTTP, Git, shell, SQL básico y experiencia levantando una aplicación.
+Está dirigido a un profesional con experiencia construyendo y manteniendo sistemas web que quiere fortalecer fundamentos de backend, arquitectura, operación y trabajo asistido por AI.
 
-Antes de empezar, demuestra esos prerrequisitos con una tarea corta: clona y ejecuta una app, corrige un bug, consulta y modifica datos con SQL, y entrega el cambio con Git. Repasa solo lo que no puedas demostrar.
+No se presupone dominio por años trabajados. Antes de estudiar una unidad marcada como `DIAGNÓSTICO`, intenta su resultado mínimo. Si puedes demostrarlo con evidencia y explicarlo, ciérrala sin repetir contenido; si no, conviértela en activa.
+
+Como base práctica debes poder clonar y ejecutar una aplicación, corregir un bug pequeño, consultar y modificar datos con SQL y entregar el cambio con Git. Repasa únicamente lo que no puedas demostrar.
+
+## Filosofía
+
+1. **Problema antes que recurso.** Predice, prueba y falla antes de leer durante horas.
+2. **Evidencia antes que confianza.** Usa tests, mediciones, documentación primaria o revisión humana; la AI no puede ser la única prueba.
+3. **Núcleo antes que amplitud.** Web, plataforma avanzada y AI de producto son JIT hasta que exista una necesidad real.
+4. **Explicar consolida.** Cierra cada unidad importante explicando problema, decisión, evidencia e incertidumbre.
+5. **Responsabilidad humana.** La AI puede proponer, implementar y criticar; tú defines límites y respondes por el resultado.
+
+## Horizonte
+
+- **Primer resultado útil:** 12 semanas, unas 120 horas. Debe quedar un backend pequeño desplegado y una entrega de coding agent completamente auditada.
+- **Ruta completa:** 28–32 semanas activas como techo orientativo. Al llegar al límite se cierra el ciclo y se elige el siguiente hueco concreto; no se amplía automáticamente.
+
+El tiempo evita el atasco, pero no sustituye la evidencia de aprendizaje.
 
 ## Empieza aquí
 
-1. Haz el diagnóstico de prerrequisitos anterior
-2. Abre [ROADMAP.md](ROADMAP.md) — completa el núcleo y elige rutas; no estudies todo el atlas
-3. Para este objetivo, empieza con **AI/Agentes + una de Backend o Web**; añade Plataforma solo por necesidad real
-4. Lee [METODOLOGIA.md](METODOLOGIA.md) — cómo estudiar, el ritmo y las reglas de AI
-5. Empieza por `1.1 — Debugging Básico`
+1. Abre [ROADMAP.md](ROADMAP.md) y sigue el primer hito de 12 semanas.
+2. Lee [METODOLOGIA.md](METODOLOGIA.md) para usar diagnósticos, sesiones prácticas, repasos y coding agents.
+3. Comienza por la unidad 7 —Requirements, ADR y explicación—, inicia la unidad 6 en paralelo y ejecuta los diagnósticos indicados.
+4. Usa [PROYECTOS.md](PROYECTOS.md) solo como apoyo: ningún proyecto longitudinal es obligatorio para terminar la ruta.
+5. Consulta [RECURSOS.md](RECURSOS.md) cuando una práctica revele una duda concreta.
 
-> Cada tema define su alcance y criterio de dominio en "Done cuando"; respeta los prerrequisitos explícitos.
-> Si quieres un proyecto continuo para validar el conocimiento, FreePress está en [PROYECTOS.md](PROYECTOS.md).
-> Recursos (libros, cursos, plataformas) en [RECURSOS.md](RECURSOS.md).
+> [PLAN_REVISION_PERSONALIZADA.md](PLAN_REVISION_PERSONALIZADA.md) guía temporalmente la migración. El estado y el orden vigentes están en `ROADMAP.md`; cada tema conserva su ID y detalle disponible hasta que sea condensado o fusionado.

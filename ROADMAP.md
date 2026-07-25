@@ -1,164 +1,156 @@
-# Roadmap — Contenido por Etapa
+# Roadmap — Backend + Ingeniería con Coding Agents
 
-| Símbolo | Significado |
-|---------|-------------|
-| 🔴 | **Núcleo crítico** — bloqueante dentro del núcleo o de la ruta elegida |
-| 🟡 | **Importante** — estudiar según proyecto o especialización; no bloquea |
-| 🟢 | **Complementario** — aprender cuando una necesidad real lo justifique |
+Este roadmap reorganiza los 46 temas históricos en **19 unidades de ruta**. El objetivo no es completar todos los archivos, sino producir evidencia de criterio técnico en Backend y supervisión de coding agents.
 
-Los identificadores conservan la numeración original, pero el orden de la lista es el orden recomendado de ejecución. En temas 🔴, el cierre exige evidencia y los repasos `R1` (+1 día), `R7` (+7 días) y `R30` (+30 días) definidos en [METODOLOGIA.md](METODOLOGIA.md#cierre-de-un-tema-crítico).
+## Estados
 
-## Elige una ruta, no todo el atlas
+| Estado | Qué hacer |
+|---|---|
+| `ACTIVO` | Estudiar y producir el resultado mínimo. |
+| `DIAGNÓSTICO` | Intentar primero el resultado mínimo. Si se demuestra y explica, cerrar sin repetir contenido; si falla, tratar como `ACTIVO`. |
+| `JIT` | Consultar únicamente cuando trabajo o proyecto lo exija. No bloquea la ruta. |
+| `★` | Unidad crítica: además del resultado mínimo, aplica el contrato y R1/R7/R30 de [METODOLOGIA.md](METODOLOGIA.md#cierre-de-una-unidad-crítica). |
 
-Completa el núcleo y elige especializaciones según tu trabajo. Para el objetivo de este plan se recomienda **núcleo + AI/Agentes + una de Web o Backend**; Plataforma queda para cuando el contexto la exija.
+Los IDs y nombres antiguos se mantienen como fuentes durante la transición. El estado, agrupación y orden definidos aquí prevalecen sobre la prioridad que todavía figure dentro de esos archivos.
 
-| Ruta | Temas |
-|------|-------|
-| **Núcleo común** | 1.1–1.9; 2.1, 2.3, 2.4, 2.6–2.12; 3.1–3.3, 3.6, base de 3.9–3.10; 4.2, 4.4–4.7, 4.10, 4.13 |
-| **Web/Frontend** | 2.2; 3.4, 3.5, 3.7, 3.8; i18n de 4.15 |
-| **Backend/Distribuidos** | 2.5; profundización de 2.7, 3.9 y 3.10 |
-| **Plataforma** | 4.1, 4.3, 4.12, 4.11, en ese orden |
-| **AI/Agentes** | 4.8, 4.9 |
-| **Opcional/JIT** | V8 y dual packages de 1.2; algoritmos avanzados de 1.5; GraphQL/gRPC de 3.1; CQRS/Event Sourcing/microservicios de 3.2; Kafka/Schema Registry de 3.9; 4.14; regex y WASM de 4.15 |
+## Primer resultado útil — 12 semanas
 
-No estudies una ruta no elegida para “completar” el roadmap. Los temas compartidos cubren una base común; profundiza solo en la ruta correspondiente.
+Objetivo: desplegar un backend pequeño y auditar de principio a fin un cambio realizado por un coding agent.
 
----
+| Semanas | Trabajo principal |
+|---|---|
+| 1 | Unidad 7; diagnóstico de la unidad 1; iniciar la unidad 6. |
+| 2 | Diagnósticos de las unidades 8 y 10; acotar el backend pequeño; continuar la unidad 6. |
+| 3–4 | Unidad 9 aplicada al diseño del servicio; continuar la unidad 6. |
+| 5 | Unidad 3: tests y oracles del contrato; continuar la unidad 6. |
+| 6 | Unidad 14: API y límites de dominio; cerrar la unidad 6 antes de delegar. |
+| 7–8 | Unidad 17: pipeline y despliegue en GCP. |
+| 9 | Unidad 18: observabilidad, incidente y recuperación. |
+| 10–12 | Unidad 19: delegación, auditoría, caso adversarial y rollback. |
 
-## Etapa 1 — Entrada 🧠
+Las semanas son una guía, no puertas rígidas. Si un diagnóstico falla, estudia solo el hueco necesario y conserva el mismo entregable.
 
-Victorias tangibles tempranas. Código que falla y se arregla. **Código desde el minuto 1** — la documentación viene al cierre. En 1.2, Event Loop y fundamentos del lenguaje son comunes; V8 y dual packages son JIT.
+## Las 19 unidades
 
-- [ ] 🔴 [1.1 — Debugging Básico](Etapa%201%20—%20Entrada/1.1%20—%20Debugging%20Básico.md)
-  - [ ] R1
-  - [ ] R7 — resolver una variante
-  - [ ] R30
-- [ ] 🟡 [1.2 — JavaScript Internals](Etapa%201%20—%20Entrada/1.2%20—%20JavaScript%20Internals.md)
-- [ ] 🔴 [1.3 — Testing Fundamentals](Etapa%201%20—%20Entrada/1.3%20—%20Testing%20Fundamentals.md)
-  - [ ] R1
-  - [ ] R7 — resolver una variante
-  - [ ] R30
-- [ ] 🔴 [1.6 — AI Literacy](Etapa%201%20—%20Entrada/1.6%20—%20AI%20Literacy.md)
-  - [ ] R1
-  - [ ] R7 — resolver una variante
-  - [ ] R30
-- [ ] 🔴 [1.7 — Documentación Técnica Profesional](Etapa%201%20—%20Entrada/1.7%20—%20Documentación%20Técnica%20Profesional.md)
-  - [ ] R1
-  - [ ] R7 — resolver una variante
-  - [ ] R30
-- [ ] 🔴 [1.4 — Seguridad Aplicada](Etapa%201%20—%20Entrada/1.4%20—%20Seguridad%20Aplicada.md)
-  - [ ] R1
-  - [ ] R7 — resolver una variante
-  - [ ] R30
-- [ ] 🟡 [1.5 — Estructuras de Datos y Algoritmos](Etapa%201%20—%20Entrada/1.5%20—%20Estructuras%20de%20Datos%20y%20Algoritmos.md)
-- [ ] 🟡 [1.8 — Metodologías y Procesos](Etapa%201%20—%20Entrada/1.8%20—%20Metodologías%20y%20Procesos.md)
-- [ ] 🟡 [1.9 — Soft Skills Técnicos](Etapa%201%20—%20Entrada/1.9%20—%20Soft%20Skills%20Técnicos.md)
+### 1. Debugging y evidencia — `DIAGNÓSTICO ★`
 
-- [ ] **Checkpoint acumulativo — Etapa 1:** reproducir, arreglar y documentar un bug desconocido con un test de regresión, combinando al menos tres temas sin que se anuncien cuáles.
+- [ ] **Resultado mínimo:** reproducir un bug de backend, registrar hipótesis, aislar la causa y demostrar el arreglo con evidencia.
+- Fuentes: [1.1 — Debugging Básico](Etapa%201%20—%20Entrada/1.1%20—%20Debugging%20Básico.md) · [4.6 — Debugging Avanzado](Etapa%204%20—%20Profundización/4.6%20—%20Debugging%20Avanzado.md)
 
----
+### 2. Runtime de JavaScript, procesos y concurrencia — `ACTIVO`
 
-## Etapa 2 — Fundamentos 🏗️
+- [ ] **Resultado mínimo:** diagnosticar un bloqueo, carrera o fuga y explicar el comportamiento observado.
+- Fuentes: [1.2 — JavaScript Internals](Etapa%201%20—%20Entrada/1.2%20—%20JavaScript%20Internals.md) · [2.7 — Concurrency y Parallelism](Etapa%202%20—%20Fundamentos/2.7%20—%20Concurrency%20y%20Parallelism.md) · [2.11 — Sistemas Operativos](Etapa%202%20—%20Fundamentos/2.11%20—%20Sistemas%20Operativos%20(Profundizar).md) · [4.6 — Debugging Avanzado](Etapa%204%20—%20Profundización/4.6%20—%20Debugging%20Avanzado.md)
 
-Convertir código que funciona en criterio técnico sólido: tipos, performance, datos, concurrencia, Git, Linux y redes. `2.2` pertenece a Web/Frontend y `2.5` a Backend/Distribuidos; puedes saltarlos si no elegiste esas rutas.
+### 3. Testing y oracles externos — `ACTIVO ★`
 
-- [ ] 🔴 [2.9 — Linux y Shell Productivo](Etapa%202%20—%20Fundamentos/2.9%20—%20Linux%20y%20Shell%20Productivo.md)
-  - [ ] R1
-  - [ ] R7 — resolver una variante
-  - [ ] R30
-- [ ] 🔴 [2.8 — Git Avanzado y Modelo de Objetos](Etapa%202%20—%20Fundamentos/2.8%20—%20Git%20Avanzado%20y%20Modelo%20de%20Objetos.md)
-  - [ ] R1
-  - [ ] R7 — resolver una variante
-  - [ ] R30
-- [ ] 🟡 [2.1 — TypeScript Avanzado](Etapa%202%20—%20Fundamentos/2.1%20—%20TypeScript%20Avanzado.md)
-- [ ] 🟡 [2.10 — Paradigmas de Programación](Etapa%202%20—%20Fundamentos/2.10%20—%20Paradigmas%20de%20Programación.md)
-- [ ] 🟡 [2.2 — Build Tools y Module Bundlers](Etapa%202%20—%20Fundamentos/2.2%20—%20Build%20Tools%20y%20Module%20Bundlers.md)
-- [ ] 🔴 [2.4 — SQL y Modelado Relacional](Etapa%202%20—%20Fundamentos/2.4%20—%20SQL%20y%20Modelado%20Relacional.md)
-  - [ ] R1
-  - [ ] R7 — resolver una variante
-  - [ ] R30
-- [ ] 🟡 [2.6 — Data Migrations y Schema Evolution](Etapa%202%20—%20Fundamentos/2.6%20—%20Data%20Migrations%20y%20Schema%20Evolution.md)
-- [ ] 🟡 [2.11 — Sistemas Operativos](Etapa%202%20—%20Fundamentos/2.11%20—%20Sistemas%20Operativos%20(Profundizar).md)
-- [ ] 🔴 [2.12 — Redes en Profundidad](Etapa%202%20—%20Fundamentos/2.12%20—%20Redes%20en%20Profundidad.md)
-  - [ ] R1
-  - [ ] R7 — resolver una variante
-  - [ ] R30
-- [ ] 🟡 [2.7 — Concurrency y Parallelism](Etapa%202%20—%20Fundamentos/2.7%20—%20Concurrency%20y%20Parallelism.md)
-- [ ] 🟡 [2.3 — Performance Engineering](Etapa%202%20—%20Fundamentos/2.3%20—%20Performance%20Engineering.md)
-- [ ] 🟡 [2.5 — Bases de Datos No-Relacionales](Etapa%202%20—%20Fundamentos/2.5%20—%20Bases%20de%20Datos%20No-Relacionales.md)
+- [ ] **Resultado mínimo:** crear un test que falsifique una solución plausible pero incorrecta, incluida una producida por AI.
+- Fuentes: [1.3 — Testing Fundamentals](Etapa%201%20—%20Entrada/1.3%20—%20Testing%20Fundamentals.md) · [4.4 — Testing Backend y API](Etapa%204%20—%20Profundización/4.4%20—%20Testing%20Backend%20y%20API.md)
 
-- [ ] **Checkpoint acumulativo — Etapa 2:** diagnosticar una degradación que mezcle SQL, concurrencia y SO/red sin que se anuncien los conceptos relevantes.
+### 4. Seguridad y trust boundaries — `ACTIVO ★`
 
----
+- [ ] **Resultado mínimo:** elaborar un threat model pequeño y demostrar un caso negativo de autenticación, autorización o exposición de datos.
+- Fuente: [1.4 — Seguridad Aplicada](Etapa%201%20—%20Entrada/1.4%20—%20Seguridad%20Aplicada.md)
 
-## Etapa 3 — Arquitectura 🏛️
+### 5. Complejidad y estructuras cotidianas — `DIAGNÓSTICO`
 
-Patrones y decisiones que definen sistemas que escalan y sobreviven. La profundidad distribuida de `3.9` y `3.10` pertenece a Backend; `3.4`, `3.5`, `3.7` y `3.8` forman un carril Web independiente.
+- [ ] **Resultado mínimo:** justificar Big O y elegir Array, Map, Set o Queue según las operaciones de un caso real.
+- Fuente: [1.5 — Estructuras de Datos y Algoritmos](Etapa%201%20—%20Entrada/1.5%20—%20Estructuras%20de%20Datos%20y%20Algoritmos.md)
 
-### Núcleo y base distribuida
+### 6. AI literacy y fundamentos matemáticos de ML — `ACTIVO ★`
 
-- [ ] 🔴 [3.1 — API Design](Etapa%203%20—%20Arquitectura/3.1%20—%20API%20Design.md)
-  - [ ] R1
-  - [ ] R7 — resolver una variante
-  - [ ] R30
-- [ ] 🟡 [3.3 — Domain-Driven Design](Etapa%203%20—%20Arquitectura/3.3%20—%20Domain-Driven%20Design%20(DDD).md)
-- [ ] 🟡 [3.2 — Patrones de Arquitectura Avanzados](Etapa%203%20—%20Arquitectura/3.2%20—%20Patrones%20de%20Arquitectura%20Avanzados.md)
-- [ ] 🟡 [3.10 — Sistemas Distribuidos](Etapa%203%20—%20Arquitectura/3.10%20—%20Sistemas%20Distribuidos.md)
-- [ ] 🟡 [3.9 — Messaging y Event Streaming](Etapa%203%20—%20Arquitectura/3.9%20—%20Messaging%20y%20Event%20Streaming.md)
-- [ ] 🟡 [3.6 — System Design en Profundidad](Etapa%203%20—%20Arquitectura/3.6%20—%20System%20Design%20en%20Profundidad.md)
+- [ ] **Resultado mínimo:** explicar una limitación de un modelo y medirla con un experimento o eval pequeña.
+- Fuentes: [1.6 — AI Literacy](Etapa%201%20—%20Entrada/1.6%20—%20AI%20Literacy.md) · [4.13 — Fundamentos de ML/AI](Etapa%204%20—%20Profundización/4.13%20—%20Fundamentos%20de%20ML-AI%20que%20necesitas%20como%20Dev.md)
 
-### Ruta Web/Frontend
+### 7. Requirements, ADR y explicación técnica — `ACTIVO ★`
 
-- [ ] 🟡 [3.4 — Cómo funciona el Browser](Etapa%203%20—%20Arquitectura/3.4%20—%20Cómo%20funciona%20el%20Browser.md)
-- [ ] 🟡 [3.5 — State Management](Etapa%203%20—%20Arquitectura/3.5%20—%20State%20Management.md)
-- [ ] 🟡 [3.7 — Testing Frontend](Etapa%203%20—%20Arquitectura/3.7%20—%20Testing%20Frontend.md)
-- [ ] 🟡 [3.8 — Accesibilidad (a11y)](Etapa%203%20—%20Arquitectura/3.8%20—%20Accesibilidad%20(a11y).md)
+- [ ] **Resultado mínimo:** escribir una spec verificable, registrar una decisión y explicarla en dos minutos incluyendo incertidumbre.
+- Fuentes: [1.7 — Documentación Técnica Profesional](Etapa%201%20—%20Entrada/1.7%20—%20Documentación%20Técnica%20Profesional.md) · [1.8 — Metodologías y Procesos](Etapa%201%20—%20Entrada/1.8%20—%20Metodologías%20y%20Procesos.md) · [1.9 — Soft Skills Técnicos](Etapa%201%20—%20Entrada/1.9%20—%20Soft%20Skills%20Técnicos.md)
 
-- [ ] **Checkpoint acumulativo — Etapa 3:** evolucionar un contrato sin romper clientes y justificar seguridad, datos y operación.
+### 8. Git, shell y recuperación — `DIAGNÓSTICO`
 
----
+- [ ] **Resultado mínimo:** recuperar trabajo perdido o aislar un cambio defectuoso y extraer evidencia desde terminal.
+- Fuentes: [2.8 — Git Avanzado](Etapa%202%20—%20Fundamentos/2.8%20—%20Git%20Avanzado%20y%20Modelo%20de%20Objetos.md) · [2.9 — Linux y Shell](Etapa%202%20—%20Fundamentos/2.9%20—%20Linux%20y%20Shell%20Productivo.md)
 
-## Etapa 4 — Profundización 🚀
+### 9. Diseño modular y mantenibilidad — `ACTIVO ★`
 
-Profundización común y rutas independientes. Estudia solo las rutas elegidas.
+- [ ] **Resultado mínimo:** refactorizar un cambio pequeño, justificar los límites y conservar comportamiento con tests de caracterización.
+- Fuentes: [2.10 — Paradigmas](Etapa%202%20—%20Fundamentos/2.10%20—%20Paradigmas%20de%20Programación.md) · [3.2 — Patrones de Arquitectura](Etapa%203%20—%20Arquitectura/3.2%20—%20Patrones%20de%20Arquitectura%20Avanzados.md) · [4.10 — Mantenibilidad y Deuda](Etapa%204%20—%20Profundización/4.10%20—%20Mantenibilidad%20y%20Deuda%20Técnica.md)
 
-### Núcleo común
+### 10. SQL y modelado relacional — `DIAGNÓSTICO ★`
 
-- [ ] 🟡 [4.4 — Testing Backend y API](Etapa%204%20—%20Profundización/4.4%20—%20Testing%20Backend%20y%20API.md)
-- [ ] 🟡 [4.2 — CI/CD](Etapa%204%20—%20Profundización/4.2%20—%20CI-CD%20(Integración%20y%20Entrega%20Continua).md)
-- [ ] 🔴 [4.5 — Observabilidad](Etapa%204%20—%20Profundización/4.5%20—%20Observabilidad%20(Los%203%20Pilares).md)
-  - [ ] R1
-  - [ ] R7 — resolver una variante
-  - [ ] R30
-- [ ] 🟡 [4.6 — Debugging Avanzado](Etapa%204%20—%20Profundización/4.6%20—%20Debugging%20Avanzado.md)
-- [ ] 🔴 [4.7 — Code Review](Etapa%204%20—%20Profundización/4.7%20—%20Leer%20Código%20Ajeno%20y%20Code%20Review.md)
-  - [ ] R1
-  - [ ] R7 — resolver una variante
-  - [ ] R30
-- [ ] 🟡 [4.10 — Mantenibilidad y Deuda Técnica](Etapa%204%20—%20Profundización/4.10%20—%20Mantenibilidad%20y%20Deuda%20Técnica.md)
-- [ ] 🔴 [4.13 — Fundamentos de ML-AI](Etapa%204%20—%20Profundización/4.13%20—%20Fundamentos%20de%20ML-AI%20que%20necesitas%20como%20Dev.md)
-  - [ ] R1
-  - [ ] R7 — resolver una variante
-  - [ ] R30
+- [ ] **Resultado mínimo:** diseñar un modelo pequeño y justificar constraints, transacción, isolation e índice con evidencia.
+- Fuente: [2.4 — SQL y Modelado Relacional](Etapa%202%20—%20Fundamentos/2.4%20—%20SQL%20y%20Modelado%20Relacional.md)
 
-### Ruta Plataforma
+### 11. Migraciones seguras — `ACTIVO`
 
-- [ ] 🟡 [4.1 — Containerización Avanzada](Etapa%204%20—%20Profundización/4.1%20—%20Containerización%20Avanzada.md)
-- [ ] 🟡 [4.3 — Cloud Fundamentals](Etapa%204%20—%20Profundización/4.3%20—%20Cloud%20Fundamentals.md)
-- [ ] 🟡 [4.12 — Infrastructure as Code](Etapa%204%20—%20Profundización/4.12%20—%20Infrastructure%20as%20Code%20(IaC).md)
-- [ ] 🟢 [4.11 — Orquestación de Containers y GitOps](Etapa%204%20—%20Profundización/4.11%20—%20Orquestación%20de%20Containers.md)
+- [ ] **Resultado mínimo:** ejecutar un cambio expand-contract y demostrar rollback o roll-forward.
+- Fuente: [2.6 — Data Migrations y Schema Evolution](Etapa%202%20—%20Fundamentos/2.6%20—%20Data%20Migrations%20y%20Schema%20Evolution.md)
 
-### Ruta AI/Agentes
+### 12. Redes para backend — `ACTIVO ★`
 
-- [ ] 🔴 [4.8 — AI Engineering](Etapa%204%20—%20Profundización/4.8%20—%20AI%20Engineering%20(la%20nueva%20disciplina).md)
-  - [ ] R1
-  - [ ] R7 — resolver una variante
-  - [ ] R30
-- [ ] 🟡 [4.9 — Construir con AI — Proyectos reales](Etapa%204%20—%20Profundización/4.9%20—%20Construir%20con%20AI%20—%20Proyectos%20reales.md)
+- [ ] **Resultado mínimo:** reproducir y diagnosticar un fallo de DNS, TLS o HTTP con herramientas de terminal.
+- Fuente: [2.12 — Redes en Profundidad](Etapa%202%20—%20Fundamentos/2.12%20—%20Redes%20en%20Profundidad.md)
 
-### Opcional/JIT
+### 13. Performance y elección de datos — `ACTIVO`
 
-- [ ] 🟢 [4.14 — Open Source](Etapa%204%20—%20Profundización/4.14%20—%20Open%20Source.md)
-- [ ] 🟢 [4.15 — i18n, Regex y WASM](Etapa%204%20—%20Profundización/4.15%20—%20Temas%20que%20Pocos%20Dominan.md) — i18n pertenece a Web; Regex y WASM se estudian cuando una necesidad los justifique.
+- [ ] **Resultado mínimo:** medir baseline y percentiles, localizar un cuello y justificar si optimizar, cachear o cambiar almacenamiento.
+- Fuentes: [2.3 — Performance Engineering](Etapa%202%20—%20Fundamentos/2.3%20—%20Performance%20Engineering.md) · [2.5 — Bases No-Relacionales](Etapa%202%20—%20Fundamentos/2.5%20—%20Bases%20de%20Datos%20No-Relacionales.md)
 
-- [ ] **Checkpoint acumulativo — Etapa 4:** responder a un incidente causado por un cambio producido por un coding agent, con evidencia de detección, rollback y prevención.
+### 14. API y límites de dominio — `ACTIVO ★`
+
+- [ ] **Resultado mínimo:** producir un contrato compatible, casos negativos y límites de dominio justificados.
+- Fuentes: [3.1 — API Design](Etapa%203%20—%20Arquitectura/3.1%20—%20API%20Design.md) · [3.3 — Domain-Driven Design](Etapa%203%20—%20Arquitectura/3.3%20—%20Domain-Driven%20Design%20(DDD).md)
+
+### 15. Sistemas distribuidos y mensajería — `ACTIVO`
+
+- [ ] **Resultado mínimo:** implementar un flujo idempotente con retry u outbox y documentar un fallo parcial.
+- Fuentes: [3.9 — Messaging y Event Streaming](Etapa%203%20—%20Arquitectura/3.9%20—%20Messaging%20y%20Event%20Streaming.md) · [3.10 — Sistemas Distribuidos](Etapa%203%20—%20Arquitectura/3.10%20—%20Sistemas%20Distribuidos.md)
+
+### 16. System Design y decisiones — `ACTIVO`
+
+- [ ] **Resultado mínimo:** diseñar un sistema desde requisitos y capacidad, explicando trade-offs y lo que cambiaría la decisión.
+- Fuente: [3.6 — System Design](Etapa%203%20—%20Arquitectura/3.6%20—%20System%20Design%20en%20Profundidad.md)
+
+### 17. Entrega y GCP — `ACTIVO ★`
+
+- [ ] **Resultado mínimo:** desplegar un servicio en GCP mediante un pipeline reproducible y demostrar una entrega o reversión.
+- Fuentes: [4.1 — Containerización](Etapa%204%20—%20Profundización/4.1%20—%20Containerización%20Avanzada.md) · [4.2 — CI/CD](Etapa%204%20—%20Profundización/4.2%20—%20CI-CD%20(Integración%20y%20Entrega%20Continua).md) · [4.3 — Cloud Fundamentals](Etapa%204%20—%20Profundización/4.3%20—%20Cloud%20Fundamentals.md)
+
+### 18. Observabilidad y SRE — `ACTIVO ★`
+
+- [ ] **Resultado mínimo:** detectar, explicar y recuperar un incidente pequeño mediante telemetría y un runbook.
+- Fuente: [4.5 — Observabilidad](Etapa%204%20—%20Profundización/4.5%20—%20Observabilidad%20(Los%203%20Pilares).md)
+
+### 19. Ingeniería con coding agents — `ACTIVO ★`
+
+- [ ] **Resultado mínimo:** delegar un cambio con contrato y aislamiento; revisar el diff, ejecutar checks, añadir un adversarial y demostrar rollback.
+- Fuentes: [4.7 — Leer Código y Code Review](Etapa%204%20—%20Profundización/4.7%20—%20Leer%20Código%20Ajeno%20y%20Code%20Review.md) · [4.8 — AI Engineering](Etapa%204%20—%20Profundización/4.8%20—%20AI%20Engineering%20(la%20nueva%20disciplina).md) · code archaeology de [4.6 — Debugging Avanzado](Etapa%204%20—%20Profundización/4.6%20—%20Debugging%20Avanzado.md)
+
+## Referencias JIT y especializaciones
+
+Estos temas conservan valor, pero no cuentan para cerrar Backend + coding agents.
+
+| Área | Temas históricos | Cuándo abrirla |
+|---|---|---|
+| Lenguaje | [2.1 — TypeScript Avanzado](Etapa%202%20—%20Fundamentos/2.1%20—%20TypeScript%20Avanzado.md) | Cuando el tipo o compilador bloquee un cambio real. |
+| Web | [2.2 — Build Tools](Etapa%202%20—%20Fundamentos/2.2%20—%20Build%20Tools%20y%20Module%20Bundlers.md), [3.4 — Browser](Etapa%203%20—%20Arquitectura/3.4%20—%20Cómo%20funciona%20el%20Browser.md), [3.5 — State Management](Etapa%203%20—%20Arquitectura/3.5%20—%20State%20Management.md), [3.7 — Testing Frontend](Etapa%203%20—%20Arquitectura/3.7%20—%20Testing%20Frontend.md), [3.8 — Accesibilidad](Etapa%203%20—%20Arquitectura/3.8%20—%20Accesibilidad%20(a11y).md) | Cuando un producto o puesto exija profundidad frontend. |
+| AI de producto | [4.9 — Construir con AI](Etapa%204%20—%20Profundización/4.9%20—%20Construir%20con%20AI%20—%20Proyectos%20reales.md) | Cuando un baseline justifique RAG, MCP o integración LLM. |
+| Plataforma | [4.11 — Orquestación y GitOps](Etapa%204%20—%20Profundización/4.11%20—%20Orquestación%20de%20Containers.md), [4.12 — IaC](Etapa%204%20—%20Profundización/4.12%20—%20Infrastructure%20as%20Code%20(IaC).md) | Cuando un sistema real supere servicios gestionados o requiera infraestructura repetible. |
+| Carrera | [4.14 — Open Source](Etapa%204%20—%20Profundización/4.14%20—%20Open%20Source.md) | Cuando aporte evidencia útil al cambio laboral. |
+| Miscelánea | [4.15 — i18n, Regex y WASM](Etapa%204%20—%20Profundización/4.15%20—%20Temas%20que%20Pocos%20Dominan.md) | i18n para producto Web; regex o WASM ante una necesidad concreta. |
+
+## Ruta completa después del primer hito
+
+Tras las 12 semanas, completa los huecos en este orden sugerido:
+
+1. Unidad 4 — Seguridad.
+2. Unidad 2 — Runtime y concurrencia.
+3. Unidad 11 — Migraciones.
+4. Unidad 12 — Redes.
+5. Unidad 13 — Performance y datos.
+6. Unidad 15 — Distribuidos y mensajería.
+7. Unidad 16 — System Design.
+8. Diagnóstico de la unidad 5 y cualquier diagnóstico pendiente.
+
+La ruta termina cuando las 19 unidades están cerradas o diagnosticadas, no cuando se consumen las referencias JIT.

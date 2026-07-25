@@ -124,8 +124,10 @@ Las semanas son una guía, no puertas rígidas. Si un diagnóstico falla, estudi
 
 ### 19. Ingeniería con coding agents — `ACTIVO ★`
 
-- [ ] **Resultado mínimo:** delegar un cambio con contrato y aislamiento; revisar el diff, ejecutar checks, añadir un adversarial y demostrar rollback.
-- Fuentes: [4.7 — Leer Código y Code Review](Etapa%204%20—%20Profundización/4.7%20—%20Leer%20Código%20Ajeno%20y%20Code%20Review.md) · [4.8 — AI Engineering](Etapa%204%20—%20Profundización/4.8%20—%20AI%20Engineering%20(la%20nueva%20disciplina).md) · code archaeology de [4.6 — Debugging Avanzado](Etapa%204%20—%20Profundización/4.6%20—%20Debugging%20Avanzado.md)
+- [ ] **Resultado mínimo:** delegar un cambio pequeño de backend con contrato y aislamiento; auditar el diff, ejecutar checks de forma independiente, añadir un adversarial y demostrar rollback.
+- **Prerrequisitos:** unidades 3, 6 y 7; diagnóstico de la 8; backend verificable de las unidades 14/17.
+- **Primera pasada:** [4.7 — Leer Código y Code Review](Etapa%204%20—%20Profundización/4.7%20—%20Leer%20Código%20Ajeno%20y%20Code%20Review.md).
+- **Ejercicio y cierre:** [4.8 — Ingeniería con coding agents](Etapa%204%20—%20Profundización/4.8%20—%20AI%20Engineering%20(la%20nueva%20disciplina).md). La aplicación en [`agent-change-audit`](PROYECTOS.md#proyecto-c--agent-change-audit) es el mismo ejercicio, no otro.
 
 ## Referencias JIT y especializaciones
 
@@ -135,10 +137,65 @@ Estos temas conservan valor, pero no cuentan para cerrar Backend + coding agents
 |---|---|---|
 | Lenguaje | [2.1 — TypeScript Avanzado](Etapa%202%20—%20Fundamentos/2.1%20—%20TypeScript%20Avanzado.md) | Cuando el tipo o compilador bloquee un cambio real. |
 | Web | [2.2 — Build Tools](Etapa%202%20—%20Fundamentos/2.2%20—%20Build%20Tools%20y%20Module%20Bundlers.md), [3.4 — Browser](Etapa%203%20—%20Arquitectura/3.4%20—%20Cómo%20funciona%20el%20Browser.md), [3.5 — State Management](Etapa%203%20—%20Arquitectura/3.5%20—%20State%20Management.md), [3.7 — Testing Frontend](Etapa%203%20—%20Arquitectura/3.7%20—%20Testing%20Frontend.md), [3.8 — Accesibilidad](Etapa%203%20—%20Arquitectura/3.8%20—%20Accesibilidad%20(a11y).md) | Cuando un producto o puesto exija profundidad frontend. |
-| AI de producto | [4.9 — Construir con AI](Etapa%204%20—%20Profundización/4.9%20—%20Construir%20con%20AI%20—%20Proyectos%20reales.md) | Cuando un baseline justifique RAG, MCP o integración LLM. |
+| AI de producto | [4.9 — AI de producto: MCP y RAG](Etapa%204%20—%20Profundización/4.9%20—%20Construir%20con%20AI%20—%20Proyectos%20reales.md) | Cuando un baseline demuestre una necesidad de integración o recuperación; no bloquea la unidad 19. |
 | Plataforma | [4.11 — Orquestación y GitOps](Etapa%204%20—%20Profundización/4.11%20—%20Orquestación%20de%20Containers.md), [4.12 — IaC](Etapa%204%20—%20Profundización/4.12%20—%20Infrastructure%20as%20Code%20(IaC).md) | Cuando un sistema real supere servicios gestionados o requiera infraestructura repetible. |
 | Carrera | [4.14 — Open Source](Etapa%204%20—%20Profundización/4.14%20—%20Open%20Source.md) | Cuando aporte evidencia útil al cambio laboral. |
 | Miscelánea | [4.15 — i18n, Regex y WASM](Etapa%204%20—%20Profundización/4.15%20—%20Temas%20que%20Pocos%20Dominan.md) | i18n para producto Web; regex o WASM ante una necesidad concreta. |
+
+## Mapa de los 46 IDs históricos
+
+`Canónico` enseña o cierra una unidad; `preparación` aporta un modelo sin otro ejercicio; `alias` redirige contenido; `JIT` no bloquea la ruta.
+
+| ID | Destino | Rol |
+|---|---|---|
+| 1.1 | Unidad 1 | Canónico |
+| 1.2 | Unidad 2 | Preparación: runtime |
+| 1.3 | Unidad 3 | Canónico |
+| 1.4 | Unidad 4 | Canónico |
+| 1.5 | Unidad 5 | Canónico |
+| 1.6 | Unidad 6 | Preparación: AI literacy |
+| 1.7 | Unidad 7 | Canónico |
+| 1.8 | Unidad 7 + metodología | Alias |
+| 1.9 | Unidades 7, 16 y 18 + metodología | Alias |
+| 2.1 | Lenguaje | JIT |
+| 2.2 | Web | JIT |
+| 2.3 | Unidad 13 | Canónico |
+| 2.4 | Unidad 10 | Canónico |
+| 2.5 | Unidad 13 | Alias: elección de datos |
+| 2.6 | Unidad 11 | Canónico |
+| 2.7 | Unidad 2 | Cierre: concurrencia |
+| 2.8 | Unidad 8 | Cierre: recuperación Git |
+| 2.9 | Unidad 8 | Preparación: shell y señales |
+| 2.10 | Unidad 9 + Web JIT | Alias |
+| 2.11 | Unidad 2 | Preparación: memoria e I/O |
+| 2.12 | Unidad 12 | Canónico |
+| 3.1 | Unidad 14 | Cierre: contrato API |
+| 3.2 | Unidad 9 | Canónico |
+| 3.3 | Unidad 14 | Preparación: límites de dominio |
+| 3.4 | Web | JIT |
+| 3.5 | Web | JIT |
+| 3.6 | Unidad 16 | Canónico |
+| 3.7 | Web, enlazado a unidad 3 | JIT |
+| 3.8 | Web/Product | JIT |
+| 3.9 | Unidad 15 | Cierre: mensajería |
+| 3.10 | Unidad 15 | Preparación: distribuidos |
+| 4.1 | Unidad 17 | Preparación: imagen |
+| 4.2 | Unidad 17 | Preparación: pipeline |
+| 4.3 | Unidad 17 | Cierre: deploy GCP |
+| 4.4 | Unidad 3 | Alias |
+| 4.5 | Unidad 18 | Canónico |
+| 4.6 | Unidades 1, 2, 12 y 19 | Alias |
+| 4.7 | Unidad 19 | Preparación: lectura y review |
+| 4.8 | Unidad 19 | Cierre: coding agents |
+| 4.9 | AI de producto | JIT |
+| 4.10 | Unidades 9 y 19 | Alias |
+| 4.11 | Plataforma | JIT |
+| 4.12 | Plataforma | JIT |
+| 4.13 | Unidad 6 | Cierre: fundamentos y eval |
+| 4.14 | Carrera | JIT |
+| 4.15 | Web, seguridad y performance | Alias JIT |
+
+Los 46 archivos conservan sus nombres para no romper enlaces históricos. Abrir un alias o JIT no añade otro ejercicio ni otro Done.
 
 ## Ruta completa después del primer hito
 

@@ -85,6 +85,8 @@ RabbitMQ puede reemplazar la tabla si ya existe una necesidad concreta. Kafka, A
 
 Auditar un cambio pequeño producido por un coding agent. Reutiliza el Proyecto A o B; **no crea un tercer sistema**.
 
+Para la unidad 19 esta aplicación **es** el ejercicio de [4.8](Etapa%204%20—%20Profundización/4.8%20—%20AI%20Engineering%20(la%20nueva%20disciplina).md); no hagas ambos. Reutiliza el backend NestJS/PostgreSQL desplegado en Cloud Run, pero el agente trabaja solo sobre una copia local aislada.
+
 ### Cambio sugerido
 
 Pide al agente una sola modificación con impacto observable, por ejemplo:
@@ -94,14 +96,20 @@ Pide al agente una sola modificación con impacto observable, por ejemplo:
 
 ### Evidencia mínima
 
-- [ ] Contrato de tarea con objetivo, no-objetivos, invariantes, archivos permitidos y aceptación.
-- [ ] Ejecución aislada en rama o worktree con permisos y herramientas limitados.
-- [ ] Diff revisado, incluidos cambios fuera de alcance y dependencias nuevas.
-- [ ] Registro de los checks ejecutados y su salida relevante.
-- [ ] Un test adversarial añadido o modificado por ti.
-- [ ] Trazado manual de un happy path y un fallo a través del código.
-- [ ] Decisión escrita: aceptar, corregir o revertir, con evidencia.
-- [ ] Rollback demostrado o ensayado.
+Aplica el [protocolo canónico](METODOLOGIA.md#cómo-usar-ai-y-coding-agents) y conserva:
+
+- [ ] contrato congelado antes de ejecutar;
+- [ ] base revision y worktree o sandbox limpio;
+- [ ] agente sin secretos ni credenciales GCP y sin permiso para commit, push o deploy;
+- [ ] `status`, `diff --stat`, `diff --name-status` y diff completo;
+- [ ] checks ejecutados por el agente y repetidos por la persona, con salida;
+- [ ] un adversarial humano con oracle independiente;
+- [ ] trazado de happy path y fallo;
+- [ ] decisión de aceptar, corregir o revertir;
+- [ ] rollback ejecutado y baseline o smoke check recuperado;
+- [ ] procedencia y límite o incertidumbre.
+
+Timebox de la práctica curricular: **120 minutos**; las 8–12 h comunes solo aplican si luego se pule como pieza de portfolio.
 
 ### Unidades que puede cubrir
 

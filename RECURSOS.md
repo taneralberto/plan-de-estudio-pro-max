@@ -16,7 +16,7 @@ Enlaces externos verificados el **2026-07-25**.
 
 - **DDIA — [Designing Data-Intensive Applications](https://dataintensive.net/)** — Martin Kleppmann (`EN · pago · libro`). Consultar capítulos concretos; no leer completo como requisito.
 - **APOSD — [A Philosophy of Software Design](https://web.stanford.edu/~ouster/cgi-bin/book.php)** — John Ousterhout (`EN · pago · libro`). Usar capítulos 2–6 para complejidad y modularidad.
-- **GA — [Grokking Algorithms](https://www.manning.com/books/grokking-algorithms-second-edition)** — Aditya Bhargava (`EN · pago · libro`). Usar capítulos 1, 3 y 6 solo si falla el diagnóstico de estructuras.
+- **GA — [Grokking Algorithms](https://www.manning.com/books/grokking-algorithms-second-edition)** — Aditya Bhargava (`EN · pago · libro`). Usar capítulos 1 (crecimiento/Big O) y 5 (hash tables) solo si falla el diagnóstico de estructuras.
 
 ## Recursos por unidad
 
@@ -44,8 +44,8 @@ Enlaces externos verificados el **2026-07-25**.
 
 ### 5 — Complejidad y estructuras cotidianas
 
-- **Fuente primaria:** GA, capítulos 1, 3 y 6 (`EN · pago · libro`).
-- **Práctica:** [VisuAlgo](https://visualgo.net/en) (`EN · gratis · visualización`). Comparar operaciones, no completar todo el catálogo.
+- **Fuente primaria:** GA, capítulos 1 (crecimiento/Big O) y 5 (hash tables), solo si falla el diagnóstico (`EN · pago · libro`).
+- **Práctica:** [VisuAlgo](https://visualgo.net/en) (`EN · gratis · visualización`). Comparar operaciones de Array, Queue, Map y Set; no completar el catálogo.
 
 ### 6 — AI literacy y matemáticas de ML
 
@@ -72,13 +72,13 @@ Enlaces externos verificados el **2026-07-25**.
 
 ### 10 — SQL y modelado relacional
 
-- **Fuente primaria:** [PostgreSQL Documentation](https://www.postgresql.org/docs/current/index.html) — Data Definition, Indexes y Concurrency Control (`EN · gratis · docs`).
-- **Práctica:** [PGExercises](https://pgexercises.com/) (`EN · gratis · labs`). Elegir ejercicios de joins, aggregates y ventanas según el diagnóstico.
+- **Fuente primaria:** [PostgreSQL Documentation](https://www.postgresql.org/docs/current/index.html) — Data Definition, Concurrency Control, Indexes y Using EXPLAIN (`EN · gratis · docs`).
+- **Práctica:** [PGExercises](https://pgexercises.com/) (`EN · gratis · labs`). Usar joins, aggregates o ventanas solo para un hueco de sintaxis detectado; no sustituye evidencia de modelado o concurrencia.
 
 ### 11 — Migraciones seguras
 
-- **Fuente primaria:** [PostgreSQL ALTER TABLE](https://www.postgresql.org/docs/current/sql-altertable.html) (`EN · gratis · docs`).
-- **Práctica:** [GitLab — Avoiding Downtime in Migrations](https://docs.gitlab.com/development/database/avoiding_downtime_in_migrations/) (`EN · gratis · guía`). Reproducir un patrón expand-contract pequeño.
+- **Fuente primaria:** [PostgreSQL ALTER TABLE](https://www.postgresql.org/docs/current/sql-altertable.html) (`EN · gratis · docs`). Consultar la versión desplegada y verificar locks y reescrituras del DDL concreto.
+- **Práctica:** [GitLab — Avoiding Downtime in Migrations](https://docs.gitlab.com/development/database/avoiding_downtime_in_migrations/) (`EN · gratis · guía`). Reproducir un patrón expand-contract pequeño y comprobar su recuperación.
 - **Profundización:** [Evolutionary Database Design](https://martinfowler.com/articles/evodb.html) (`EN · gratis · artículo`).
 
 ### 12 — Redes para backend
@@ -88,9 +88,9 @@ Enlaces externos verificados el **2026-07-25**.
 
 ### 13 — Performance y elección de datos
 
-- **Fuente primaria:** [PostgreSQL — Using EXPLAIN](https://www.postgresql.org/docs/current/using-explain.html) (`EN · gratis · docs`).
-- **Práctica:** [The USE Method](https://www.brendangregg.com/usemethod.html) (`EN · gratis · guía`). Aplicar utilización, saturación y errores a un cuello medido.
-- **Profundización:** DDIA, capítulos 3 y 5 (`EN · pago · libro`).
+- **Fuente primaria:** [The USE Method](https://www.brendangregg.com/usemethod.html) (`EN · gratis · guía`). Aplicar utilización, saturación y errores a un cuello medido.
+- **Práctica:** [Grafana k6 documentation](https://grafana.com/docs/k6/latest/) (`EN · gratis · docs/lab`). Conservar script, configuración y raw outputs del mismo workload.
+- **Profundización:** DDIA, capítulos 2 y 3 (`EN · pago · libro`).
 
 ### 14 — API y límites de dominio
 
@@ -123,9 +123,9 @@ Enlaces externos verificados el **2026-07-25**.
 
 ### 19 — Ingeniería con coding agents
 
-- **Fuente primaria:** [SWE-bench](https://www.swebench.com/) (`EN · gratis · benchmark/papers`). Estudiar qué evidencia exige una tarea de código real.
-- **Práctica:** el protocolo y gate de [METODOLOGIA.md](METODOLOGIA.md#cómo-usar-ai-y-coding-agents) aplicados a `agent-change-audit` (`ES · gratis · lab propio`).
-- **Profundización:** [OWASP GenAI Security Project](https://genai.owasp.org/) (`EN · gratis · guía`). Consultar riesgos de permisos, datos y acciones del agente.
+- **Fuente primaria:** [SWE-bench](https://www.swebench.com/) (`EN · gratis · benchmark/papers`). Examinar la unidad verificable tarea→repo base→patch→tests; sus scores no prueban que una entrega concreta sea segura.
+- **Práctica:** [protocolo y gate](METODOLOGIA.md#cómo-usar-ai-y-coding-agents) aplicados al [Proyecto C](PROYECTOS.md#proyecto-c--agent-change-audit) (`ES · gratis · lab propio`).
+- **Profundización:** [OWASP GenAI Security Project](https://genai.owasp.org/) (`EN · gratis · guía`). Consultar mínimo privilegio, datos no confiables y acciones del agente.
 
 ## Índice complementario en español
 

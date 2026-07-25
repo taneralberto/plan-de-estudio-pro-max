@@ -1,5 +1,9 @@
 # Observaciones sobre el Plan de Estudio Pro Max
 
+> **Estado:** diagnóstico histórico cerrado el **2026-07-25**.
+> La fuente vigente es [ROADMAP.md](../ROADMAP.md); no uses las prioridades de este documento como backlog.
+> Las observaciones de estructura, metodología, proyectos, recursos y correcciones técnicas fueron absorbidas por la ruta de 19 unidades. Web, plataforma, AI de producto y carrera permanecen como referencias JIT no bloqueantes.
+
 ## Alcance de esta revisión
 
 Leí completos `README.md`, `ROADMAP.md`, `METODOLOGIA.md`, `PROYECTOS.md` y `RECURSOS.md`; revisé la estructura de los 46 temas y una muestra amplia de las cuatro etapas, incluidos 1.1, 1.6, 2.1 y 2.8, además de temas de testing, seguridad, datos, sistemas operativos, redes, arquitectura, sistemas distribuidos, observabilidad, AI Engineering, agentes, MCP y RAG.

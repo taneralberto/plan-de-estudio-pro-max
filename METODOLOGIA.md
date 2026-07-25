@@ -67,24 +67,29 @@ Los tres modos aplican desde la primera unidad:
 
 ### Contrato mínimo de una tarea delegada
 
-1. Objetivo y no-objetivos.
-2. Restricciones, invariantes y casos de aceptación.
-3. Archivos, herramientas, permisos, tiempo y presupuesto permitidos.
-4. Checks que deben ejecutarse y formato del reporte.
-5. Acciones externas o irreversibles que requieren aprobación humana.
+1. Objetivo, no-objetivos e invariante.
+2. Base revision y resultado observable; aceptación y adversarial fijados antes de ejecutar.
+3. Contexto y archivos permitidos, y fuentes autoritativas; secretos y datos privados excluidos.
+4. Herramientas, permisos, red, tiempo/presupuesto y stop conditions.
+5. Checks y formato de reporte: estado, archivos, diff, comandos, salida relevante y riesgos.
+6. Acciones que requieren aprobación: dependencias, escritura externa, credenciales, GCP, deploy, push, commit o acciones irreversibles.
+7. Rollback previsto antes de delegar.
 
 ### Gate para aceptar código generado
 
 No aceptes el cambio hasta poder:
 
-- señalar el propósito de los archivos modificados;
-- trazar un happy path y un fallo;
-- revisar el diff y detectar cambios fuera de alcance o dependencias nuevas;
-- ejecutar los checks y revisar su evidencia, no solo leer “tests passed”;
-- añadir o modificar al menos un caso negativo/adversarial;
-- decidir y registrar en una frase por qué aceptas, corriges o reviertes.
+- confirmar la base revision y que el worktree o sandbox no contiene cambios ajenos;
+- comparar `status`, `diff --stat`, `diff --name-status` y el diff completo contra el alcance;
+- entender el propósito de cada archivo, una ruta feliz y un fallo;
+- revisar dependencias, lockfiles, permisos y acciones externas;
+- ejecutar personalmente los checks y conservar la salida relevante;
+- añadir o modificar personalmente un caso adversarial cuyo oracle venga de una spec, invariante o fuente primaria;
+- registrar agente/modelo, contexto, herramientas/permisos y reporte como procedencia, sin tratar el reporte como prueba;
+- aceptar, corregir o revertir con motivo y evidencia;
+- demostrar el rollback en el aislamiento y verificar la recuperación y el estado limpio.
 
-La AI puede proponer, implementar y criticar. No puede ser la única fuente que confirme que su propio resultado es correcto.
+Cero hallazgos es válido si alcance, checks y adversarial lo sostienen; no inventes defectos para completar una cuota. La AI puede proponer, implementar y criticar, pero no puede ser la única fuente que confirme que su propio resultado es correcto.
 
 ## Un ejercicio o una aplicación, no ambos
 

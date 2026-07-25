@@ -1,6 +1,57 @@
 # Plan de revisión personalizada del plan de estudio
 
-> **Estado:** propuesta de cambios. Este archivo define qué modificar; no implementa esos cambios.
+> **Estado:** implementación completa, staged y pendiente de commit. `ROADMAP.md` es la fuente de verdad para el estudio.
+
+## 0. Estado de implementación
+
+> Actualizado el **2026-07-25**. Último commit aplicado: `11a8a20`; el cierre actual aún no tiene commit.
+> Los checks de esta sección miden la **reescritura del currículo**; los de `ROADMAP.md` miden el aprendizaje personal y permanecen sin marcar.
+
+### Base global
+
+- [x] Objetivo, audiencia, ruta de 19 unidades y metodología — `709e057`.
+- [x] Proyectos pequeños y recursos por unidad — `ac1bb20`.
+- [x] Enlaces entre roadmap, metodología, proyectos y recursos validados.
+
+### Unidades implementadas — 19 de 19
+
+- [x] **1 — Debugging y evidencia:** 1.1 + alias 4.6 — `400cc70`.
+- [x] **2 — Runtime, procesos y concurrencia:** 1.2 + 2.7 + 2.11 — revisado, sin commit.
+- [x] **3 — Testing y oracles externos:** 1.3 + alias 4.4 — `79904cb`.
+- [x] **4 — Seguridad y trust boundaries:** 1.4 — revisado, sin commit.
+- [x] **5 — Complejidad y estructuras cotidianas:** 1.5; ejemplo duplicado eliminado — revisado, sin commit.
+- [x] **6 — AI literacy y fundamentos matemáticos:** 1.6 + 4.13 — `4ab39b9`.
+- [x] **7 — Requirements, ADR y explicación:** 1.7 + aliases 1.8/1.9 — `e5122f6`.
+- [x] **8 — Git, shell y recuperación:** 2.8 + 2.9 — revisado, sin commit.
+- [x] **9 — Diseño modular y mantenibilidad:** 3.2 + aliases 2.10/4.10 — `983ed38`.
+- [x] **10 — SQL y modelado relacional:** 2.4 — revisado, sin commit.
+- [x] **11 — Migraciones seguras:** 2.6 — revisado, sin commit.
+- [x] **12 — Redes para backend:** 2.12 — revisado, sin commit.
+- [x] **13 — Performance y elección de datos:** 2.3 + alias 2.5 — revisado, sin commit.
+- [x] **14 — API y límites de dominio:** 3.1 + 3.3 — `e2187e2`.
+- [x] **15 — Sistemas distribuidos y mensajería:** 3.10 + 3.9 — revisado, sin commit.
+- [x] **16 — System Design y decisiones:** 3.6 — revisado, sin commit.
+- [x] **17 — Entrega y GCP:** 4.1 + 4.2 + 4.3 — `78fb514`.
+- [x] **18 — Observabilidad y SRE:** 4.5 — `11a8a20`.
+- [x] **19 — Ingeniería con coding agents:** 4.7 + 4.8; 4.9 JIT — revisado, sin commit.
+
+### Cierre global
+
+- [x] Los 46 IDs tienen destino explícito en `ROADMAP.md`.
+- [x] Las referencias JIT no añaden ejercicios ni bloquean la ruta.
+- [x] `Observaciones.md` quedó archivado y el ejemplo duplicado de hash tables fue eliminado.
+- [x] No quedan anclas antiguas, enlaces internos rotos, placeholders ni referencias activas a FreePress.
+- [x] Los 70 enlaces externos vigentes responden y `git diff --check` pasa.
+- [x] Tres revisiones finales independientes no encontraron blockers técnicos, editoriales ni de navegación.
+
+### Flujo de trabajo
+
+1. Implementar un bloque pequeño.
+2. Validar enlaces, alcance y `git diff --check`.
+3. Pedir revisión independiente.
+4. Corregir hallazgos.
+5. Dejar cambios **staged y sin commit** para revisión del usuario.
+6. Crear commit solo tras autorización explícita.
 
 ## 1. Objetivo personal que debe gobernar el plan
 
@@ -318,23 +369,23 @@ Cada etapa debe ser un commit independiente y validado. No mezclar todos los cam
 
 La revisión se considerará implementada cuando:
 
-- [ ] El README ya no identifica el objetivo con TypeScript.
-- [ ] El roadmap activo contiene 19 unidades y tiene un final visible.
-- [ ] Los 46 IDs anteriores apuntan a una unidad activa, diagnóstico o referencia JIT.
-- [ ] Backend + coding agents es la ruta predeterminada.
-- [ ] Web y plataforma avanzada no bloquean la finalización.
-- [ ] No hay proyecto longitudinal obligatorio ni menciones contradictorias de FreePress.
-- [ ] Cada unidad activa tiene un solo ejercicio principal y un Done pragmático.
-- [ ] Testing contiene un oracle adversarial para código generado.
-- [ ] Seguridad incluye trust boundaries y secretos/PII en contexto de agentes.
-- [ ] Diseño modular precede a SOLID, DDD táctico y microservicios.
-- [ ] Observabilidad incluye SRE, restore y rollback.
-- [ ] Coding agents tiene un artefacto completo: contrato, aislamiento, diff, checks, adversarial y rollback.
-- [ ] Las matemáticas aparecen aplicadas y acotadas, no como otra carrera.
-- [ ] Los ejemplos cloud principales usan GCP.
-- [ ] Los recursos retenidos responden y corresponden a su título.
-- [ ] No quedan enlaces internos rotos, placeholders ni recursos duplicados.
-- [ ] `git diff --check` pasa y una revisión independiente no encuentra bloqueos.
+- [x] El README ya no identifica el objetivo con TypeScript.
+- [x] El roadmap activo contiene 19 unidades y tiene un final visible.
+- [x] Los 46 IDs anteriores apuntan a una unidad activa, diagnóstico o referencia JIT.
+- [x] Backend + coding agents es la ruta predeterminada.
+- [x] Web y plataforma avanzada no bloquean la finalización.
+- [x] No hay proyecto longitudinal obligatorio ni menciones contradictorias de FreePress.
+- [x] Cada unidad activa tiene un solo ejercicio principal y un Done pragmático.
+- [x] Testing contiene un oracle adversarial para código generado.
+- [x] Seguridad incluye trust boundaries y secretos/PII en contexto de agentes.
+- [x] Diseño modular precede a SOLID, DDD táctico y microservicios.
+- [x] Observabilidad incluye SRE, restore y rollback.
+- [x] Coding agents tiene un artefacto completo: contrato, aislamiento, diff, checks, adversarial y rollback.
+- [x] Las matemáticas aparecen aplicadas y acotadas, no como otra carrera.
+- [x] Los ejemplos cloud principales usan GCP.
+- [x] Los recursos retenidos responden y corresponden a su título.
+- [x] No quedan enlaces internos rotos, placeholders ni recursos duplicados.
+- [x] `git diff --check` pasa y una revisión independiente no encuentra bloqueos.
 
 ## 10. No objetivos
 

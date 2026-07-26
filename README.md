@@ -38,8 +38,6 @@ El tiempo evita el atasco, pero no sustituye la evidencia de aprendizaje.
 
 1. Abre [ROADMAP.md](ROADMAP.md) y sigue el primer hito de 12 semanas.
 2. Lee [METODOLOGIA.md](METODOLOGIA.md) para usar diagnósticos, sesiones prácticas, repasos y coding agents.
-3. Comienza por la unidad 7 —Requirements, ADR y explicación—, inicia la unidad 6 en paralelo y ejecuta los diagnósticos indicados.
+3. Comienza por la unidad 6 —Requirements, ADR y explicación— y ejecuta los diagnósticos indicados.
 4. Usa [PROYECTOS.md](PROYECTOS.md) solo como apoyo: ningún proyecto longitudinal es obligatorio para terminar la ruta.
 5. Consulta [RECURSOS.md](RECURSOS.md) cuando una práctica revele una duda concreta.
-
-> [PLAN_REVISION_PERSONALIZADA.md](PLAN_REVISION_PERSONALIZADA.md) guía temporalmente la migración. El estado y el orden vigentes están en `ROADMAP.md`; cada tema conserva su ID y detalle disponible hasta que sea condensado o fusionado.

@@ -8,10 +8,10 @@ Usa unas **10 horas semanales** como presupuesto flexible, no como calendario di
 
 | Uso | Horas orientativas |
 |---|---:|
-| Práctica principal y debugging | 5–6 h |
-| Aplicación en un artefacto pequeño | 2 h |
-| R1/R7/R30 e interleaving | 1 h |
-| Matemáticas aplicadas, explicación o margen | 1–2 h |
+| Práctica sobre un artefacto | 6–7 h |
+| Documentación puntual y debugging | 1–1,5 h |
+| R1 y recuperación semanal | 0,5 h |
+| Explicación o margen | 0,5–1 h |
 
 Una semana difícil puede tener menos horas. Continúa desde la última evidencia; no compenses reiniciando ni duplicando sesiones.
 
@@ -26,34 +26,23 @@ Cuando [ROADMAP.md](ROADMAP.md) marque una unidad como `DIAGNÓSTICO`:
 
 Los años de experiencia no prueban dominio, pero tampoco obligan a repetir material conocido.
 
-## Ciclo de una sesión práctica
+## Ciclo de trabajo
 
-### 1. Pregunta o predicción — 5–10 minutos
+### 1. Elegir un resultado
 
-Antes de buscar una respuesta, escribe qué esperas que ocurra, qué evidencia lo confirmaría y qué podría falsarlo.
+Intenta el Done durante 30–60 minutos si la unidad es diagnóstico. Si pasa, ciérrala; si falla, nombra un solo hueco y trabaja sobre él.
 
-### 2. Mapa mínimo — 15–30 minutos
+### 2. Practicar
 
-Consulta una fuente primaria, artículo o video corto para obtener vocabulario y modelo general. Detente cuando puedas empezar a probar; no consumas un curso completo por defecto.
+Dedica la mayor parte de la semana al mismo artefacto o aplicación. Predice antes de probar, produce evidencia observable y consulta documentación solo cuando aparezca una duda. Detente cuando el resultado tenga evidencia suficiente; copiar un tutorial no cuenta.
 
-### 3. Práctica inmediata — 45–90 minutos
+### 3. Cerrar
 
-Produce algo observable: código, query, benchmark, diagrama, ADR, runbook o informe. Modifica condiciones, rompe el caso feliz o reproduce un fallo. Copiar un tutorial no cuenta como evidencia.
+Conserva artefacto, evidencia independiente y caso negativo. Explica en dos minutos problema, decisión, evidencia e incertidumbre, y anota una pregunta para R1.
 
-### 4. Lectura puntual — según la duda
+### 4. Recuperar
 
-Vuelve a documentación, libro o curso solo para resolver una pregunta surgida en la práctica. Puedes consultar documentación durante ejercicios y Done; dominio no significa memorizar APIs.
-
-### 5. Cierre — 5 minutos
-
-Explica en voz alta durante unos dos minutos:
-
-1. problema;
-2. decisión;
-3. evidencia;
-4. incertidumbre o límite conocido.
-
-Anota una pregunta para R1. Evita resúmenes largos que no cambien el artefacto.
+Haz R1 sin apuntes al día siguiente. Una vez por semana recupera un concepto crítico anterior siguiendo la rotación definida abajo; si falla, corrige el artefacto o explicación.
 
 ## Cómo usar AI y coding agents
 
@@ -120,23 +109,20 @@ Una unidad marcada con `★` se cierra cuando cumple:
 - [ ] **Evidencia independiente:** test, documentación primaria, medición o revisión humana.
 - [ ] **Caso negativo:** una forma comprobada de romper la solución o falsar la explicación.
 - [ ] **Explicación:** problema, decisión, evidencia e incertidumbre.
-- [ ] **R1:** recuperación breve al día siguiente.
-- [ ] **R7:** variante con datos o restricciones diferentes.
-- [ ] **R30:** recuperación breve treinta días después.
+- [ ] **R1:** recuperación breve y sin apuntes al día siguiente.
 
-Puedes avanzar mientras llega R30. No esperes un mes para abrir la siguiente unidad.
+La durabilidad se comprueba en la recuperación semanal; no esperes para abrir la siguiente unidad.
 
-## R1/R7/R30 sin administración excesiva
+## Recuperación espaciada
 
 - **R1 (+1 día, 5–10 min):** recupera la idea y la evidencia antes de mirar apuntes.
-- **R7 (+7 días, 5–10 min):** resuelve o explica una variante.
-- **R30 (+30 días, 5–10 min):** verifica de nuevo la parte con mayor riesgo de olvido.
+- **Semanal (5–10 min):** recorre las unidades críticas cerradas de más antigua a reciente y recupera una sin apuntes; adelanta una solo si su riesgo es mayor. Tras llegar a la más reciente, vuelve a empezar.
 
-Crea las preguntas desde errores reales. Si fallas un repaso, corrige el artefacto o la explicación y reprograma esa marca; no reinicies el plan.
+Crea preguntas desde errores reales. Si fallas una recuperación, corrige el artefacto o la explicación y repítela la semana siguiente; no reinicies el plan ni mantengas otro tracker.
 
 ## Interleaving sin caos
 
-Usa alrededor del 20 % de una sesión de repaso para distinguir conceptos cercanos:
+Cuando una recuperación revele confusión, contrasta conceptos cercanos:
 
 - debugging ↔ runtime;
 - SQL ↔ migraciones ↔ concurrencia;

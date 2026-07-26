@@ -10,7 +10,7 @@ No repitas el mismo aprendizaje en varias vías. La evidencia debe cumplir [METO
 
 ## Límites comunes
 
-- **Timebox máximo de 8–12 horas.** Si la evidencia está lista antes, detente; al llegar al límite, elimina alcance.
+- **Timebox total de 8–12 horas por sustrato.** Es el techo compartido entre las unidades que reutilizan el proyecto, no un presupuesto por unidad ni permiso para acumular sus checklists. Si la evidencia está lista antes, detente; al llegar al límite, elimina alcance.
 - Sin frontend: `curl`, OpenAPI y tests son interfaz suficiente.
 - Usa un stack conocido por defecto. NestJS + PostgreSQL es válido; Python puede usarse cuando aporte al aprendizaje de AI o automatización.
 - No agregues Redis, Kafka, Kubernetes, microservicios ni otra dependencia sin una necesidad demostrada.
@@ -46,9 +46,9 @@ No necesita usuarios, pagos, panel administrativo ni catálogo completo.
 
 ### Unidades que puede cubrir
 
-3 — Testing · 7 — Requirements · 9 — Diseño modular · 10 — SQL · 11 — Migraciones · 14 — API/dominio · 17 — Entrega/GCP · 18 — Observabilidad/SRE.
+3 — Testing · 6 — Requirements · 8 — Diseño modular · 9 — SQL · 10 — Migraciones · 13 — API/dominio · 16 — Entrega/GCP · 17 — Observabilidad/SRE · 18 — Coding agents.
 
-Usa el proyecto solo para la unidad que estés cerrando. No vuelvas a implementar una evidencia que ya exista.
+Usa el proyecto solo para la unidad que estés cerrando. No vuelvas a implementar una evidencia que ya exista. Para la unidad 18, delega y audita un cambio pequeño —por ejemplo, expirar reservas vencidas— siguiendo [4.8](Etapa%204%20—%20Profundización/4.8%20—%20AI%20Engineering%20(la%20nueva%20disciplina).md).
 
 ---
 
@@ -77,45 +77,9 @@ RabbitMQ puede reemplazar la tabla si ya existe una necesidad concreta. Kafka, A
 
 ### Unidades que puede cubrir
 
-2 — Runtime/concurrencia · 13 — Performance/datos · 15 — Distribuidos/mensajería · 16 — System Design.
+2 — Runtime/concurrencia · 12 — Performance/datos · 14 — Distribuidos/mensajería · 15 — System Design · 18 — Coding agents.
 
----
-
-## Proyecto C — `agent-change-audit`
-
-Auditar un cambio pequeño producido por un coding agent. Reutiliza el Proyecto A o B; **no crea un tercer sistema**.
-
-Para la unidad 19 esta aplicación **es** el ejercicio de [4.8](Etapa%204%20—%20Profundización/4.8%20—%20AI%20Engineering%20(la%20nueva%20disciplina).md); no hagas ambos. Reutiliza el backend NestJS/PostgreSQL desplegado en Cloud Run, pero el agente trabaja solo sobre una copia local aislada.
-
-### Cambio sugerido
-
-Pide al agente una sola modificación con impacto observable, por ejemplo:
-
-- expirar reservas vencidas en `safe-change-api`; o
-- permitir reprocesar un trabajo en error en `reliable-worker`.
-
-### Evidencia mínima
-
-Aplica el [protocolo canónico](METODOLOGIA.md#cómo-usar-ai-y-coding-agents) y conserva:
-
-- [ ] contrato congelado antes de ejecutar;
-- [ ] base revision y worktree o sandbox limpio;
-- [ ] agente sin secretos ni credenciales GCP y sin permiso para commit, push o deploy;
-- [ ] `status`, `diff --stat`, `diff --name-status` y diff completo;
-- [ ] checks ejecutados por el agente y repetidos por la persona, con salida;
-- [ ] un adversarial humano con oracle independiente;
-- [ ] trazado de happy path y fallo;
-- [ ] decisión de aceptar, corregir o revertir;
-- [ ] rollback ejecutado y baseline o smoke check recuperado;
-- [ ] procedencia y límite o incertidumbre.
-
-Timebox de la práctica curricular: **120 minutos**; las 8–12 h comunes solo aplican si luego se pule como pieza de portfolio.
-
-### Unidades que puede cubrir
-
-1 — Debugging · 6 — AI/ML · 8 — Git/shell · 19 — Ingeniería con coding agents.
-
-No requiere construir un chatbot, servidor MCP, RAG ni sistema multiagente. El producto es la auditoría verificable del cambio.
+Para la unidad 18, delega y audita un cambio pequeño —por ejemplo, reprocesar un trabajo en error— siguiendo [4.8](Etapa%204%20—%20Profundización/4.8%20—%20AI%20Engineering%20(la%20nueva%20disciplina).md).
 
 ---
 

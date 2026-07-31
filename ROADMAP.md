@@ -13,24 +13,43 @@ Este roadmap reorganiza los 46 temas históricos en **18 unidades de ruta**. El 
 
 Los IDs y nombres antiguos se mantienen por compatibilidad histórica. El estado, agrupación y orden definidos aquí prevalecen sobre cualquier prioridad local.
 
-## Primer resultado útil — 12 semanas
+## Ruta principal en dos fases
+
+### Fase 1 — Primer resultado útil (12 semanas)
 
 Objetivo: desplegar un backend pequeño y auditar de principio a fin un cambio realizado por un coding agent.
 
-| Semanas | Trabajo principal |
-|---|---|
-| 1 | Unidad 6; diagnóstico de la unidad 1. |
-| 2 | Diagnósticos de las unidades 7 y 9; acotar el backend pequeño. |
-| 3 | Unidad 3: tests y oracles del contrato. |
-| 4–5 | Unidad 8 aplicada al diseño del servicio, protegida por los tests de la unidad 3. |
-| 6 | Unidad 13: API y límites de dominio. |
-| 7–8 | Unidad 16: pipeline y despliegue en GCP. |
-| 9 | Unidad 17: observabilidad, incidente y recuperación. |
-| 10–12 | Unidad 18: preparación de AI literacy, delegación, auditoría, caso adversarial y rollback. |
+Esta fase trabaja las unidades **6, 3, 8, 13, 16, 17 y 18**, y diagnostica las unidades **1, 7 y 9**.
+
+| Semanas | Trabajo principal                                                                          |
+| ------- | ------------------------------------------------------------------------------------------ |
+| 1       | Unidad 6; diagnóstico de la unidad 1.                                                      |
+| 2       | Diagnósticos de las unidades 7 y 9; acotar el backend pequeño.                             |
+| 3       | Unidad 3: tests y oracles del contrato.                                                    |
+| 4–5     | Unidad 8 aplicada al diseño del servicio, protegida por los tests de la unidad 3.          |
+| 6       | Unidad 13: API y límites de dominio.                                                       |
+| 7–8     | Unidad 16: pipeline y despliegue en GCP.                                                   |
+| 9       | Unidad 17: observabilidad, incidente y recuperación.                                       |
+| 10–12   | Unidad 18: preparación de AI literacy, delegación, auditoría, caso adversarial y rollback. |
 
 Las semanas son una guía, no puertas rígidas. Si un diagnóstico falla, estudia solo el hueco necesario y conserva el mismo entregable.
 
-## Las 18 unidades
+### Fase 2 — Completar la ruta
+
+Después del primer hito, completa las unidades restantes en este orden sugerido:
+
+1. Unidad 4 — Seguridad.
+2. Unidad 2 — Runtime y concurrencia.
+3. Unidad 10 — Migraciones.
+4. Unidad 11 — Redes.
+5. Unidad 12 — Performance y datos.
+6. Unidad 14 — Distribuidos y mensajería.
+7. Unidad 15 — System Design.
+8. Diagnóstico de la unidad 5 y cualquier diagnóstico pendiente.
+
+La ruta termina cuando las 18 unidades están cerradas o diagnosticadas. Las referencias JIT no forman una tercera fase: se consultan solo ante una necesidad real.
+
+## Catálogo de las 18 unidades
 
 ### 1. Debugging y evidencia — `DIAGNÓSTICO ★`
 
@@ -136,73 +155,3 @@ Estos temas conservan valor, pero no cuentan para cerrar Backend + coding agents
 | Plataforma | [4.11 — Orquestación y GitOps](Etapa%204%20—%20Profundización/4.11%20—%20Orquestación%20de%20Containers.md), [4.12 — IaC](Etapa%204%20—%20Profundización/4.12%20—%20Infrastructure%20as%20Code%20(IaC).md) | Cuando un sistema real supere servicios gestionados o requiera infraestructura repetible. |
 | Carrera | [4.14 — Open Source](Etapa%204%20—%20Profundización/4.14%20—%20Open%20Source.md) | Cuando aporte evidencia útil al cambio laboral. |
 | Miscelánea | [4.15 — i18n, Regex y WASM](Etapa%204%20—%20Profundización/4.15%20—%20Temas%20que%20Pocos%20Dominan.md) | i18n para producto Web; regex o WASM ante una necesidad concreta. |
-
-## Mapa de los 46 IDs históricos
-
-`Canónico` enseña o cierra una unidad; `preparación` aporta un modelo sin otro ejercicio; `alias` redirige contenido; `JIT` no bloquea la ruta.
-
-| ID | Destino | Rol |
-|---|---|---|
-| 1.1 | Unidad 1 | Canónico |
-| 1.2 | Unidad 2 | Preparación: runtime |
-| 1.3 | Unidad 3 | Canónico |
-| 1.4 | Unidad 4 | Canónico |
-| 1.5 | Unidad 5 | Canónico |
-| 1.6 | Unidad 18 | Preparación: AI literacy |
-| 1.7 | Unidad 6 | Canónico |
-| 1.8 | Unidad 6 + metodología | Alias |
-| 1.9 | Unidades 6, 15 y 17 + metodología | Alias |
-| 2.1 | Lenguaje | JIT |
-| 2.2 | Web | JIT |
-| 2.3 | Unidad 12 | Canónico |
-| 2.4 | Unidad 9 | Canónico |
-| 2.5 | Unidad 12 | Alias: elección de datos |
-| 2.6 | Unidad 10 | Canónico |
-| 2.7 | Unidad 2 | Cierre: concurrencia |
-| 2.8 | Unidad 7 | Cierre: recuperación Git |
-| 2.9 | Unidad 7 | Preparación: shell y señales |
-| 2.10 | Unidad 8 + Web JIT | Alias |
-| 2.11 | Unidad 2 | Preparación: memoria e I/O |
-| 2.12 | Unidad 11 | Canónico |
-| 3.1 | Unidad 13 | Cierre: contrato API |
-| 3.2 | Unidad 8 | Canónico |
-| 3.3 | Unidad 13 | Preparación: límites de dominio |
-| 3.4 | Web | JIT |
-| 3.5 | Web | JIT |
-| 3.6 | Unidad 15 | Canónico |
-| 3.7 | Web, enlazado a unidad 3 | JIT |
-| 3.8 | Web/Product | JIT |
-| 3.9 | Unidad 14 | Cierre: mensajería |
-| 3.10 | Unidad 14 | Preparación: distribuidos |
-| 4.1 | Unidad 16 | Preparación: imagen |
-| 4.2 | Unidad 16 | Preparación: pipeline |
-| 4.3 | Unidad 16 | Cierre: deploy GCP |
-| 4.4 | Unidad 3 | Alias |
-| 4.5 | Unidad 17 | Canónico |
-| 4.6 | Unidades 1, 2, 11 y 18 | Alias |
-| 4.7 | Unidad 18 | Preparación: lectura y review |
-| 4.8 | Unidad 18 | Cierre: coding agents |
-| 4.9 | AI de producto | JIT |
-| 4.10 | Unidades 8 y 18 | Alias |
-| 4.11 | Plataforma | JIT |
-| 4.12 | Plataforma | JIT |
-| 4.13 | AI/ML | JIT: matemática y eval bajo necesidad |
-| 4.14 | Carrera | JIT |
-| 4.15 | Web, seguridad y performance | Alias JIT |
-
-Los 46 archivos conservan sus nombres para no romper enlaces históricos. Abrir un alias o JIT no añade otro ejercicio ni otro Done.
-
-## Ruta completa después del primer hito
-
-Tras las 12 semanas, completa los huecos en este orden sugerido:
-
-1. Unidad 4 — Seguridad.
-2. Unidad 2 — Runtime y concurrencia.
-3. Unidad 10 — Migraciones.
-4. Unidad 11 — Redes.
-5. Unidad 12 — Performance y datos.
-6. Unidad 14 — Distribuidos y mensajería.
-7. Unidad 15 — System Design.
-8. Diagnóstico de la unidad 5 y cualquier diagnóstico pendiente.
-
-La ruta termina cuando las 18 unidades están cerradas o diagnosticadas, no cuando se consumen las referencias JIT.

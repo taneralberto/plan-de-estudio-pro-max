@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AppSec · Ruta de estudio interactiva</title>
+    <meta
+      name="description"
+      content="Versión web de la ruta AppSec de 20 semanas: itinerario, guía, recursos y prompts con marcado de estudio local."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      // Los módulos ES no se ejecutan con file:// (CORS). Este script decide
+      // antes de pintar si el aviso de «usa un servidor local» debe verse.
+      if (location.protocol !== 'file:') document.documentElement.dataset.servido = 'http';
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#principal">Saltar al contenido principal</a>
+
+    <header class="topbar">
+      <div class="marca">
+        <span class="marca-sigla" aria-hidden="true">AS</span>
+        <span class="marca-texto">
+          <strong>AppSec</strong>
+          <span class="marca-sub">Ruta de iniciación práctica</span>
+        </span>
+      </div>
+
+      <p class="horario" id="horario">Horario: calculando desde el itinerario…</p>
+
+      <div class="topbar-acciones">
+        <button type="button" class="btn" id="btn-exportar">Exportar copia</button>
+        <button type="button" class="btn" id="btn-importar">Importar copia</button>
+        <button type="button" class="btn btn-tenue" id="btn-reiniciar">Reiniciar</button>
+        <input type="file" id="input-importar" accept="application/json,.json" hidden />
+      </div>
+    </header>
+
+    <div class="disposicion">
+      <aside class="lateral">
+        <nav class="navegacion" aria-label="Secciones de la ruta">
+          <h2 class="lateral-titulo">Secciones</h2>
+          <ul class="nav-lista">
+            <li><a href="#/itinerario" data-vista="itinerario">Itinerario</a></li>
+            <li><a href="#/guia" data-vista="guia">Cómo estudiar</a></li>
+            <li><a href="#/recursos" data-vista="recursos">Recursos</a></li>
+            <li><a href="#/prompts" data-vista="prompts">Prompts</a></li>
+          </ul>
+        </nav>
+
+        <section class="panel" aria-labelledby="titulo-progreso">
+          <h2 class="lateral-titulo" id="titulo-progreso">Progreso de estudio</h2>
+
+          <div class="estadistica">
+            <div class="estadistica-cabecera">
+              <span class="estadistica-etiqueta" id="etiqueta-sesiones">Sesiones marcadas</span>
+              <span class="estadistica-valor" id="valor-sesiones">0 / 0</span>
+            </div>
+            <progress id="barra-sesiones" value="0" max="1" aria-labelledby="etiqueta-sesiones"></progress>
+          </div>
+
+          <div class="estadistica">
+            <div class="estadistica-cabecera">
+              <span class="estadistica-etiqueta" id="etiqueta-horas">Horas planificadas marcadas</span>
+              <span class="estadistica-valor" id="valor-horas">0 / 0 h</span>
+            </div>
+            <progress id="barra-horas" value="0" max="1" aria-labelledby="etiqueta-horas"></progress>
+          </div>
+
+          <div class="estadistica">
+            <div class="estadistica-cabecera">
+              <span class="estadistica-etiqueta" id="etiqueta-semanas">Semanas completas</span>
+              <span class="estadistica-valor" id="valor-semanas">0 / 0</span>
+            </div>
+            <progress id="barra-semanas" value="0" max="1" aria-labelledby="etiqueta-semanas"></progress>
+          </div>
+
+          <p class="panel-nota">
+            Marcar «Estudiado» registra que has estudiado la sesión. <strong>No demuestra dominio</strong> ni que
+            cumplas el <em>Done</em> de la semana, y las horas son las <em>planificadas</em>, no medidas.
+          </p>
+        </section>
+
+        <section class="panel" aria-labelledby="titulo-almacen">
+          <h2 class="lateral-titulo" id="titulo-almacen">Dónde se guarda</h2>
+          <details class="detalle" id="detalle-almacen" open>
+            <summary class="detalle-resumen">Ver detalle</summary>
+            <p class="panel-nota" id="nota-almacen">
+              El progreso vive en el almacenamiento local de este navegador y este origen. No se sincroniza ni se envía
+              a ningún sitio, y puede desaparecer al limpiar los datos del navegador.
+            </p>
+          </details>
+        </section>
+      </aside>
+
+      <main id="principal" class="principal" tabindex="-1">
+        <div class="avisos" id="avisos" role="status" aria-live="polite"></div>
+
+        <div class="aviso-archivo" id="aviso-archivo">
+          <h2>Abre la web con un servidor HTTP local</h2>
+          <p>
+            Abrir <code>Especializacioes/AppSec/web/index.html</code> con doble clic no funciona: el navegador
+            bloquea la lectura de los archivos <code>.md</code> desde <code>file://</code>.
+          </p>
+          <p>Desde la raíz del repositorio ejecuta:</p>
+          <pre><code>python3 -m http.server 8000 --bind 127.0.0.1</code></pre>
+          <p>Y abre <code>http://127.0.0.1:8000/Especializacioes/AppSec/web/</code> en el navegador.</p>
+          <p>
+            Mientras tanto, los documentos se pueden leer en Markdown:
+            <a href="../ITINERARIO.md">ITINERARIO.md</a>,
+            <a href="../README.md">README.md</a>,
+            <a href="../RECURSOS.md">RECURSOS.md</a>,
+            <a href="../PROMPTS.md">PROMPTS.md</a>.
+          </p>
+        </div>
+
+        <section class="vista" id="vista-itinerario" aria-labelledby="titulo-itinerario" hidden>
+          <header class="vista-cabecera">
+            <h1 id="titulo-itinerario">Itinerario</h1>
+            <p class="vista-lead" id="lead-itinerario">
+              Única fuente del orden y del calendario. Marca las sesiones que estudies para seguir tu avance.
+            </p>
+          </header>
+
+          <div class="barra-herramientas">
+            <div class="campo">
+              <label for="buscar">Buscar en el itinerario</label>
+              <input
+                type="search"
+                id="buscar"
+                placeholder="Semana, objetivo, tarea…"
+                autocomplete="off"
+                aria-describedby="resultados"
+              />
+            </div>
+
+            <fieldset class="filtros">
+              <legend>Filtrar por estado</legend>
+              <div class="segmentos">
+                <button type="button" data-filtro="todas" aria-pressed="true">Todas <span class="filtro-cuenta" data-cuenta="todas">20</span></button>
+                <button type="button" data-filtro="pendientes" aria-pressed="false">Pendientes <span class="filtro-cuenta" data-cuenta="pendientes">20</span></button>
+                <button type="button" data-filtro="en-curso" aria-pressed="false">En curso <span class="filtro-cuenta" data-cuenta="en-curso">0</span></button>
+                <button type="button" data-filtro="estudiadas" aria-pressed="false">Estudiadas <span class="filtro-cuenta" data-cuenta="estudiadas">0</span></button>
+              </div>
+            </fieldset>
+
+            <div class="barra-acciones">
+              <button type="button" class="btn btn-acento" id="btn-continuar">Continuar</button>
+              <button type="button" class="btn" id="btn-expandir">Expandir todo</button>
+              <button type="button" class="btn" id="btn-contraer">Contraer todo</button>
+            </div>
+
+            <p class="resultados" id="resultados">20 semanas visibles.</p>
+          </div>
+
+          <div class="error-carga" id="error-itinerario" hidden></div>
+
+          <details class="intro" id="intro-itinerario">
+            <summary class="intro-resumen">
+              <span class="intro-titulo">Cómo seguir esta ruta</span>
+              <span class="intro-nota">Introducción, resumen de las 20 semanas y método de trabajo</span>
+            </summary>
+            <div class="markdown" id="preambulo-itinerario"></div>
+          </details>
+
+          <div class="semanas" id="semanas"></div>
+          <div class="markdown" id="cierre-itinerario"></div>
+        </section>
+
+        <section class="vista" id="vista-guia" aria-labelledby="titulo-guia" hidden>
+          <header class="vista-cabecera">
+            <h1 id="titulo-guia">Cómo estudiar</h1>
+            <p class="vista-lead">Guía completa de la ruta: sesiones, cierre con evidencia, límites de seguridad y plantillas.</p>
+          </header>
+          <div class="markdown" id="cuerpo-guia"></div>
+        </section>
+
+        <section class="vista" id="vista-recursos" aria-labelledby="titulo-recursos" hidden>
+          <header class="vista-cabecera">
+            <h1 id="titulo-recursos">Recursos</h1>
+            <p class="vista-lead">Catálogo acotado: por semana eliges una teoría, una práctica y como máximo una consulta opcional.</p>
+          </header>
+          <div class="markdown" id="cuerpo-recursos"></div>
+        </section>
+
+        <section class="vista" id="vista-prompts" aria-labelledby="titulo-prompts" hidden>
+          <header class="vista-cabecera">
+            <h1 id="titulo-prompts">Prompts</h1>
+            <p class="vista-lead">Ocho prompts de apoyo. Escribe tu predicción antes de usarlos.</p>
+          </header>
+          <div class="markdown" id="cuerpo-prompts"></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="lector" id="lector" aria-labelledby="lector-titulo">
+      <div class="lector-cabecera">
+        <div>
+          <p class="lector-ruta" id="lector-ruta"></p>
+          <h2 id="lector-titulo">Documento</h2>
+        </div>
+        <button type="button" class="btn" id="btn-cerrar-lector">Cerrar</button>
+      </div>
+      <div class="markdown lector-cuerpo" id="lector-cuerpo"></div>
+    </dialog>
+
+    <dialog class="dialogo-confirmar" id="dialogo-confirmar" aria-labelledby="confirmar-titulo">
+      <h2 id="confirmar-titulo">Confirmar</h2>
+      <p id="confirmar-mensaje"></p>
+      <div class="dialogo-acciones">
+        <button type="button" class="btn" id="confirmar-cancelar" data-confirmar="cancelar">Cancelar</button>
+        <button type="button" class="btn btn-acento" id="confirmar-aceptar" data-confirmar="aceptar">Aceptar</button>
+      </div>
+    </dialog>
+
+    <noscript>
+      <div class="sin-js">
+        <h2>Esta web necesita JavaScript</h2>
+        <p>
+          El contenido completo de la ruta está en Markdown y se puede leer sin JavaScript. Para usar el itinerario
+          interactivo, sirve el repositorio con
+          <code>python3 -m http.server 8000 --bind 127.0.0.1</code> desde la raíz y abre
+          <code>http://127.0.0.1:8000/Especializacioes/AppSec/web/</code>.
+        </p>
+        <ul>
+          <li><a href="../ITINERARIO.md">ITINERARIO.md</a></li>
+          <li><a href="../README.md">README.md</a></li>
+          <li><a href="../RECURSOS.md">RECURSOS.md</a></li>
+          <li><a href="../PROMPTS.md">PROMPTS.md</a></li>
+        </ul>
+      </div>
+    </noscript>
+
+    <script type="module" src="app.mjs"></script>
+  </body>
+</html>

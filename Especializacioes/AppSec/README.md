@@ -105,13 +105,25 @@ No inventes un CVSS ni una severidad para rellenar campos. Justifica impacto, ex
 
 ## Web interactiva
 
-Hay una versión web local de la ruta en `web/`, dentro de esta misma carpeta AppSec (`Especializacioes/AppSec/web/`): lee estos mismos cuatro archivos, así que **el Markdown sigue siendo la fuente de verdad** y la web no lo modifica. Para abrirla, desde la raíz del repositorio:
+Hay una versión web local de la ruta en `web/`, dentro de esta misma carpeta AppSec (`Especializacioes/AppSec/web/`): lee estos mismos cuatro archivos, así que **el Markdown sigue siendo la fuente de verdad** y la web no lo modifica.
+
+**Inicio recomendado.** Abre una terminal en la carpeta `Especializacioes/AppSec/web/` y ejecuta:
+
+```sh
+python3 iniciar.py
+```
+
+El script sirve el repositorio en `127.0.0.1:8000`, imprime esa URL y abre el navegador en `http://127.0.0.1:8000/Especializacioes/AppSec/web/`. Deja la terminal abierta mientras uses la web y pulsa `Ctrl+C` para detener el servidor y salir limpio. Si el navegador no se abre, la URL queda impresa y entras a mano. Si el puerto 8000 ya está ocupado, el script no toca el proceso anterior: avisa y te pide detenerlo con `Ctrl+C` y volver a ejecutar `python3 iniciar.py`.
+
+**Alternativa manual.** Sin script, desde la raíz del repositorio:
 
 ```sh
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-Y entra en `http://127.0.0.1:8000/Especializacioes/AppSec/web/`. Usa siempre ese mismo origen (mismo puerto): el progreso se guarda en el almacenamiento local del navegador, así que otro puerto parece un navegador nuevo y sin progreso. Da igual que la ruta de la web haya cambiado: el progreso guardado sigue siendo el mismo porque depende del origen (host y puerto) y no de la carpeta donde vive la página. Deja el servidor en marcha mientras uses la web; no abras `Especializacioes/AppSec/web/index.html` con doble clic, porque `file://` no permite leer los `.md`. No instala nada, no llama a servicios externos y no necesita cuentas: solo un navegador moderno con JavaScript.
+Y entra en `http://127.0.0.1:8000/Especializacioes/AppSec/web/`.
+
+Usa siempre ese mismo origen (mismo puerto): el progreso se guarda en el almacenamiento local del navegador, así que otro puerto parece un navegador nuevo y sin progreso. Da igual que la ruta de la web haya cambiado: el progreso guardado sigue siendo el mismo porque depende del origen (host y puerto) y no de la carpeta donde vive la página. Deja el servidor en marcha mientras uses la web; no abras `Especializacioes/AppSec/web/index.html` con doble clic, porque `file://` no permite leer los `.md`, ni hagas doble clic en `iniciar.py`, porque el sistema puede abrirlo con un editor en vez de ejecutarlo. No instala nada, no llama a servicios externos y no necesita cuentas: solo un navegador moderno con JavaScript.
 
 Qué ofrece: el itinerario completo en 20 acordeones con una casilla «Estudiado» por sesión (140) y notas opcionales por semana; búsqueda y filtros por estado; el README, los recursos y los 8 prompts con botón de copiar; y enlaces navegables al resto del repositorio.
 
@@ -121,4 +133,10 @@ Pruebas opcionales, sin dependencias (la de navegador usa `/usr/bin/chromium`). 
 
 ```sh
 node --test Especializacioes/AppSec/web/tests/*.test.mjs
+```
+
+Las del script de inicio (solo biblioteca estándar, sin servidor real ni navegador) se ejecutan desde la raíz del repositorio con:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s Especializacioes/AppSec/web/tests -p "test_*.py"
 ```

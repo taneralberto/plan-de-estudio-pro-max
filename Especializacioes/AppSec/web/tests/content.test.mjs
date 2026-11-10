@@ -1,7 +1,9 @@
 /**
  * content.test.mjs — parser y render contra el Markdown REAL del repositorio.
  *
- * No se copia ningún fragmento del itinerario en el test: todo se lee del disco.
+ * No se copia ningún fragmento del itinerario en los tests de contrato: todo
+ * se lee del disco. Los fixtures sintéticos solo sirven para fijar el formato
+ * que el parser acepta y el que rechaza.
  */
 
 import { test } from 'node:test';
@@ -13,6 +15,7 @@ import {
   DOCS,
   createContext,
   extractCodeBlocks,
+  parseDuracion,
   parseItinerario,
   parseMarkdown,
   renderBlocks,
@@ -32,67 +35,353 @@ const GUIA = readFileSync(`${APPSEC}README.md`, 'utf8');
 const RECURSOS = readFileSync(`${APPSEC}RECURSOS.md`, 'utf8');
 const PROMPTS = readFileSync(`${APPSEC}PROMPTS.md`, 'utf8');
 
-test('el itinerario real tiene 20 semanas, 7 sesiones por semana y 140 sesiones', () => {
+/**
+ * Itinerario sintético con el formato de módulos. Sirve para fijar qué acepta
+ * el parser (ids estables, duraciones estrictas) y qué rechaza.
+ */
+function itinerario({ modulos = [], cierre = true, titulo } = {}) {
+  const partes = [`# ${titulo || `Itinerario AppSec — ${modulos.length} módulos`}`, ''];
+  for (const modulo of modulos) {
+    partes.push(`## Módulo ${modulo.numero} — ${modulo.titulo || 'Título del módulo'}`, '');
+    if (modulo.campos !== false) {
+      partes.push('**Objetivo verificable:** Objetivo del módulo.', '');
+    }
+    partes.push('| Actividad | Dedicación acumulada | Trabajo y evidencia |', '|---|---|---|');
+    for (const fila of modulo.filas) {
+      partes.push(`| ${fila.codigo} — ${fila.titulo} | ${fila.duracion} | ${fila.trabajo || 'Trabajo y evidencia.'} |`);
+    }
+    partes.push('');
+    if (modulo.desarrollo !== false) {
+      partes.push(`### M${modulo.numero}-A1 — Desarrollo de la actividad`, '');
+      partes.push('- Objetivo de la actividad.', '');
+      partes.push('```js', 'const prueba = true;', '```', '');
+    }
+  }
+  if (cierre) {
+    partes.push('## Cierre de la ruta', '', 'La ruta termina con un balance honesto.', '');
+  }
+  return partes.join('\n');
+}
+
+const MODULO_VALIDO = {
+  numero: 1,
+  filas: [
+    { codigo: 'A1', titulo: 'Primera actividad', duracion: '3 h' },
+    { codigo: 'A2', titulo: 'Segunda actividad', duracion: '3 h' },
+    { codigo: 'A3', titulo: 'Tercera actividad', duracion: '3 h' },
+  ],
+};
+
+test('el itinerario real tiene 20 módulos y 83 actividades', () => {
   const parseado = parseItinerario(ITINERARIO);
 
-  assert.equal(parseado.weeks.length, 20);
-  assert.equal(parseado.schedule.sessions, 140);
+  assert.equal(parseado.modules.length, 20);
+  assert.equal(parseado.schedule.modules, 20);
+  assert.equal(parseado.schedule.activities, 83);
+  assert.equal(parseado.schedule.totalHours, parseado.modules.reduce((suma, modulo) => suma + modulo.hours, 0));
+});
 
-  for (const semana of parseado.weeks) {
-    assert.equal(semana.sessions.length, 7, `la semana ${semana.number} debe tener 7 sesiones`);
-    const dias = semana.sessions.map((sesion) => sesion.daySlug);
+test('cada módulo real tiene entre 3 y 5 actividades con los códigos A1…An', () => {
+  const parseado = parseItinerario(ITINERARIO);
+
+  for (const modulo of parseado.modules) {
+    assert.ok(
+      modulo.activities.length >= 3 && modulo.activities.length <= 5,
+      `el módulo ${modulo.number} debe tener entre 3 y 5 actividades`,
+    );
+    const codigos = modulo.activities.map((actividad) => actividad.index).sort((a, b) => a - b);
     assert.deepEqual(
-      [...dias].sort(),
-      ['domingo', 'jueves', 'lunes', 'martes', 'miercoles', 'sabado', 'viernes'],
-      `la semana ${semana.number} debe tener los 7 días`,
+      codigos,
+      modulo.activities.map((_, indice) => indice + 1),
+      `el módulo ${modulo.number} debe tener los códigos A1…A${modulo.activities.length}`,
+    );
+    for (const actividad of modulo.activities) {
+      assert.ok(actividad.hours > 0, 'toda actividad tiene dedicación positiva');
+      assert.ok(actividad.titleText.length > 0, 'toda actividad tiene título');
+      assert.ok(actividad.taskText.length > 0, 'toda actividad dice qué hay que hacer');
+    }
+  }
+});
+
+test('las horas se derivan del propio itinerario: 9 h por módulo y 180 h en total', () => {
+  const parseado = parseItinerario(ITINERARIO);
+
+  for (const modulo of parseado.modules) {
+    const suma = modulo.activities.reduce((total, actividad) => total + actividad.hours, 0);
+    assert.equal(suma, modulo.hours, `el módulo ${modulo.number} debe sumar sus actividades`);
+    assert.equal(modulo.hours, 9, `el módulo ${modulo.number} debe sumar 9 h`);
+  }
+
+  const sumaDirecta = parseado.modules
+    .flatMap((modulo) => modulo.activities)
+    .reduce((total, actividad) => total + actividad.hours, 0);
+  assert.equal(sumaDirecta, 180);
+  assert.equal(parseado.schedule.totalHours, 180);
+});
+
+test('los identificadores de actividad siguen al código, no al título ni al orden', () => {
+  const original = parseItinerario(itinerario({ modulos: [MODULO_VALIDO] }));
+  assert.deepEqual(
+    original.modules[0].activities.map((actividad) => actividad.id),
+    ['module-1-a1', 'module-1-a2', 'module-1-a3'],
+  );
+
+  // Se editan los títulos y se mueve una fila: los ids siguen al código.
+  const movido = itinerario({
+    modulos: [
+      {
+        numero: 1,
+        filas: [
+          { codigo: 'A3', titulo: 'Tercera actividad', duracion: '3 h' },
+          { codigo: 'A1', titulo: 'Primera actividad renombrada', duracion: '3 h' },
+          { codigo: 'A2', titulo: 'Segunda actividad', duracion: '3 h' },
+        ],
+      },
+    ],
+  });
+  const parseado = parseItinerario(movido);
+  const porCodigo = Object.fromEntries(
+    parseado.modules[0].activities.map((actividad) => [actividad.code, actividad]),
+  );
+
+  assert.equal(porCodigo.A1.id, 'module-1-a1');
+  assert.equal(porCodigo.A1.titleText, 'Primera actividad renombrada');
+  assert.equal(porCodigo.A3.id, 'module-1-a3');
+
+  const ids = parseado.modules.flatMap((modulo) => modulo.activities.map((actividad) => actividad.id));
+  assert.equal(new Set(ids).size, ids.length, 'no debe haber identificadores duplicados');
+});
+
+test('los identificadores reales son estables y no dependen del índice global', () => {
+  const parseado = parseItinerario(ITINERARIO);
+  const ids = parseado.modules.flatMap((modulo) => modulo.activities.map((actividad) => actividad.id));
+
+  assert.ok(ids.includes('module-1-a1'));
+  assert.ok(ids.includes('module-3-a2'));
+  assert.ok(ids.includes('module-17-a4'));
+  assert.ok(ids.includes('module-20-a4'));
+  assert.equal(new Set(ids).size, ids.length, 'no debe haber identificadores duplicados');
+});
+
+test('las duraciones son estrictas: horas o minutos, coma decimal, siempre positivas', () => {
+  assert.equal(parseDuracion('2 h'), 2);
+  assert.equal(parseDuracion('2h'), 2);
+  assert.equal(parseDuracion('1,5 h'), 1.5);
+  assert.equal(parseDuracion('1.5 h'), 1.5);
+  assert.equal(parseDuracion('90 min'), 1.5);
+  assert.equal(parseDuracion('45 minutos'), 0.75);
+  assert.equal(parseDuracion('2 horas'), 2);
+
+  for (const basura of ['0 h', '-1 h', '2', 'h', 'abc', '2,5,5 h', '', '   ', '2 h extra', 'NaN h', '1e3 h']) {
+    assert.equal(parseDuracion(basura), null, `«${basura}» no es una duración válida`);
+  }
+});
+
+test('el parser rechaza estructuras que no encajan', () => {
+  const base = itinerario({ modulos: [MODULO_VALIDO] });
+
+  // Duración inválida.
+  assert.throws(
+    () => parseItinerario(itinerario({ modulos: [{ ...MODULO_VALIDO, filas: [{ ...MODULO_VALIDO.filas[0], duracion: '0 h' }, MODULO_VALIDO.filas[1], MODULO_VALIDO.filas[2]] }] })),
+    /duración no interpretable/,
+  );
+
+  // Código de actividad repetido.
+  assert.throws(
+    () => parseItinerario(itinerario({ modulos: [{ ...MODULO_VALIDO, filas: [MODULO_VALIDO.filas[0], { ...MODULO_VALIDO.filas[1], codigo: 'A1' }, MODULO_VALIDO.filas[2]] }] })),
+    /repite el código/,
+  );
+
+  // Actividad sin código.
+  assert.throws(
+    () => parseItinerario(itinerario({ modulos: [{ ...MODULO_VALIDO, filas: [{ codigo: 'X1', titulo: 'Sin código', duracion: '3 h' }, MODULO_VALIDO.filas[1], MODULO_VALIDO.filas[2]] }] })),
+    /sin código/,
+  );
+
+  // Códigos con huecos.
+  assert.throws(
+    () =>
+      parseItinerario(
+        itinerario({
+          modulos: [
+            {
+              ...MODULO_VALIDO,
+              filas: [
+                { ...MODULO_VALIDO.filas[0], codigo: 'A1' },
+                { ...MODULO_VALIDO.filas[1], codigo: 'A3' },
+                { ...MODULO_VALIDO.filas[2], codigo: 'A4' },
+              ],
+            },
+          ],
+        }),
+      ),
+    /no tiene los códigos/,
+  );
+
+  // Solo dos actividades.
+  assert.throws(
+    () => parseItinerario(itinerario({ modulos: [{ ...MODULO_VALIDO, filas: MODULO_VALIDO.filas.slice(0, 2) }] })),
+    /2 actividades en lugar de 3 a 5/,
+  );
+
+  // Tabla con columnas de más.
+  assert.throws(
+    () =>
+      parseItinerario(
+        [
+          '# Itinerario AppSec — 1 módulos',
+          '',
+          '## Módulo 1 — Título',
+          '',
+          '| Actividad | Dedicación acumulada | Trabajo y evidencia | Extra |',
+          '|---|---|---|---|',
+          '| A1 — Una | 3 h | Trabajo | Más |',
+          '| A2 — Dos | 3 h | Trabajo | Más |',
+          '| A3 — Tres | 3 h | Trabajo | Más |',
+          '',
+          '## Cierre de la ruta',
+          '',
+          'Cierre.',
+          '',
+        ].join('\n'),
+      ),
+    /4 columnas en lugar de 3/,
+  );
+
+  // Tabla con columnas que no son las esperadas.
+  assert.throws(
+    () =>
+      parseItinerario(
+        [
+          '# Itinerario AppSec — 1 módulos',
+          '',
+          '## Módulo 1 — Título',
+          '',
+          '| Actividad | Duración | Trabajo y evidencia |',
+          '|---|---|---|',
+          '| A1 — Una | 3 h | Trabajo |',
+          '| A2 — Dos | 3 h | Trabajo |',
+          '| A3 — Tres | 3 h | Trabajo |',
+          '',
+          '## Cierre de la ruta',
+          '',
+          'Cierre.',
+          '',
+        ].join('\n'),
+      ),
+    /no tiene la columna «dedicacion acumulada»/,
+  );
+
+  // Dos tablas de actividades en el mismo módulo.
+  assert.throws(
+    () =>
+      parseItinerario(
+        [
+          '# Itinerario AppSec — 1 módulos',
+          '',
+          '## Módulo 1 — Título',
+          '',
+          '| Actividad | Dedicación acumulada | Trabajo y evidencia |',
+          '|---|---|---|',
+          '| A1 — Una | 3 h | Trabajo |',
+          '| A2 — Dos | 3 h | Trabajo |',
+          '| A3 — Tres | 3 h | Trabajo |',
+          '',
+          '| Actividad | Dedicación acumulada | Trabajo y evidencia |',
+          '|---|---|---|',
+          '| A4 — Cuatro | 3 h | Trabajo |',
+          '| A5 — Cinco | 3 h | Trabajo |',
+          '| A6 — Seis | 3 h | Trabajo |',
+          '',
+          '## Cierre de la ruta',
+          '',
+          'Cierre.',
+          '',
+        ].join('\n'),
+      ),
+    /no tiene una tabla de actividades única/,
+  );
+
+  // Numeración de módulos discontinua.
+  assert.throws(
+    () =>
+      parseItinerario(
+        itinerario({
+          titulo: 'Itinerario AppSec — 2 módulos',
+          modulos: [{ ...MODULO_VALIDO, numero: 1 }, { ...MODULO_VALIDO, numero: 3 }],
+        }),
+      ),
+    /Numeración de módulos discontinua/,
+  );
+
+  // El título declara más módulos de los que hay.
+  assert.throws(
+    () => parseItinerario(itinerario({ titulo: 'Itinerario AppSec — 7 módulos', modulos: [MODULO_VALIDO] })),
+    /El título declara 7 módulos/,
+  );
+
+  // Falta el cierre explícito.
+  assert.throws(
+    () => parseItinerario(itinerario({ modulos: [MODULO_VALIDO], cierre: false })),
+    /Cierre de la ruta/,
+  );
+
+  // Sin ningún módulo.
+  assert.throws(
+    () => parseItinerario('# Itinerario AppSec — 0 módulos\n\n## Cierre de la ruta\n\nCierre.\n'),
+    /no contiene ningún módulo/,
+  );
+
+  assert.ok(base.length > 0);
+});
+
+test('el cierre es explícito: «## Cierre de la ruta» separa el final del documento', () => {
+  const parseado = parseItinerario(ITINERARIO);
+
+  assert.ok(parseado.closing.length > 0, 'debe conservar el cierre');
+  assert.equal(parseado.closing[0].type, 'heading');
+  assert.equal(parseado.closing[0].text, 'Cierre de la ruta');
+
+  // El cierre no se deduce del final del módulo 20.
+  const ultimo = parseado.modules[parseado.modules.length - 1];
+  const bloquesCierre = parseado.closing.slice(1);
+  for (const bloque of bloquesCierre) {
+    assert.ok(
+      !ultimo.items.some((item) => item.kind === 'block' && item.block === bloque),
+      'el cierre no debe quedar dentro del último módulo',
+    );
+  }
+  assert.ok(
+    ultimo.items.some((item) => item.kind === 'block' && item.block.type === 'heading' && /^M\d+-A\d+/.test(item.block.text)),
+    'el desarrollo de las actividades sigue dentro del módulo',
+  );
+});
+
+test('cada módulo conserva objetivo, busca, recursos, prerrequisitos, entregable y recuperación', () => {
+  const parseado = parseItinerario(ITINERARIO);
+  for (const modulo of parseado.modules) {
+    const claves = modulo.items.filter((item) => item.kind === 'field').map((item) => item.key);
+    assert.deepEqual(
+      claves,
+      ['objetivo', 'busca', 'recursos', 'prerrequisitos', 'entregable', 'recuperacion'],
+      `el módulo ${modulo.number} debe conservar sus campos`,
     );
   }
 });
 
-test('las horas se derivan del propio itinerario: 1 h L–V, 2 h S y D, 9 h/semana y 180 h', () => {
+test('el desarrollo de la actividad y sus bloques de código se renderizan junto a la tabla', () => {
   const parseado = parseItinerario(ITINERARIO);
-  const { schedule } = parseado;
+  const ctx = createContext({ docPath: 'Especializacioes/AppSec/ITINERARIO.md', docKey: 'itinerario' });
 
-  assert.deepEqual(schedule.weekdayHours, [1]);
-  assert.deepEqual(schedule.weekendHours, [2]);
-  assert.equal(schedule.hoursPerWeek, 9);
-  assert.equal(schedule.totalHours, 180);
+  const primero = parseado.modules[0];
+  const desarrollo = primero.items.filter((item) => item.kind === 'block');
+  assert.ok(desarrollo.length > 0, 'el módulo debe traer el desarrollo de sus actividades');
 
-  // 5 × 1 h entre semana + 2 × 2 h el fin de semana = 9 h, y 20 semanas = 180 h.
-  const sumaDirecta = parseado.weeks
-    .flatMap((semana) => semana.sessions)
-    .reduce((total, sesion) => total + sesion.hours, 0);
-  assert.equal(sumaDirecta, 20 * 5 * 1 + 20 * 2 * 2);
-  assert.equal(sumaDirecta, 180);
-});
-
-test('los identificadores de sesión son estables y no dependen del índice global', () => {
-  const parseado = parseItinerario(ITINERARIO);
-  const ids = parseado.weeks.flatMap((semana) => semana.sessions.map((sesion) => sesion.id));
-
-  assert.equal(ids[0], 'week-1-lunes');
-  assert.ok(ids.includes('week-3-lunes'));
-  assert.ok(ids.includes('week-20-domingo'));
-  assert.equal(new Set(ids).size, ids.length, 'no debe haber identificadores duplicados');
-});
-
-test('cada semana conserva objetivo, busca, recursos, entregable y recuperación', () => {
-  const parseado = parseItinerario(ITINERARIO);
-  for (const semana of parseado.weeks) {
-    const claves = semana.items.filter((item) => item.kind === 'field').map((item) => item.key);
-    assert.deepEqual(claves, ['objetivo', 'busca', 'recursos', 'entregable', 'recuperacion']);
-  }
-});
-
-test('el itinerario conserva introducción y cierre, y avisa si el formato cambia', () => {
-  const parseado = parseItinerario(ITINERARIO);
-  assert.ok(parseado.preamble.length > 0, 'debe conservar la introducción');
-  assert.ok(parseado.closing.length > 0, 'debe conservar la nota de cierre');
-
-  const roto = ITINERARIO.replace('| Lunes | 1 h |', '| Lunes | 1 h |');
-  const conFilaMenos = ITINERARIO.replace(/^\| Martes \|.*\n/m, '');
-  assert.throws(() => parseItinerario(conFilaMenos), /6 filas de sesión en lugar de 7/);
-  assert.ok(roto.length > 0);
+  const html = desarrollo.map((item) => renderBlocks([item.block], ctx)).join('\n');
+  assert.ok(html.includes('data-anchor="m1-a1--'), 'el desarrollo debe conservar su ancla');
+  assert.ok(html.includes('<h3'), 'el desarrollo se renderiza como encabezado');
+  assert.ok(desarrollo.some((item) => item.block.type === 'code'), 'el módulo conserva sus bloques de código');
+  assert.ok(html.includes('md-codigo'), 'los bloques de código se renderizan con su botón de copiar');
 });
 
 test('PROMPTS.md tiene 8 bloques de prompt y el texto se conserva exactamente', () => {
@@ -100,15 +389,12 @@ test('PROMPTS.md tiene 8 bloques de prompt y el texto se conserva exactamente', 
   assert.equal(bloques.length, 8);
   assert.ok(bloques.every((bloque) => bloque.lang === 'text'));
 
-  const primero = ITINERARIO; // solo para no dejar variable sin usar
-  void primero;
-
   const fuente = readFileSync(`${APPSEC}PROMPTS.md`, 'utf8');
   const original = fuente.split('```text')[1].split('```')[0].replace(/^\n/, '').replace(/\n$/, '');
   assert.equal(bloques[0].text, original);
 });
 
-test('el render escapa el texto y bloquea esquemas dangereux', () => {
+test('el render escapa el texto y bloquea esquemas peligrosos', () => {
   const ctx = createContext({ docPath: 'Especializacioes/AppSec/README.md', docKey: 'guia' });
 
   const casos = [
@@ -189,12 +475,9 @@ test('schemeOf detecta esquemas aunque estén codificados', () => {
 
 test('los anchors Unicode siguen el estilo de GitHub', () => {
   assert.equal(slugify('Cómo estudiar'), 'cómo-estudiar');
-  assert.equal(slugify('Sesiones y cierre con evidencia'), 'sesiones-y-cierre-con-evidencia');
-  assert.equal(slugify('Registro de evidencia semanal'), 'registro-de-evidencia-semanal');
-  assert.equal(slugify('APIs y lógica de negocio'), 'apis-y-lógica-de-negocio');
-  assert.equal(slugify('HTTP y navegador'), 'http-y-navegador');
-  assert.equal(slugify('Uso de Academy y herramientas'), 'uso-de-academy-y-herramientas');
-  assert.equal(slugify('Semana 1 — HTTP, navegador y alcance seguro'), 'semana-1--http-navegador-y-alcance-seguro');
+  assert.equal(slugify('Módulo 1 — HTTP, navegador y alcance seguro'), 'módulo-1--http-navegador-y-alcance-seguro');
+  assert.equal(slugify('M1-A1 — Alcance del laboratorio y ejemplo de autorización'), 'm1-a1--alcance-del-laboratorio-y-ejemplo-de-autorización');
+  assert.equal(slugify('Cierre de la ruta'), 'cierre-de-la-ruta');
 });
 
 test('los anchors internos del repo existen de verdad', () => {
@@ -228,8 +511,7 @@ test('las tablas, listas, negritas y código se renderizan sin perder contenido'
   assert.ok(html.includes('<strong>'));
   assert.ok(html.includes('<ul class="md-lista">'));
   assert.ok(html.includes('<code>'));
-  assert.ok(html.includes('Sesiones y cierre con evidencia'));
-  assert.ok(html.includes('1.4 — Seguridad Aplicada'));
+  assert.ok(html.includes('Registro de evidencia por módulo y actividad'));
 });
 
 test('los recursos conservan enlaces externos y theory/practica', () => {

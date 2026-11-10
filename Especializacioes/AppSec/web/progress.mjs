@@ -2,12 +2,15 @@
  * progress.mjs — estado local de estudio (overlay sobre el Markdown, sin escribirlo).
  *
  * Esquema canónico v1:
- *   { version: 1, completed: { "<id-sesion>": true }, notes: { "<id-semana>": "texto" } }
+ *   { version: 1, completed: { "<id-actividad>": true }, notes: { "<id-modulo>": "texto" } }
  *
  * Reglas:
  * - La clave de `localStorage` es propia: al reiniciar solo se borra esa clave.
  * - Nada se escribe nunca en los `.md`.
  * - Todo lo que entra desde el disco (importación) o sale de localStorage se valida.
+ * - `completed` guarda dos clases de marcas: las actividades de la ruta actual
+ *   (`module-1-a1`) y los registros del plan anterior (`week-1-lunes`). Las
+ *   últimas se conservan tal cual, pero no acreditan nada de la ruta actual.
  */
 
 export const STORAGE_KEY = 'appsec-progreso-v1';
@@ -15,6 +18,22 @@ export const SCHEMA_VERSION = 1;
 export const MAX_IMPORT_CHARS = 1024 * 1024;
 export const MAX_NOTE_CHARS = 10000;
 export const MAX_ENTRIES = 5000;
+
+/** Registros del plan anterior: 20 semanas × 7 días = 140 marcas. */
+export const LEGACY_WEEK_COUNT = 20;
+export const LEGACY_DAY_SLUGS = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+
+/**
+ * Los 140 identificadores del plan anterior, exactos y ninguno más: no se
+ * acepta cualquier `week-*` desconocido.
+ */
+export function legacySessionIds() {
+  const ids = [];
+  for (let semana = 1; semana <= LEGACY_WEEK_COUNT; semana += 1) {
+    for (const dia of LEGACY_DAY_SLUGS) ids.push(`week-${semana}-${dia}`);
+  }
+  return ids;
+}
 
 const FORBIDDEN_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
 
@@ -34,11 +53,14 @@ function safeKeys(object) {
  * Valida un estado desconocido (importado o leído de disco).
  * Devuelve `{ ok, state, issues }`: `issues` recoge avisos y descartes puntuales;
  * un error de forma devuelve `ok: false` y no se usa ningún dato.
+ *
+ * `known` trae dos conjuntos: `completedIds` (actividades actuales y registros
+ * del plan anterior) y `noteIds` (una nota por módulo).
  */
 export function validateState(raw, known = {}) {
   const issues = [];
-  const sessionIds = known.sessionIds instanceof Set ? known.sessionIds : null;
-  const weekIds = known.weekIds instanceof Set ? known.weekIds : null;
+  const completedIds = known.completedIds instanceof Set ? known.completedIds : null;
+  const noteIds = known.noteIds instanceof Set ? known.noteIds : null;
 
   if (!isPlainObject(raw)) {
     return { ok: false, state: null, issues: [{ type: 'invalido', message: 'El contenido no es un objeto de estado válido.' }] };
@@ -58,9 +80,9 @@ export function validateState(raw, known = {}) {
   }
 
   const state = createEmptyState();
-  let unknownSessions = 0;
-  let unknownWeeks = 0;
-  let invalidSessions = 0;
+  let unknownCompleted = 0;
+  let unknownNotes = 0;
+  let invalidCompleted = 0;
   let invalidNotes = 0;
 
   const completedKeys = safeKeys(raw.completed);
@@ -70,11 +92,11 @@ export function validateState(raw, known = {}) {
   for (const id of completedKeys) {
     const value = raw.completed[id];
     if (value !== true && value !== false) {
-      invalidSessions += 1;
+      invalidCompleted += 1;
       continue;
     }
-    if (sessionIds && !sessionIds.has(id)) {
-      unknownSessions += 1;
+    if (completedIds && !completedIds.has(id)) {
+      unknownCompleted += 1;
       continue;
     }
     if (value === true) state.completed[id] = true;
@@ -94,29 +116,29 @@ export function validateState(raw, known = {}) {
       invalidNotes += 1;
       continue;
     }
-    if (weekIds && !weekIds.has(id)) {
-      unknownWeeks += 1;
+    if (noteIds && !noteIds.has(id)) {
+      unknownNotes += 1;
       continue;
     }
     if (value.trim()) state.notes[id] = value;
   }
 
-  if (unknownSessions) {
+  if (unknownCompleted) {
     issues.push({
       type: 'ids-desconocidos',
-      message: `Se descartaron ${unknownSessions} marcas de sesiones que ya no existen en el itinerario (el contenido cambió).`,
+      message: `Se descartaron ${unknownCompleted} marcas que no son ni una actividad de la ruta ni un registro del plan anterior (el contenido cambió).`,
     });
   }
-  if (unknownWeeks) {
+  if (unknownNotes) {
     issues.push({
       type: 'ids-desconocidos',
-      message: `Se descartaron ${unknownWeeks} notas de semanas que ya no existen en el itinerario.`,
+      message: `Se descartaron ${unknownNotes} notas de módulos que no existen en el itinerario.`,
     });
   }
-  if (invalidSessions || invalidNotes) {
+  if (invalidCompleted || invalidNotes) {
     issues.push({
       type: 'entradas-invalidas',
-      message: `Se descartaron ${invalidSessions + invalidNotes} entradas con un formato no válido.`,
+      message: `Se descartaron ${invalidCompleted + invalidNotes} entradas con un formato no válido.`,
     });
   }
 

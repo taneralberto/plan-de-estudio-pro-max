@@ -605,7 +605,7 @@ progress::-moz-progress-bar {
 
 /* ------------------------------- Itinerario -------------------------------- */
 
-/* Introducción plegable: el texto se conserva y las semanas quedan a la vista. */
+/* Introducción plegable: el texto se conserva y los módulos quedan a la vista. */
 .intro {
   margin: 0 0 1.8rem;
   background: var(--papel-alto);
@@ -802,14 +802,14 @@ input:disabled {
   font-size: 0.92rem;
 }
 
-.semanas {
+.modulos {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   margin: 1.4rem 0;
 }
 
-.semana {
+.modulo {
   background: var(--papel-alto);
   border: 1px solid var(--linea);
   border-radius: var(--radio);
@@ -817,15 +817,15 @@ input:disabled {
   overflow: hidden;
 }
 
-.semana[open] {
+.modulo[open] {
   border-color: var(--linea-fuerte);
 }
 
-.semana[hidden] {
+.modulo[hidden] {
   display: none;
 }
 
-.semana-sum {
+.modulo-sum {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -836,22 +836,22 @@ input:disabled {
   list-style: none;
 }
 
-.semana-sum::-webkit-details-marker {
+.modulo-sum::-webkit-details-marker {
   display: none;
 }
 
-.semana-sum::before {
+.modulo-sum::before {
   content: "▸";
   color: var(--teal);
   font-size: 1rem;
   transition: transform 0.15s ease;
 }
 
-.semana[open] > .semana-sum::before {
+.modulo[open] > .modulo-sum::before {
   content: "▾";
 }
 
-.semana-num {
+.modulo-num {
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -862,14 +862,14 @@ input:disabled {
   padding: 0.15rem 0.6rem;
 }
 
-.semana-titulo {
+.modulo-titulo {
   flex: 1 1 16rem;
   font-weight: 650;
   font-size: 1.02rem;
   min-width: 0;
 }
 
-.semana-meta {
+.modulo-meta {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -877,11 +877,11 @@ input:disabled {
   color: var(--tinta-media);
 }
 
-.semana-sesiones {
+.modulo-actividades {
   white-space: nowrap;
 }
 
-.semana-progreso {
+.modulo-progreso {
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   color: var(--tinta);
@@ -892,22 +892,22 @@ input:disabled {
   white-space: nowrap;
 }
 
-.semana-progreso[data-completa="true"] {
+.modulo-progreso[data-completa="true"] {
   background: var(--teal-claro);
   border-color: var(--teal);
   color: var(--teal-alto);
 }
 
-.semana-cuerpo {
+.modulo-cuerpo {
   padding: 0.4rem 1.1rem 1.2rem;
   border-top: 1px solid var(--linea);
 }
 
-.campo-semana {
+.campo-modulo {
   margin: 1rem 0 0;
 }
 
-.campo-semana-titulo {
+.campo-modulo-titulo {
   font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -916,34 +916,34 @@ input:disabled {
   margin: 0 0 0.2rem;
 }
 
-.campo-semana p {
+.campo-modulo p {
   margin: 0;
   font-size: 0.96rem;
 }
 
-.tabla-sesiones-wrap {
+.tabla-actividades-wrap {
   overflow-x: auto;
   margin: 1.2rem 0 0.6rem;
   border: 1px solid var(--linea);
   border-radius: var(--radio);
 }
 
-.tabla-sesiones {
+.tabla-actividades {
   border-collapse: collapse;
   width: 100%;
   min-width: 40rem;
   font-size: 0.92rem;
 }
 
-.tabla-sesiones th,
-.tabla-sesiones td {
+.tabla-actividades th,
+.tabla-actividades td {
   padding: 0.55rem 0.7rem;
   border-bottom: 1px solid var(--linea);
   vertical-align: top;
   text-align: left;
 }
 
-.tabla-sesiones thead th {
+.tabla-actividades thead th {
   background: var(--papel-tenue);
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -951,25 +951,54 @@ input:disabled {
   color: var(--tinta-media);
 }
 
-.tabla-sesiones tbody tr:last-child td {
+.tabla-actividades tbody tr:last-child td {
   border-bottom: 0;
 }
 
-.tabla-sesiones tbody tr[data-estudiada="true"] {
+.tabla-actividades tbody tr[data-estudiada="true"] {
   background: #f2f8f6;
 }
 
 .col-marca {
-  width: 6.5rem;
+  width: 6rem;
 }
 
-.col-dia {
-  width: 7rem;
+.col-actividad {
+  width: 17rem;
 }
 
 .col-duracion {
-  width: 5.5rem;
-  white-space: nowrap;
+  width: 9rem;
+}
+
+.tabla-actividades-pie {
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
+  color: var(--tinta-suave);
+}
+
+/* Desarrollo de la actividad (### Mx-Ay, listas y código): se renderiza tal
+   cual junto a la tabla, con la misma tipografía que el resto del Markdown. */
+.desarrollo h3 {
+  margin: 1.4rem 0 0.4rem;
+  font-size: 1rem;
+  color: var(--teal-alto);
+}
+
+.desarrollo p {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+}
+
+.desarrollo ul,
+.desarrollo ol {
+  padding-left: 1.3rem;
+  margin: 0 0 0.8rem;
+  font-size: 0.95rem;
+}
+
+.desarrollo li {
+  margin-bottom: 0.35rem;
 }
 
 .check {
@@ -1039,6 +1068,45 @@ input:disabled {
 .nota-estado {
   color: var(--teal-alto);
   font-weight: 600;
+}
+
+/* -------------------------------- Historial --------------------------------- */
+
+.historial-caja {
+  font-size: 0.88rem;
+}
+
+.historial-conteo {
+  margin: 0.5rem 0;
+  color: var(--tinta-media);
+}
+
+.historial-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* Con 140 registros la lista es larga: se mantiene acotada y con scroll. */
+  max-height: 11rem;
+  overflow-y: auto;
+}
+
+.historial-lista li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.3rem 0;
+  border-bottom: 1px dashed var(--linea);
+  font-size: 0.85rem;
+}
+
+.historial-modulo {
+  font-weight: 700;
+  color: var(--tinta);
+}
+
+.historial-dias {
+  color: var(--tinta-media);
 }
 
 /* -------------------------------- Avisos ----------------------------------- */
@@ -1333,22 +1401,22 @@ dialog::backdrop {
     margin-top: 0.2rem;
   }
 
-  .semana-sum {
+  .modulo-sum {
     gap: 0.5rem;
     padding: 0.75rem 0.85rem;
   }
 
-  .semana-titulo {
+  .modulo-titulo {
     flex: 1 1 100%;
     order: 3;
     font-size: 0.98rem;
   }
 
-  .semana-meta {
+  .modulo-meta {
     margin-left: auto;
   }
 
-  .semana-cuerpo {
+  .modulo-cuerpo {
     padding: 0.3rem 0.85rem 1rem;
   }
 
@@ -1356,35 +1424,35 @@ dialog::backdrop {
     padding: 1.1rem 0.9rem 4rem;
   }
 
-  .tabla-sesiones {
+  .tabla-actividades {
     min-width: 30rem;
   }
 
   .col-marca {
-    width: 5rem;
+    width: auto;
   }
 
-  .col-dia {
-    width: 5.5rem;
+  .col-actividad {
+    width: auto;
   }
 
   .col-duracion {
-    width: 4.5rem;
+    width: auto;
   }
 
-  /* Las sesiones pasan a tarjetas verticales: la tarea ocupa todo el ancho
-     y no obliga a hacer scroll lateral. */
-  .tabla-sesiones-wrap {
+  /* Las actividades pasan a tarjetas verticales: la evidencia ocupa todo el
+     ancho y no obliga a hacer scroll lateral. */
+  .tabla-actividades-wrap {
     overflow-x: visible;
   }
 
-  .tabla-sesiones {
+  .tabla-actividades {
     display: block;
     min-width: 0;
     width: 100%;
   }
 
-  .tabla-sesiones thead {
+  .tabla-actividades thead {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -1394,34 +1462,35 @@ dialog::backdrop {
     white-space: nowrap;
   }
 
-  .tabla-sesiones tbody {
+  .tabla-actividades tbody {
     display: block;
   }
 
-  .tabla-sesiones tbody tr {
+  .tabla-actividades tbody tr {
     display: grid;
-    grid-template-columns: auto auto 1fr;
-    align-items: center;
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
     gap: 0.1rem 0.8rem;
     padding: 0.65rem 0.75rem;
     border-bottom: 1px solid var(--linea);
   }
 
-  .tabla-sesiones tbody tr:last-child {
+  .tabla-actividades tbody tr:last-child {
     border-bottom: 0;
   }
 
-  .tabla-sesiones tbody td {
+  .tabla-actividades tbody td {
     display: block;
     border: 0;
     padding: 0;
   }
 
-  .tabla-sesiones tbody td.col-duracion {
+  .tabla-actividades tbody td.col-duracion {
     justify-self: end;
+    text-align: right;
   }
 
-  .tabla-sesiones tbody td.col-tarea {
+  .tabla-actividades tbody td.col-evidencia {
     grid-column: 1 / -1;
     margin-top: 0.4rem;
     font-size: 0.9rem;
@@ -1452,7 +1521,7 @@ dialog::backdrop {
     display: none;
   }
 
-  .semana {
+  .modulo {
     break-inside: avoid;
   }
 }

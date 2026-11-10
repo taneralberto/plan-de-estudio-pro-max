@@ -17,10 +17,12 @@ import {
 } from './content.mjs';
 
 import {
+  LEGACY_DAY_SLUGS,
   MAX_IMPORT_CHARS,
   MAX_NOTE_CHARS,
   createEmptyState,
   createStore,
+  legacySessionIds,
   parseImport,
   serializeState,
 } from './progress.mjs';
@@ -41,11 +43,13 @@ const dom = {
   notasAlmacen: $('nota-almacen'),
   detalleAlmacen: $('detalle-almacen'),
   errorItinerario: $('error-itinerario'),
+  historial: $('historial'),
+  historialCuerpo: $('historial-cuerpo'),
 
   tituloItinerario: $('titulo-itinerario'),
   preambulo: $('preambulo-itinerario'),
   cierre: $('cierre-itinerario'),
-  semanas: $('semanas'),
+  modulos: $('modulos'),
   buscar: $('buscar'),
   resultados: $('resultados'),
   btnContinuar: $('btn-continuar'),
@@ -56,12 +60,12 @@ const dom = {
   cuerpoRecursos: $('cuerpo-recursos'),
   cuerpoPrompts: $('cuerpo-prompts'),
 
-  valorSesiones: $('valor-sesiones'),
+  valorActividades: $('valor-actividades'),
   valorHoras: $('valor-horas'),
-  valorSemanas: $('valor-semanas'),
-  barraSesiones: $('barra-sesiones'),
+  valorModulos: $('valor-modulos'),
+  barraActividades: $('barra-actividades'),
   barraHoras: $('barra-horas'),
-  barraSemanas: $('barra-semanas'),
+  barraModulos: $('barra-modulos'),
 
   btnExportar: $('btn-exportar'),
   btnImportar: $('btn-importar'),
@@ -83,7 +87,7 @@ const dom = {
 
 const app = {
   vista: 'itinerario',
-  semanas: [],
+  modulos: [],
   schedule: null,
   contextoItinerario: null,
   cache: new Map(),
@@ -95,7 +99,25 @@ const app = {
   filtro: { texto: '', modo: 'todas' },
 };
 
-const sessionIndex = new Map();
+/** Actividad actual por identificador (`module-1-a1`). */
+const actividadIndex = new Map();
+
+/** Etiquetas de los días del plan anterior, para el historial. */
+const ETIQUETAS_DIA = {
+  lunes: 'lunes',
+  martes: 'martes',
+  miercoles: 'miércoles',
+  jueves: 'jueves',
+  viernes: 'viernes',
+  sabado: 'sábado',
+  domingo: 'domingo',
+};
+
+/** Horas en formato español: «9 h», «1,5 h». */
+function formatearHoras(valor) {
+  const numero = Number(valor) || 0;
+  return String(Number.isInteger(numero) ? numero : Number(numero.toFixed(2))).replace('.', ',');
+}
 
 /* -------------------------------------------------------------------------- */
 /* Avisos                                                                     */
@@ -218,58 +240,59 @@ function textoDeInline(nodes) {
     .join(' ');
 }
 
-function construirSemanas(parseado) {
+function construirModulos(parseado) {
   const ctx = createContext({ docPath: DOCS[0].path, docKey: 'itinerario' });
   app.contextoItinerario = ctx;
-  app.semanas = [];
-  sessionIndex.clear();
+  app.modulos = [];
+  actividadIndex.clear();
 
   const fragmento = document.createDocumentFragment();
 
-  for (const semana of parseado.weeks) {
+  for (const modulo of parseado.modules) {
     const details = document.createElement('details');
-    details.className = 'semana';
-    details.id = `itinerario-${semana.headingSlug}`;
-    details.dataset.semana = String(semana.number);
+    details.className = 'modulo';
+    details.id = `itinerario-${modulo.headingSlug}`;
+    details.dataset.modulo = String(modulo.number);
+    details.dataset.anchor = modulo.headingSlug;
 
     const summary = document.createElement('summary');
-    summary.className = 'semana-sum';
+    summary.className = 'modulo-sum';
 
     const numero = document.createElement('span');
-    numero.className = 'semana-num';
-    numero.textContent = `Semana ${semana.number}`;
+    numero.className = 'modulo-num';
+    numero.textContent = `Módulo ${modulo.number}`;
 
     const titulo = document.createElement('span');
-    titulo.className = 'semana-titulo';
-    titulo.textContent = semana.title;
+    titulo.className = 'modulo-titulo';
+    titulo.textContent = modulo.title;
 
     const meta = document.createElement('span');
-    meta.className = 'semana-meta';
+    meta.className = 'modulo-meta';
 
-    const sesiones = document.createElement('span');
-    sesiones.className = 'semana-sesiones';
-    sesiones.textContent = `${semana.sessions.length} sesiones`;
+    const resumen = document.createElement('span');
+    resumen.className = 'modulo-actividades';
+    resumen.textContent = `${modulo.activities.length} actividades · ${formatearHoras(modulo.hours)} h`;
 
     const progreso = document.createElement('span');
-    progreso.className = 'semana-progreso';
-    progreso.dataset.progresoSemana = String(semana.number);
+    progreso.className = 'modulo-progreso';
+    progreso.dataset.progresoModulo = String(modulo.number);
 
-    meta.append(sesiones, progreso);
+    meta.append(resumen, progreso);
     summary.append(numero, titulo, meta);
 
     const cuerpo = document.createElement('div');
-    cuerpo.className = 'semana-cuerpo';
+    cuerpo.className = 'modulo-cuerpo';
 
-    const textosBusqueda = [`semana ${semana.number}`, semana.title];
-    let tablaSesiones = null;
+    const textosBusqueda = [`módulo ${modulo.number}`, String(modulo.number), modulo.title];
+    let tablaActividades = null;
 
-    for (const item of semana.items) {
+    for (const item of modulo.items) {
       if (item.kind === 'field') {
         textosBusqueda.push(item.label, textoDeInline(item.value));
         const bloque = document.createElement('div');
-        bloque.className = 'campo-semana';
+        bloque.className = 'campo-modulo';
         const etiqueta = document.createElement('p');
-        etiqueta.className = 'campo-semana-titulo';
+        etiqueta.className = 'campo-modulo-titulo';
         etiqueta.textContent = item.label;
         const valor = document.createElement('div');
         valor.innerHTML = renderInlineComoParrafo(item.value, ctx);
@@ -278,41 +301,62 @@ function construirSemanas(parseado) {
         continue;
       }
 
-      if (item.kind === 'sessions') {
-        tablaSesiones = construirTablaSesiones(semana);
-        cuerpo.appendChild(tablaSesiones);
-        for (const sesion of semana.sessions) textosBusqueda.push(sesion.taskText);
+      if (item.kind === 'actividades') {
+        tablaActividades = construirTablaActividades(modulo);
+        cuerpo.appendChild(tablaActividades);
+        for (const actividad of modulo.activities) {
+          textosBusqueda.push(actividad.code, actividad.titleText, actividad.taskText);
+        }
         continue;
       }
 
+      // El desarrollo de la actividad (### Mx-Ay, listas y código) se renderiza
+      // tal cual, junto a la tabla, y también es buscable.
+      textosBusqueda.push(textoDeBloque(item.block));
       const bloque = document.createElement('div');
-      bloque.className = 'campo-semana';
+      bloque.className = 'campo-modulo desarrollo';
       bloque.innerHTML = renderBlocks([item.block], ctx);
       cuerpo.appendChild(bloque);
     }
 
-    cuerpo.appendChild(construirNotas(semana));
+    cuerpo.appendChild(construirNotas(modulo));
 
     details.append(summary, cuerpo);
     fragmento.appendChild(details);
 
-    const enriquecida = {
-      ...semana,
+    const enriquecido = {
+      ...modulo,
       element: details,
       contador: progreso,
-      tabla: tablaSesiones,
+      tabla: tablaActividades,
       busqueda: textosBusqueda.join(' ').toLowerCase(),
     };
-    app.semanas.push(enriquecida);
+    app.modulos.push(enriquecido);
 
-    // Las sesiones apuntan a la semana enriquecida (con contador y elemento).
-    for (const sesion of semana.sessions) {
-      const info = sessionIndex.get(sesion.id);
-      if (info) info.semana = enriquecida;
+    // Las actividades apuntan al módulo enriquecido (con contador y elemento).
+    for (const actividad of modulo.activities) {
+      const info = actividadIndex.get(actividad.id);
+      if (info) info.modulo = enriquecido;
     }
   }
 
-  dom.semanas.replaceChildren(fragmento);
+  dom.modulos.replaceChildren(fragmento);
+}
+
+/** Texto plano de un bloque del Markdown (para la búsqueda). */
+function textoDeBloque(block) {
+  if (!block) return '';
+  if (block.type === 'paragraph' || block.type === 'heading' || block.type === 'code') return block.text;
+  if (block.type === 'list') return textoDeLista(block.items);
+  if (block.type === 'table') return [...block.header, ...block.rows.flat()].join(' ');
+  if (block.type === 'blockquote') return block.blocks.map(textoDeBloque).join(' ');
+  return '';
+}
+
+function textoDeLista(items) {
+  return (items || [])
+    .map((item) => `${item.text} ${(item.children || []).map((hijo) => textoDeLista(hijo.items)).join(' ')}`)
+    .join(' ');
 }
 
 /** Renderiza nodos en línea ya parseados dentro de un párrafo escapado. */
@@ -320,20 +364,26 @@ function renderInlineComoParrafo(nodes, ctx) {
   return `<p>${renderInlineNodes(nodes, ctx)}</p>`;
 }
 
-function construirTablaSesiones(semana) {
+function construirTablaActividades(modulo) {
   const wrap = document.createElement('div');
-  wrap.className = 'tabla-sesiones-wrap';
+  wrap.className = 'tabla-actividades-wrap';
 
   const tabla = document.createElement('table');
-  tabla.className = 'tabla-sesiones';
+  tabla.className = 'tabla-actividades';
 
   const caption = document.createElement('caption');
   caption.className = 'sr-only';
-  caption.textContent = `Sesiones de la semana ${semana.number}`;
+  caption.textContent = `Actividades del módulo ${modulo.number}`;
 
   const thead = document.createElement('thead');
   const headRow = document.createElement('tr');
-  for (const [texto, clase] of [['Estudiado', 'col-marca'], ['Día', 'col-dia'], ['Duración', 'col-duracion'], ['Tarea de la sesión', '']]) {
+  const columnas = [
+    ['Estudiado', 'col-marca'],
+    ['Actividad', 'col-actividad'],
+    ['Dedicación acumulada', 'col-duracion'],
+    ['Trabajo y evidencia', 'col-evidencia'],
+  ];
+  for (const [texto, clase] of columnas) {
     const th = document.createElement('th');
     th.scope = 'col';
     th.textContent = texto;
@@ -343,7 +393,7 @@ function construirTablaSesiones(semana) {
   thead.appendChild(headRow);
 
   const tbody = document.createElement('tbody');
-  for (const sesion of semana.sessions) {
+  for (const actividad of modulo.activities) {
     const fila = document.createElement('tr');
     fila.dataset.estudiada = 'false';
 
@@ -352,13 +402,13 @@ function construirTablaSesiones(semana) {
 
     const etiqueta = document.createElement('label');
     etiqueta.className = 'check';
-    etiqueta.htmlFor = `cb-${sesion.id}`;
+    etiqueta.htmlFor = `cb-${actividad.id}`;
 
     const input = document.createElement('input');
     input.type = 'checkbox';
-    input.id = `cb-${sesion.id}`;
-    input.dataset.sesion = sesion.id;
-    input.setAttribute('aria-describedby', `desc-${sesion.id}`);
+    input.id = `cb-${actividad.id}`;
+    input.dataset.actividad = actividad.id;
+    input.setAttribute('aria-describedby', `desc-${actividad.id}`);
 
     const texto = document.createElement('span');
     texto.className = 'sr-only';
@@ -368,44 +418,54 @@ function construirTablaSesiones(semana) {
 
     const descripcion = document.createElement('span');
     descripcion.className = 'sr-only';
-    descripcion.id = `desc-${sesion.id}`;
-    descripcion.textContent = `Semana ${semana.number}, ${sesion.day}: ${sesion.taskText}`;
+    descripcion.id = `desc-${actividad.id}`;
+    descripcion.textContent = `Módulo ${modulo.number}, ${actividad.code}: ${actividad.titleText}`;
 
     celdaMarca.append(etiqueta, descripcion);
 
-    const celdaDia = document.createElement('td');
-    celdaDia.className = 'col-dia';
-    celdaDia.textContent = sesion.day;
+    const celdaActividad = document.createElement('td');
+    celdaActividad.className = 'col-actividad';
+    celdaActividad.innerHTML = renderInlineComoParrafo(actividad.labelNodes, app.contextoItinerario);
 
     const celdaDuracion = document.createElement('td');
     celdaDuracion.className = 'col-duracion';
-    celdaDuracion.textContent = sesion.durationText;
+    celdaDuracion.textContent = actividad.durationText;
+    celdaDuracion.title = 'Estimación de tiempo de esta actividad, no de una sesión de 20–30 min';
 
-    const celdaTarea = document.createElement('td');
-    celdaTarea.className = 'col-tarea';
-    celdaTarea.innerHTML = renderInlineComoParrafo(sesion.task, app.contextoItinerario);
+    const celdaEvidencia = document.createElement('td');
+    celdaEvidencia.className = 'col-evidencia';
+    celdaEvidencia.innerHTML = renderInlineComoParrafo(actividad.task, app.contextoItinerario);
 
-    fila.append(celdaMarca, celdaDia, celdaDuracion, celdaTarea);
+    fila.append(celdaMarca, celdaActividad, celdaDuracion, celdaEvidencia);
     tbody.appendChild(fila);
-    sessionIndex.set(sesion.id, { sesion, semana });
+    actividadIndex.set(actividad.id, { actividad, modulo });
   }
 
   tabla.append(caption, thead, tbody);
   wrap.appendChild(tabla);
-  return wrap;
+
+  const pie = document.createElement('p');
+  pie.className = 'tabla-actividades-pie';
+  pie.textContent =
+    'La dedicación acumulada es la estimación de cada actividad (leer, practicar, redactar evidencia y explicar). El total del módulo es la suma de sus actividades.';
+
+  const contenedor = document.createElement('div');
+  contenedor.className = 'tabla-actividades-caja';
+  contenedor.append(wrap, pie);
+  return contenedor;
 }
 
-function construirNotas(semana) {
+function construirNotas(modulo) {
   const caja = document.createElement('div');
   caja.className = 'notas';
 
   const etiqueta = document.createElement('label');
-  etiqueta.htmlFor = `notas-${semana.number}`;
-  etiqueta.textContent = `Notas de la semana ${semana.number} (opcional)`;
+  etiqueta.htmlFor = `notas-${modulo.number}`;
+  etiqueta.textContent = `Notas del módulo ${modulo.number} (opcional)`;
 
   const area = document.createElement('textarea');
-  area.id = `notas-${semana.number}`;
-  area.dataset.notasSemana = String(semana.number);
+  area.id = `notas-${modulo.number}`;
+  area.dataset.notasModulo = String(modulo.number);
   area.maxLength = MAX_NOTE_CHARS;
   area.rows = 3;
   area.placeholder = 'Ideas, dudas, referencias de la evidencia…';
@@ -414,11 +474,12 @@ function construirNotas(semana) {
   pie.className = 'notas-pie';
 
   const ayuda = document.createElement('span');
-  ayuda.textContent = 'Se guardan solo en este navegador. Las notas no son evidencia ni sustituyen el Done de la semana.';
+  ayuda.textContent =
+    'Se guardan solo en este navegador. Las notas no son evidencia ni sustituyen el Done de la actividad.';
 
   const estado = document.createElement('span');
   estado.className = 'nota-estado';
-  estado.dataset.notaEstado = String(semana.number);
+  estado.dataset.notaEstado = String(modulo.number);
   estado.setAttribute('role', 'status');
 
   pie.append(ayuda, estado);
@@ -430,16 +491,21 @@ function construirNotas(semana) {
 /* Progreso                                                                   */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * Identificadores que el estado guardado puede contener: las actividades
+ * actuales y los 140 registros del plan anterior (20 semanas × 7 días), que se
+ * conservan tal cual pero no acreditan nada de la ruta actual.
+ */
 function idsConocidos() {
-  return {
-    sessionIds: new Set(sessionIndex.keys()),
-    weekIds: new Set(app.semanas.map((semana) => `week-${semana.number}`)),
-  };
+  const completedIds = new Set(actividadIndex.keys());
+  for (const id of legacySessionIds()) completedIds.add(id);
+  const noteIds = new Set(app.modulos.map((modulo) => `week-${modulo.number}`));
+  return { completedIds, noteIds };
 }
 
-function sesionesCompletadas() {
+function actividadesCompletadas() {
   let cuenta = 0;
-  for (const id of sessionIndex.keys()) {
+  for (const id of actividadIndex.keys()) {
     if (app.progreso.completed[id] === true) cuenta += 1;
   }
   return cuenta;
@@ -447,48 +513,49 @@ function sesionesCompletadas() {
 
 function horasCompletadas() {
   let horas = 0;
-  for (const [id, info] of sessionIndex) {
-    if (app.progreso.completed[id] === true) horas += info.sesion.hours;
+  for (const [id, info] of actividadIndex) {
+    if (app.progreso.completed[id] === true) horas += info.actividad.hours;
   }
   return horas;
 }
 
-function semanasCompletadas() {
+function modulosCompletados() {
   let cuenta = 0;
-  for (const semana of app.semanas) {
-    const total = semana.sessions.length;
-    const hechas = semana.sessions.filter((sesion) => app.progreso.completed[sesion.id] === true).length;
+  for (const modulo of app.modulos) {
+    const total = modulo.activities.length;
+    const hechas = modulo.activities.filter((actividad) => app.progreso.completed[actividad.id] === true).length;
     if (total > 0 && hechas === total) cuenta += 1;
   }
   return cuenta;
 }
 
 function actualizarEstadisticas() {
-  const total = app.schedule || { sessions: 0, totalHours: 0, weeks: 0 };
-  const sesiones = sesionesCompletadas();
+  const total = app.schedule || { activities: 0, totalHours: 0, modules: 0 };
+  const actividades = actividadesCompletadas();
   const horas = horasCompletadas();
-  const semanas = semanasCompletadas();
+  const modulos = modulosCompletados();
 
-  dom.valorSesiones.textContent = `${sesiones} / ${total.sessions}`;
-  dom.valorHoras.textContent = `${horas} / ${total.totalHours} h`;
-  dom.valorSemanas.textContent = `${semanas} / ${total.weeks}`;
+  dom.valorActividades.textContent = `${actividades} / ${total.activities}`;
+  dom.valorHoras.textContent = `${formatearHoras(horas)} / ${formatearHoras(total.totalHours)} h`;
+  dom.valorModulos.textContent = `${modulos} / ${total.modules}`;
 
-  dom.barraSesiones.max = String(total.sessions || 1);
-  dom.barraSesiones.value = String(sesiones);
+  dom.barraActividades.max = String(total.activities || 1);
+  dom.barraActividades.value = String(actividades);
   dom.barraHoras.max = String(total.totalHours || 1);
   dom.barraHoras.value = String(horas);
-  dom.barraSemanas.max = String(total.weeks || 1);
-  dom.barraSemanas.value = String(semanas);
+  dom.barraModulos.max = String(total.modules || 1);
+  dom.barraModulos.value = String(modulos);
 
   actualizarContadoresFiltro();
+  actualizarHistorial();
 }
 
 /** Contadores por estado: siempre sobre el total de la ruta, no sobre el filtro. */
 function actualizarContadoresFiltro() {
   const cuentas = { todas: 0, pendientes: 0, 'en-curso': 0, estudiadas: 0 };
-  for (const semana of app.semanas) {
-    const total = semana.sessions.length;
-    const hechas = semana.sessions.filter((sesion) => app.progreso.completed[sesion.id] === true).length;
+  for (const modulo of app.modulos) {
+    const total = modulo.activities.length;
+    const hechas = modulo.activities.filter((actividad) => app.progreso.completed[actividad.id] === true).length;
     cuentas.todas += 1;
     if (hechas === 0) cuentas.pendientes += 1;
     else if (hechas === total) cuentas.estudiadas += 1;
@@ -500,27 +567,101 @@ function actualizarContadoresFiltro() {
   }
 }
 
-function actualizarContadorSemana(semana) {
-  const total = semana.sessions.length;
-  const hechas = semana.sessions.filter((sesion) => app.progreso.completed[sesion.id] === true).length;
-  semana.contador.textContent = `${hechas}/${total}`;
-  semana.contador.dataset.completa = hechas === total ? 'true' : 'false';
-  for (const sesion of semana.sessions) {
-    const input = document.getElementById(`cb-${sesion.id}`);
+function actualizarContadorModulo(modulo) {
+  const total = modulo.activities.length;
+  const hechas = modulo.activities.filter((actividad) => app.progreso.completed[actividad.id] === true).length;
+  modulo.contador.textContent = `${hechas}/${total}`;
+  modulo.contador.dataset.completa = hechas === total ? 'true' : 'false';
+  for (const actividad of modulo.activities) {
+    const input = document.getElementById(`cb-${actividad.id}`);
     const fila = input ? input.closest('tr') : null;
-    if (fila) fila.dataset.estudiada = app.progreso.completed[sesion.id] === true ? 'true' : 'false';
+    if (fila) fila.dataset.estudiada = app.progreso.completed[actividad.id] === true ? 'true' : 'false';
   }
 }
 
+/**
+ * Historial del plan anterior: los registros por sesión de día que la versión
+ * previa guardaba. Se conservan, pero no acreditan actividades nuevas ni
+ * cuentan en las horas, en los porcentajes ni en los módulos completados.
+ */
+function actualizarHistorial() {
+  if (!dom.historial || !dom.historialCuerpo) return;
+
+  const marcas = [];
+  for (const id of Object.keys(app.progreso.completed)) {
+    // Las actividades actuales no son historial: solo quedan los ids del plan
+    // anterior (`week-N-<día>`).
+    if (actividadIndex.has(id)) continue;
+    if (!/^week-\d+-[a-z]+$/.test(id)) continue;
+    marcas.push(id);
+  }
+
+  const notas = Object.keys(app.progreso.notes).length;
+
+  if (!marcas.length) {
+    dom.historialCuerpo.replaceChildren();
+    dom.historial.hidden = true;
+    return;
+  }
+
+  const porModulo = new Map();
+  for (const id of marcas) {
+    const match = /^week-(\d+)-([a-z]+)$/.exec(id);
+    if (!match) continue;
+    const numero = Number(match[1]);
+    const dia = match[2];
+    if (!porModulo.has(numero)) porModulo.set(numero, new Set());
+    porModulo.get(numero).add(dia);
+  }
+
+  const caja = document.createElement('div');
+  caja.className = 'historial-caja';
+
+  const explicacion = document.createElement('p');
+  explicacion.className = 'panel-nota';
+  explicacion.textContent =
+    'Registros de la versión anterior de la ruta (uno por sesión de día). No acreditan actividades nuevas: no cuentan en las horas, en los porcentajes ni en los módulos completados. Las notas por módulo se conservan.';
+
+  const conteo = document.createElement('p');
+  conteo.className = 'historial-conteo';
+  const totalMarcas = document.createElement('strong');
+  totalMarcas.textContent = String(marcas.length);
+  conteo.append(
+    totalMarcas,
+    document.createTextNode(
+      ` marcas conservadas en ${porModulo.size} ${porModulo.size === 1 ? 'módulo' : 'módulos'} · ${notas} ${notas === 1 ? 'nota conservada' : 'notas conservadas'}`,
+    ),
+  );
+
+  const lista = document.createElement('ul');
+  lista.className = 'historial-lista';
+  for (const [numero, dias] of [...porModulo.entries()].sort((a, b) => a[0] - b[0])) {
+    const item = document.createElement('li');
+    const etiqueta = document.createElement('span');
+    etiqueta.className = 'historial-modulo';
+    etiqueta.textContent = `Módulo ${numero}`;
+    const detalle = document.createElement('span');
+    detalle.className = 'historial-dias';
+    const orden = LEGACY_DAY_SLUGS.filter((dia) => dias.has(dia));
+    detalle.textContent = orden.map((dia) => ETIQUETAS_DIA[dia] || dia).join(', ');
+    item.append(etiqueta, detalle);
+    lista.appendChild(item);
+  }
+
+  caja.append(explicacion, conteo, lista);
+  dom.historialCuerpo.replaceChildren(caja);
+  dom.historial.hidden = false;
+}
+
 function aplicarProgresoAVista() {
-  for (const [id, info] of sessionIndex) {
+  for (const id of actividadIndex.keys()) {
     const input = document.getElementById(`cb-${id}`);
     if (input) input.checked = app.progreso.completed[id] === true;
   }
-  for (const semana of app.semanas) {
-    const area = document.getElementById(`notas-${semana.number}`);
-    if (area) area.value = app.progreso.notes[`week-${semana.number}`] || '';
-    actualizarContadorSemana(semana);
+  for (const modulo of app.modulos) {
+    const area = document.getElementById(`notas-${modulo.number}`);
+    if (area) area.value = app.progreso.notes[`week-${modulo.number}`] || '';
+    actualizarContadorModulo(modulo);
   }
   actualizarEstadisticas();
 }
@@ -556,7 +697,7 @@ async function accionBorrarDatoDanado() {
     const aceptado = await askConfirm({
       titulo: 'Borrar el progreso guardado',
       mensaje:
-        'Hay progreso marcado en esta sesión. Si lo borras, se perderán las marcas y las notas actuales. ¿Continuar?',
+        'Hay progreso marcado en esta página. Si lo borras, se perderán las marcas y las notas actuales. ¿Continuar?',
       aceptar: 'Borrar todo',
     });
     if (!aceptado) {
@@ -627,22 +768,22 @@ function aplicarFiltro() {
   const texto = app.filtro.texto.trim().toLowerCase();
   let visibles = 0;
 
-  for (const semana of app.semanas) {
-    const coincideTexto = !texto || semana.busqueda.includes(texto);
-    const hechas = semana.sessions.filter((sesion) => app.progreso.completed[sesion.id] === true).length;
-    const total = semana.sessions.length;
+  for (const modulo of app.modulos) {
+    const coincideTexto = !texto || modulo.busqueda.includes(texto);
+    const hechas = modulo.activities.filter((actividad) => app.progreso.completed[actividad.id] === true).length;
+    const total = modulo.activities.length;
     let coincideEstado = true;
     if (app.filtro.modo === 'pendientes') coincideEstado = hechas === 0;
     else if (app.filtro.modo === 'en-curso') coincideEstado = hechas > 0 && hechas < total;
     else if (app.filtro.modo === 'estudiadas') coincideEstado = hechas === total && total > 0;
 
     const visible = coincideTexto && coincideEstado;
-    semana.element.hidden = !visible;
+    modulo.element.hidden = !visible;
     if (visible) visibles += 1;
   }
 
-  const total = app.schedule ? app.schedule.weeks : app.semanas.length;
-  dom.resultados.textContent = `${visibles} de ${total} semanas visibles.`;
+  const total = app.schedule ? app.schedule.modules : app.modulos.length;
+  dom.resultados.textContent = `${visibles} de ${total} módulos visibles.`;
   dom.resultados.hidden = false;
 
   const vacio = dom.resultados.parentElement.querySelector('.sin-resultados');
@@ -651,7 +792,7 @@ function aplicarFiltro() {
       const caja = document.createElement('p');
       caja.className = 'sin-resultados';
       const textoMensaje = document.createElement('span');
-      textoMensaje.textContent = 'Ninguna semana coincide con la búsqueda o el filtro.';
+      textoMensaje.textContent = 'Ningún módulo coincide con la búsqueda o el filtro.';
       const boton = document.createElement('button');
       boton.type = 'button';
       boton.className = 'btn';
@@ -678,30 +819,35 @@ function actualizarSegmentos() {
   }
 }
 
-function primeraSesionPendiente() {
-  for (const semana of app.semanas) {
-    for (const sesion of semana.sessions) {
-      if (app.progreso.completed[sesion.id] !== true) return { semana, sesion };
+function primeraActividadPendiente() {
+  for (const modulo of app.modulos) {
+    for (const actividad of modulo.activities) {
+      if (app.progreso.completed[actividad.id] !== true) return { modulo, actividad };
     }
   }
   return null;
 }
 
-function abrirSemanaPendiente({ enfocar }) {
-  const pendiente = primeraSesionPendiente();
+/** Quita la búsqueda y el filtro de estado: la lista vuelve a estar completa. */
+function limpiarFiltros() {
+  app.filtro.texto = '';
+  app.filtro.modo = 'todas';
+  dom.buscar.value = '';
+  actualizarSegmentos();
+  aplicarFiltro();
+}
+
+function abrirModuloPendiente({ enfocar }) {
+  const pendiente = primeraActividadPendiente();
   if (!pendiente) return false;
 
-  if (pendiente.semana.element.hidden) {
-    app.filtro.texto = '';
-    app.filtro.modo = 'todas';
-    dom.buscar.value = '';
-    actualizarSegmentos();
-    aplicarFiltro();
+  if (pendiente.modulo.element.hidden) {
+    limpiarFiltros();
   }
 
-  pendiente.semana.element.open = true;
+  pendiente.modulo.element.open = true;
   if (enfocar) {
-    const input = document.getElementById(`cb-${pendiente.sesion.id}`);
+    const input = document.getElementById(`cb-${pendiente.actividad.id}`);
     if (input) {
       input.focus();
       input.scrollIntoView({ block: 'center', behavior: 'auto' });
@@ -747,7 +893,7 @@ function rutaDeDoc(path, anchor) {
 
 function buscarAncla(contenedor, ancla) {
   if (!ancla) return null;
-  const nodos = contenedor.querySelectorAll('[data-anchor]');
+  const nodos = [...contenedor.querySelectorAll('[data-anchor]')].filter((nodo) => nodo.tagName !== 'A');
   const opciones = [ancla, slugify(ancla)];
   for (const opcion of opciones) {
     for (const nodo of nodos) {
@@ -760,12 +906,35 @@ function buscarAncla(contenedor, ancla) {
   return null;
 }
 
+/**
+ * Un ancla puede caer en un módulo que la búsqueda o el filtro de estado
+ * esconde. Para poder enfocar el destino hay que quitar esas restricciones:
+ * se limpian la búsqueda y el filtro (como hace «Continuar») y se vuelve a
+ * aplicar el filtro. Si el módulo ya está visible, la búsqueda se respeta.
+ */
+function revelarModuloOculto(destino) {
+  const modulo = destino.closest('#modulos details.modulo');
+  if (!modulo || !modulo.hidden) return false;
+  limpiarFiltros();
+  return true;
+}
+
+/** Abre todos los plegables (`details`) que encierran el nodo. */
+function abrirPlegables(nodo) {
+  for (let actual = nodo; actual; actual = actual.parentElement) {
+    if (actual.tagName === 'DETAILS' && !actual.open) actual.open = true;
+  }
+}
+
 function desplazarAAncla(contenedor, ancla) {
   const destino = buscarAncla(contenedor, ancla);
   if (!destino) return;
-  // Si el ancla vive dentro de un bloque plegable (la introducción), se abre.
-  const plegable = destino.closest('details');
-  if (plegable && !plegable.open) plegable.open = true;
+  // Si el módulo del destino está oculto, se quitan las restricciones que lo
+  // esconden: si no, el foco caería en un nodo que nadie ve.
+  revelarModuloOculto(destino);
+  // Si el ancla vive dentro de un bloque plegable (la introducción), se abren
+  // todos los plegables que lo encierran.
+  abrirPlegables(destino);
   if (!destino.hasAttribute('tabindex')) destino.setAttribute('tabindex', '-1');
   destino.focus({ preventScroll: true });
   destino.scrollIntoView({ block: 'start', behavior: 'auto' });
@@ -920,21 +1089,21 @@ for (const boton of document.querySelectorAll('[data-filtro]')) {
 }
 
 dom.btnExpandir.addEventListener('click', () => {
-  for (const semana of app.semanas) {
-    if (!semana.element.hidden) semana.element.open = true;
+  for (const modulo of app.modulos) {
+    if (!modulo.element.hidden) modulo.element.open = true;
   }
 });
 
 dom.btnContraer.addEventListener('click', () => {
-  for (const semana of app.semanas) semana.element.open = false;
+  for (const modulo of app.modulos) modulo.element.open = false;
 });
 
 dom.btnContinuar.addEventListener('click', () => {
-  const abierta = abrirSemanaPendiente({ enfocar: true });
+  const abierta = abrirModuloPendiente({ enfocar: true });
   if (!abierta) {
     mostrarAviso(
       'ok',
-      'Todas las sesiones están marcadas. Eso no demuestra dominio: revisa el Done y la evidencia de cada semana.',
+      'Todas las actividades están marcadas. Eso no demuestra dominio: revisa el Done y la evidencia de cada módulo.',
     );
   }
 });
@@ -954,45 +1123,45 @@ function guardarNotas() {
 
   const resultado = persistir();
   const texto = resultado.ok ? 'Guardado en este navegador' : 'Solo en memoria: no se pudo guardar';
-  for (const semana of notasPendientes) {
-    const destino = dom.semanas.querySelector(`[data-nota-estado="${semana}"]`);
+  for (const modulo of notasPendientes) {
+    const destino = dom.modulos.querySelector(`[data-nota-estado="${modulo}"]`);
     if (destino) destino.textContent = texto;
   }
   notasPendientes.clear();
   return resultado;
 }
 
-dom.semanas.addEventListener('change', (evento) => {
-  const area = evento.target.closest('textarea[data-notas-semana]');
+dom.modulos.addEventListener('change', (evento) => {
+  const area = evento.target.closest('textarea[data-notas-modulo]');
   if (area) {
     guardarNotas();
     return;
   }
 
-  const input = evento.target.closest('input[data-sesion]');
+  const input = evento.target.closest('input[data-actividad]');
   if (!input) return;
-  const id = input.dataset.sesion;
+  const id = input.dataset.actividad;
   if (input.checked) app.progreso.completed[id] = true;
   else delete app.progreso.completed[id];
-  const info = sessionIndex.get(id);
-  if (info) actualizarContadorSemana(info.semana);
+  const info = actividadIndex.get(id);
+  if (info) actualizarContadorModulo(info.modulo);
   persistir();
   actualizarEstadisticas();
-  // El filtro no se re-aplica aquí: la semana que estás marcando no debe
+  // El filtro no se re-aplica aquí: el módulo que estás marcando no debe
   // desaparecer bajo tus manos. Los contadores de estado sí se actualizan.
 });
 
-dom.semanas.addEventListener('input', (evento) => {
-  const area = evento.target.closest('textarea[data-notas-semana]');
+dom.modulos.addEventListener('input', (evento) => {
+  const area = evento.target.closest('textarea[data-notas-modulo]');
   if (!area) return;
-  const semana = Number(area.dataset.notasSemana);
-  const clave = `week-${semana}`;
+  const modulo = Number(area.dataset.notasModulo);
+  const clave = `week-${modulo}`;
   const valor = area.value.slice(0, MAX_NOTE_CHARS);
   if (valor.trim()) app.progreso.notes[clave] = valor;
   else delete app.progreso.notes[clave];
 
-  notasPendientes.add(semana);
-  const estado = dom.semanas.querySelector(`[data-nota-estado="${semana}"]`);
+  notasPendientes.add(modulo);
+  const estado = dom.modulos.querySelector(`[data-nota-estado="${modulo}"]`);
   if (estado) estado.textContent = 'Guardando…';
 
   window.clearTimeout(temporizadorNotas);
@@ -1025,7 +1194,7 @@ dom.inputImportar.addEventListener('change', async () => {
   dom.inputImportar.value = '';
   if (!archivo) return;
   if (!app.listo) {
-    mostrarAviso('error', 'El itinerario aún no está cargado: espera a que la lista de semanas esté disponible.');
+    mostrarAviso('error', 'El itinerario aún no está cargado: espera a que la lista de módulos esté disponible.');
     return;
   }
 
@@ -1053,7 +1222,7 @@ dom.inputImportar.addEventListener('change', async () => {
     const aceptado = await askConfirm({
       titulo: 'Reemplazar el progreso actual',
       mensaje:
-        'Hay progreso guardado en este navegador. Si importas la copia, se reemplazarán las marcas de sesión y las notas actuales. ¿Continuar?',
+        'Hay progreso guardado en este navegador. Si importas la copia, se reemplazarán las marcas de actividad, el historial del plan anterior y las notas actuales. ¿Continuar?',
       aceptar: 'Reemplazar',
     });
     if (!aceptado) {
@@ -1085,7 +1254,7 @@ dom.btnReiniciar.addEventListener('click', async () => {
   const aceptado = await askConfirm({
     titulo: 'Reiniciar el progreso',
     mensaje:
-      'Se borrarán las marcas de sesión y las notas guardadas en este navegador. Solo se borra la clave propia de esta web: el resto del almacenamiento del navegador no se toca.',
+      'Se borrarán las marcas de actividad, el historial del plan anterior y las notas guardadas en este navegador. Solo se borra la clave propia de esta web: el resto del almacenamiento del navegador no se toca.',
     aceptar: 'Borrar el progreso',
   });
   if (!aceptado) {
@@ -1168,11 +1337,14 @@ async function cargarItinerario() {
     if (parseado.title) dom.tituloItinerario.textContent = parseado.title;
 
     const s = parseado.schedule;
-    const lv = s.weekdayHours.length === 1 ? s.weekdayHours[0] : s.weekdayHours.join('/');
-    const sd = s.weekendHours.length === 1 ? s.weekendHours[0] : s.weekendHours.join('/');
-    dom.horario.textContent = `${lv} h L–V · ${sd} h S + ${sd} h D = ${s.hoursPerWeek} h/sem · ${s.weeks} semanas · ${s.sessions} sesiones`;
+    // El ritmo es una estimación, no un calendario: la ruta no tiene fecha límite.
+    const semanasLentas = Math.round(s.totalHours / 3);
+    const semanasRapidas = Math.round(s.totalHours / 4);
+    dom.horario.textContent =
+      `${s.modules} módulos · ${s.activities} actividades · ${formatearHoras(s.totalHours)} h` +
+      ` · a 3 h/semana ≈ ${semanasLentas} semanas · a 4 h/semana ≈ ${semanasRapidas} semanas · sin fecha límite`;
 
-    construirSemanas(parseado);
+    construirModulos(parseado);
     dom.errorItinerario.hidden = true;
     dom.errorItinerario.replaceChildren();
     return true;
@@ -1220,7 +1392,7 @@ async function reintentarItinerario() {
   finalizarArranque();
 }
 
-/** Controles que solo tienen sentido con la lista de semanas cargada. */
+/** Controles que solo tienen sentido con la lista de módulos cargada. */
 function actualizarControlesDisponibles(listo) {
   app.listo = listo;
   for (const boton of [
@@ -1250,13 +1422,14 @@ function compactarPanelLateral() {
 
 /**
  * Arranque completo: solo se ejecuta con el itinerario ya validado, porque
- * sin él no se conocen los ids de sesión y semana y el progreso se descartaría.
+ * sin él no se conocen los ids de actividad y de nota y el progreso se
+ * descartaría.
  */
 function finalizarArranque() {
   iniciarAlmacenamiento();
   aplicarProgresoAVista();
   aplicarFiltro();
-  abrirSemanaPendiente({ enfocar: false });
+  abrirModuloPendiente({ enfocar: false });
   const ruta = analizarRuta(window.location.hash);
   aplicarRuta(ruta);
   actualizarControlesDisponibles(true);

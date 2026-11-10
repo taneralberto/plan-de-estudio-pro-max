@@ -698,24 +698,26 @@ export function extractCodeBlocks(source) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Itinerario                                                                  */
+/* Itinerario por módulos                                                     */
 /* -------------------------------------------------------------------------- */
 
-export const WEEK_DAYS = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
-const WEEK_DAY_LABELS = {
-  lunes: 'Lunes',
-  martes: 'Martes',
-  miercoles: 'Miércoles',
-  jueves: 'Jueves',
-  viernes: 'Viernes',
-  sabado: 'Sábado',
-  domingo: 'Domingo',
-};
+/** Encabezado de módulo: `## Módulo 12 — Título`. */
+const MODULO_RE = /^M[oó]dulo\s+(\d+)\s*(?:[—–-]\s*(.*))?$/i;
+
+/** Código de actividad al inicio de la primera columna: `A1 — Título`. */
+const CODIGO_RE = /^A(\d+)(?=\s|$|[—–-])/;
+
+/** Duración estricta: un número positivo y una unidad (`h` o `min`). */
+const DURACION_RE = /^(\d+(?:[.,]\d+)?)\s*(h|hs|hora|horas|min|minutos|m)$/i;
+
+/** Columnas exactas de la tabla de actividades de cada módulo. */
+const COLUMNAS_ACTIVIDADES = ['actividad', 'dedicacion acumulada', 'trabajo y evidencia'];
 
 const FIELD_LABELS = [
   { key: 'objetivo', pattern: /^Objetivo verificable:?$/ },
   { key: 'busca', pattern: /^Busca:?$/ },
   { key: 'recursos', pattern: /^Recursos:?$/ },
+  { key: 'prerrequisitos', pattern: /^Prerrequisitos:?$/ },
   { key: 'entregable', pattern: /^Entregable\s*\/\s*Done:?$/ },
   { key: 'recuperacion', pattern: /^Recuperaci[oó]n:?$/ },
 ];
@@ -728,44 +730,87 @@ function fieldLabelOf(nodes) {
   return found ? { key: found.key, label: label.replace(/:\s*$/, '') } : null;
 }
 
-function isSessionTable(block) {
-  return block.type === 'table' && normalizeKey(block.header[0] || '') === 'dia';
+function isActivityTable(block) {
+  return block.type === 'table' && normalizeKey(block.header[0] || '') === 'actividad';
 }
 
-function parseHours(text) {
-  const match = /(\d+(?:[.,]\d+)?)\s*(?:h|hs|hora|horas)\b/i.exec(String(text || ''));
-  if (!match) return null;
-  const value = Number(match[1].replace(',', '.'));
-  return Number.isFinite(value) && value > 0 ? value : null;
+/** Texto plano de nodos en línea (para buscar y para describir). */
+function inlineText(nodes) {
+  return (nodes || [])
+    .map((node) => {
+      if (node.type === 'text' || node.type === 'code') return node.text;
+      if (node.children) return inlineText(node.children);
+      return '';
+    })
+    .join('');
+}
+
+/** Redondeo a dos decimales: las sumas de medias horas no deben acumular ruido. */
+function redondear(valor) {
+  return Math.round(valor * 100) / 100;
 }
 
 /**
- * Parsea el itinerario y valida su estructura (semanas, 7 sesiones/día, duración).
- * Lanza `ItineraryError` si el formato no encaja: la app lo muestra en pantalla.
+ * Duración de una actividad: un número positivo con una unidad (`h` o `min`).
+ * Acepta coma o punto decimal; rechaza cero, negativos y cualquier basura.
+ */
+export function parseDuracion(text) {
+  const bruto = String(text == null ? '' : text).trim();
+  if (!bruto) return null;
+  const match = DURACION_RE.exec(bruto);
+  if (!match) return null;
+  const numero = Number(match[1].replace(',', '.'));
+  if (!Number.isFinite(numero) || numero <= 0) return null;
+  const unidad = match[2].toLowerCase();
+  const horas = unidad === 'h' || unidad === 'hs' || unidad === 'hora' || unidad === 'horas'
+    ? numero
+    : numero / 60;
+  return horas > 0 ? redondear(horas) : null;
+}
+
+/**
+ * Parsea el itinerario y valida su estructura (módulos, tabla de actividades,
+ * duración). Lanza `ItineraryError` si el formato no encaja: la app lo muestra.
  */
 export function parseItinerario(source) {
   const blocks = parseMarkdown(source);
-  const weeks = [];
+  const modules = [];
   const preamble = [];
-  let closing = [];
+  const closing = [];
   let current = null;
   let title = '';
+  let enCierre = false;
 
   for (const block of blocks) {
     if (block.type === 'heading' && block.level === 1) {
       title = block.text;
       continue;
     }
-    if (block.type === 'heading' && /^Semana\s+\d+/i.test(block.text)) {
-      const number = Number(/^Semana\s+(\d+)/i.exec(block.text)[1]);
-      current = {
-        number,
-        title: block.text.replace(/^Semana\s+\d+\s*[—–-]?\s*/i, '').trim(),
-        headingSlug: slugify(block.text),
-        items: [],
-        sessions: [],
-      };
-      weeks.push(current);
+    if (block.type === 'heading' && block.level === 2) {
+      const modulo = MODULO_RE.exec(block.text);
+      if (modulo) {
+        current = {
+          number: Number(modulo[1]),
+          title: (modulo[2] || '').trim(),
+          headingSlug: slugify(block.text),
+          items: [],
+          activities: [],
+          hours: 0,
+        };
+        modules.push(current);
+        enCierre = false;
+        continue;
+      }
+      // El cierre es explícito: `## Cierre de la ruta`. Nada se deduce del final.
+      if (normalizeKey(block.text) === 'cierre de la ruta') {
+        enCierre = true;
+        current = null;
+        closing.push(block);
+        continue;
+      }
+    }
+    if (enCierre) {
+      closing.push(block);
       continue;
     }
     if (!current) {
@@ -781,130 +826,153 @@ export function parseItinerario(source) {
         continue;
       }
     }
-    if (isSessionTable(block)) {
-      current.items.push({ kind: 'sessions', block });
+    if (isActivityTable(block)) {
+      current.items.push({ kind: 'actividades', block });
       continue;
     }
     current.items.push({ kind: 'block', block });
   }
 
-  if (!weeks.length) {
-    throw new ItineraryError('El itinerario no contiene ninguna semana.');
+  if (!modules.length) {
+    throw new ItineraryError('El itinerario no contiene ningún módulo.');
   }
 
-  const declared = /(\d+)\s*semanas?/i.exec(title);
-  if (declared && Number(declared[1]) !== weeks.length) {
+  const declared = /(\d+)\s*m[oó]dulos?/i.exec(title);
+  if (declared && Number(declared[1]) !== modules.length) {
     throw new ItineraryError(
-      `El título declara ${declared[1]} semanas pero el documento contiene ${weeks.length}.`,
+      `El título declara ${declared[1]} módulos pero el documento contiene ${modules.length}.`,
       'Revisa el archivo ITINERARIO.md: la estructura no coincide con la fuente.',
     );
   }
 
-  weeks.forEach((week, index) => {
-    if (week.number !== index + 1) {
-      throw new ItineraryError(
-        `Numeración de semanas discontinua: se esperaba la semana ${index + 1} y se encontró la ${week.number}.`,
-      );
-    }
-    const sessionBlocks = week.items.filter((item) => item.kind === 'sessions');
-    if (sessionBlocks.length !== 1) {
-      throw new ItineraryError(
-        `La semana ${week.number} no tiene una tabla de sesiones única (${sessionBlocks.length}).`,
-      );
-    }
-    week.sessions = parseSessionTable(sessionBlocks[0].block, week);
-  });
-
-  const totals = weeks.map((week) => week.sessions.reduce((sum, session) => sum + session.hours, 0));
-  if (!totals.every((value) => value === totals[0])) {
+  if (!closing.length) {
     throw new ItineraryError(
-      `Las semanas no tienen la misma duración: ${[...new Set(totals)].join(' h / ')} h.`,
+      'El itinerario no tiene la sección «## Cierre de la ruta».',
+      'El cierre debe ir marcado con su propio encabezado, no deducido del final.',
     );
   }
 
-  // El bloque final que no es un campo pertenece a la nota de cierre del documento.
-  const lastWeek = weeks[weeks.length - 1];
-  const lastFieldIndex = lastWeek.items.map((item) => item.kind).lastIndexOf('field');
-  if (lastFieldIndex !== -1) {
-    const tail = lastWeek.items.slice(lastFieldIndex + 1).filter((item) => item.kind === 'block');
-    if (tail.length) {
-      closing = tail.map((item) => item.block);
-      lastWeek.items = lastWeek.items.filter((item) => item.kind !== 'block' || !tail.includes(item));
+  modules.forEach((module, index) => {
+    if (module.number !== index + 1) {
+      throw new ItineraryError(
+        `Numeración de módulos discontinua: se esperaba el módulo ${index + 1} y se encontró el ${module.number}.`,
+      );
     }
-  }
+    const tables = module.items.filter((item) => item.kind === 'actividades');
+    if (tables.length !== 1) {
+      throw new ItineraryError(
+        `El módulo ${module.number} no tiene una tabla de actividades única (${tables.length}).`,
+        'Cada módulo debe tener una tabla «Actividad | Dedicación acumulada | Trabajo y evidencia».',
+      );
+    }
+    module.activities = parseActivityTable(tables[0].block, module);
+    module.hours = redondear(module.activities.reduce((sum, activity) => sum + activity.hours, 0));
+  });
 
-  return { title, preamble, weeks, closing, schedule: computeSchedule(weeks) };
+  return { title, preamble, modules, closing, schedule: computeSchedule(modules) };
 }
 
-function parseSessionTable(block, week) {
-  const rows = block.rows;
-  if (rows.length !== 7) {
+function parseActivityTable(block, module) {
+  const header = block.header.map((celda) => normalizeKey(celda));
+  if (header.length !== COLUMNAS_ACTIVIDADES.length) {
     throw new ItineraryError(
-      `La semana ${week.number} tiene ${rows.length} filas de sesión en lugar de 7.`,
-      'Cada semana debe tener una fila por día de lunes a domingo.',
+      `La tabla del módulo ${module.number} tiene ${header.length} columnas en lugar de ${COLUMNAS_ACTIVIDADES.length}.`,
+      'Las columnas son «Actividad», «Dedicación acumulada» y «Trabajo y evidencia».',
+    );
+  }
+  COLUMNAS_ACTIVIDADES.forEach((esperado, indice) => {
+    if (header[indice] !== esperado) {
+      throw new ItineraryError(
+        `La tabla del módulo ${module.number} no tiene la columna «${esperado}» en la posición ${indice + 1}.`,
+        `Las columnas son «Actividad», «Dedicación acumulada» y «Trabajo y evidencia».`,
+      );
+    }
+  });
+
+  const rows = block.rows;
+  if (rows.length < 3 || rows.length > 5) {
+    throw new ItineraryError(
+      `El módulo ${module.number} tiene ${rows.length} actividades en lugar de 3 a 5.`,
+      'Cada módulo de la ruta tiene entre 3 y 5 actividades.',
     );
   }
 
   const seen = new Set();
-  const sessions = rows.map((row) => {
-    if (row.length < 3) {
+  const activities = rows.map((row, index) => {
+    if (row.length !== COLUMNAS_ACTIVIDADES.length) {
       throw new ItineraryError(
-        `La semana ${week.number} tiene una fila de sesión con ${row.length} columnas en lugar de 3.`,
+        `La actividad ${index + 1} del módulo ${module.number} tiene ${row.length} columnas en lugar de ${COLUMNAS_ACTIVIDADES.length}.`,
       );
     }
-    const daySlug = normalizeKey(row[0]);
-    if (!WEEK_DAYS.includes(daySlug)) {
+
+    const [celdaActividad, celdaDuracion, celdaTrabajo] = row;
+    const codigo = CODIGO_RE.exec(celdaActividad);
+    if (!codigo) {
       throw new ItineraryError(
-        `La semana ${week.number} incluye un día no previsto: «${row[0]}».`,
-        `Días válidos: ${WEEK_DAYS.join(', ')}.`,
+        `El módulo ${module.number} tiene una actividad sin código «A1…An»: «${celdaActividad}».`,
+        'La primera columna empieza por el código de la actividad, por ejemplo «A1 — Título».',
       );
     }
-    if (seen.has(daySlug)) {
-      throw new ItineraryError(`La semana ${week.number} repite el día «${row[0]}».`);
+    const numero = Number(codigo[1]);
+    if (seen.has(numero)) {
+      throw new ItineraryError(`El módulo ${module.number} repite el código «A${numero}».`);
     }
-    seen.add(daySlug);
-    const hours = parseHours(row[1]);
+    seen.add(numero);
+
+    const titulo = celdaActividad.slice(codigo[0].length).replace(/^\s*[—–-]\s*/, '').trim();
+    if (!titulo) {
+      throw new ItineraryError(`La actividad «A${numero}» del módulo ${module.number} no tiene título.`);
+    }
+
+    const hours = parseDuracion(celdaDuracion);
     if (hours === null) {
       throw new ItineraryError(
-        `La semana ${week.number} tiene una duración no interpretable: «${row[1]}».`,
-        'El formato esperado es «1 h» o «2 h».',
+        `El módulo ${module.number} tiene una duración no interpretable en «A${numero}»: «${celdaDuracion}».`,
+        'El formato esperado es «2 h», «1,5 h» o «90 min».',
       );
     }
+
+    if (!celdaTrabajo.trim()) {
+      throw new ItineraryError(
+        `La actividad «A${numero}» del módulo ${module.number} no dice qué hay que hacer.`,
+      );
+    }
+
     return {
-      id: `week-${week.number}-${daySlug}`,
-      week: week.number,
-      daySlug,
-      day: WEEK_DAY_LABELS[daySlug],
+      id: `module-${module.number}-a${numero}`,
+      module: module.number,
+      code: `A${numero}`,
+      index: numero,
+      title: titulo,
+      titleText: inlineText(parseInline(titulo)),
+      label: celdaActividad,
+      labelNodes: parseInline(celdaActividad),
       hours,
-      durationText: row[1].trim(),
-      taskText: row[2],
-      task: parseInline(row[2]),
+      durationText: celdaDuracion.trim(),
+      task: parseInline(celdaTrabajo),
+      taskText: inlineText(parseInline(celdaTrabajo)),
     };
   });
 
-  const missing = WEEK_DAYS.filter((day) => !seen.has(day));
-  if (missing.length) {
+  const reales = [...seen].sort((a, b) => a - b);
+  const esperados = Array.from({ length: activities.length }, (_, indice) => indice + 1);
+  if (reales.length !== esperados.length || reales.some((numero, indice) => numero !== esperados[indice])) {
     throw new ItineraryError(
-      `A la semana ${week.number} le faltan sesiones: ${missing.join(', ')}.`,
+      `El módulo ${module.number} no tiene los códigos A1…A${activities.length}: ${reales.map((n) => `A${n}`).join(', ')}.`,
     );
   }
-  return sessions;
+
+  return activities;
 }
 
 /** Horas y contadores derivados del propio itinerario (nunca una lista manual). */
-export function computeSchedule(weeks) {
-  const sessions = weeks.flatMap((week) => week.sessions || []);
-  const totalHours = sessions.reduce((sum, session) => sum + session.hours, 0);
-  const perWeek = weeks.map((week) => (week.sessions || []).reduce((sum, session) => sum + session.hours, 0));
-  const sample = weeks[0] ? weeks[0].sessions : [];
-  const weekday = new Set(sample.filter((s) => WEEK_DAYS.slice(0, 5).includes(s.daySlug)).map((s) => s.hours));
-  const weekend = new Set(sample.filter((s) => WEEK_DAYS.slice(5).includes(s.daySlug)).map((s) => s.hours));
+export function computeSchedule(modules) {
+  const activities = modules.flatMap((module) => module.activities || []);
+  const totalHours = redondear(activities.reduce((sum, activity) => sum + activity.hours, 0));
   return {
-    weeks: weeks.length,
-    sessions: sessions.length,
+    modules: modules.length,
+    activities: activities.length,
     totalHours,
-    hoursPerWeek: perWeek[0] || 0,
-    weekdayHours: [...weekday],
-    weekendHours: [...weekend],
+    hoursPerModule: modules.map((module) => redondear(module.hours || 0)),
   };
 }

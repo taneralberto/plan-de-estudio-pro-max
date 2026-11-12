@@ -1,12 +1,10 @@
 # Itinerario AppSec — 20 módulos
 
-Esta es la **única fuente del orden**. La ruta son **20 módulos × 9 h = 180 h orientativas**: horas de trabajo efectivo estimado (leer, practicar, escribir evidencia y explicar), no un calendario cerrado ni una promesa de duración. A 3 h por semana serían unas 60 semanas; a 4 h, unas 45. No se comprime el contenido para caber en menos horas: se baja el ritmo o se entrega parcial.
+Esta es la **única fuente del orden**: 20 módulos con actividades y evidencia técnica. Referencia flexible: **2–3 horas semanales**, sin sesiones impuestas ni fecha final. Avanza cuando puedas **explicar, aplicar y verificar** lo aprendido, no por tiempo transcurrido.
 
-Cada módulo tiene **3–5 actividades** con códigos estables `A1…An` (`M3-A2`, `M17-A4`…); esos códigos no se renumeran aunque cambies el título de una actividad. Una actividad **no es una sesión**: divídela en sesiones de **20–30 min** para lectura o repaso y de **40–60 min** para práctica, anotando en cada una su punto de reanudación.
+Cada módulo tiene **3–5 actividades** con códigos estables `A1…An` (`M3-A2`, `M17-A4`…); esos códigos no se renumeran aunque cambies el título de una actividad. Puedes interrumpir y retomar desde el siguiente paso pendiente.
 
-**Qué significa la columna «Dedicación acumulada»:** es la **dedicación estimada de esa actividad** (un delta), **sumada entre sesiones**; **no** es un hito acumulado del módulo ni una marca de avance. El total del módulo es la **suma de sus filas** (9 h). Por eso las filas de una tabla no empiezan en 1 h ni acaban en 9 h: si la primera actividad cuesta 2 h, la segunda cuesta 2 h y la tercera 1,5 h, la tabla dirá 2 h, 2 h y 1,5 h, y el módulo sumará 9 h.
-
-**Antes de entrar:** si ya tienes evidencia previa que demuestra la salida de una actividad, haz una **demo de 5–10 min** que la sustituya. No es trabajo extra ni una casilla: es la forma de no repetir algo ya hecho.
+**Antes de entrar:** si ya tienes evidencia previa que demuestra la salida de una actividad, reutilízala y explica sus límites. No repitas algo ya demostrado solo por completar casillas.
 
 **Estrategias, no fases obligatorias:** *comprender* (qué es y por qué importa), *observar* (verlo funcionar en un ejemplo pequeño), *modificar* (cambiar una cosa y ver qué se rompe) y *construir* (un caso mínimo propio). No todos los módulos necesitan las cuatro y el orden varía según lo que se introduce. Se enseña el concepto **antes** de la tarea, se guía mucho al principio y se va retirando la ayuda cuando ya puedes solo, manteniendo siempre el prerrequisito y el recurso a mano.
 
@@ -14,9 +12,9 @@ Cada módulo tiene **3–5 actividades** con códigos estables `A1…An` (`M3-A2
 
 **Labs:** uno o dos pequeños como máximo por módulo, no cuota obligatoria. Elige *Apprentice* solo cuando exista y sea accesible; de lo contrario, un ejemplo guiado mínimo. Un caso suficientemente probado cierra la práctica. No completes catálogos. Distingue siempre el lab que puedes explotar del control local que puedes modificar y verificar. Todas las pruebas usan cuentas y datos ficticios, sobre alcance autorizado.
 
-**IA:** usa el prompt indicado solo después de tu propia predicción. Los enlaces de recursos apuntan al catálogo; selecciona allí una teoría, una práctica y como máximo una consulta opcional. No necesitas leer todo lo enlazado.
+**IA:** usa el prompt indicado después de tu propia predicción, incluso «no sé todavía». Pide concepto, ejemplo resuelto y una pista; intenta el desafío antes del feedback, sin recibir su solución automática. Los recursos son consulta puntual, no lecturas obligatorias.
 
-**Al cerrar cada módulo** registras su artefacto con la [plantilla de evidencia](README.md#registro-de-evidencia-por-módulo-y-actividad), una explicación de dos minutos y la pregunta de recuperación. R1 ocurre en la próxima sesión o a +1 día si es viable sin deuda. Si falta evidencia, entrega parcial y replanifica según la regla de las 8 h del [README](README.md#antiatasco): no se marca Done por calendario.
+**Al cerrar cada módulo**, conserva el artefacto y una [nota breve de evidencia](README.md#registro-de-evidencia-por-módulo-y-actividad); explica el control y sus límites con la pregunta de recuperación. Si falta evidencia, conserva el parcial y reduce el caso según [Antiatasco](README.md#antiatasco): no se marca Done por calendario.
 
 ## Módulos de la ruta
 
@@ -100,13 +98,13 @@ Los códigos que vas a ver:
 
 `401` y `403` son cosas distintas: el primero dice «no sé quién eres», el segundo «sé quién eres y aun así no te dejo». `404` se usa a veces para no confirmar la existencia de un recurso; volveremos a eso en el módulo 3.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Alcance del laboratorio y ejemplo de autorización | 2 h | Permiso, host y condición de parada escritos, con un ejemplo ya rellenado → [M1-A1](#m1-a1--alcance-del-laboratorio-y-ejemplo-de-autorización) |
-| A2 — Petición y respuesta HTTP trabajadas | 2 h | Traza de un request con método, URL, headers, body, status y cookies → [M1-A2](#m1-a2--petición-y-respuesta-http-trabajadas) |
-| A3 — HTTPS/TLS: qué protege y qué no | 1,5 h | Diagrama navegador → terminación TLS → aplicación con los límites de TLS → [M1-A3](#m1-a3--httpstls-qué-protege-y-qué-no) |
-| A4 — Identidad y permiso sobre el recurso | 1 h | Tabla de tres peticiones con identidad, recurso y decisión esperada → [M1-A4](#m1-a4--identidad-y-permiso-sobre-el-recurso) |
-| A5 — Tu primera prueba ejecutable | 2,5 h | Test rojo y verde con `node:test`, comando y salida esperada → [M1-A5](#m1-a5--tu-primera-prueba-ejecutable) |
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Alcance del laboratorio y ejemplo de autorización | Permiso, host y condición de parada escritos, con un ejemplo ya rellenado → [M1-A1](#m1-a1--alcance-del-laboratorio-y-ejemplo-de-autorización) |
+| A2 — Petición y respuesta HTTP trabajadas | Traza de un request con método, URL, headers, body, status y cookies → [M1-A2](#m1-a2--petición-y-respuesta-http-trabajadas) |
+| A3 — HTTPS/TLS: qué protege y qué no | Diagrama navegador → terminación TLS → aplicación con los límites de TLS → [M1-A3](#m1-a3--httpstls-qué-protege-y-qué-no) |
+| A4 — Identidad y permiso sobre el recurso | Tabla de tres peticiones con identidad, recurso y decisión esperada → [M1-A4](#m1-a4--identidad-y-permiso-sobre-el-recurso) |
+| A5 — Tu primera prueba ejecutable | Test rojo y verde con `node:test`, comando y salida esperada → [M1-A5](#m1-a5--tu-primera-prueba-ejecutable) |
 
 **Ejemplo rellenado — `alcance.md` (cópialo y sustitúyelo por el tuyo):**
 
@@ -124,12 +122,12 @@ Si me sale del alcance: no lo envío; lo anoto y paro.
 
 - **Objetivo:** dejar el alcance de tu práctica escrito y rellenado con un caso real tuyo, no con una plantilla vacía.
 - **Requisitos mínimos:** ninguno. Es la primera actividad de la ruta; no necesitas saber nada de HTTP todavía.
-- **Inicio:** crea el archivo `alcance.md` y copia dentro el **ejemplo rellenado de arriba** (el bloque de seis líneas), que ya viene completo; después sustituye las partes que correspondan a tu caso. **Primera sesión, 25 min:** lee las dos definiciones que acabas de ver (*fixture* y *preparación / acción / aserción*), copia el bloque, **cambia una sola condición** (el host o la operación permitida), **predice por escrito tu propia conducta** y guarda. La parte práctica del módulo empieza en la sesión siguiente.
+- **Inicio:** lee las definiciones de *fixture* y *preparación / acción / aserción*, y copia en `alcance.md` el **ejemplo rellenado de arriba**. Cambia una sola condición (host u operación permitida), predice tu conducta y guarda: ya has empezado la práctica.
 - **Instrucciones:** el ejemplo declara un objetivo que **no necesita servidor nuevo**: una función local en memoria. Si prefieres un objetivo propio, usa una API local **que ya exista** en tu entorno y trabaja con **datos ficticios** (una API existente puede tener datos reales, y esos no se usan ni se capturan), o un archivo de texto servido por un servidor estático ya instalado, o simplemente `ningún objetivo: ejemplos en memoria`. La primera acción es **borrar las partes que no apliquen** y escribir las tuyas: qué **host** usas (`127.0.0.1` si montas algo tú; el hostname autorizado que te da la plataforma si es un lab remoto), qué **operaciones** quedan permitidas, qué queda **excluido** y cuál es la **condición de parada**. Predice por escrito **tu propia conducta**, no la respuesta del servidor: si una petición se sale del alcance, ¿qué haces? (La respuesta correcta es: no la envías, lo anotas y paras; no hay nada que predecir del servidor porque no hubo petición.)
 - **Recurso:** sección «Uso de Academy y herramientas» de [Recursos](RECURSOS.md#uso-de-academy-y-herramientas), para confirmar qué instancia está habilitada y cuál es tu límite; no hace falta leer más.
-- **Salida y Done:** `alcance.md` con host, operaciones permitidas, exclusiones, condición de parada y la frase «si me sale del alcance, hago esto». **Done** cuando alguien que no seas tú puede saber, leyendo el archivo, si una petición concreta está permitida. Este **Done** no exige la actividad entera de 2 h sentada de una vez: con el alcance escrito y la frase ya tienes la primera sesión cerrada, y el resto de la actividad sigue su curso.
+- **Salida y Done:** `alcance.md` con host, operaciones permitidas, exclusiones, condición de parada y la frase «si me sale del alcance, hago esto». **Done** cuando otra persona puede saber, leyendo el archivo, si una petición concreta está permitida.
 - **Alternativa sencilla:** si no tienes ningún objetivo propio ni lab accesible, escribe el alcance de un ejemplo en memoria y marca «sin objetivo externo»; cumple el mismo resultado porque el alcance es el entregable, no el objetivo.
-- **Pausa / siguiente paso:** cierra con la frase «mi primera petición permitida es …». En la siguiente sesión retomas en [M1-A2](#m1-a2--petición-y-respuesta-http-trabajadas) con esa petición a la vista.
+- **Pausa / siguiente paso:** cierra con la frase «mi primera petición permitida es …». Retoma en [M1-A2](#m1-a2--petición-y-respuesta-http-trabajadas) con esa petición a la vista.
 
 ### M1-A2 — Petición y respuesta HTTP trabajadas
 
@@ -140,7 +138,7 @@ Si me sale del alcance: no lo envío; lo anoto y paro.
 - **Recurso:** MDN HTTP overview, apartados «HTTP Messages» y «Requests»/«Responses», vía [HTTP y navegador](RECURSOS.md#http-y-navegador): para qué significa cada parte de una petición. DevTools Network, apartado «Inspect a resource's details», vía [DevTools](RECURSOS.md#devtools): para dónde mirar la petición que acabas de hacer.
 - **Salida y Done:** una nota con la petición reconstruida (método, URL, cabeceras, body, estado, cookies) y la repetición comparada. **Done** cuando puedes dictar la petición sin mirar la pantalla y sabes decir qué campo cambió entre las dos repeticiones.
 - **Alternativa sencilla:** si DevTools no es posible en tu entorno, usa `curl -i` contra tu objetivo autorizado y completa la misma nota; el resultado buscado es la misma petición reconstruida, no el uso de una herramienta concreta. Si tampoco puedes hacer peticiones, **describe la traza en texto** a partir del ejemplo de este módulo, marcando «traza de ejemplo, no observada»: sirve para practicar la lectura, no para afirmar una observación.
-- **Pausa / siguiente paso:** anota en el margen de la nota qué parte de la petición **no** entiendes todavía. Esa pregunta es tu R1 de la semana.
+- **Pausa / siguiente paso:** anota qué parte de la petición **no** entiendes todavía; úsala para comprobar tu comprensión al retomarla.
 
 ### M1-A3 — HTTPS/TLS: qué protege y qué no
 
@@ -202,8 +200,8 @@ Si me sale del alcance: no lo envío; lo anoto y paro.
 
   Salida esperada de `node --test permiso.test.mjs`: `ok 1`, `ok 2`, y al final `# pass 2` y `# fail 0`.
 
-- **Salida y Done:** el archivo `permiso.test.mjs` con la función y dos tests, la salida real de las dos ejecuciones (verde y rojo) y el comando anotado. **Done** cuando puedes explicar en dos minutos por qué un test que pasa no demuestra nada si el criterio está escrito dentro del código que prueba.
-- **Alternativa sencilla:** si no puedes ejecutar Node, describe el caso y su resultado esperado con pseudo-código y marca «no ejecutado»; no presentes eso como rojo–verde verificado, y recupera la ejecución en la próxima sesión.
+- **Salida y Done:** el archivo `permiso.test.mjs` con la función y dos tests, las salidas verde y roja y el comando anotado. **Done** cuando puedes explicar por qué el criterio no debe copiar la lógica del código que prueba.
+- **Alternativa sencilla:** si no puedes ejecutar Node, describe el caso y su resultado esperado con pseudo-código y marca «no ejecutado»; no presentes eso como rojo–verde verificado.
 - **Pausa / siguiente paso:** guarda el archivo y el comando: en el módulo 3 el mismo estilo de test será el criterio del caso cruzado entre tenants.
 
 **Entregable / Done:** nota de alcance, traza de petición y respuesta, diagrama de TLS con sus límites, tabla identidad/permiso y un archivo de pruebas con verde y rojo documentados. **Setup ≤2 h**, contabilizado en la práctica y en el gasto del sustrato; si lo superas, usa la alternativa sin proxy.
@@ -291,13 +289,30 @@ Salida esperada: `ok 1`, `ok 2`, `# pass 2`, `# fail 0`. Muta la función (`cant
 
 *Riesgo residual:* este control **no** impone un máximo (una cantidad de 10 000 000 se acepta) y **no** revisa autorización, porque este flujo no la tiene; ambas cosas quedan anotadas como huecos, no como resueltas. La denegación de servicio que modelaste **sigue abierta**: este control no la cierra, y por eso queda en el residual (un tope de tamaño o de coste por petición es lo que la cerraría, y eso es otro requisito, no este).
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Activo, actor, componente y frontera | 2 h | Ficha del flujo con activo, actor, componente y frontera de confianza → [M2-A1](#m2-a1--activo-actor-componente-y-frontera) |
-| A2 — Entradas válidas e inválidas del flujo | 2 h | Tabla de entradas con respuesta esperada de cada capa → [M2-A2](#m2-a2--entradas-válidas-e-inválidas-del-flujo) |
-| A3 — STRIDE en castellano y priorización | 2 h | Tabla STRIDE con las familias que aplican y su comparación (o una sola priorizada si solo aplica una) → [M2-A3](#m2-a3--stride-en-castellano-y-priorización) |
-| A4 — Qué debe cumplirse (ASVS) y cómo se prueba (WSTG) | 1,5 h | Requisito real con versión e ID + método de prueba asociado → [M2-A4](#m2-a4--qué-debe-cumplirse-asvs-y-cómo-se-prueba-wstg) |
-| A5 — Control, prueba y riesgo residual | 1,5 h | Control comprobado con caso permitido y negativo, y traspaso a otro flujo → [M2-A5](#m2-a5--control-prueba-y-riesgo-residual) |
+**Del flujo al diseño seguro — ejemplo Angular → NestJS → PostgreSQL/servicio:**
+
+Un **DFD** es un diagrama de flujo de datos: procesos, almacenes, actores y flechas con datos. Las fronteras marcan cambios de confianza o autoridad, no solo servidores distintos.
+
+```text
+persona / Angular no confiable
+  └─ HTTPS: cantidad, producto ─[frontera pública]─▶ NestJS
+       ├─ consulta parametrizada ─[rol DB limitado]─▶ PostgreSQL
+       └─ producto ─[identidad de servicio]─▶ servicio de precios
+```
+
+Activos: pedido, precio y credenciales de servicio. Actores: comprador, atacante y servicio de precios. Angular puede orientar al usuario, pero no imponer el precio ni guardar secretos de backend. NestJS valida cantidad y calcula el total usando un precio con contrato validado; una respuesta del servicio sigue siendo entrada no confiable. PostgreSQL aplica constraints y el rol de aplicación no administra usuarios: **mínimo privilegio** limita el daño de una capa comprometida.
+
+**Fail closed** significa que si falta identidad, permiso o precio válido no se confirma el pedido; no se toma el precio del cliente como fallback. **Defensa en profundidad** combina validación en NestJS, autorización y constraints: TLS no reemplaza ninguna. Una nota de decisión puede ser: «usar precio del servicio, rechazar si no es válido; alternativa descartada: confiar en Angular». Si no puedes corregir aún una integración, deshabilitar temporalmente la operación es un **control compensatorio**: reduce exposición, pero no arregla el defecto. Un gateway/WAF tampoco demuestra autorización por propietario. Registra qué cubre, qué deja abierto y quién acepta ese residual.
+
+Práctica guiada: señala en este DFD dónde rechazar `cantidad: 0` y dónde se guarda la credencial del servicio. Resuelto: en NestJS antes de llamar, y solo en el servidor/entorno autorizado, nunca en el bundle. Desafío de M2-A5: transfiere el razonamiento a otro flujo y justifica una decisión distinta, sin añadir servicios reales.
+
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Activo, actor, componente y frontera | Ficha del flujo con activo, actor, componente y frontera de confianza → [M2-A1](#m2-a1--activo-actor-componente-y-frontera) |
+| A2 — Entradas válidas e inválidas del flujo | Tabla de entradas con respuesta esperada de cada capa → [M2-A2](#m2-a2--entradas-válidas-e-inválidas-del-flujo) |
+| A3 — STRIDE en castellano y priorización | Tabla STRIDE con las familias que aplican y su comparación (o una sola priorizada si solo aplica una) → [M2-A3](#m2-a3--stride-en-castellano-y-priorización) |
+| A4 — Qué debe cumplirse (ASVS) y cómo se prueba (WSTG) | Requisito real con versión e ID + método de prueba asociado → [M2-A4](#m2-a4--qué-debe-cumplirse-asvs-y-cómo-se-prueba-wstg) |
+| A5 — Control, prueba y riesgo residual | Control comprobado con caso permitido y negativo, y traspaso a otro flujo → [M2-A5](#m2-a5--control-prueba-y-riesgo-residual) |
 
 ### M2-A1 — Activo, actor, componente y frontera
 
@@ -306,9 +321,10 @@ Salida esperada: `ok 1`, `ok 2`, `# pass 2`, `# fail 0`. Muta la función (`cant
 - **Inicio:** crea `modelo.md` con cinco apartados: **activo**, **actores**, **componentes**, **flujo de datos**, **frontera de confianza**. La primera acción es escribir el activo con una frase.
 - **Instrucciones:** usa el modelo del ejemplo de arriba como plantilla: mismos apartados, mismo tipo de flecha. Nombra los actores con su intención y su capacidad. Dibuja los componentes en orden y etiqueta cada flecha con el dato que viaja. Marca la frontera donde **cambia la garantía**: escribe de quién es cada lado y qué control puedes ejercer de cada lado. Si tu flujo es de solo cliente y servidor, esa frontera es la de siempre; no la compliques.
 - **Recurso:** Threat Modeling Cheat Sheet, apartados «System Modeling» y «Threat Identification», vía [Modelado y verificación](RECURSOS.md#modelado-y-verificación): para el vocabulario y el criterio de frontera.
+- **Diseño aplicado:** usa el DFD Angular → NestJS → PostgreSQL/servicio como guía; identifica el activo, actor y dueño de cada frontera. No añadas infraestructura: puede ser un diagrama del ejemplo.
 - **Salida y Done:** `modelo.md` con los cinco apartados y un diagrama con al menos una frontera marcada y sus dos propietarios. **Done** cuando puedes señalar en el diagrama el punto exacto donde entra un dato que no controlas.
 - **Alternativa sencilla:** si no tienes un flujo propio, modela el flujo del ejemplo trabajado de este módulo y marca «modelo de referencia»; el entregable es la completitud del modelo, no la propiedad del sistema.
-- **Pausa / siguiente paso:** deja el diagrama a medio camino; en la siguiente sesión le añades las entradas.
+- **Pausa / siguiente paso:** conserva el diagrama; la siguiente actividad le añade las entradas.
 
 ### M2-A2 — Entradas válidas e inválidas del flujo
 
@@ -341,7 +357,7 @@ Salida esperada: `ok 1`, `ok 2`, `# pass 2`, `# fail 0`. Muta la función (`cant
 - **Recurso:** OWASP ASVS (listado CSV de la versión 5.0.0) y OWASP WSTG (sección de validación de datos de negocio), vía [Modelado y verificación](RECURSOS.md#modelado-y-verificación): para el requisito y el método. La diferencia que debes poder explicar: ASVS dice **qué** debe cumplirse, WSTG dice **cómo** se comprueba.
 - **Salida y Done:** una ficha con el requisito literal, su `req_id`, `section_id` y versión, la traducción a resultado observable y el método de prueba asociado con su URL. **Done** cuando puedes distinguir una frase que viene del estándar y otra que has escrito tú.
 - **Alternativa sencilla:** si no encuentras requisito aplicable, el entregable válido es la columna «resultado observable» más una nota de lo que no localizaste; una ficha con ID inventado no vale.
-- **Pausa / siguiente paso:** deja la ficha a medio escribir; en la siguiente sesión la conviertes en una prueba.
+- **Pausa / siguiente paso:** conserva la ficha; la siguiente actividad la convierte en una prueba.
 
 ### M2-A5 — Control, prueba y riesgo residual
 
@@ -350,6 +366,7 @@ Salida esperada: `ok 1`, `ok 2`, `# pass 2`, `# fail 0`. Muta la función (`cant
 - **Inicio:** escribe el caso de prueba en la forma de [M1-A5](#m1-a5--tu-primera-prueba-ejecutable): función aparte, preparación, acción, aserción. La primera acción es escribir la aserción del **negativo** antes de mirar el comportamiento.
 - **Instrucciones:** ejecuta el caso permitido y el negativo contra tu ejemplo local o el lab autorizado. **Si el resultado observado no coincide con el esperado, el criterio no se cambia por conveniencia:** revisa, por este orden, (1) la **precondición** (¿se cumple lo que el caso necesita?), (2) el **test** (¿está midiendo lo que crees?), (3) la **implementación** (¿el control está donde supones?), (4) la **fuente** (¿el requisito dice otra cosa?). Solo si el requisito es estable y tu expectativa inicial estaba equivocada, cambias la expectativa, y **conservas las tres cosas**: la expectativa original, la nueva y el motivo del cambio. Reescribir el criterio para que pase, sin ese registro, es falso: es la forma de ocultar un defecto. Escribe el **riesgo residual**: qué queda sin cubrir aunque el control funcione (por ejemplo, la ausencia de un máximo o la falta de autorización en este flujo). Termina **transfiriendo el modelo**: elige un segundo flujo tuyo y repite en dos líneas activo, actor y frontera, diciendo qué amenaza sería la primera a mirar.
 - **Recurso:** sección «Response and Mitigations» del [Threat Modeling Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html), vía [Modelado y verificación](RECURSOS.md#modelado-y-verificación): para ordenar prioridad, requisito, control y prueba.
+- **Decisión de diseño:** en el mismo artefacto justifica mínimo privilegio, comportamiento fail closed y una segunda capa independiente. Compara solución de raíz con control compensatorio: señala su límite y residual con dueño, revisable si cambia la exposición o el flujo. No hace falta otra plantilla.
 - **Salida y Done:** `modelo.md` con el diagrama, `amenazas.md`, la ficha requisito → control → prueba, la salida del caso permitido y del negativo, el riesgo residual y la transferencia a un segundo flujo. **Done** cuando un lector puede rehacer tu prueba sin preguntarte nada.
 - **Alternativa sencilla:** si no puedes ejecutar la prueba, entrega la ficha con el resultado esperado y marca «no ejecutado»; no lo llames control comprobado, y explica qué evidencia falta.
 - **Pausa / siguiente paso:** guarda el modelo del segundo flujo: en el módulo 3 lo usarás como plantilla, con autorización entre tenants de verdad.
@@ -417,12 +434,12 @@ test('el actor de org-a obtiene la factura de su organización', () => {
 
 Salida esperada: `ok 1`, `# pass 1`, `# fail 0`. Esta es tu **línea base**: mientras el caso permitido pase, cualquier fallo que veas después lo ha causado el filtro que añadas, no los datos. La **corrección del cruce** no viene dada aquí a propósito: la escribes tú en [M3-A3](#m3-a3--default-deny-y-consulta-con-alcance), después de escribir el criterio en [M3-A2](#m3-a2--el-caso-negativo-escrito-antes-de-probarlo).
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Dos tenants, una factura y un caso permitido | 2 h | Fixtures ficticios y test verde del acceso legítimo → [M3-A1](#m3-a1--dos-tenants-una-factura-y-un-caso-permitido) |
-| A2 — El caso negativo, escrito antes de probarlo | 2 h | Test del cruce usuario/tenant con criterio explícito → [M3-A2](#m3-a2--el-caso-negativo-escrito-antes-de-probarlo) |
-| A3 — Default deny y consulta con alcance | 3 h | Rojo reproducido, corrección aplicada y verde con el mismo criterio → [M3-A3](#m3-a3--default-deny-y-consulta-con-alcance) |
-| A4 — `403` o `404`, ficha y riesgo residual | 2 h | Decisión de enumeración justificada y ficha n.º 1 redactada → [M3-A4](#m3-a4--403-o-404-ficha-y-riesgo-residual) |
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Dos tenants, una factura y un caso permitido | Fixtures ficticios y test verde del acceso legítimo → [M3-A1](#m3-a1--dos-tenants-una-factura-y-un-caso-permitido) |
+| A2 — El caso negativo, escrito antes de probarlo | Test del cruce usuario/tenant con criterio explícito → [M3-A2](#m3-a2--el-caso-negativo-escrito-antes-de-probarlo) |
+| A3 — Default deny y consulta con alcance | Rojo reproducido, corrección aplicada y verde con el mismo criterio → [M3-A3](#m3-a3--default-deny-y-consulta-con-alcance) |
+| A4 — `403` o `404`, ficha y riesgo residual | Decisión de enumeración justificada y ficha n.º 1 redactada → [M3-A4](#m3-a4--403-o-404-ficha-y-riesgo-residual) |
 
 ### M3-A1 — Dos tenants, una factura y un caso permitido
 
@@ -433,7 +450,7 @@ Salida esperada: `ok 1`, `# pass 1`, `# fail 0`. Esta es tu **línea base**: mie
 - **Recurso:** sección «Práctica local» de [Autorización](RECURSOS.md#autorización) y el patrón *arrange/act/assert* de `node:test`, vía [Node test runner](RECURSOS.md#node-test-runner): para el estilo del test y el criterio.
 - **Salida y Done:** `fixtures.mjs` con los datos ficticios documentados, `permitido.test.mjs` con el caso permitido en verde y su salida. **Done** cuando el test pasa sin que hayas escrito todavía ninguna comprobación de organización.
 - **Alternativa sencilla:** si tu stack tiene una base de datos disponible, usa una tabla real con filas ficticias; si no, la estructura en memoria del ejemplo cumple el mismo papel, siempre que declares que es memoria.
-- **Pausa / siguiente paso:** deja el archivo de test abierto con el caso permitido; la siguiente sesión añade el negativo **sin tocar ese caso**.
+- **Pausa / siguiente paso:** conserva el caso permitido; la siguiente actividad añade el negativo **sin tocar ese caso**.
 
 ### M3-A2 — El caso negativo, escrito antes de probarlo
 
@@ -444,7 +461,7 @@ Salida esperada: `ok 1`, `# pass 1`, `# fail 0`. Esta es tu **línea base**: mie
 - **Recurso:** Academy access control, apartado «What is access control?», vía [Autorización](RECURSOS.md#autorización): para la distinción entre control vertical y horizontal que sostiene tu criterio.
 - **Salida y Done:** el caso negativo escrito, con su criterio y su motivo, sin ejecución todavía. **Done** cuando puedes justificar por qué ese criterio es el correcto, no solo por qué es el que quieres.
 - **Alternativa sencilla:** si ya trabajas con la API de tu stack, copia sus *fixtures* en memoria y adapta los tests al mismo patrón; no hace falta un multi-tenant real para escribir el criterio. Lo que **no** es opcional es recuperar el **cruce entre tenants** antes de cerrar el módulo: la aproximación en memoria vale para el criterio, no para el entregable final.
-- **Pausa / siguiente paso:** deja el test escrito y sin ejecutar. La siguiente sesión empieza ejecutándolo: ese es el rojo.
+- **Pausa / siguiente paso:** deja el test escrito y sin ejecutar. El siguiente paso es ejecutarlo: ese es el rojo.
 
 ### M3-A3 — Default deny y consulta con alcance
 
@@ -466,7 +483,7 @@ Salida esperada: `ok 1`, `# pass 1`, `# fail 0`. Esta es tu **línea base**: mie
 - **Recurso:** Academy access control, apartado «Insecure direct object references», vía [Autorización](RECURSOS.md#autorización): para el criterio de enumerabilidad que justifies `403` frente a `404`.
 - **Salida y Done:** la decisión justificada en una frase, la ficha n.º 1 y el enlace entre el rojo y el verde. **Done** cuando alguien que no conoce tu ejemplo puede leer la ficha y entender qué defecto corregiste y por qué.
 - **Alternativa sencilla:** si tu ejemplo no tiene una enumeración de recursos, documenta la decisión como «no aplica en este flujo» y razona igualmente qué elegirías en un sistema que sí la tenga; la ficha sigue siendo válida.
-- **Pausa / siguiente paso:** guarda la ficha n.º 1 como una de las tres remediaciones locales que el módulo 20 auditará.
+- **Pausa / siguiente paso:** conserva la ficha y la evidencia rojo–verde de autorización para revisarlas en el balance del módulo 20.
 
 **Entregable / Done:** remediación local n.º 1 con tests permitido y cruzado, defecto rojo, corrección verde y decisión de enumeración justificada. Un lab remoto sin corrección propia no sustituye el rojo–verde.
 
@@ -507,13 +524,42 @@ export function hashConSalt(password) {
 
 Observa (con una salida real de tu consola): la contraseña `secreto1` con un salt y la misma contraseña `secreto1` con **otro** salt producen **dos hashes distintos**; y con el mismo salt producen el mismo hash. Eso es todo lo que necesitas para explicar el papel del salt. La función está aquí para que veas el comportamiento, no para que la uses en producción: el `32` es la longitud de la clave derivada **en este ejemplo**, no un parámetro recomendado, y en producción se usa una librería mantenida con sus parámetros de coste (por ejemplo Argon2id).
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Un solo fallo, delimitado | 1,5 h | Ficha del fallo con precondición y señal observable → [M4-A1](#m4-a1--un-solo-fallo-delimitado) |
-| A2 — Hash, salt y cifrado: qué resuelve cada uno | 2 h | Tabla comparativa y razón de por qué el hash no cifra → [M4-A2](#m4-a2--hash-salt-y-cifrado-qué-resuelve-cada-uno) |
-| A3 — Enumeración de cuentas y reset | 2 h | Comparación de respuestas existente/inexistente → [M4-A3](#m4-a3--enumeración-de-cuentas-y-reset) |
-| A4 — MFA: qué aporta y qué no resuelve | 2 h | Escenario MFA simulado y su alcance real → [M4-A4](#m4-a4--mfa-qué-aporta-y-qué-no-resuelve) |
-| A5 — Mitigación mínima comprobada | 1,5 h | Control probado con permitido y negativo, y ficha → [M4-A5](#m4-a5--mitigación-mínima-comprobada) |
+**Elegir la primitiva, no inventarla:** un hash resume sin clave y no autentica origen; para contraseñas necesitas una derivación lenta con salt, no SHA-256 directo. Un **MAC** (HMAC) autentica integridad con secreto compartido: cualquiera que verifica con él también puede emitir. Una **firma digital** usa privada para firmar y pública para verificar, sin ocultar el contenido (M11). El **cifrado autenticado AEAD** protege confidencialidad e integridad con clave, nonce y tag; no aporta autorización ni protege un servidor que ya tiene la clave.
+
+Ejemplo mínimo con API estándar, solo en memoria (`aead.mjs`, `node aead.mjs`):
+
+```js
+import assert from 'node:assert/strict';
+import { randomBytes, createCipheriv, createDecipheriv } from 'node:crypto';
+const key = randomBytes(32); // solo prueba; no imprimir ni guardar en Git
+const nonce = randomBytes(12); // nunca reutilizar con esta clave
+const aad = Buffer.from('org-a:nota-1'); // contexto autenticado, no secreto
+const cipher = createCipheriv('aes-256-gcm', key, nonce);
+cipher.setAAD(aad);
+const ciphertext = Buffer.concat([cipher.update('dato ficticio', 'utf8'), cipher.final()]);
+const tag = cipher.getAuthTag();
+function abrir(bytes) {
+  const decipher = createDecipheriv('aes-256-gcm', key, nonce);
+  decipher.setAAD(aad);
+  decipher.setAuthTag(tag);
+  return Buffer.concat([decipher.update(bytes), decipher.final()]).toString('utf8');
+}
+assert.equal(abrir(ciphertext), 'dato ficticio');
+const alterado = Buffer.from(ciphertext);
+alterado[0] ^= 1;
+assert.throws(() => abrir(alterado));
+console.log('permitido y manipulación rechazada');
+```
+
+No uses plaintext parcial antes de verificar `final()`: la autenticación puede fallar allí. Nonce/tag no son secretos; la clave sí. Esto ilustra una API, no diseña un formato/protocolo ni una política de nonces para producción: usa librerías mantenidas y su documentación de límites/volumen de uso. No implementes algoritmos ni construyas un vault. Consulta [crypto y claves](RECURSOS.md#revisión-de-código).
+
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Un solo fallo, delimitado | Ficha del fallo con precondición y señal observable → [M4-A1](#m4-a1--un-solo-fallo-delimitado) |
+| A2 — Hash, salt y cifrado: qué resuelve cada uno | Tabla comparativa y razón de por qué el hash no cifra → [M4-A2](#m4-a2--hash-salt-y-cifrado-qué-resuelve-cada-uno) |
+| A3 — Enumeración de cuentas y reset | Comparación de respuestas existente/inexistente → [M4-A3](#m4-a3--enumeración-de-cuentas-y-reset) |
+| A4 — MFA: qué aporta y qué no resuelve | Escenario MFA simulado y su alcance real → [M4-A4](#m4-a4--mfa-qué-aporta-y-qué-no-resuelve) |
+| A5 — Mitigación mínima comprobada | Control probado con permitido y negativo, y ficha → [M4-A5](#m4-a5--mitigación-mínima-comprobada) |
 
 ### M4-A1 — Un solo fallo, delimitado
 
@@ -524,7 +570,7 @@ Observa (con una salida real de tu consola): la contraseña `secreto1` con un sa
 - **Recurso:** Academy authentication, apartado «Vulnerabilities in authentication mechanisms», vía [Autenticación](RECURSOS.md#autenticación): para el catálogo de defectos y el criterio de acotar.
 - **Salida y Done:** la ficha del fallo con sus cuatro apartados. **Done** cuando alguien puede repetir tu precondición sin preguntarte qué comprobaste.
 - **Alternativa sencilla:** si no hay lab accesible, usa un endpoint de ejemplo local o un flujo descrito en la documentación oficial; declara el origen de los datos y no inventes respuestas.
-- **Pausa / siguiente paso:** deja la precondición escrita; la siguiente sesión la contrasta con observaciones reales.
+- **Pausa / siguiente paso:** conserva la precondición escrita para contrastarla con observaciones reales.
 
 ### M4-A2 — Hash, salt y cifrado: qué resuelve cada uno
 
@@ -533,7 +579,8 @@ Observa (con una salida real de tu consola): la contraseña `secreto1` con un sa
 - **Inicio:** crea la tabla `almacenamiento.md` con columnas **mecanismo**, **reversible**, **qué protege**, **qué no protege**. La primera acción es escribir una fila para cada uno de los tres: hash, hash con salt, cifrado.
 - **Instrucciones:** explica por qué el hash no se puede deshacer, por qué el salt hace que dos contraseñas iguales produzcan hashes distintos (con el ejemplo de este módulo delante), y por qué un cifrado reversible **no** sirve para guardar contraseñas: quien tiene la clave puede leerlas. Menciona Argon2id como algoritmo vigente y que el coste (memoria y tiempo) se decide con la librería que uses, no de memoria. Si tu stack tiene una librería de contraseñas instalada, identifica su nombre y su versión **de la documentación o del lockfile**, sin escribir código criptográfico.
 - **Recurso:** Password Storage Cheat Sheet, apartados «Hashing vs Encryption», «Salting» y «Argon2id», vía [Autenticación](RECURSOS.md#autenticación): para la distinción hash/cifrado y el papel del salt; no memorices parámetros.
-- **Salida y Done:** la tabla de tres filas con la respuesta a «¿qué se cifra con contraseña?». **Done** cuando puedes explicar por qué almacenar con un hash apropiado **no** arregla un endpoint de reset mal diseñado.
+- **Práctica guiada y desafío:** ejecuta el ejemplo AEAD y observa permitido/manipulación rechazada; después predice y prueba tú un cambio de AAD. Añade MAC y firma a la comparación ya iniciada, indicando quién puede emitir/verificar y qué no ocultan. No añadas un proyecto de cifrado.
+- **Salida y Done:** comparación de primitivas y evidencia del ejemplo (o «no ejecutado»). Explica por qué un hash apropiado no arregla un reset mal diseñado y por qué cifrar no concede permisos.
 - **Alternativa sencilla:** sin backend, basta el ejemplo conceptual del módulo con un hash ficticio de 64 caracteres: el entregable es la distinción, no generar hashes reales.
 - **Pausa / siguiente paso:** anota qué parte de tu flujo depende de contraseñas; es el punto de entrada de la siguiente actividad.
 
@@ -546,7 +593,7 @@ Observa (con una salida real de tu consola): la contraseña `secreto1` con un sa
 - **Recurso:** Academy authentication, apartado «Username enumeration», y la página «How to secure your authentication mechanisms» → «Prevent username enumeration», vía [Autenticación](RECURSOS.md#autenticación): para los tipos de enumeración y sus señales.
 - **Salida y Done:** la comparación de las dos respuestas con la señal observada, marcada como fallo o como ruido, y una frase sobre **qué puede observar el atacante**. **Done** cuando puedes decir qué cambia y qué no entre las dos cuentas, con la evidencia observada al lado.
 - **Alternativa sencilla:** si no puedes comparar cuentas reales, simula el comportamiento con dos respuestas controladas que tú escribes y etiqueta la simulación; sirve para razonar, no para demostrar un fallo del sistema.
-- **Pausa / siguiente paso:** deja la diferencia anotada; la siguiente sesión decide la mitigación.
+- **Pausa / siguiente paso:** conserva la diferencia anotada para decidir la mitigación.
 
 ### M4-A4 — MFA: qué aporta y qué no resuelve
 
@@ -633,12 +680,12 @@ Mismo `site`, distinto `origin` (host y, si cambia, puerto). Con `SameSite=Lax`,
 
 Por eso un ejemplo **viable** necesita las tres a la vez: **que el navegador envíe la credencial automáticamente**, que la **operación sea relevante** (cambia el estado) y que el servidor **no la proteja** (ni token CSRF validado ni comprobación de `Origin`/`Referer`). Un ejemplo viable para ese `POST` cross-site es una cookie `SameSite=None; Secure` en un lab **HTTPS** (con las preferencias del navegador que permiten cookies de terceros en ese caso) y **alcance autorizado**: es **un** ejemplo, no el único; no todos los casos necesitan `None`. Y el orden importa: **primero** se comprueba si la credencial viaja, **después** si la operación tiene efecto, **por último** si el servidor deja pasar la operación. Sobre la operación: la que **solo lee** (`GET` de consulta) no cambia nada y no da caso; la que **cambia el estado**, incluso con `GET`, sí lo daría, y por eso las operaciones con efectos deben **evitarse** por diseño (usar `POST`/`PUT`/`DELETE`) y quedan fuera del alcance del ejemplo. Si tu ejemplo usa `SameSite=Lax` **explícito** en un `POST` **cross-site**, **para ESTE caso concreto la cookie no viaja**: no declares un ataque con sesión en ese escenario; anótalo y razona sobre la tabla de defensas en vez de inventar una explotación. **Lax no es una defensa universal**: no bloquea todos los orígenes del mismo `site` que son cross-origin, ni las peticiones `GET` con efectos de estado (que deben evitarse); un `Lax` explícito con un `POST` **same-site** cross-origin puede ser un intento CSRF.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Dónde vive la credencial y cómo viaja | 2 h | Diagrama de emisión, uso, expiración y revocación → [M5-A1](#m5-a1--dónde-vive-la-credencial-y-cómo-viaja) |
-| A2 — `origin` y `site`: las dos palabras que necesita `SameSite` | 2 h | Tabla de pares de URLs con origin, site y SameSite esperado → [M5-A2](#m5-a2--origin-y-site-las-dos-palabras-que-necesita-samesite) |
-| A3 — Atributos de cookie: `Secure`, `HttpOnly`, `SameSite` | 3 h | Predicción y observación de cada atributo → [M5-A3](#m5-a3--atributos-de-cookie-secure-httponly-samesite) |
-| A4 — CSRF: precondiciones y tabla de defensas | 2 h | Caso cruzado comprobado y tabla condición → efecto → defensa → [M5-A4](#m5-a4--csrf-precondiciones-y-tabla-de-defensas) |
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Dónde vive la credencial y cómo viaja | Diagrama de emisión, uso, expiración y revocación → [M5-A1](#m5-a1--dónde-vive-la-credencial-y-cómo-viaja) |
+| A2 — `origin` y `site`: las dos palabras que necesita `SameSite` | Tabla de pares de URLs con origin, site y SameSite esperado → [M5-A2](#m5-a2--origin-y-site-las-dos-palabras-que-necesita-samesite) |
+| A3 — Atributos de cookie: `Secure`, `HttpOnly`, `SameSite` | Predicción y observación de cada atributo → [M5-A3](#m5-a3--atributos-de-cookie-secure-httponly-samesite) |
+| A4 — CSRF: precondiciones y tabla de defensas | Caso cruzado comprobado y tabla condición → efecto → defensa → [M5-A4](#m5-a4--csrf-precondiciones-y-tabla-de-defensas) |
 
 ### M5-A1 — Dónde vive la credencial y cómo viaja
 
@@ -781,12 +828,12 @@ Con el puerto alternativo del ejemplo anterior, la misma cadena con `127.0.0.1:5
 
 Hasta que lo hagas, marca tu evidencia como «binding verificado contra doble, no contra el motor» y **no** cierres el entregable del módulo.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Dónde un dato se convierte en código | 2 h | Predicción anotada del punto exacto donde el dato cambia la estructura → [M6-A1](#m6-a1--dónde-un-dato-se-convierte-en-código) |
-| A2 — Binding real contra PostgreSQL | 2,5 h | Consulta parametrizada ejecutada y caso permitido en verde → [M6-A2](#m6-a2--binding-real-contra-postgresql) |
-| A3 — Rojo y verde con el mismo criterio | 2 h | Salidas de la variante concatenada y de la parametrizada → [M6-A3](#m6-a3--rojo-y-verde-con-el-mismo-criterio) |
-| A4 — Identificadores dinámicos y límites del ORM | 2,5 h | Allowlist aplicada y límites documentados → [M6-A4](#m6-a4--identificadores-dinámicos-y-límites-del-orm) |
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Dónde un dato se convierte en código | Predicción anotada del punto exacto donde el dato cambia la estructura → [M6-A1](#m6-a1--dónde-un-dato-se-convierte-en-código) |
+| A2 — Binding real contra PostgreSQL | Consulta parametrizada ejecutada y caso permitido en verde → [M6-A2](#m6-a2--binding-real-contra-postgresql) |
+| A3 — Rojo y verde con el mismo criterio | Salidas de la variante concatenada y de la parametrizada → [M6-A3](#m6-a3--rojo-y-verde-con-el-mismo-criterio) |
+| A4 — Identificadores dinámicos y límites del ORM | Allowlist aplicada y límites documentados → [M6-A4](#m6-a4--identificadores-dinámicos-y-límites-del-orm) |
 
 ### M6-A1 — Dónde un dato se convierte en código
 
@@ -830,7 +877,7 @@ Hasta que lo hagas, marca tu evidencia como «binding verificado contra doble, n
 - **Recurso:** TypeORM, apartado «Using parameters to escape data» y «Getting the generated query», vía [SQL injection y PostgreSQL](RECURSOS.md#sql-injection-y-postgresql): para ver qué rutas del ORM construyen SQL por ti y cuáles no.
 - **Salida y Done:** la allowlist aplicada, el caso permitido y el rechazado, la ficha n.º 2 y una frase con los límites del ORM. **Done** cuando puedes explicar por qué una query parametrizada no te deja elegir de forma segura cualquier nombre de columna.
 - **Alternativa sencilla:** si tu flujo no tiene identificadores dinámicos, **no inventes uno**: documenta «no aplica a este flujo» y explica por qué la *allowlist* no tendría nada que filtrar. Si quieres practicar el mecanismo de todos modos, hazlo con un **ejemplo didáctico aparte y etiquetado** (una *allowlist* de nombres de columna en su propio fichero, con su caso permitido y su caso rechazado), sin presentarlo como un caso real de tu flujo.
-- **Pausa / siguiente paso:** guarda la ficha n.º 2 y el par rojo–verde: es la segunda de las tres remediaciones locales.
+- **Pausa / siguiente paso:** conserva la ficha y el par rojo–verde de SQL con sus límites para el balance final.
 
 **Entregable / Done:** query local vulnerable → parametrizada con test rojo–verde y permitido preservado, más decisión para identificadores. No necesitas un servidor ni una nueva base de datos de producto.
 
@@ -890,12 +937,12 @@ Qué observas: en el primer caso el texto aparece tal cual; en el segundo, el na
 
 **Lo que este ejemplo demuestra y lo que no:** demuestra **interpretación de HTML** (que aparezca un `<b>`), **no ejecución de JavaScript**. Aquí no hay `script` ni manejador de eventos: que el navegador construya una etiqueta **no es una explotación XSS**. Por eso este es un test de **regresión de inyección de markup**, no una prueba completa de XSS.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Source, sink y los tres recorridos | 2 h | Clasificación de tres recorridos con source y sink señalados → [M7-A1](#m7-a1--source-sink-y-los-tres-recorridos) |
-| A2 — Encoding contextual: texto, atributo y URL | 2 h | Tabla de contextos con el escape adecuado y su salida real → [M7-A2](#m7-a2--encoding-contextual-texto-atributo-y-url) |
-| A3 — Rojo–verde del sink y sanitización con librería | 3 h | Sink antes/después con el mismo criterio y salida esperada → [M7-A3](#m7-a3--rojoverde-del-sink-y-sanitización-con-librería) |
-| A4 — Por qué un escape único no basta y qué aporta CSP | 2 h | Contexto no cubierto declarado y CSP como capa adicional → [M7-A4](#m7-a4--por-qué-un-escape-único-no-basta-y-qué-aporta-csp) |
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Source, sink y los tres recorridos | Clasificación de tres recorridos con source y sink señalados → [M7-A1](#m7-a1--source-sink-y-los-tres-recorridos) |
+| A2 — Encoding contextual: texto, atributo y URL | Tabla de contextos con el escape adecuado y su salida real → [M7-A2](#m7-a2--encoding-contextual-texto-atributo-y-url) |
+| A3 — Rojo–verde del sink y sanitización con librería | Sink antes/después con el mismo criterio y salida esperada → [M7-A3](#m7-a3--rojoverde-del-sink-y-sanitización-con-librería) |
+| A4 — Por qué un escape único no basta y qué aporta CSP | Contexto no cubierto declarado y CSP como capa adicional → [M7-A4](#m7-a4--por-qué-un-escape-único-no-basta-y-qué-aporta-csp) |
 
 ### M7-A1 — Source, sink y los tres recorridos
 
@@ -941,7 +988,7 @@ Qué observas: en el primer caso el texto aparece tal cual; en el segundo, el na
 - **Recurso:** MDN CSP, apartados «CSP overview» y «Controlling resource loading», vía [Fronteras del navegador](RECURSOS.md#fronteras-del-navegador): para el alcance real de una política y su papel de defensa en profundidad.
 - **Salida y Done:** la ficha n.º 3 con la sección «partes no probadas» rellena y la frase sobre CSP. **Done** cuando la ficha permite a un lector saber exactamente qué está protegido y qué no.
 - **Alternativa sencilla:** si no puedes desplegar CSP, descríbelo como capa propuesta y marca «no desplegado»; no afirmes un efecto no observado.
-- **Pausa / siguiente paso:** guarda la ficha n.º 3: las tres remediaciones locales están ya en [M6-A4](#m6-a4--identificadores-dinámicos-y-límites-del-orm) y aquí.
+- **Pausa / siguiente paso:** conserva la ficha y el par rojo–verde de XSS; en el balance final podrás contrastarlos con la evidencia de autorización y SQL.
 
 **Entregable / Done:** sink local antes/después, prueba negativa y permitida, y contexto explícito. Un test de escape de string no prueba todos los sinks del navegador; declara lo no probado.
 
@@ -993,12 +1040,12 @@ Lectura de la tabla: en **b** y **c** el efecto en el servidor ocurre igual, aun
 
 Los cuatro casos son **sin autenticación**: hablan de la **política del navegador**, no de permisos. Que el navegador te deje leer (o no) no dice nada de si puedes actuar —el servidor sigue autorizando cada operación por recurso (módulo 3)— y **aprobar un preflight no concede ningún permiso**: es una comprobación de política, no una autorización.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Transporte, origin y site en la práctica | 2 h | Tabla ampliada con esquema, host, puerto y site → [M8-A1](#m8-a1--transporte-origin-y-site-en-la-práctica) |
-| A2 — SOP: enviar no es leer | 2 h | Diagrama de envío y de lectura por separado, con el bloqueo explicado → [M8-A2](#m8-a2--sop-enviar-no-es-leer) |
-| A3 — CORS y preflight observados en navegador | 3 h | Traza de preflight y de la petición final → [M8-A3](#m8-a3--cors-y-preflight-observados-en-navegador) |
-| A4 — Credenciales, matriz y límite con CSRF | 2 h | Matriz origin/site/credenciales/lectura/efecto y decisión justificada → [M8-A4](#m8-a4--credenciales-matriz-y-límite-con-csrf) |
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Transporte, origin y site en la práctica | Tabla ampliada con esquema, host, puerto y site → [M8-A1](#m8-a1--transporte-origin-y-site-en-la-práctica) |
+| A2 — SOP: enviar no es leer | Diagrama de envío y de lectura por separado, con el bloqueo explicado → [M8-A2](#m8-a2--sop-enviar-no-es-leer) |
+| A3 — CORS y preflight observados en navegador | Traza de preflight y de la petición final → [M8-A3](#m8-a3--cors-y-preflight-observados-en-navegador) |
+| A4 — Credenciales, matriz y límite con CSRF | Matriz origin/site/credenciales/lectura/efecto y decisión justificada → [M8-A4](#m8-a4--credenciales-matriz-y-límite-con-csrf) |
 
 ### M8-A1 — Transporte, origin y site en la práctica
 
@@ -1095,12 +1142,12 @@ export function pedir(url, registro) {
 
 Qué observar al ejecutarlo: el doble **registra** el destino final en un array y **no abre ninguna conexión**. Con una URL autorizada, la traza contiene una sola entrada; con una URL no autorizada (por ejemplo `http://servidor-interno.invalid/pedidos`), el doble responde `403` **sin registrar transporte**, porque ese host no resuelve. Esa traza es el «registro esperado» con el que trabajarás en [M9-A3](#m9-a3--falsar-la-validación-incompleta).
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — La cadena de una petición saliente | 2 h | Diagrama entrada → parser → resolución → redirección → transporte con confianzas → [M9-A1](#m9-a1--la-cadena-de-una-petición-saliente) |
-| A2 — Stub de resolución y transporte, sin red | 2,5 h | Stub con registro de destinos y política configurable → [M9-A2](#m9-a2--stub-de-resolución-y-transporte-sin-red) |
-| A3 — Falsar la validación incompleta | 2,5 h | Contraejemplo con redirección y registro esperado → [M9-A3](#m9-a3--falsar-la-validación-incompleta) |
-| A4 — Control por salto y límites declarados | 2 h | Controles por salto y límites de la simulación escritos → [M9-A4](#m9-a4--control-por-salto-y-límites-declarados) |
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — La cadena de una petición saliente | Diagrama entrada → parser → resolución → redirección → transporte con confianzas → [M9-A1](#m9-a1--la-cadena-de-una-petición-saliente) |
+| A2 — Stub de resolución y transporte, sin red | Stub con registro de destinos y política configurable → [M9-A2](#m9-a2--stub-de-resolución-y-transporte-sin-red) |
+| A3 — Falsar la validación incompleta | Contraejemplo con redirección y registro esperado → [M9-A3](#m9-a3--falsar-la-validación-incompleta) |
+| A4 — Control por salto y límites declarados | Controles por salto y límites de la simulación escritos → [M9-A4](#m9-a4--control-por-salto-y-límites-declarados) |
 
 ### M9-A1 — La cadena de una petición saliente
 
@@ -1122,7 +1169,7 @@ Qué observar al ejecutarlo: el doble **registra** el destino final en un array 
 - **Recurso:** SSRF Prevention Cheat Sheet, apartados «Overview of a SSRF common flow» y «Available protections», vía [SSRF](RECURSOS.md#ssrf): para saber qué debe registrar tu doble para poder juzgar el control.
 - **Salida y Done:** el stub ejecutable, su salida de registro para el caso permitido y el código de la política. **Done** cuando puedes señalar en el registro qué decisiones se tomaron y en qué salto.
 - **Alternativa sencilla:** si no quieres escribir el doble, una función que solo registre la URL final y lance si la URL no está en la lista cumple el mismo papel de forma más tosca; funciona y se declara más simple.
-- **Pausa / siguiente paso:** deja el stub con la política configurada; en la siguiente sesión lo vas a falsar.
+- **Pausa / siguiente paso:** conserva el stub con la política configurada; el siguiente paso intenta falsarla.
 
 ### M9-A3 — Falsar la validación incompleta
 
@@ -1183,12 +1230,12 @@ const conSeparadorFuera = fuera.startsWith(raiz + '/');   // → false  ← así
 
 Qué observar: `startsWith(raiz)` **acepta** una ruta que está fuera; comparar con `raiz + '/'` la rechaza. Esa es la diferencia entre un control que parece funcionar y uno que funciona, y por eso la canonicalización va **antes** de la comparación y no después. En un sistema real, además, la ruta debe venir ya resuelta (`realpath`), porque un enlace simbólico dentro de la raíz puede apuntar fuera: **el TOCTOU** (cambiar el enlace entre comprobar y abrir) es el límite conocido de esta defensa.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Elegir un flujo y dibujar la ruta de datos | 2 h | Activo, ruta de datos y punto de decisión → [M10-A1](#m10-a1--elegir-un-flujo-y-dibujar-la-ruta-de-datos) |
-| A2 — Comprobar el flujo elegido | 3 h | Caso permitido y caso negativo con salida real → [M10-A2](#m10-a2--comprobar-el-flujo-elegido) |
-| A3 — Canonicalización, containment y enlaces simbólicos | 2 h | Análisis del control real del flujo y sus huecos → [M10-A3](#m10-a3--canonicalización-containment-y-enlaces-simbólicos) |
-| A4 — El otro flujo, solo comparación | 2 h | Tabla de tres diferencias con controles y límites → [M10-A4](#m10-a4--el-otro-flujo-solo-comparación) |
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Elegir un flujo y dibujar la ruta de datos | Activo, ruta de datos y punto de decisión → [M10-A1](#m10-a1--elegir-un-flujo-y-dibujar-la-ruta-de-datos) |
+| A2 — Comprobar el flujo elegido | Caso permitido y caso negativo con salida real → [M10-A2](#m10-a2--comprobar-el-flujo-elegido) |
+| A3 — Canonicalización, containment y enlaces simbólicos | Análisis del control real del flujo y sus huecos → [M10-A3](#m10-a3--canonicalización-containment-y-enlaces-simbólicos) |
+| A4 — El otro flujo, solo comparación | Tabla de tres diferencias con controles y límites → [M10-A4](#m10-a4--el-otro-flujo-solo-comparación) |
 
 ### M10-A1 — Elegir un flujo y dibujar la ruta de datos
 
@@ -1240,7 +1287,7 @@ Qué observar: `startsWith(raiz)` **acepta** una ruta que está fuera; comparar 
 
 ## Módulo 11 — JWT, OAuth y OIDC con alcance mínimo
 
-**Objetivo verificable:** explicar qué valida un JWT y recorrer un flujo *authorization code* con PKCE, sin construir proveedor, login ni integración completa.
+**Objetivo verificable:** explicar qué valida un JWT, recorrer code + PKCE y comprobar autorización workload/usuario en un ejemplo local, sin proveedor, login ni integración completa.
 
 **Busca:** firmado frente a cifrado (*signed vs encrypted*), *issuer*, *audience*, algoritmo, expiración; OAuth como autorización y OIDC como identidad; *authorization code*, PKCE, *state*, *nonce* y *redirect URI*.
 
@@ -1250,9 +1297,9 @@ Qué observar: `startsWith(raiz)` **acepta** una ruta que está fuera; comparar 
 
 **Definiciones (úsalas a partir de aquí):**
 
-- **JWT (JSON Web Token):** un contenedor firmado con afirmaciones (*claims*). Se firma, no se cifra: cualquiera con el token puede leer su contenido; lo que la firma garantiza es que **nadie lo ha modificado** y quién lo emitió.
+- **JWT (JSON Web Token):** un contenedor con afirmaciones (*claims*), que puede protegerse como JWS o JWE. Aquí trabajamos JWT firmado (JWS): su contenido es legible. Verificarlo con una clave confiable comprueba integridad/origen, no permiso ni confidencialidad.
 - **JWS / JWE:** *firmado* frente a *cifrado*. Un JWT firmado se lee; uno cifrado no.
-- **Claves simétricas y asimétricas:** en **simétrica** (HMAC) la misma clave firma y verifica, así que quien verifica puede también firmar: ambas partes comparten secreto. En **asimétrica** (RSA, ECDSA) la **clave privada firma** y la **clave pública verifica**: quien verifica solo puede comprobar, no emitir. Con la clave pública **no se puede firmar**, así que un JWT «firmado con la clave pública» no es un defecto por sí mismo: el defecto grave es la **confusión de algoritmo** —que el verificador acepte un token firmado con HMAC usando la clave pública RSA como secreto compartido, o que el algoritmo lo imponga el propio token—.
+- **Claves simétricas y asimétricas:** HMAC es un MAC de clave compartida (a menudo llamado «firma» de JWT): quien verifica también puede emitir. En una firma asimétrica (RSA/ECDSA), la privada firma y la pública verifica. Aceptar la pública RSA como secreto HMAC es **confusión de algoritmo**, no una firma RSA válida. Fija algoritmo y claves confiables con la librería, no según lo que ordene el token.
 - **Claims registrados:** `iss` (issuer, quién lo emitió), `aud` (audience, para quién es), `exp` (expiración), `iat` (emitido a las), `nbf` (no válido antes de), `sub` (sujeto). El algoritmo va en la **cabecera** (`alg`), no en los claims: por eso hay que **fijar el algoritmo esperado** y no leerlo del propio token.
 - **Sin descargo en la cabecera:** el token puede traer campos como `typ` o `kid` para describirlo, pero eso **no** es una declaración de confianza: no existe un campo «no me confíes» que el verificador pueda creer. La confianza la decide el verificador.
 - **OAuth 2.0:** protocolo de **autorización**: delega acceso limitado a un recurso en nombre de un usuario. **No dice quién es el usuario**.
@@ -1274,12 +1321,45 @@ Este es un SPA (una aplicación de una sola página) que usa `authorization code
 
 Lo que **no** se ha construido aquí: ni proveedor, ni login, ni servidor del SPA. Lo que se ha hecho: recorrer el flujo con sus datos y decir dónde falla cada cosa.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Decodificar no es validar | 2 h | Claims leídos y separación entre decodificar, verificar firma y autorizar → [M11-A1](#m11-a1--decodificar-no-es-validar) |
-| A2 — Issuer, audience, algoritmo y vigencia | 2 h | Tabla de rechazos esperados con el criterio escrito → [M11-A2](#m11-a2--issuer-audience-algoritmo-y-vigencia) |
-| A3 — Qué resuelven OAuth y OIDC, y el recorrido con PKCE | 2,5 h | Diagrama de code + PKCE con los tres actores → [M11-A3](#m11-a3--qué-resuelven-oauth-y-oidc-y-el-recorrido-con-pkce) |
-| A4 — `state`, `nonce` y `redirect URI` | 2,5 h | Garantías, límites y evidencia acotada del recorrido → [M11-A4](#m11-a4--state-nonce-y-redirect-uri) |
+**Entre servicios: autenticación no es autorización.** Una **identidad workload** representa un proceso/job (`svc-pedidos`), no la persona (`u-1`). OAuth también admite acceso de máquina sin usuario; una credencial de servicio no hereda los permisos de cualquier usuario que la invoque. Un **scope** limita operaciones, pero no prueba propiedad de una factura. **Delegación** es permitir actuar en nombre de alguien dentro de un alcance; un **confused deputy** aparece si NestJS usa su poder de servicio para hacer una operación que el usuario no podía pedir. Conserva y comprueba ambos contextos, o rechaza si falta el usuario en una operación delegada. No reenvíes un token destinado a otra audience.
+
+Ejemplo de autorización local **después** de que una librería haya verificado firma, algoritmo, `iss`, `aud` y `exp` del token de acceso. Eso **no garantiza el contrato de los claims privados**: la policy también debe validar sus tipos y campos requeridos, y denegar datos malformados sin lanzar errores. Aquí `scopes` es un array de strings con pertenencia exacta. Si la librería entrega el `scope` estándar como string separado por espacios, su adaptador debe validarlo y normalizarlo a ese array antes de la policy, no buscar subcadenas. Los objetos siguientes son fixtures, no un verificador JWT:
+
+```js
+import assert from 'node:assert/strict';
+function puedeLeer(workload, usuario, factura) {
+  if (!workload || typeof workload !== 'object' || Array.isArray(workload)
+      || typeof workload.sub !== 'string'
+      || !Array.isArray(workload.scopes)
+      || !workload.scopes.every((scope) => typeof scope === 'string')
+      || !usuario || typeof usuario !== 'object' || Array.isArray(usuario)
+      || typeof usuario.org !== 'string' || usuario.org.trim() === ''
+      || !factura || typeof factura !== 'object' || Array.isArray(factura)
+      || typeof factura.org !== 'string' || factura.org.trim() === '') return false;
+  return workload.sub === 'svc-pedidos'
+    && workload.scopes.includes('facturas:leer')
+    && usuario.org === factura.org;
+}
+const workload = { sub: 'svc-pedidos', scopes: ['facturas:leer'] };
+const factura = { org: 'org-a' };
+assert.equal(puedeLeer(workload, { org: 'org-a' }, factura), true);
+assert.equal(puedeLeer(workload, { org: 'org-b' }, factura), false);
+assert.equal(puedeLeer(workload, null, factura), false);
+assert.equal(puedeLeer({ sub: 'svc-pedidos' }, { org: 'org-a' }, factura), false);
+assert.equal(puedeLeer({ ...workload, scopes: 'no-facturas:leer' }, { org: 'org-a' }, factura), false);
+assert.equal(puedeLeer({ ...workload, scopes: [42] }, { org: 'org-a' }, factura), false);
+assert.equal(puedeLeer(null, { org: 'org-a' }, factura), false);
+assert.equal(puedeLeer(workload, {}, {}), false);
+```
+
+**mTLS** autentica los extremos del canal con certificados; no decide si `svc-pedidos` puede leer *esta* factura. Tampoco sustituye scopes, identidad delegada ni controles de propiedad. Sin cluster, IdP ni llamadas de red: usa fixtures y la librería JWT existente cuando esté disponible. Claves privadas/secretos HMAC solo en backend; claves públicas confiables pueden distribuirse para verificar. `kid` selecciona una clave de un conjunto confiable, no una URL arbitraria. Rotación/revocación y expiración acotan confianza (M16/M17).
+
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Decodificar no es validar | Claims leídos y separación entre decodificar, verificar firma y autorizar → [M11-A1](#m11-a1--decodificar-no-es-validar) |
+| A2 — Issuer, audience, algoritmo y vigencia | Tabla de rechazos esperados con el criterio escrito → [M11-A2](#m11-a2--issuer-audience-algoritmo-y-vigencia) |
+| A3 — Qué resuelven OAuth y OIDC, y el recorrido con PKCE | Diagrama de code + PKCE con cuatro actores → [M11-A3](#m11-a3--qué-resuelven-oauth-y-oidc-y-el-recorrido-con-pkce) |
+| A4 — `state`, `nonce` y `redirect URI` | Garantías, límites y evidencia acotada del recorrido → [M11-A4](#m11-a4--state-nonce-y-redirect-uri) |
 
 ### M11-A1 — Decodificar no es validar
 
@@ -1297,6 +1377,7 @@ Lo que **no** se ha construido aquí: ni proveedor, ni login, ni servidor del SP
 - **Objetivo:** convertir la validación en una tabla de rechazos esperables, con el criterio escrito antes de probarlo.
 - **Requisitos mínimos:** la tabla de [M11-A1](#m11-a1--decodificar-no-es-validar) y la librería de JWT de tu stack, si la hay.
 - **Inicio:** crea la tabla `rechazos.md` con columnas **condición**, **claim afectado**, **resultado esperado**, **motivo**. La primera acción es escribir la fila del `issuer` distinto.
+- **Servicio y usuario:** reutiliza el ejemplo guiado anterior como segunda capa, tras verificar el token. Añade a los rechazos issuer/audience/exp inválidos y prueba con la librería disponible; luego diseña tú negativos por scope ausente, workload distinto y organización ajena. Verifica `deny` y ausencia de lectura; un token válido con scope incorrecto debe fallar. Distingue pruebas del verificador de pruebas de la policy: fixtures no prueban firmas ni mTLS.
 - **Instrucciones:** añade las filas mínimas: `iss` distinto del esperado, `aud` que no incluye esta API, algoritmo distinto del esperado (por ejemplo, cuando llega `alg: none`, o con un algoritmo que no aceptas), `exp` en el pasado y `exp` ausente. Para cada una, escribe el resultado esperado y el motivo en una frase: el token no se emitió para esta API, no está vigente, o su firma no se puede verificar con la clave que confías. Comprueba en la documentación de tu librería **qué opciones activa por defecto**: algunas no verifican `aud` o `iss` salvo que se lo pidas, y esa omisión es un fallo silencioso. Ejecuta los casos con tokens ficticios firmados con una clave de prueba y registra las salidas. **No aceptes como prueba una comparación de cadenas**: la comparación de la firma debe usar la función de comparación en tiempo constante que ofrece la librería, y eso lo dice la norma.
 - **Recurso:** RFC 7519, apartados «4.1. Registered Claim Names» y «7.2. Validating a JWT», y RFC 8725 (JWT Best Current Practices), apartados «3.1. Perform Algorithm Verification» y «3.10. Do Not Trust Received Claims», vía [JWT, OAuth y OIDC](RECURSOS.md#jwt-oauth-y-oidc): para qué se valida cada claim y por qué el algoritmo se fija.
 - **Salida y Done:** la tabla con al menos cinco rechazos y la salida real de al menos tres de ellos. **Done** cuando puedes decir qué rechazo se produce con una librería que no verifica `aud`.
@@ -1325,7 +1406,7 @@ Lo que **no** se ha construido aquí: ni proveedor, ni login, ni servidor del SP
 - **Alternativa sencilla:** si no hay lab disponible, haz la revisión del diagrama: elige un fallo de configuración, escríbelo y razonas su impacto; marca que es análisis documental y no una implementación probada.
 - **Pausa / siguiente paso:** guarda el diagrama completo; el módulo 12 necesita el token como **identidad**, no como permiso.
 
-**Entregable / Done:** tabla JWT, diagrama básico y evidencia acotada de la alternativa elegida. El análisis documental de un flujo no demuestra que un proveedor lo implemente correctamente.
+**Entregable / Done:** tabla JWT, diagrama básico y casos de autorización workload/usuario con denegaciones. El análisis documental no demuestra una implementación de IdP; una policy con fixtures no demuestra verificación JWT ni mTLS.
 
 **Recuperación:** ¿qué diferencia existe entre un token con firma válida y un token válido para esta API y esta operación?
 
@@ -1344,13 +1425,13 @@ Lo que **no** se ha construido aquí: ni proveedor, ni login, ni servidor del SP
 - **Invariante de negocio:** una regla que el sistema debe cumplir **siempre** («una factura nunca puede superar el importe de sus líneas»). No depende de la forma de la entrada, sino del sentido del dominio.
 - **BOLA:** autorización a nivel de **objeto**: quién puede ver o tocar *esta* factura. **BFLA:** autorización a nivel de **función**: quién puede ejecutar *esta* operación (listar facturas de todos, exportar). BOLA ya lo viste en el módulo 3; BFLA es la pregunta por operación, no por recurso.
 - **Mass assignment:** dejar que quien llama escriba campos que no le corresponden (por ejemplo, `role` o `isAdmin`) porque el servidor acepta todo lo que llega.
-- **Lista blanca en tiempo de ejecución:** la protección no es «el tipo dice que no» ni «el DTO declara la propiedad»: es que, **al validar**, las propiedades no declaradas **se descarten (o se rechacen)**. Los decoradores de validación se ejecutan **en runtime**, cuando llega la petición; el tipo por sí solo no filtra nada en la red. Y ojo: la lista blanca se apoya en los **decoradores**, no en la mera declaración: una propiedad escrita en la clase **sin decorador** no entra en la lista de propiedades validadas, así que el mecanismo no la descarta por sí solo.
+- **Lista blanca en tiempo de ejecución:** el tipo TypeScript no filtra la red: el servidor debe descartar o rechazar propiedades no admitidas **al validar**. En NestJS la whitelist se apoya en los **decoradores de validación**, no en la mera declaración de clase: una propiedad sin decorador también queda fuera y se descarta/rechaza cuando la opción está activa. Validar forma no concede permiso para cambiar un campo.
 
 **Ejemplo observado — la lista blanca en el framework de tu stack:**
 
 ```ts
 // dto/crear-pedido.dto.ts
-import { IsInt, Min, Max } from 'class-validator';
+import { IsInt, IsString, Min, Max } from 'class-validator';
 
 export class CrearPedidoDto {
   @IsInt() @Min(1) @Max(100)
@@ -1365,18 +1446,49 @@ Con el `ValidationPipe` de NestJS y la opción **`whitelist: true`**, una petici
 
 Dos precisiones sobre el ejemplo, que son la clave de esta actividad: (1) la lista blanca de NestJS se construye con los **decoradores de `class-validator`**: las dos propiedades del DTO de arriba están decoradas (`@IsInt()`, `@Min(1)`, `@Max(100)`, `@IsString()`), y por eso son las que el `ValidationPipe` conoce; una propiedad escrita en la clase **sin decorador** no entraría en esa lista. (2) `@IsInt()` comprueba el **tipo**, no el **rango**: el mínimo de 1 lo pone `@Min(1)`. Son dos decoradores distintos que hacen dos cosas distintas, y el que hace cumplir el requisito es el segundo.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Inventario acotado y clasificación de controles | 2 h | Lista de operaciones con control asociado y sin duplicar hallazgos → [M12-A1](#m12-a1--inventario-acotado-y-clasificación-de-controles) |
-| A2 — Una invariante de negocio comprobada | 2,5 h | Invariante con permitido y negativo, y dónde se decide → [M12-A2](#m12-a2--una-invariante-de-negocio-comprobada) |
-| A3 — Mass assignment y `whitelist` de DTO | 2 h | DTO con lista explícita y caso de campo de rol → [M12-A3](#m12-a3--mass-assignment-y-whitelist-de-dto) |
-| A4 — Límites de recursos razonados | 2,5 h | Modelo de cuota, tamaño y tiempo con su justificación → [M12-A4](#m12-a4--límites-de-recursos-razonados) |
+**Contrato e integración, antes de practicar:** el contrato API describe método/ruta, esquema de entrada/salida, errores, identidad y permisos requeridos; OpenAPI ayuda a expresarlo, pero no ejecuta la autorización. Ejemplo: `POST /pedidos`, entrada `{producto: string, cantidad: entero 1..100}`, salida `201 {id,total}`, errores `400/401/403`. Ni `total`, ni `role`, ni `org` deben venir impuestos por el cliente. Añade a una operación existente estas garantías, no un catálogo nuevo.
+
+Un **webhook** es una notificación que otra aplicación envía a tu endpoint. En una integración, el proveedor también es una frontera: una firma auténtica no valida esquema, propiedad ni sentido de negocio. **HMAC** prueba integridad y conocimiento de un secreto compartido; no cifra ni distingue a dos emisores que comparten la misma clave. Firma los **bytes originales (raw body)** junto al timestamp: parsear y reserializar JSON cambia espacios/orden y rompe la verificación. Verifica antes de parsear, con tamaño acotado y la API de comparación segura. NestJS permite conservar `rawBody` (recurso enlazado).
+
+Ejemplo reproducible sin red (`webhook.mjs`, `node webhook.mjs`). Timestamp y reloj son fixtures; la ventana es un límite técnico, no de estudio:
+
+```js
+import assert from 'node:assert/strict';
+import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
+const key = randomBytes(32); // secreto efímero solo de prueba, nunca en browser/Git/logs
+const now = 1700000000;
+const raw = Buffer.from('{"id":"evt-1","org":"org-a","pedido":"p-1","estado":"pagado"}');
+function firmar(body, timestamp) {
+  return createHmac('sha256', key).update(`${timestamp}.`).update(body).digest();
+}
+function verificar(body, timestamp, hex, reloj) {
+  if (!Buffer.isBuffer(body) || body.length > 4096
+      || !Number.isSafeInteger(timestamp) || Math.abs(reloj - timestamp) > 300
+      || typeof hex !== 'string' || !/^[a-f0-9]{64}$/.test(hex)) return false;
+  return timingSafeEqual(firmar(body, timestamp), Buffer.from(hex, 'hex'));
+}
+const signature = firmar(raw, now).toString('hex');
+assert.equal(verificar(raw, now, signature, now), true);
+assert.equal(verificar(Buffer.concat([raw, Buffer.from(' ')]), now, signature, now), false);
+assert.equal(verificar(raw, now, signature, now + 301), false);
+console.log('auténtico, alterado rechazado, antiguo rechazado');
+```
+
+La ventana rechaza eventos antiguos/futuros, pero **no impide replay dentro de ella**. Tras autenticar, valida contrato y enlaza la identidad de integración con organizaciones/operaciones permitidas; luego comprueba propietario y transición de negocio. Ejemplo resuelto: un emisor autorizado solo para `org-a` firma un evento de `org-b`: firma válida, **denegado sin cambiar el pedido**. Para reintentos legítimos necesitas **idempotencia**: clave `(integración, evento)`, digest del contenido y resultado persistido; misma clave con contenido distinto se rechaza. Registrar la clave y efectuar el cambio debe ser atómico (M13), no un `Set` que se pierda al reiniciar. No confundas deduplicación con permiso.
+
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Inventario acotado y clasificación de controles | Contrato de operaciones y controles, incluida una integración local → [M12-A1](#m12-a1--inventario-acotado-y-clasificación-de-controles) |
+| A2 — Una invariante de negocio comprobada | Invariante y webhook: permitido y negativo, y dónde se decide → [M12-A2](#m12-a2--una-invariante-de-negocio-comprobada) |
+| A3 — Mass assignment y `whitelist` de DTO | DTO con lista explícita y caso de campo de rol → [M12-A3](#m12-a3--mass-assignment-y-whitelist-de-dto) |
+| A4 — Límites de recursos razonados | Modelo de cuota, tamaño y tiempo con su justificación → [M12-A4](#m12-a4--límites-de-recursos-razonados) |
 
 ### M12-A1 — Inventario acotado y clasificación de controles
 
 - **Objetivo:** listar las operaciones de tu alcance y saber qué control cubre cada una, sin repetir hallazgos ya registrados.
 - **Requisitos mínimos:** el modelo de [M2-A1](#m2-a1--activo-actor-componente-y-frontera) y las fichas del módulo 3.
 - **Inicio:** crea `inventario.md` con columnas **operación**, **método y ruta**, **identidad**, **recurso**, **control existente**, **estado**. La primera acción es copiar del modelo las operaciones que ya tenías, para no inventar un inventario nuevo.
+- **Contrato guiado:** completa método, esquema/propiedades admitidas, errores y autorización de una operación existente como en el ejemplo. Incluye una integración/webhook local como fixture: origen/identidad y alcance permitido, sin llamar a proveedores reales. El contrato declarado no cuenta como control implementado.
 - **Instrucciones:** clasifica cada operación en las tres familias: control de **objeto** (¿quién puede ver esta factura?), de **función** (¿quién puede ejecutar esta operación?) y de **propiedades** (¿qué campos puede cambiar quien la llama?). Marca las operaciones sin control y las que ya has trabajado, para no contar dos veces el mismo hallazgo. Añade la columna de estado con valores `cubierto`, `pendiente`, `fuera de alcance`. No hagas descubrimiento sobre terceros ni escanees rutas.
 - **Recurso:** OWASP API Security Top 10 (edición 2023), entradas **API1:2023 Broken Object Level Authorization** y **API3:2023 Broken Object Property Level Authorization**, vía [APIs y lógica de negocio](RECURSOS.md#apis-y-lógica-de-negocio): para la clasificación de controles y la referencia de la edición consultada.
 - **Salida y Done:** el inventario con las columnas rellenas y la operación que vas a trabajar marcada. **Done** cuando puedes decir qué operación tiene un control que no has verificado y cuál has tocado ya.
@@ -1390,6 +1502,7 @@ Dos precisiones sobre el ejemplo, que son la clave de esta actividad: (1) la lis
 - **Inicio:** escribe la invariante en una frase con «siempre»: por ejemplo «una factura no puede superar el importe total de sus líneas» o «un pedido confirmado no puede volver a estado pendiente». La primera acción es escribir qué entrada la viola y con qué valor mínimo.
 - **Instrucciones:** valida **donde vive la regla**, no en la documentación: decide si es una regla de la base de datos (constraint), del dominio (servicio) o del contrato de entrada (DTO). Escribe el negativo con un payload ficticio mínimo y el permitido correspondiente. Ejecuta: **si la regla se cumple, no hay defecto que demostrar y ese es un resultado válido**: documéntalo como «control que resiste», con su evidencia y sus límites (qué entradas no cubre, qué capa lo impone, qué pasa si alguien la evita). Solo si quieres **practicar un defecto**, usa un fallo **controlado y etiquetado** (un ejemplo sintético que tú introduces y marcas como «defecto de laboratorio»), nunca un sistema real ajeno. Escribe por qué validar solo el **tipo y el formato** de la entrada no protege esta regla: el tipo correcto puede violar la regla de negocio. Añade el dato de entrada que el frontend no controla, y por qué el backend no puede confiar en él.
 - **Recurso:** Academy business logic, apartados «What are business logic vulnerabilities?» y «How do business logic vulnerabilities arise?», vía [APIs y lógica de negocio](RECURSOS.md#apis-y-lógica-de-negocio): para distinguir reglas de negocio de validaciones de forma.
+- **Integración aplicada:** ejecuta primero el ejemplo HMAC resuelto. Después, en tu misma función/test de invariante, añade el desafío: evento auténtico pero de organización ajena o transición inválida; predice la denegación y comprueba ausencia de efecto junto al permitido. Añade un negativo de firma malformada. No resuelvas la deduplicación todavía: deja el reintento para M13-A4. Sin red de terceros ni nuevo servicio.
 - **Salida y Done:** el test del negativo y del permitido, las salidas y la frase sobre por qué el tipo no basta. **Done** cuando puedes explicar qué regla de negocio queda expuesta por validar únicamente tipo y formato, **y** cuando has escrito con honestidad si el control resistió o si usaste un defecto controlado.
 - **Alternativa sencilla:** si la regla ya está protegida por una constraint de la base de datos, el entregable es la demostración de que resiste y la explicación de qué cubre; una invariante bien protegida también es un resultado válido.
 - **Pausa / siguiente paso:** anota en qué capa decidiste proteger la regla: en [M12-A3](#m12-a3--mass-assignment-y-whitelist-de-dto) comparas esa decisión con la de los datos de entrada.
@@ -1436,7 +1549,7 @@ Dos precisiones sobre el ejemplo, que son la clave de esta actividad: (1) la lis
 - **Atómico:** indivisible. Una operación atómica no puede ser interrumpida entre dos puntos: o pasa entera o no pasa.
 - **Transacción:** un conjunto de operaciones que el motor ejecuta como una unidad, con un nivel de **aislamiento** que define qué pueden ver las demás. Sin el nivel adecuado, la intercalación sigue siendo posible.
 - **Constraint:** una regla que impone la **base de datos** (por ejemplo, un `CHECK` o una clave única). Rechaza la operación que la viola; no depende de que la aplicación la compruebe.
-- **Idempotencia:** repetir la misma operación con la misma clave produce el mismo efecto que hacerla una vez. Protege frente a **reintentos**, no frente a la **concurrencia**.
+- **Idempotencia:** repetir la misma operación con la misma clave no repite el efecto. La implementación necesita deduplicación atómica incluso ante dos reintentos simultáneos; no evita conflictos entre **operaciones distintas** con claves diferentes.
 - **Planificador y barrera:** para reproducir una intercalación de forma **determinista**, no esperas a que «suene el reloj»: ordenas los pasos a mano con un planificador y colocas una **barrera** (un punto donde la primera operación se detiene hasta que la segunda llega).
 
 **Ejemplo observado — una intercalación reproducida sin esperas:**
@@ -1470,12 +1583,14 @@ stock final: -1
 
 Qué observas: las **dos** operaciones actuaron sobre una «decisión ya capturada», así que las dos actúan y el stock queda en −1: la invariante «no se puede reservar más de lo disponible» está rota. Y aquí está la puerta para **modificar**: mueve la línea `B comprueba` **después** de `A actúa` en la lista `pasos` y vuelve a ejecutar. La intercalación desaparece, el stock queda en 0 y el defecto no aparece. Eso es un planificador: cambias el orden, cambias el resultado, y no dependes del azar ni de esperas.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Una invariante y el interleaving que la rompe | 2 h | Dibujo de las dos ejecuciones y punto de ruptura → [M13-A1](#m13-a1--una-invariante-y-el-interleaving-que-la-rompe) |
-| A2 — Barrera y reproducción del defecto | 2,5 h | Secuencia reproducible con resultado defectuoso → [M13-A2](#m13-a2--barrera-y-reproducción-del-defecto) |
-| A3 — La garantía atómica que corresponde | 2,5 h | Corrección con transacción real, lock o constraint y su límite → [M13-A3](#m13-a3--la-garantía-atómica-que-corresponde) |
-| A4 — Idempotencia: no es lo mismo que concurrencia | 2 h | Comparación de dos claves idempotentes distintas y su riesgo → [M13-A4](#m13-a4--idempotencia-no-es-lo-mismo-que-concurrencia) |
+**Conectar el webhook de M12 con atomicidad:** supón una tabla `eventos(integracion, evento, digest, resultado)` con clave única `(integracion, evento)`. En una transacción se registra el evento y se modifica el pedido autorizado; si falla cualquiera, rollback de ambas cosas. Un segundo intento encuentra la clave y devuelve el resultado guardado si el digest coincide; si difiere, rechaza. Ejemplo resuelto: `svc-a/evt-1` cambia `pendiente → pagado`; repetir exactamente `svc-a/evt-1` devuelve el resultado anterior, **sin un segundo cobro**. Con otra integración la clave es distinta, pero eso no concede propiedad del pedido. Para efectos externos (correo/cobro) una transacción de base no basta: haría falta coordinar entrega/idempotencia del receptor, fuera de esta práctica sin red.
+
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Una invariante y el interleaving que la rompe | Dibujo de las dos ejecuciones y punto de ruptura → [M13-A1](#m13-a1--una-invariante-y-el-interleaving-que-la-rompe) |
+| A2 — Barrera y reproducción del defecto | Secuencia reproducible con resultado defectuoso → [M13-A2](#m13-a2--barrera-y-reproducción-del-defecto) |
+| A3 — La garantía atómica que corresponde | Corrección con transacción real, lock o constraint y su límite → [M13-A3](#m13-a3--la-garantía-atómica-que-corresponde) |
+| A4 — Idempotencia: no es lo mismo que concurrencia | Reintentos de webhook, dos claves distintas y garantía atómica → [M13-A4](#m13-a4--idempotencia-no-es-lo-mismo-que-concurrencia) |
 
 ### M13-A1 — Una invariante y el interleaving que la rompe
 
@@ -1515,9 +1630,9 @@ Qué observas: las **dos** operaciones actuaron sobre una «decisión ya captura
 - **Objetivo:** distinguir una clave de idempotencia de la concurrencia, y comprobar qué protege cada una.
 - **Requisitos mínimos:** el verde de [M13-A3](#m13-a3--la-garantía-atómica-que-corresponde).
 - **Inicio:** escribe dos escenarios en una tabla: **misma clave idempotente, dos peticiones** y **claves idempotentes distintas, dos peticiones simultáneas**. La primera acción es escribir qué resultado esperas en cada uno.
-- **Instrucciones:** comprueba el primer escenario: con la misma clave, el servidor debería devolver el mismo resultado sin repetir el efecto. Comprueba el segundo: dos claves distintas son **dos operaciones**, y ninguna idempotencia evita que compitan por el mismo recurso. Razona por qué una reserva con clave idempotente por persona sigue pudiendo duplicar el recurso compartido entre dos personas distintas. Escribe la conclusión en una frase: la idempotencia protege frente a **reintentos**, no frente a la **concurrencia**. Deja registrado qué elemento de tu ejemplo sigue expuesto.
+- **Instrucciones:** reutiliza el evento de M12: compara mismo ID/cuerpo, mismo ID/cuerpo distinto y dos IDs distintos sobre el mismo pedido. El primero conserva resultado sin repetir efecto; el segundo se rechaza; el tercero aún necesita la invariante atómica de M13-A3. En tu sustrato actual prueba también dos reintentos de la misma clave con el planificador: «consultar si existe → actuar → guardar clave» permite duplicados. Usa registro único/cambio en la misma transacción o modela esa decisión y etiqueta la simulación. Predice y resuelve por tu cuenta el caso de otra integración intentando reutilizar el ID para un pedido ajeno: la firma/idempotencia no sustituyen alcance ni propiedad. Sin red ni otro proyecto.
 - **Recurso:** Academy race conditions, apartado «How to prevent race condition vulnerabilities», vía [Carreras](RECURSOS.md#carreras): para el alcance de cada control y su diferencia con la idempotencia.
-- **Salida y Done:** la tabla de dos escenarios con resultados observados y la frase de conclusión. **Done** cuando puedes explicar por qué dos reservas con claves idempotentes distintas todavía pueden sufrir una carrera.
+- **Salida y Done:** comparación de reintentos y claves distintas, con observado o «no ejecutado», y límite de atomicidad. Explica por qué dos reservas con claves distintas todavía pueden sufrir una carrera y por qué replay no se resuelve solo con timestamp.
 - **Alternativa sencilla:** si no hay mecanismo de idempotencia en tu stack, razonas los dos escenarios sin ejecutar y marcas «no implementado»; la comparación conceptual es el entregable.
 - **Pausa / siguiente paso:** cierra el módulo con la frase sobre reintentos y concurrencia: es el tipo de límite que revisas al leer código en el módulo 14.
 
@@ -1548,7 +1663,7 @@ export class FacturasController {
 
   @Get(':id')
   async una(@Param('id') id: string) {
-    return this.facturas.leer(id);          // ← línea 10: el id va directo al servicio
+    return this.facturas.leer(id);          // línea 11: el id va directo al servicio
   }
 }
 ```
@@ -1563,7 +1678,7 @@ export class FacturasService {
 }
 ```
 
-*La traza:* `id` llega del cliente (source, línea 9) → pasa al servicio (línea 10) → llega a la consulta (línea 4). *Controles:* el parámetro va **bound** (`$1`), así que no hay inyección en esa consulta; **no hay** ninguna comprobación de organización, así que la consulta no tiene alcance.
+*La traza:* contando desde el comentario de cada fragmento, `id` llega del cliente (source, `rutas.ts:10`) → pasa al servicio (`rutas.ts:11`) → llega a la consulta (`facturas.service.ts:4`). *Controles:* ese valor va **bound** (`$1`), no concatenado, y esa consulta no incluye filtro de organización. El contexto global queda pendiente de revisión: no concluyas autorización rota en toda la aplicación solo con estos fragmentos.
 
 *Conclusión 1:* «el valor viaja como parámetro, no concatenado». *Qué la falsaría:* un segundo camino (por ejemplo, un `raw` en otro archivo) que construya la consulta con concatenación; si lo encuentras, la conclusión es falsa.
 
@@ -1571,12 +1686,12 @@ export class FacturasService {
 
 *Estado:* las dos conclusiones son **estáticas** (se confirman leyendo el código con fichero y línea). Una conclusión estática bien sustentada **no necesita** ejecución: lo que necesita es que puedas decir **qué evidencia la falsaría**. Lo que no se ha probado aquí es el comportamiento en ejecución, y eso se declara.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Congelar alcance y elegir requisitos | 2 h | Alcance congelado y 3–5 requisitos con versión e ID reales → [M14-A1](#m14-a1--congelar-alcance-y-elegir-requisitos) |
-| A2 — Seguir la entrada hasta el sink | 3 h | Traza con fichero, línea, transformaciones y control → [M14-A2](#m14-a2--seguir-la-entrada-hasta-el-sink) |
-| A3 — Dos conclusiones y el negativo que las falsaría | 2 h | Dos conclusiones con su prueba falsadora diseñada → [M14-A3](#m14-a3--dos-conclusiones-y-el-negativo-que-las-falsaría) |
-| A4 — Evidencia primaria y ficha de revisión | 2 h | Ficha n.º 5 con lo verificado y lo no probado → [M14-A4](#m14-a4--evidencia-primaria-y-ficha-de-revisión) |
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Congelar alcance y elegir requisitos | Alcance congelado y 3–5 requisitos con versión e ID reales → [M14-A1](#m14-a1--congelar-alcance-y-elegir-requisitos) |
+| A2 — Seguir la entrada hasta el sink | Traza con fichero, línea, transformaciones y control → [M14-A2](#m14-a2--seguir-la-entrada-hasta-el-sink) |
+| A3 — Dos conclusiones y el negativo que las falsaría | Dos conclusiones con su prueba falsadora diseñada → [M14-A3](#m14-a3--dos-conclusiones-y-el-negativo-que-las-falsaría) |
+| A4 — Evidencia primaria y ficha de revisión | Ficha n.º 5 con lo verificado y lo no probado → [M14-A4](#m14-a4--evidencia-primaria-y-ficha-de-revisión) |
 
 ### M14-A1 — Congelar alcance y elegir requisitos
 
@@ -1605,7 +1720,7 @@ export class FacturasService {
 - **Objetivo:** sostener dos conclusiones justificadas y diseñar la prueba que podría tumbar cada una.
 - **Requisitos mínimos:** la traza de [M14-A2](#m14-a2--seguir-la-entrada-hasta-el-sink).
 - **Inicio:** escribe las dos conclusiones en forma de frase verificable: «el control X se aplica antes de Y» o «el campo Z no está validado». La primera acción es etiquetar cada una como **hallazgo**, **hipótesis** o **control sin hallazgo**.
-- **Instrucciones:** para cada conclusión, diseña el negativo que la falsaría: qué entrada, qué ruta y qué resultado la refutaría. Distingue las dos formas de evidencia: una **conclusión estática** (se confirma leyendo el código, con fichero y línea, y se falsaría con otro camino que muestre lo contrario) y una **conclusión ejecutada** (se confirma con un test o una petición). Un hallazgo de revisión **no** está confirmado hasta que su negativo se ejecuta; sepáralo con claridad en tus notas. «Sin hallazgo en este alcance» es un resultado válido y con evidencia. Pide una revisión externa con el prompt 4 **después** de tu análisis, y rechaza las afirmaciones que no citen fichero y línea: registra los desacuerdos en lugar de aceptarlos.
+- **Instrucciones:** para cada conclusión, diseña el negativo que la falsaría: entrada, ruta y resultado. Una **conclusión estática** puede confirmar una propiedad del código revisado con fichero/línea y contexto (por ejemplo, binding en esa consulta); no prueba comportamiento desplegado, alcanzabilidad ni explotación. Estas afirmaciones requieren su propia evidencia de ejecución. Etiqueta cada una como «confirmado por lectura», «confirmado por ejecución», «hipótesis» o «no probado», sin convertir ausencia de control en un fragmento en ausencia global. «Sin hallazgo en este alcance» es válido. Usa el prompt 4 después de tu análisis y contrasta sus citas, sin aceptar conclusiones sin evidencia.
 - **Recurso:** WSTG, caso de prueba de validación de datos de negocio y el de IDOR, vía [Revisión de código](RECURSOS.md#revisión-de-código): para contrastar si tu negativo sigue el método de prueba esperado para ese tipo de entrada.
 - **Salida y Done:** las dos conclusiones etiquetadas, sus pruebas falsadoras diseñadas y el registro de la revisión externa con los desacuerdos. **Done** cuando puedes decir qué evidencia convertiría tu hipótesis en defecto confirmado.
 - **Alternativa sencilla:** si solo has podido sostener una conclusión, entrega esa y declara la segunda como «no concluyente»; dos conclusiones forzadas valen menos que una sólida.
@@ -1620,7 +1735,7 @@ export class FacturasService {
 - **Recurso:** la plantilla de [Ficha de hallazgo o revisión](README.md#ficha-de-hallazgo-o-revisión) del README: para el formato con las tres categorías separadas.
 - **Salida y Done:** las salidas de las pruebas y la ficha n.º 5 con las tres categorías separadas. **Done** cuando alguien puede leer la ficha y saber exactamente qué se comprobó y qué no.
 - **Alternativa sencilla:** si una conclusión no se pudo ejecutar, inclúyela como «confirmado por lectura de código, no ejecutado» o «no probado», con el motivo; una ficha con huecos declarados es más útil que una ficha lisa.
-- **Pausa / siguiente paso:** cuenta las fichas que llevas: autorización (3), autenticación (4), SQL (6), XSS (7) y esta (14). Son **cinco** fichas distintas: si te falta alguna, el hueco se recupera, no se inventa.
+- **Pausa / siguiente paso:** conserva esta revisión junto a la evidencia existente de autorización, autenticación, SQL y XSS. Declara los huecos sin crear fichas para completar una cantidad.
 
 **Entregable / Done:** trazas reproducibles, 3–5 requisitos seleccionados y dos conclusiones justificadas. No fuerces dos vulnerabilidades: «sin hallazgo en este alcance» es válido con evidencia.
 
@@ -1628,9 +1743,9 @@ export class FacturasService {
 
 ## Módulo 15 — Automatización con triage, no confianza ciega
 
-**Objetivo verificable:** interpretar la salida de un único scanner adecuado al stack y decidir qué se confirma, se descarta o queda pendiente.
+**Objetivo verificable:** contrastar una señal estática con una prueba DAST local, y decidir qué se confirma, se descarta o queda pendiente sin instalar una batería de herramientas.
 
-**Busca:** SAST, SCA, secret scanning, falso positivo y falso negativo, alcanzabilidad (*reachability*), exposición, *fix*, cadena de suministro (*supply chain*), *lockfile*, procedencia y SBOM como concepto.
+**Busca:** SAST, DAST, SCA, secret scanning, SBOM, cobertura y falsos positivos/negativos, alcanzabilidad, exposición, explotabilidad, impacto, procedencia, triage y gates de PR/build/release.
 
 **Recursos:** GitHub code scanning, una salida de ejemplo y NIST SSDF en [Automatización y supply chain](RECURSOS.md#automatización-y-supply-chain).
 
@@ -1639,12 +1754,13 @@ export class FacturasService {
 **Definiciones (úsalas a partir de aquí):**
 
 - **SAST (análisis estático de seguridad):** analiza el **código** buscando patrones sospechosos. Ve el código, no el camino que llega a él.
+- **DAST (prueba dinámica de seguridad):** comprueba una aplicación en ejecución por su interfaz. Ve respuestas/efectos del caso probado, no todo el código ni todas las identidades/rutas. Un `200` aislado no prueba autorización correcta; una prueba mal preparada puede producir falsas alarmas.
 - **SCA (análisis de composición de software):** analiza el **inventario** de dependencias y contrasta sus versiones con las vulnerabilidades publicadas. Ve **qué versión** tienes, no **si la explotación** llega a tu código.
 - **Secret scanning:** busca patrones de credenciales en el repositorio y su historial. Ve lo que parece una credencial, no si es real o está revocada.
 - **SBOM (Software Bill of Materials):** el **inventario** de componentes y versiones de un software. Es una lista, no un análisis de riesgo.
 - **Lockfile:** el fichero que fija las **versiones exactas** de las dependencias, para que dos instalaciones obtengan lo mismo. No es el inventario completo: normalmente solo contiene las dependencias directas y transitivas del proyecto.
 - **Procedencia:** de dónde viene un artefacto y con qué confianza se sabe (quién lo construyó, con qué fuente, con qué firma).
-- **Alcanzabilidad:** si un camino de código **realmente ejecutable** llega al punto donde el problema está. Un análisis estático **puede** encontrar alcanzabilidad: por eso algunos avisos de SAST brings un flujo de datos y se marcan como alcanzables, y otros no lo hacen. Lo que no puede es guarantee que un camino que parece alcanzable se dispare en producción.
+- **Alcanzabilidad:** si un camino de código **realmente ejecutable** llega al punto sospechoso. Algunos SAST aportan un flujo de datos como evidencia de posible alcanzabilidad; eso no garantiza que se dispare en producción ni que se cumplan las precondiciones de explotación.
 - **BCP (Best Current Practices):** la práctica recomendada vigente por una autoridad, en este caso la **JWT BCP** (RFC 8725) que ya usaste en el módulo 11.
 
 **Ejemplo — una salida de scanner sintética, con su procedencia declarada:**
@@ -1654,7 +1770,7 @@ Procedencia: **salida sintética** escrita a mano para este ejercicio. No proced
 ```
 [simulado] regla: concatena-consulta-sql
 [simulado] archivo: src/pedidos/consulta.ts
-[simulado] línea: 12
+[simulado] línea: 3
 [simulado] severidad: media
 [simulado] mensaje: el valor 'id' se concatena en el texto de la consulta
 ```
@@ -1664,32 +1780,70 @@ Y el código que la regla señalaría, con el resto del fichero para que se vea 
 ```ts
 // src/pedidos/consulta.ts
 export async function consultarPedido(pool, id) {
-  const sql = `SELECT * FROM pedidos WHERE id = '${id}'`;   // ← línea 12: concatenación
+  const sql = `SELECT * FROM pedidos WHERE id = '${id}'`;   // línea 3 del fragmento, contando el comentario
   const { rows } = await pool.query(sql);
   return rows[0] ?? null;
 }
 ```
 
-*Triage trabajado:* ¿llega a esa línea un dato no confiable? **Sí**: `id` es un parámetro de la petición (source: controlador, línea 4). ¿La ejecuta un camino real? **Sí**: el endpoint llama a `consultarPedido` sin transforming nada antes. ¿Qué se obtiene si el problema es cierto? La estructura de la consulta cambia y el atacante puede leer filas ajenas. *Decisión:* **confirmado por lectura de código**, con el caveat de que el comportamiento en el motor no se ha ejecutado en este ejercicio. *Cómo se falsaría:* si existiera un `sanitize` previo o un `pool.query` con array de parámetros en otra ruta, la conclusión caería.
+*Triage trabajado:* en `src/pedidos/consulta.ts`, línea 3 del fragmento, `id` se concatena: **confirmado por lectura**. El fragmento no incluye controlador ni llamadores; no demuestra que `id` venga de una petición ni que el camino esté expuesto. Alcanzabilidad/explotabilidad quedan **pendientes** hasta localizar un llamador y verificar entrada, permisos y motor. Si fueran controlables, podría cambiar la estructura SQL; no afirmes filas extraídas sin probarlo. Otro camino parametrizado no corrige esta función: cambiar la línea a binding sí elimina esta concatenación. Priorización provisional, sin inventar CVE ni aceptar la severidad «media» del scanner como riesgo de producto.
+
+**Ejemplo DAST pequeño, local y autorizado:** una prueba HTTP activa contra un fixture propio, no un scanner estático ni un escaneo de terceros. Guarda como `dast-local.test.mjs`, ejecuta `node --test dast-local.test.mjs`; Node LTS aporta servidor y `fetch`. No hay dependencias ni secretos reales:
+
+```js
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { createServer } from 'node:http';
+test('lectura permitida y cruce de organización denegado por HTTP', async () => {
+  const actores = { 'PRUEBA-A': 'org-a', 'PRUEBA-B': 'org-b' };
+  const factura = { id: 'f1', org: 'org-a', total: 42 };
+  const server = createServer((req, res) => {
+    const org = actores[req.headers.authorization?.replace('Bearer ', '')];
+    if (req.url !== '/facturas/f1' || req.method !== 'GET') {
+      res.writeHead(404).end(); return;
+    }
+    if (!org) { res.writeHead(401).end(); return; }
+    if (org !== factura.org) { res.writeHead(404).end(); return; }
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(factura));
+  });
+  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
+  try {
+    const url = `http://127.0.0.1:${server.address().port}/facturas/f1`;
+    const permitido = await fetch(url, { headers: { Authorization: 'Bearer PRUEBA-A' } });
+    assert.equal(permitido.status, 200);
+    assert.equal((await permitido.json()).total, 42);
+    const negativo = await fetch(url, { headers: { Authorization: 'Bearer PRUEBA-B' } });
+    assert.equal(negativo.status, 404);
+    assert.equal(await negativo.text(), '');
+  } finally {
+    await new Promise((resolve, reject) => server.close((e) => e ? reject(e) : resolve()));
+  }
+});
+```
+
+Resultado esperado: `pass 1`, `fail 0`. Quita solo el control de organización y la misma aserción negativa falla: la prueba detecta el defecto. Las credenciales son un mapeo ficticio, **no autenticación de producción**; esto prueba autorización HTTP de este fixture, no JWT, SQL, el sistema de M14 ni toda una API. Un scanner DAST ampliaría casos, no eliminaría estos límites. Desafío de M15-A2: añade tú el caso sin credencial y justifica qué respuesta/cuerpo debe observarse.
+
+**SDLC: elegir dónde y cuándo decidir.** En PR, SAST/secret scanning y revisión de contrato dan feedback sobre cambios; en build, SCA contrasta versiones resueltas y el SBOM describe componentes del artefacto realmente construido; antes de release, DAST en entorno autorizado contrasta comportamiento/configuración. Son ubicaciones razonadas, no obligación de instalar cinco herramientas. Un SBOM no es scanner ni garantía de procedencia. Ninguna clase cubre por completo lógica, diseño o configuración: la revisión manual y los tests de abuso siguen siendo necesarios.
 
 *Transferencia sin inventar nada:* aplica el mismo razonamiento a **otro** archivo de tu alcance con una regla equivalente, o cambia la regla por una de *secret scanning* y decide qué haría con ella. **No inventes un CVE**: si tu salida es sintética, no puede llevar identificadores de vulnerabilidad reales.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Qué ve cada clase de herramienta | 2 h | Tabla comparativa de SAST, SCA y secrets con su alcance → [M15-A1](#m15-a1--qué-ve-cada-clase-de-herramienta) |
-| A2 — Una ejecución reproducible o una salida con procedencia | 2,5 h | Salida con versión, configuración y origen declarados → [M15-A2](#m15-a2--una-ejecución-reproducible-o-una-salida-con-procedencia) |
-| A3 — Triage de una señal | 2,5 h | Ficha de señal con origen, alcanzabilidad, exposición y decisión → [M15-A3](#m15-a3--triage-de-una-señal) |
-| A4 — Fix, control, procedencia y qué no ve la herramienta | 2 h | Revisión del fix, estado del lockfile y límites del SBOM → [M15-A4](#m15-a4--fix-control-procedencia-y-qué-no-ve-la-herramienta) |
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Qué ve cada clase de herramienta | Comparativa de SAST, SCA, DAST, secrets y SBOM → [M15-A1](#m15-a1--qué-ve-cada-clase-de-herramienta) |
+| A2 — Una ejecución reproducible o una salida con procedencia | Salida estática con procedencia y una prueba DAST local reproducible → [M15-A2](#m15-a2--una-ejecución-reproducible-o-una-salida-con-procedencia) |
+| A3 — Triage de una señal | Ficha con alcanzabilidad, exposición, explotabilidad, impacto y decisión → [M15-A3](#m15-a3--triage-de-una-señal) |
+| A4 — Fix, control, procedencia y qué no ve la herramienta | Fix, lockfile, SBOM y decisión de gate/excepción acotada → [M15-A4](#m15-a4--fix-control-procedencia-y-qué-no-ve-la-herramienta) |
 
 ### M15-A1 — Qué ve cada clase de herramienta
 
 - **Objetivo:** saber qué clase de herramienta vas a usar y qué no va a cubrir, antes de ejecutarla.
 - **Requisitos mínimos:** el alcance congelado de [M14-A1](#m14-a1--congelar-alcance-y-elegir-requisitos) y tu stack definido.
 - **Inicio:** crea la tabla `clases.md` con columnas **clase**, **qué analiza**, **qué no analiza**, **falso positivo típico**, **falso negativo típico**. La primera acción es elegir **una** clase que se ajuste a tu stack.
-- **Instrucciones:** SAST analiza el código y ve patrones; puede además traer un flujo de datos y decir si el camino es alcanzable, pero no garantiza que ese camino se dispare en producción. SCA ve el *lockfile* y las versiones publicadas de las dependencias, no el uso que haces de ellas: una alerta de SCA **no es un falso positivo de la vulnerabilidad** (la versión vulnerable es real), sino una **explotabilidad no confirmada**. El *secret scanning* ve patrones de credenciales en el repositorio y su historial, no un runtime filtrado en un log. Escribe para cada clase un falso positivo típico y un falso negativo típico: por ejemplo, una función cuyo nombre parece una consulta pero es constante, o una dependencia vulnerable que la aplicación ni importa. Elige una y **descarta las otras dos** con un motivo escrito.
+- **Instrucciones:** compara SAST, SCA, DAST, secret scanning y SBOM: entrada, cobertura, límites y ubicación PR/build/release. Para los scanners identifica un falso positivo y una omisión posible; para SBOM marca «inventario, no detector». SCA puede mapear mal un paquete/versión (falso positivo); una versión correctamente identificada como vulnerable pero no utilizada tiene explotabilidad no confirmada, no una vulnerabilidad inventada. Un scanner de secretos no prueba revocación ni detecta toda filtración en runtime. Elige una salida estática disponible/sintética para triage y conserva la prueba DAST acotada, sin instalar el resto.
 - **Recurso:** GitHub code scanning, apartados «About tools for code scanning» y «About third-party code scanning tools», vía [Automatización y supply chain](RECURSOS.md#automatización-y-supply-chain): para el alcance de un análisis estático y sus límites.
-- **Salida y Done:** la tabla de tres clases con sus límites y la elección razonada. **Done** cuando puedes explicar por qué cero alertas de una herramienta no significa que el código sea seguro.
-- **Alternativa sencilla:** si no hay ninguna herramienta disponible en tu entorno, estudia la tabla con la documentación y marca la elección como «teórica»; el resto del módulo sigue siendo válido con la salida sintética del ejemplo.
+- **Salida y Done:** comparación de las cinco coberturas con límites, ubicaciones y elección razonada. Explica por qué cero alertas no significa seguridad.
+- **Alternativa sencilla:** sin scanner instalado, usa la salida estática sintética; DAST solo requiere Node LTS para ejecutar el fixture HTTP propio. Lo no ejecutado queda declarado, no se acredita por leer una salida.
 - **Pausa / siguiente paso:** deja la clase elegida: es la que ejecutarás en [M15-A2](#m15-a2--una-ejecución-reproducible-o-una-salida-con-procedencia).
 
 ### M15-A2 — Una ejecución reproducible o una salida con procedencia
@@ -1698,9 +1852,10 @@ export async function consultarPedido(pool, id) {
 - **Requisitos mínimos:** la clase elegida en [M15-A1](#m15-a1--qué-ve-cada-clase-de-herramienta) y el alcance de [M14-A1](#m14-a1--congelar-alcance-y-elegir-requisitos).
 - **Inicio:** decide la vía: **ejecutar** (si la herramienta ya es viable en tu entorno) o **estudiar la salida sintética del ejemplo**. La primera acción es escribir qué vas a hacer y por qué.
 - **Instrucciones:** si ejecutas, registra la **versión** de la herramienta, la configuración y el comando; ejecuta sobre el alcance, no sobre todo. Si usas una salida de ejemplo, declara su **procedencia**: si es sintética, dilo de forma expresa («salida sintética escrita a mano para este ejercicio»); si procede de una herramienta real, anota de dónde salió, con qué fecha y qué parte está censurada u oculta. Si desconoces la versión del código que la generó, escribe «versión desconocida» en lugar de suponerla. En ambos casos, guarda la salida sin datos reales ni secretos: oculta rutas, dominios y cadenas que identifiquen a alguien. No introduzcas un secreto real para probar el detector.
+- **DAST guiado → independiente:** ejecuta el fixture HTTP anterior, guarda comando/versión/salida y observa la mutación rojo–verde. Después escribe el caso sin credencial sin pedir su solución; contrasta su resultado con tu predicción. Puedes aplicar la misma prueba a tu API local autorizada si ya existe, sin ampliar rutas. La salida sintética sustituye solo el análisis estático, **no** cuenta como DAST ejecutado; si no puedes ejecutar, declara ese hueco.
 - **Recurso:** NIST SSDF, apartado «SSDF Practices», vía [Automatización y supply chain](RECURSOS.md#automatización-y-supply-chain): para el lenguaje de procedencia y trazabilidad.
-- **Salida y Done:** la salida guardada con su procedencia, versión (o «desconocida») y configuración. **Done** cuando otra persona puede saber de dónde salió tu evidencia y repetir la operación.
-- **Alternativa sencilla:** si ninguna herramienta es viable, la salida sintética del ejemplo cumple el objetivo pedagógico; lo que no vale es presentar una captura sin origen.
+- **Salida y Done:** salida estática con procedencia y salida DAST local con permitido/negativo, o límite «no ejecutado». Diferencia qué propiedad sostiene cada una y qué no cubren.
+- **Alternativa sencilla:** sin scanner viable, la señal estática sintética permite practicar triage; no sustituye ejecutar el fixture DAST. Si falta Node, conserva la predicción y declara pendiente la prueba dinámica.
 - **Pausa / siguiente paso:** deja la salida: en [M15-A3](#m15-a3--triage-de-una-señal) triagearás una de sus señales.
 
 ### M15-A3 — Triage de una señal
@@ -1710,6 +1865,7 @@ export async function consultarPedido(pool, id) {
 - **Inicio:** elige **una** señal y abre su ficha: **regla disparada**, **fichero y línea**, **qué dice la herramienta**, **qué has verificado tú**. La primera acción es leer el código en esa línea antes de aceptar la etiqueta de la herramienta.
 - **Instrucciones:** razona la alcanzabilidad: ¿llega a esa línea un dato no confiable? ¿la ejecuta un camino real? Examina la exposición: ¿qué se obtiene si el problema es cierto y quién puede obtenerlo? Escribe las precondiciones. Después clasifica: **confirmado** (lo has ejecutado o has seguido el camino hasta un sink con evidencia), **falso positivo razonado** (explicas por qué el código no es alcanzable o el dato no es controlado) o **pendiente** (no has podido verificarlo). No fuerces un defecto: la categoría «pendiente» es profesional. Si la señal es de SCA, la categoría correcta no es «falso positivo de la vulnerabilidad» sino «vulnerabilidad de la versión, explotabilidad no confirmada». Si no hay ninguna señal en la salida, documenta una **limitación verificable** de la herramienta en tu código, con su explicación.
 - **Recurso:** GitHub code scanning, apartado «About CodeQL analysis», vía [Automatización y supply chain](RECURSOS.md#automatización-y-supply-chain): para el criterio de alcanzabilidad que la propia herramienta usa como referencia.
+- **Prioridad contextual:** justifica exposición (quién llega), explotabilidad (datos controlables, precondiciones y defensas) e impacto de negocio; CVSS es información técnica, no la decisión completa. Ejemplo: concatenación confirmada en función sin llamador conocido queda pendiente, mientras una lectura ajena reproducida y pública requiere contención. No confundas «no sé si se alcanza» con «falso positivo».
 - **Salida y Done:** la ficha de la señal con las tres categorías decididas y su justificación. **Done** cuando puedes explicar por qué una dependencia vulnerable listada no demuestra por sí sola explotación alcanzable.
 - **Alternativa sencilla:** si tu salida tiene señales irrelevantes, triagea la menos relevante: el ejercicio es el método de decisión, no la gravedad de la señal.
 - **Pausa / siguiente paso:** deja la ficha de la señal: la siguiente actividad revisa su fix y el estado de las dependencias.
@@ -1719,11 +1875,11 @@ export async function consultarPedido(pool, id) {
 - **Objetivo:** revisar el arreglo propuesto, entender el estado de tus dependencias y saber qué aportaría un SBOM sin construirlo.
 - **Requisitos mínimos:** la ficha de la señal de [M15-A3](#m15-a3--triage-de-una-señal) y el *lockfile* de tu proyecto, si existe.
 - **Inicio:** escribe cuatro apartados: **fix propuesto**, **control alternativo**, **procedencia de las dependencias**, **qué no ve la herramienta**. La primera acción es abrir el *lockfile* y contar cuántas dependencias directas e indirectas tiene.
-- **Instrucciones:** para el fix, distingue **actualizar la dependencia** de **cambiar el código**: hay vulnerabilidades que se corrigen sin tocar la versión, y eso cambia la operación y el riesgo. Para la procedencia, explica qué es un *lockfile* (versiones exactas y su integridad) y qué es la **procedencia** (de dónde viene el artefacto y con qué confianza). Para el SBOM, explica el concepto —un inventario de componentes y versiones— y qué usaría un evaluador, sin generar uno. Cierra escribiendo qué clase de problema **no** detectaría ninguna de las tres herramientas: el diseño, la lógica de negocio y la configuración. Redacta la ficha n.º 6 con la plantilla del [README](README.md#ficha-de-hallazgo-o-revisión), aunque no haya defecto confirmado.
+- **Instrucciones:** distingue arreglo de raíz (actualizar dependencia/cambiar código) de control compensatorio (quitar exposición o deshabilitar operación). Revisa lockfile, integridad y procedencia; explica cómo un SBOM del build ayudaría a localizar componentes afectados sin demostrar explotación ni tener que generarlo. En la ficha n.º 6 indica un gate: bloquear si el defecto explotable/expuesto supera el riesgo aceptable; recomendar si puede corregirse sin impedir release; aceptar residual solo con dueño, justificación y alcance. Toda excepción tiene condición de cierre/revisión por cambio relevante o vencimiento definido, nunca una supresión global indefinida. Define qué evidencia/retest la cerraría. No afirmes cobertura completa de diseño, negocio o configuración por sumar scanners.
 - **Recurso:** NIST SSDF, apartado «SSDF Practices», vía [Automatización y supply chain](RECURSOS.md#automatización-y-supply-chain): para el vocabulario de procedencia y la función de un inventario.
-- **Salida y Done:** la ficha n.º 6 con el triage, la revisión del fix y la lista de lo que ninguna herramienta cubre. **Done** cuando puedes explicar qué aporta un SBOM y por qué no sustituye a la revisión manual.
+- **Salida y Done:** ficha n.º 6 con triage, fix, gate/excepción y límites de cobertura. Explica qué aporta un SBOM y por qué no sustituye a la revisión manual.
 - **Alternativa sencilla:** si no tienes *lockfile*, descríbelo conceptualmente y marca «no disponible»; no instales un gestor de paquetes nuevo para completar la actividad.
-- **Pausa / siguiente paso:** guarda la ficha n.º 6: con ella ya tienes **seis** fichas distintas (1, 2, 3, 4, 5 y esta), que es el mínimo que audita el módulo 20.
+- **Pausa / siguiente paso:** conserva el triage y sus límites para la auditoría del módulo 20; no hay un mínimo de fichas que completar.
 
 **Entregable / Done:** salida y triage reproducible o ejemplo identificado, con decisión razonada y partes no probadas. No descargues dependencias maliciosas ni introduzcas un secreto real para probar. Cero alertas no implica seguro.
 
@@ -1770,12 +1926,18 @@ export async function consultarPedido(pool, id) {
 
 Qué observar: las dos denegaciones **no** se justifican con «es más seguro», sino con la pregunta «**¿el job necesita esto para hacer su trabajo?**». Y la consecuencia es concreta: si el job está comprometido, con esta *policy* puede publicar (que es lo que podría hacer de todos modos) pero **no puede borrar imágenes ajenas ni escalar sus permisos**. Esa es la medida del control.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — El job, su identidad, su secreto y su recurso | 2 h | Diagrama con identidad, secreto ficticio y operaciones permitidas y denegadas → [M16-A1](#m16-a1--el-job-su-identidad-su-secreto-y-su-recurso) |
-| A2 — Eventos no confiables y cadena de instrucciones | 2 h | Mapa de quién puede cambiar el pipeline y qué ocurre → [M16-A2](#m16-a2--eventos-no-confiables-y-cadena-de-instrucciones) |
-| A3 — *Least privilege* e identidad efímera | 2,5 h | Tabla de permisos con el mínimo y su justificación → [M16-A3](#m16-a3--least-privilege-e-identidad-efímera) |
-| A4 — Un control mínimo, comprobado | 2,5 h | Policy con caso permitido y caso denegado ejecutados → [M16-A4](#m16-a4--un-control-mínimo-comprobado) |
+**Ciclo de secretos/claves — ejemplo sin vault:** genera una clave de prueba con CSPRNG (`randomBytes`, M4), distribúyela solo al job/servicio autorizado por un canal protegido, almacénala fuera del código y limita lectura/uso. Una variable de entorno evita incrustarla en el bundle, pero no es un almacén invulnerable: un proceso comprometido puede leerla. Nunca en browser, Git, imagen/Dockerfile, argumento de comando visible o logs. Distingue **rotación** (emitir nueva y migrar consumidores) de **revocación** (dejar de aceptar la antigua). En M11 las públicas se distribuyen para verificar; las privadas no. En cifrado AEAD, retirar una clave antigua exige migrar datos o conservar acceso controlado para descifrarlos, no borrarla a ciegas.
+
+Ejemplo resuelto de rotación: `k1` es la clave activa del webhook ficticio; se provisiona `k2`, el emisor usa `k2`, el receptor acepta `k2` y retira `k1` al completar la transición. Si `k1` se filtra, la revocación puede exigir retirarla inmediatamente y gestionar reintentos fallidos. Un `kid` no decide confianza: solo selecciona dentro de claves autorizadas. Evidencia: evento legítimo con `k2` pasa, evento con `k1` revocada falla sin efecto; no registrar ninguna clave para demostrarlo. La lista de IDs/estados y los tests bastan, sin construir un gestor de secretos.
+
+**Contenedor y fronteras de entrega:** un PR externo no debe heredar secretos/permisos de publicación. Revisa en un Dockerfile existente o un fragmento de documentación usuario non-root, ausencia de secretos en capas, base/versiones y archivos copiados. Non-root limita el proceso local, no los permisos IAM ni la exposición de la API. Coloca los controles de M15 en PR/build/release según lo que verifican. Gateway, WAF y restricciones de red pueden compensar exposición, pero no corrigen BOLA ni una identidad workload excesiva: deja su límite escrito.
+
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — El job, su identidad, su secreto y su recurso | Diagrama con identidad, secreto ficticio y operaciones permitidas y denegadas → [M16-A1](#m16-a1--el-job-su-identidad-su-secreto-y-su-recurso) |
+| A2 — Eventos no confiables y cadena de instrucciones | Mapa de quién puede cambiar el pipeline y qué ocurre → [M16-A2](#m16-a2--eventos-no-confiables-y-cadena-de-instrucciones) |
+| A3 — *Least privilege* e identidad efímera | Tabla de permisos con el mínimo y su justificación → [M16-A3](#m16-a3--least-privilege-e-identidad-efímera) |
+| A4 — Un control mínimo, comprobado | Policy con caso permitido y caso denegado ejecutados → [M16-A4](#m16-a4--un-control-mínimo-comprobado) |
 
 ### M16-A1 — El job, su identidad, su secreto y su recurso
 
@@ -1784,6 +1946,7 @@ Qué observar: las dos denegaciones **no** se justifican con «es más seguro»,
 - **Inicio:** dibuja cuatro cajas: **job**, **identidad**, **secreto ficticio**, **recurso**. La primera acción es escribir qué credencial usa hoy tu job y de dónde la saca.
 - **Instrucciones:** nombra la identidad con precisión. Anota qué secreto ficticio necesita y para qué operación: por ejemplo, publicar una imagen o desplegar. Define dos operaciones: una que **necesita** el secreto y otra que **no lo necesita** pero lo tiene disponible. Escribe la pregunta que guía el módulo: si el job está comprometido, ¿qué puede hacer con lo que legítimamente puede leer? No captures secretos reales: usa nombres y valores claramente de prueba.
 - **Recurso:** CI/CD Security Cheat Sheet, apartados «Secrets Management» y «Least Privilege», vía [Pipeline y permisos](RECURSOS.md#pipeline-y-permisos): para separar flujo de secretos y permisos mínimos.
+- **Ciclo aplicado:** sobre el mismo diagrama anota generación, distribución, almacenamiento, rotación y revocación del secreto/claves, con dueño y consumidores. Razona cómo impedir que termine en browser/Git/logs; nombres ficticios, nunca valores reales.
 - **Salida y Done:** el diagrama con las cuatro cajas y las dos operaciones, una necesaria y otra no. **Done** cuando puedes nombrar la operación que no debería tener acceso al secreto.
 - **Alternativa sencilla:** si no tienes pipeline, modela un «job» ficticio que lee un secreto de un almacén y llama a una API ficticia; el análisis de permisos es idéntico y se marca como modelo.
 - **Pausa / siguiente paso:** deja el diagrama: en [M16-A2](#m16-a2--eventos-no-confiables-y-cadena-de-instrucciones) añades quién puede modificarlo.
@@ -1795,6 +1958,7 @@ Qué observar: las dos denegaciones **no** se justifican con «es más seguro»,
 - **Inicio:** escribe la cadena de confianza: **evento → workflow → script → binario desplegado**. La primera acción es escribir qué evento puede ser solicitado por alguien que no es de tu equipo.
 - **Instrucciones:** identifica en cada eslabón quién puede escribir: una etiqueta, un *pull request* de una rama externa, un comentario, un artefacto que el job descarga, un parámetro de entrada. Explica el riesgo de cada uno: un job que se dispara con código de un tercero ejecuta ese código **con los permisos de tu job**. Propón dos mitigaciones concretas y contrastadas con la documentación: aprobación previa, ejecución en un entorno con menos permisos, o fijación de la versión del artefacto. Escribe qué evento de tu sistema actual confías de más y por qué.
 - **Recurso:** CI/CD Security Cheat Sheet, apartados «Managing Third-Party Code» y «Secure SCM Configuration», vía [Pipeline y permisos](RECURSOS.md#pipeline-y-permisos): para el criterio de tratar un evento externo como no confiable.
+- **Entrega aplicada:** reutiliza la comparación M15 para señalar PR/build/release y una decisión de bloqueo/excepción. Lee un Dockerfile existente o de la guía: explica qué limita non-root y qué IAM/red deja fuera. No construyas imagen, cluster ni pipeline nuevo.
 - **Salida y Done:** el mapa de la cadena con la columna «quién puede escribir» y las dos mitigaciones. **Done** cuando puedes señalar el eslabón de tu pipeline donde un tercero puede inyectar instrucciones.
 - **Alternativa sencilla:** si tu pipeline es un simple script local, modela el caso de un script que recibe un argumento desde un webhook; el razonamiento se conserva.
 - **Pausa / siguiente paso:** anota el eslabón débil: será el que [M16-A4](#m16-a4--un-control-mínimo-comprobado) intente cerrar con un control de permisos.
@@ -1817,6 +1981,7 @@ Qué observar: las dos denegaciones **no** se justifican con «es más seguro»,
 - **Inicio:** elige **una** acción que el job no necesita y restríngela. La primera acción es escribir el caso denegado esperado: qué operación, qué error y qué ausencia de efecto.
 - **Instrucciones:** implementa el control: una *policy* local de permisos con dos operaciones (una permitida, otra denegada), o la configuración equivalente en tu entorno. Ejecuta ambos casos y guarda las salidas: el permitido funciona, el denegado falla con un error identificable. Comprueba que la salida del caso denegado **no revela** el secreto ficticio: un error de permisos no debe incluir el valor leído. Distingue de forma explícita entre una **policy simulada** (las reglas de tu fichero) y los **permisos efectivos** del sistema real: la primera es lo que has probado, la segunda no la has tocado.
 - **Recurso:** la sección «Least Privilege» de la [CI/CD Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/CI_CD_Security_Cheat_Sheet.html), vía [Pipeline y permisos](RECURSOS.md#pipeline-y-permisos): para comprobar que tu control cubre lo que dice cubrir.
+- **Transferencia independiente:** a partir del ejemplo `k1 → k2`, añade al test/policy existente la decisión por ID activo/revocado con material ficticio. Predice permitido con `k2` y denegado con `k1`; verifica ausencia de efecto y de valor secreto en salida. Esto demuestra el modelo de ciclo, no rotación en una plataforma real. Si eliges un control compensatorio, declara qué raíz no arregla.
 - **Salida y Done:** la policy, las dos salidas (permitido y denegado) y la frase que separa policy simulada de permisos efectivos. **Done** cuando puedes responder qué puede hacer un job comprometido con un secreto que legítimamente tiene permitido leer.
 - **Alternativa sencilla:** si tu entorno no permite cambiar permisos reales, simula la policy en un fichero de reglas y un evaluador propio; el resultado buscado es el par permitido/denegado, y lo marcas como simulación.
 - **Pausa / siguiente paso:** guarda la policy y el par de salidas: el módulo 17 dirá qué ocurre con ellos cuando haya que responder a un incidente.
@@ -1844,6 +2009,8 @@ Qué observar: las dos denegaciones **no** se justifican con «es más seguro»,
 - **Log forging (log injection):** conseguir que un dato controlado por un usuario **cree una línea de log falsa**, pareciendo un evento legítimo.
 - **Revocación vs borrado:** **borrar** una copia del token elimina una evidencia; **revocar** invalida su capacidad de uso. Solo lo segundo frena al atacante.
 
+**Ejemplo de respuesta por ciclo:** un log revela solo `keyId: k1` y el evento de uso sospechoso, nunca el secreto. El responsable revoca `k1`, distribuye `k2` a consumidores autorizados y verifica con fixtures que el viejo acceso falla y el nuevo funciona. Si es un JWT autocontenido, borrar el token del navegador no lo invalida: hasta `exp` seguirá verificándose salvo que el receptor aplique revocación/denylist, estado de sesión o retirada de clave (con impacto sobre otros tokens). Explica esa decisión y sus límites en el playbook, no prometas revocación instantánea sin mecanismo. El evento de rotación/revocación registra ID, actor y resultado, no material criptográfico.
+
 **Ejemplo observado — un evento bien formado y el ataque de log forging:**
 
 ```json
@@ -1862,12 +2029,12 @@ INFO event=admin.role.granted actor=u-1
 
 Si un campo controlado por el usuario contiene un salto de línea, el texto plano produce **tres líneas**, y la tercera parece un evento de privileged legítimo. Con formato **estructurado** (una línea de JSON por evento) el mismo contenido se mantiene **en una sola línea** y el campo queda dentro de su valor: no puede inventar un evento. Comprueba las dos salidas: es la diferencia entre un log en el que se puede confiar y uno en el que no.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Qué eventos registrar y con qué identificador | 2 h | Lista de eventos con campos y exclusiones → [M17-A1](#m17-a1--qué-eventos-registrar-y-con-qué-identificador) |
-| A2 — Redaction y minimización en un logger local | 2,5 h | Logger con redacción probada y salida sin datos sensibles → [M17-A2](#m17-a2--redaction-y-minimización-en-un-logger-local) |
-| A3 — Log forging | 2 h | Prueba de inyección de saltos de línea y su corrección → [M17-A3](#m17-a3--log-forging) |
-| A4 — Playbook y robo de token ficticio | 2,5 h | Playbook recorrido con decisiones y límites de la simulación → [M17-A4](#m17-a4--playbook-y-robo-de-token-ficticio) |
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Qué eventos registrar y con qué identificador | Lista de eventos con campos y exclusiones → [M17-A1](#m17-a1--qué-eventos-registrar-y-con-qué-identificador) |
+| A2 — Redaction y minimización en un logger local | Logger con redacción probada y salida sin datos sensibles → [M17-A2](#m17-a2--redaction-y-minimización-en-un-logger-local) |
+| A3 — Log forging | Prueba de inyección de saltos de línea y su corrección → [M17-A3](#m17-a3--log-forging) |
+| A4 — Playbook y robo de token ficticio | Playbook recorrido con decisiones y límites de la simulación → [M17-A4](#m17-a4--playbook-y-robo-de-token-ficticio) |
 
 ### M17-A1 — Qué eventos registrar y con qué identificador
 
@@ -1913,6 +2080,7 @@ Si un campo controlado por el usuario contiene un salto de línea, el texto plan
 - **Inicio:** escribe el *playbook* en cinco pasos: **detectar → contener → revocar/rotar → verificar → documentar**. La primera acción es definir la **señal** que dispara cada paso.
 - **Instrucciones:** en un ejercicio de mesa, simula el robo de un token ficticio: qué log lo delata, qué acción contiene el daño de inmediato, cómo se invalida la capacidad de uso del token (no se «borra» el token: se le revoca el uso), y qué se rota además (secretos, claves). Escribe el paso de verificación: cómo compruebas que el token **ya no sirve** —eso es el efecto **real** de la revocación— y que la operación legítima sigue funcionando. Si tu entorno no permite revocar de verdad, marca «modelo: revocación simulada» y explica qué falta para ejecutarla. Distingue con claridad **borrar una copia** de **invalidar la capacidad de uso**, que es la diferencia clave del ejercicio. Escribe qué haría falta para responder de verdad: acceso al proveedor de identidad, capacidad de rotación, ventana de detección. Y explica por qué una alerta de seguridad no es solo un asunto de disponibilidad de SRE: porque hay un actor hostil y un riesgo de exfiltración de datos.
 - **Recurso:** Logging Cheat Sheet, apartados «Security use cases» y «Monitoring of events», vía [Logs y respuesta](RECURSOS.md#logs-y-respuesta): para el enlace entre el evento registrado y la respuesta.
+- **Verificación del ciclo:** reutiliza los casos de claves/credenciales activas y revocadas de M16, sin otro ejercicio. Señala generación/distribución/almacenamiento de reemplazo y efecto de retirar la antigua. Si solo haces mesa, marca «simulado» y declara cómo comprobarías revocación efectiva y continuidad legítima, sin registrar secretos.
 - **Salida y Done:** el playbook de cinco pasos con señales y responsables, el recorrido simulado con sus decisiones, y la lista de lo simulado frente a lo real. **Done** cuando puedes explicar por qué borrar un token de un log no resuelve su posible uso por un atacante.
 - **Alternativa sencilla:** si no puedes simular la revocación, razonas el paso con los controles de tu ejemplo y marcas «no ejecutado»; el playbook escrito es el entregable.
 - **Pausa / siguiente paso:** cierra el módulo: el módulo 18 plantea un caso donde la «respuesta» no la decide el modelo.
@@ -1968,12 +2136,12 @@ Qué observar: el stub **reproduce la petición**, no la ejecuta. La política l
 
 **El reto adicional** (no resuelto aquí): escribe tú el caso de **exfiltración a un destino externo** (no a un recurso local), con un stub que emita una acción de envío a un host simbólico, y comprueba que la política lo deniega. El ejemplo de arriba solo cubre la lectura de un recurso no permitido.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Dato no confiable frente a instrucción | 2 h | Diagrama del flujo con la frontera de confianza marcada → [M18-A1](#m18-a1--dato-no-confiable-frente-a-instrucción) |
-| A2 — Inyección directa e indirecta con un documento ficticio | 2 h | Documento con instrucción maliciosa y fake secret inequívoco → [M18-A2](#m18-a2--inyección-directa-e-indirecta-con-un-documento-ficticio) |
-| A3 — *Excessive agency* y política de herramientas externa | 3 h | Política actor/acción/recurso/alcance antes de la herramienta → [M18-A3](#m18-a3--excessive-agency-y-política-de-herramientas-externas) |
-| A4 — Stub determinista y efectos verificables | 2 h | Test de efecto permitido y denegado, y límites de lo demostrado → [M18-A4](#m18-a4--stub-determinista-y-efectos-verificables) |
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Dato no confiable frente a instrucción | Diagrama del flujo con la frontera de confianza marcada → [M18-A1](#m18-a1--dato-no-confiable-frente-a-instrucción) |
+| A2 — Inyección directa e indirecta con un documento ficticio | Documento con instrucción maliciosa y fake secret inequívoco → [M18-A2](#m18-a2--inyección-directa-e-indirecta-con-un-documento-ficticio) |
+| A3 — *Excessive agency* y política de herramientas externa | Política actor/acción/recurso/alcance antes de la herramienta → [M18-A3](#m18-a3--excessive-agency-y-política-de-herramientas-externas) |
+| A4 — Stub determinista y efectos verificables | Test de efecto permitido y denegado, y límites de lo demostrado → [M18-A4](#m18-a4--stub-determinista-y-efectos-verificables) |
 
 ### M18-A1 — Dato no confiable frente a instrucción
 
@@ -2039,12 +2207,16 @@ Qué observar: el stub **reproduce la petición**, no la ejecuta. La política l
 - **Condición de parada:** la señal que te hace abandonar (un dato real, un acceso inesperado, un servicio que no es el previsto). Es parte del alcance, no una excepción.
 - **Hipótesis:** lo que esperas que ocurra y por qué. Se escribe **antes** de ejecutar, para que el resultado informe y no cambie el criterio.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Objetivo y alcance congelado | 2 h | Alcance con hosts, archivos, operaciones y exclusiones → [M19-A1](#m19-a1--objetivo-y-alcance-congelado) |
-| A2 — Inventario, modelo y 3–5 casos | 2 h | Selección de casos con su requisito y su precondición → [M19-A2](#m19-a2--inventario-modelo-y-35-casos) |
-| A3 — Hipótesis, predicción y ejecución | 3 h | Registro de casos con permitido, negativo y controles que resisten → [M19-A3](#m19-a3--hipótesis-predicción-y-ejecución) |
-| A4 — Informe preliminar y priorización | 2 h | Informe con confirmado, hipótesis y no probado → [M19-A4](#m19-a4--informe-preliminar-y-priorización) |
+**Ejemplo resuelto de prioridad y comunicación:** una alerta de dependencia tiene puntuación CVSS alta, pero no has establecido llamador/exposición; otra prueba reproduce lectura de factura ajena con cuenta normal en una ruta expuesta. No copies el orden de puntuaciones: para la segunda, exposición y explotación están comprobadas y el impacto es confidencialidad de clientes; propones **bloquear** la operación afectada hasta contenerla. Para la primera, investigas alcanzabilidad y **recomiendas** la actualización con lo aún desconocido, sin declararla inocua. **Aceptar riesgo residual** es una decisión explícita de un dueño autorizado con motivo y condiciones de revisión, no el silencio de seguridad.
+
+Versión técnica: «actor de org-b obtiene f1 de org-a; pasos/petición/evidencia; falta filtro por organización en este camino». Resumen para producto: «una cuenta puede ver facturas de otro cliente; limitar ahora la operación, corregir el filtro y reabrir tras retest preservando lecturas legítimas». Solución por fases: contención acotada → arreglo de raíz → retest/regresión; dueño y revisión si cambia acceso, dependencia o diseño. No es un diario de estudio ni exige otro tracker. Tu desafío en M19-A4 es defender una prioridad propia y qué evidencia la cambiaría.
+
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Objetivo y alcance congelado | Alcance con hosts, archivos, operaciones y exclusiones → [M19-A1](#m19-a1--objetivo-y-alcance-congelado) |
+| A2 — Inventario, modelo y 3–5 casos | Selección de casos con su requisito y su precondición → [M19-A2](#m19-a2--inventario-modelo-y-35-casos) |
+| A3 — Hipótesis, predicción y ejecución | Registro de casos con permitido, negativo y controles que resisten → [M19-A3](#m19-a3--hipótesis-predicción-y-ejecución) |
+| A4 — Informe preliminar y priorización | Informe con confirmado, hipótesis y no probado → [M19-A4](#m19-a4--informe-preliminar-y-priorización) |
 
 ### M19-A1 — Objetivo y alcance congelado
 
@@ -2086,6 +2258,7 @@ Qué observar: el stub **reproduce la petición**, no la ejecuta. La política l
 - **Inicio:** reparte los casos en tres columnas: **confirmado**, **hipótesis**, **no probado**. La primera acción es decidir qué columna es la más importante del informe: la de lo confirmado, aunque sea corta.
 - **Instrucciones:** prioriza por **impacto** y **exposición**, y escribe el criterio en una frase. Justifica la prioridad sin usar severidades inventadas: si no tienes datos para una escala, razona en palabras. Descarta duplicados: si dos casos muestran lo mismo, cuenta uno. Escribe el informe preliminar con el alcance, el método, los casos, los resultados, los límites y lo que no evaluaste. Pide una evaluación externa con el prompt 8 **después** de tu informe y registra los desacuerdos sin aceptarlos automáticamente. No inventes hallazgos para que el informe tenga volumen.
 - **Recurso:** la plantilla de [Ficha de hallazgo o revisión](README.md#ficha-de-hallazgo-o-revisión) del README: para la estructura de la ficha y el tratamiento de la incertidumbre.
+- **Decisión contextual:** contrasta exposición, explotabilidad y efecto de negocio, no solo CVSS. Elige bloquear/recomendar/aceptar residual y justifica el trade-off como en el ejemplo. Escribe en el mismo informe el hallazgo técnico y un resumen para producto, fix por fases, dueño del residual y revisión por cambios relevantes. Si faltan datos, declara prioridad provisional y la comprobación que falta.
 - **Salida y Done:** el informe preliminar con las tres columnas separadas y el criterio de priorización. **Done** cuando un lector puede saber qué está probado y qué no sin preguntarte.
 - **Alternativa sencilla:** si no hay ningún hallazgo confirmado, el informe es el de un control que resistió, con su alcance y sus límites; es un resultado válido y mejor que uno inflado.
 - **Pausa / siguiente paso:** guarda el informe: el módulo 20 lo convierte en el informe definitivo con retest.
@@ -2102,14 +2275,14 @@ Qué observar: el stub **reproduce la petición**, no la ejecuta. La política l
 
 **Recursos:** las plantillas del [README](README.md#registro-de-evidencia-por-módulo-y-actividad) y el requisito que seleccionaste en [Modelado y verificación](RECURSOS.md#modelado-y-verificación).
 
-**Prerrequisitos:** el informe preliminar de [M19-A4](#m19-a4--informe-preliminar-y-priorización) y las fichas de los módulos anteriores.
+**Prerrequisitos:** el informe preliminar de [M19-A4](#m19-a4--informe-preliminar-y-priorización) y la evidencia existente de los módulos anteriores.
 
-| Actividad | Dedicación acumulada | Trabajo y evidencia |
-|---|---|---|
-| A1 — Elegir la corrección o el control a retestear | 2 h | Decisión con motivo y criterio de aceptación → [M20-A1](#m20-a1--elegir-la-corrección-o-el-control-a-retestear) |
-| A2 — Retest con el mismo criterio | 2,5 h | Salidas antes y después con el negativo rechazado y el permitido preservado → [M20-A2](#m20-a2--retest-con-el-mismo-criterio) |
-| A3 — Informe ejecutivo y anexo técnico | 2,5 h | Informe con alcance, decisión, riesgo residual y anexo sanitizado → [M20-A3](#m20-a3--informe-ejecutivo-y-anexo-técnico) |
-| A4 — Auditoría de fichas y balance honesto | 2 h | Seis fichas auditadas, tres remediaciones comprobadas y balance → [M20-A4](#m20-a4--auditoría-de-fichas-y-balance-honesto) |
+| Actividad | Trabajo y evidencia |
+|---|---|
+| A1 — Elegir la corrección o el control a retestear | Decisión con motivo y criterio de aceptación → [M20-A1](#m20-a1--elegir-la-corrección-o-el-control-a-retestear) |
+| A2 — Retest con el mismo criterio | Salidas antes y después con el negativo rechazado y el permitido preservado → [M20-A2](#m20-a2--retest-con-el-mismo-criterio) |
+| A3 — Informe ejecutivo y anexo técnico | Informe con alcance, decisión, riesgo residual y anexo sanitizado → [M20-A3](#m20-a3--informe-ejecutivo-y-anexo-técnico) |
+| A4 — Auditoría de fichas y balance honesto | Evidencia existente revisada, límites y huecos declarados, y balance → [M20-A4](#m20-a4--auditoría-de-fichas-y-balance-honesto) |
 
 ### M20-A1 — Elegir la corrección o el control a retestear
 
@@ -2118,6 +2291,7 @@ Qué observar: el stub **reproduce la petición**, no la ejecuta. La política l
 - **Inicio:** elige **una** corrección pequeña de tu informe si está bajo tu control; si no hay hallazgo, elige un control local anterior para retestear. La primera acción es escribir el criterio de aceptación: qué resultado exacto significa «reparado».
 - **Instrucciones:** escribe el criterio con el mismo lenguaje del caso original: si el criterio era «el actor de `org-b` no obtiene la factura de `org-a`», el criterio de aceptación es ese mismo, no «más seguro». Si la corrección está en un backend de lab que no controlas, no la declares reparada: elige otro objetivo. Escribe las precondiciones del retest y la evidencia que vas a guardar (salidas del test, peticiones, logs). Anota el estado previo: qué se esperaba antes y qué se esperaba después.
 - **Recurso:** la plantilla de [Registro de evidencia por módulo y actividad](README.md#registro-de-evidencia-por-módulo-y-actividad) del README: para el encuadre del retest y su relación con el informe.
+- **Corrección por fases:** reutiliza la decisión M19: contención/control compensatorio, arreglo de raíz y criterio de retest. Especifica cuándo retirar la contención y qué riesgo sigue aceptado, con dueño y revisión si cambia una precondición relevante. No presentes un WAF o una excepción de scanner como arreglo de autorización.
 - **Salida y Done:** la decisión con motivo, el criterio de aceptación y la lista de evidencia prevista. **Done** cuando alguien puede decir qué resultado concreto consideraría «reparado».
 - **Alternativa sencilla:** si tu único trabajo es un control que ya resistió, el retest consiste en **repetir** el caso con el mismo criterio y demostrar que sigue resistiendo; eso también es un retest válido.
 - **Pausa / siguiente paso:** deja el criterio escrito: en [M20-A2](#m20-a2--retest-con-el-mismo-criterio) lo ejecutas.
@@ -2130,45 +2304,46 @@ Qué observar: el stub **reproduce la petición**, no la ejecuta. La política l
 - **Instrucciones:** aplica la corrección mínima o reproduce la ya existente, conservando la base, la revisión y las evidencias de antes y después. Ejecuta el retest: el negativo debe seguir rechazándose y el permitido debe seguir funcionando. Comprueba que el caso permitido no se rompió al arreglar el negativo: una remediación que rompe el camino legítimo es una regresión y debe anotarse como tal. Guarda las salidas. Si algo falla, no lo maquilles: es el resultado del retest.
 - **Recurso:** la plantilla de [Registro de evidencia por módulo y actividad](README.md#registro-de-evidencia-por-módulo-y-actividad) del README: para el formato de la evidencia antes y después.
 - **Salida y Done:** las salidas del retest con el negativo rechazado y el permitido preservado, más la referencia al estado anterior. **Done** cuando alguien puede reproducir el retest con el mismo criterio y obtener el mismo resultado.
-- **Alternativa sencilla:** si no hay código que corregir, el retest es la repetición del caso; guarda la salida y compárala con la de hace semanas.
+- **Alternativa sencilla:** si no hay código que corregir, repite el caso y compara su salida con la evidencia anterior.
 - **Pausa / siguiente paso:** guarda las salidas: en [M20-A3](#m20-a3--informe-ejecutivo-y-anexo-técnico) entran en el informe.
 
 ### M20-A3 — Informe ejecutivo y anexo técnico
 
 - **Objetivo:** redactar un informe que se pueda leer en dos niveles y que no exponga nada sensible.
-- **Requisitos mínimos:** el retest de [M20-A2](#m20-a2--retest-con-el-mismo-criterio) y todas las fichas.
+- **Requisitos mínimos:** el retest de [M20-A2](#m20-a2--retest-con-el-mismo-criterio) y la evidencia existente pertinente para el informe.
 - **Inicio:** escribe el **resumen ejecutivo** en cinco líneas: alcance, impacto, decisión, estado y riesgo residual. La primera acción es escribir la frase de alcance en una sola línea, sin jerga.
 - **Instrucciones:** no uses severidades ni CVSS sin base: si no tienes los datos, razona en palabras. En el **anexo técnico**, incluye pasos mínimos, entorno y versiones, y la evidencia sanitizada. Revisa la sanitización antes de compartir: sin tokens, sin contraseñas, sin PII, sin rutas internas, sin dominios reales; usa placeholders como `usuario@ejemplo.invalid`. Verifica que la reproducción sea posible con lo que describes: alguien que solo tenga el anexo debe poder repetir el caso. Usa el prompt 7 para revisar la ficha, no para añadir hechos que no tengas.
 - **Recurso:** las plantillas de [Ficha de hallazgo o revisión](README.md#ficha-de-hallazgo-o-revisión) y de [Registro de evidencia por módulo y actividad](README.md#registro-de-evidencia-por-módulo-y-actividad) del README: para el checklist de publicación.
+- **Comunicación aplicada:** conserva las dos versiones M19 (técnica/producto), actualiza la decisión bloquear/recomendar/aceptar tras el retest y explica exposición/explotabilidad/impacto, fases pendientes y riesgo residual con dueño. Una aceptación se revisa por cambio relevante o condición de excepción, no por calendario de estudio.
 - **Salida y Done:** el resumen ejecutivo, el anexo técnico y la lista de sanitización aplicada. **Done** cuando el informe no contiene nada que no puedas defender ante el titular del dato.
 - **Alternativa sencilla:** si prefieres no compartir el anexo, conserva la estructura y marca «no destinado a distribución»; el informe sigue siendo tuyo y reutilizable.
 - **Pausa / siguiente paso:** deja el informe: en [M20-A4](#m20-a4--auditoría-de-fichas-y-balance-honesto) lo auditas junto al resto de fichas.
 
 ### M20-A4 — Auditoría de fichas y balance honesto
 
-- **Objetivo:** comprobar que tu portfolio cumple los mínimos de la ruta y escribir un balance honesto de lo que sabes y lo que no.
-- **Requisitos mínimos:** las fichas de los módulos 3, 4, 6, 7, 14, 15 y 19, y los tres pares rojo–verde.
-- **Inicio:** crea la tabla `auditoria.md` con columnas **ficha**, **módulo**, **tipo**, **rojo–verde**, **partes no probadas**, **enlace a evidencia**. La primera acción es listar todas las fichas que has escrito, aunque no las hayas numerado.
-- **Instrucciones:** comprueba que tienes **al menos seis fichas distintas** (no duplicados): autorización, SQL, XSS, autenticación, revisión y automatización son buenos candidatos. Comprueba que las **tres remediaciones locales rojo–verde** (módulos 3, 6 y 7) se sostienen: el mismo test falla antes y pasa después. Revisa que cada ficha declara su riesgo residual y lo no probado. Escribe el balance: qué sabes hacer hoy, qué has visto una sola vez, qué no has hecho y qué harías después con más tiempo. Usa el prompt 8 para simular la explicación de impacto, decisiones y límites ante alguien que pregunta. Elige un siguiente foco: un módulo a repasar, un control a rehacer o un tema nuevo.
+- **Objetivo:** auditar la evidencia que ya tienes y escribir un balance honesto de lo que sabes, sus límites y lo pendiente, sin cuotas de portfolio.
+- **Requisitos mínimos:** el informe y la evidencia que hayas producido, incluidas las pruebas rojo–verde disponibles. Una evidencia ausente es un hueco que declarar, no una ficha extra que fabricar.
+- **Inicio:** revisa los artefactos existentes y sus enlaces; anota el balance en el mismo informe. Si ayuda, usa una tabla breve con evidencia, control, límites y huecos, sin tracker ni documento adicional obligatorio.
+- **Instrucciones:** comprueba que las conclusiones se sostienen con la evidencia enlazada y no cuentan duplicados como resultados distintos. Revisa los pares rojo–verde existentes de autorización, SQL y XSS: el mismo criterio detecta el defecto antes y pasa después, preservando el permitido. No hace falta repetir pruebas ni crear fichas para alcanzar una cantidad; declara cualquier evidencia ausente, insuficiente o desactualizada y qué permitiría verificarla. Revisa riesgo residual y partes no probadas. Escribe qué sabes aplicar, qué solo has observado y qué no has hecho. Usa el prompt 8 para contrastar tu explicación de impacto, decisiones y límites; elige el siguiente foco por una necesidad real.
 - **Recurso:** la plantilla de [Ficha de hallazgo o revisión](README.md#ficha-de-hallazgo-o-revisión) del README: para el checklist de un portfolio honesto y la estructura del balance.
-- **Salida y Done:** la tabla de auditoría rellena, la confirmación de las seis fichas y las tres remediaciones, y el balance escrito. **Done** cuando puedes afirmar, sin exagerar, qué has verificado con evidencia propia.
-- **Alternativa sencilla:** si te faltan fichas, escríbelas ahora a partir de la evidencia que ya tienes (un control que resistió vale como ficha); si te faltan remediaciones, repite un par rojo–verde ya hecho. No inventes hallazgos: una ficha puede documentar que no encontraste nada.
+- **Salida y Done:** balance con referencias a la evidencia existente, conclusiones defendibles y huecos explícitos. **Done** cuando distingues lo verificado de lo pendiente sin exigir una cantidad de fichas o remediaciones.
+- **Alternativa sencilla:** si hay poca evidencia, audita solo la disponible y declara lo que aún no puedes afirmar. No escribas fichas adicionales ni repitas remediaciones solo para llenar el portfolio; conserva las pruebas necesarias de cada control en su actividad original.
 - **Pausa / siguiente paso:** guarda el balance y el siguiente foco: es el punto de entrada de una segunda vuelta sobre la ruta.
 
-**Entregable / Done:** reporte ejecutivo y técnico, retest con permitido y negativo, evidencia reproducible sanitizada y balance honesto. Si falta alguna remediación o ficha, registra el hueco y replanifica: 180 h no conceden dominio automático. Puedes mantener el portfolio privado.
+**Entregable / Done:** reporte ejecutivo y técnico, retest con permitido y negativo, evidencia reproducible sanitizada y balance honesto de lo existente. Declara los huecos sin crear documentación ni repetir remediaciones por cuota. Puedes mantener el portfolio privado.
 
 **Recuperación:** ¿qué puedes afirmar con tus pruebas, qué no y cuál sería el siguiente experimento seguro para reducir esa incertidumbre?
 
 ## Cierre de la ruta
 
-La ruta termina con un **balance honesto**, no con un certificado: has iniciado una práctica con evidencia, y las 180 h no conceden dominio ni compran exploración completa. Lo que queda es la lista de controles que has verificado, las fichas con su riesgo residual y los huecos que has declarado.
+La ruta termina con un **balance honesto**, no con un certificado: conserva los controles verificados, las fichas con su riesgo residual y los huecos declarados.
 
 Tres reglas de cierre:
 
-1. **No hay fase de repaso obligatoria.** Las 180 h son orientativas; si has terminado antes de la última actividad, has terminado, y lo que sobra no es una deuda ni una casilla que llenar.
-2. **La evidencia manda sobre el calendario.** Una actividad con salida y Done verificado cuenta; una actividad con horas gastadas y sin evidencia no cuenta, y su hueco se recupera cuando puedas.
+1. **No hay fase de repaso obligatoria.** Vuelve a una idea cuando una duda o un cambio haga necesaria otra comprobación.
+2. **La evidencia manda.** Cierra una actividad por su salida y Done verificado; declara lo que no pudiste comprobar.
 3. **La siguiente vuelta se elige por huecos, no por repasar el título.** Elige el módulo con más «no probado» en tu auditoría y vuelve a él con el criterio de [M20-A4](#m20-a4--auditoría-de-fichas-y-balance-honesto).
 
 Lo que **no** incluye esta ruta: una garantía de empleo, una certificación, una evaluación de seguridad completa de un sistema, ni la construcción de un producto. Lo que sí incluye: un método repetible para reconocer un riesgo, comprobar un control, escribir la evidencia y declarar los límites.
 
-Una revisión a **30 días es opcional y no está incluida en las 180 h**. El resultado es iniciación práctica con evidencia, no garantía de empleo, certificación ni seguridad completa de un sistema.
+La [comparación con el roadmap AppSec 2026](README.md#encaje-y-comparación) explica los refuerzos y lo que queda fuera: Kubernetes, cloud profundo y mobile. No se importan proyectos ni calendario adicionales.

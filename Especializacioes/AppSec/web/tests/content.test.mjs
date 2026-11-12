@@ -10,12 +10,12 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
 
 import {
   DOCS,
   createContext,
   extractCodeBlocks,
-  parseDuracion,
   parseItinerario,
   parseMarkdown,
   renderBlocks,
@@ -37,7 +37,7 @@ const PROMPTS = readFileSync(`${APPSEC}PROMPTS.md`, 'utf8');
 
 /**
  * Itinerario sintético con el formato de módulos. Sirve para fijar qué acepta
- * el parser (ids estables, duraciones estrictas) y qué rechaza.
+ * el parser (ids estables, dos columnas) y qué rechaza.
  */
 function itinerario({ modulos = [], cierre = true, titulo } = {}) {
   const partes = [`# ${titulo || `Itinerario AppSec — ${modulos.length} módulos`}`, ''];
@@ -46,9 +46,9 @@ function itinerario({ modulos = [], cierre = true, titulo } = {}) {
     if (modulo.campos !== false) {
       partes.push('**Objetivo verificable:** Objetivo del módulo.', '');
     }
-    partes.push('| Actividad | Dedicación acumulada | Trabajo y evidencia |', '|---|---|---|');
+    partes.push('| Actividad | Trabajo y evidencia |', '|---|---|');
     for (const fila of modulo.filas) {
-      partes.push(`| ${fila.codigo} — ${fila.titulo} | ${fila.duracion} | ${fila.trabajo || 'Trabajo y evidencia.'} |`);
+      partes.push(`| ${fila.codigo} — ${fila.titulo} | ${fila.trabajo || 'Trabajo y evidencia.'} |`);
     }
     partes.push('');
     if (modulo.desarrollo !== false) {
@@ -66,9 +66,9 @@ function itinerario({ modulos = [], cierre = true, titulo } = {}) {
 const MODULO_VALIDO = {
   numero: 1,
   filas: [
-    { codigo: 'A1', titulo: 'Primera actividad', duracion: '3 h' },
-    { codigo: 'A2', titulo: 'Segunda actividad', duracion: '3 h' },
-    { codigo: 'A3', titulo: 'Tercera actividad', duracion: '3 h' },
+    { codigo: 'A1', titulo: 'Primera actividad' },
+    { codigo: 'A2', titulo: 'Segunda actividad' },
+    { codigo: 'A3', titulo: 'Tercera actividad' },
   ],
 };
 
@@ -76,9 +76,7 @@ test('el itinerario real tiene 20 módulos y 83 actividades', () => {
   const parseado = parseItinerario(ITINERARIO);
 
   assert.equal(parseado.modules.length, 20);
-  assert.equal(parseado.schedule.modules, 20);
-  assert.equal(parseado.schedule.activities, 83);
-  assert.equal(parseado.schedule.totalHours, parseado.modules.reduce((suma, modulo) => suma + modulo.hours, 0));
+  assert.equal(parseado.modules.flatMap((modulo) => modulo.activities).length, 83);
 });
 
 test('cada módulo real tiene entre 3 y 5 actividades con los códigos A1…An', () => {
@@ -96,27 +94,24 @@ test('cada módulo real tiene entre 3 y 5 actividades con los códigos A1…An',
       `el módulo ${modulo.number} debe tener los códigos A1…A${modulo.activities.length}`,
     );
     for (const actividad of modulo.activities) {
-      assert.ok(actividad.hours > 0, 'toda actividad tiene dedicación positiva');
       assert.ok(actividad.titleText.length > 0, 'toda actividad tiene título');
       assert.ok(actividad.taskText.length > 0, 'toda actividad dice qué hay que hacer');
     }
   }
 });
 
-test('las horas se derivan del propio itinerario: 9 h por módulo y 180 h en total', () => {
+test('el itinerario no produce horarios ni duraciones: solo actividades y evidencia', () => {
   const parseado = parseItinerario(ITINERARIO);
-
+  assert.equal('schedule' in parseado, false);
   for (const modulo of parseado.modules) {
-    const suma = modulo.activities.reduce((total, actividad) => total + actividad.hours, 0);
-    assert.equal(suma, modulo.hours, `el módulo ${modulo.number} debe sumar sus actividades`);
-    assert.equal(modulo.hours, 9, `el módulo ${modulo.number} debe sumar 9 h`);
+    assert.equal('hours' in modulo, false);
+    const tabla = modulo.items.find((item) => item.kind === 'actividades').block;
+    assert.deepEqual(tabla.header, ['Actividad', 'Trabajo y evidencia']);
+    for (const actividad of modulo.activities) {
+      assert.equal('hours' in actividad, false);
+      assert.equal('durationText' in actividad, false);
+    }
   }
-
-  const sumaDirecta = parseado.modules
-    .flatMap((modulo) => modulo.activities)
-    .reduce((total, actividad) => total + actividad.hours, 0);
-  assert.equal(sumaDirecta, 180);
-  assert.equal(parseado.schedule.totalHours, 180);
 });
 
 test('los identificadores de actividad siguen al código, no al título ni al orden', () => {
@@ -132,9 +127,9 @@ test('los identificadores de actividad siguen al código, no al título ni al or
       {
         numero: 1,
         filas: [
-          { codigo: 'A3', titulo: 'Tercera actividad', duracion: '3 h' },
-          { codigo: 'A1', titulo: 'Primera actividad renombrada', duracion: '3 h' },
-          { codigo: 'A2', titulo: 'Segunda actividad', duracion: '3 h' },
+          { codigo: 'A3', titulo: 'Tercera actividad' },
+          { codigo: 'A1', titulo: 'Primera actividad renombrada' },
+          { codigo: 'A2', titulo: 'Segunda actividad' },
         ],
       },
     ],
@@ -163,27 +158,109 @@ test('los identificadores reales son estables y no dependen del índice global',
   assert.equal(new Set(ids).size, ids.length, 'no debe haber identificadores duplicados');
 });
 
-test('las duraciones son estrictas: horas o minutos, coma decimal, siempre positivas', () => {
-  assert.equal(parseDuracion('2 h'), 2);
-  assert.equal(parseDuracion('2h'), 2);
-  assert.equal(parseDuracion('1,5 h'), 1.5);
-  assert.equal(parseDuracion('1.5 h'), 1.5);
-  assert.equal(parseDuracion('90 min'), 1.5);
-  assert.equal(parseDuracion('45 minutos'), 0.75);
-  assert.equal(parseDuracion('2 horas'), 2);
+test('todos los IDs conservan la distribución histórica exacta por módulo', () => {
+  // Baseline anterior a retirar duraciones: M1/M2/M4 tienen cinco; los demás cuatro.
+  const esperados = Array.from({ length: 20 }, (_, i) =>
+    Array.from({ length: [1, 2, 4].includes(i + 1) ? 5 : 4 }, (_, j) => `module-${i + 1}-a${j + 1}`));
+  assert.deepEqual(parseItinerario(ITINERARIO).modules.map((m) => m.activities.map((a) => a.id)), esperados);
+});
 
-  for (const basura of ['0 h', '-1 h', '2', 'h', 'abc', '2,5,5 h', '', '   ', '2 h extra', 'NaN h', '1e3 h']) {
-    assert.equal(parseDuracion(basura), null, `«${basura}» no es una duración válida`);
+for (const [numero, marca, salida] of [
+  [4, 'createCipheriv', /permitido y manipulación rechazada/],
+  [11, 'function puedeLeer', /^$/],
+  [12, 'function verificar(body', /auténtico, alterado rechazado, antiguo rechazado/],
+  [15, 'createServer', /# pass 1/],
+]) {
+  test(`M${numero}: el ejemplo resuelto del itinerario se ejecuta con Node sin dependencias`, () => {
+    const modulo = parseItinerario(ITINERARIO).modules.find((m) => m.number === numero);
+    const ejemplos = modulo.items.filter((item) => item.kind === 'block'
+      && item.block.type === 'code' && item.block.text.includes(marca));
+    assert.equal(ejemplos.length, 1, 'un único ejemplo fuente, no una copia en el test');
+    const codigo = ejemplos[0].block.text;
+    // El ejemplo se ejecuta como terminal normal, no como hijo del protocolo V8 del runner.
+    const env = { ...process.env };
+    delete env.NODE_TEST_CONTEXT;
+    const ejecutar = (input) => execFileSync(process.execPath, ['--input-type=module'], {
+      input, env, encoding: 'utf8', timeout: 10000, stdio: ['pipe', 'pipe', 'pipe'],
+    });
+    assert.match(ejecutar(codigo), salida);
+    if (numero === 15) {
+      const control = "    if (org !== factura.org) { res.writeHead(404).end(); return; }";
+      assert.ok(codigo.includes(control));
+      assert.throws(() => ejecutar(codigo.replace(control, '')), /Command failed/,
+        'la misma prueba HTTP debe detectar retirar el alcance por organización');
+    }
+  });
+}
+
+test('M11 puedeLeer: claims malformados se deniegan sin throws ni coincidencias parciales', () => {
+  const modulo = parseItinerario(ITINERARIO).modules.find((m) => m.number === 11);
+  const ejemplo = modulo.items.find((item) => item.kind === 'block'
+    && item.block.type === 'code' && item.block.text.includes('function puedeLeer')).block.text;
+  const regresion = `
+const usuarioValido = { org: 'org-a' };
+const casosMalformados = [
+  [null, usuarioValido, factura],
+  [undefined, usuarioValido, factura],
+  [[], usuarioValido, factura],
+  [{ sub: 42, scopes: ['facturas:leer'] }, usuarioValido, factura],
+  [{ sub: 'svc-pedidos' }, usuarioValido, factura],
+  [{ ...workload, scopes: 'no-facturas:leer' }, usuarioValido, factura],
+  [{ ...workload, scopes: 'facturas:leer' }, usuarioValido, factura],
+  [{ ...workload, scopes: 42 }, usuarioValido, factura],
+  [{ ...workload, scopes: null }, usuarioValido, factura],
+  [{ ...workload, scopes: ['facturas:leer', 42] }, usuarioValido, factura],
+  [{ ...workload, scopes: ['no-facturas:leer'] }, usuarioValido, factura],
+  [workload, {}, {}],
+  [workload, {}, factura],
+  [workload, usuarioValido, {}],
+  [workload, null, factura],
+  [workload, usuarioValido, null],
+  [workload, { org: '' }, { org: '' }],
+  [workload, { org: '  ' }, { org: '  ' }],
+  [workload, { org: 42 }, { org: 42 }],
+  [workload, { org: ['org-a'] }, factura],
+  [workload, usuarioValido, { org: ['org-a'] }],
+];
+for (const [indice, entrada] of casosMalformados.entries()) {
+  let decision;
+  assert.doesNotThrow(() => { decision = puedeLeer(...entrada); }, 'caso ' + indice);
+  assert.equal(decision, false, 'caso ' + indice);
+}
+assert.equal(puedeLeer(workload, usuarioValido, factura), true);
+`;
+  const env = { ...process.env };
+  delete env.NODE_TEST_CONTEXT;
+  execFileSync(process.execPath, ['--input-type=module'], {
+    input: ejemplo + regresion, env, encoding: 'utf8', timeout: 10000, stdio: ['pipe', 'pipe', 'pipe'],
+  });
+});
+
+test('M20 audita evidencia existente sin mínimos numéricos de portfolio', () => {
+  const cierre = ITINERARIO.slice(ITINERARIO.indexOf('## Módulo 20'));
+  assert.doesNotMatch(cierre, /al menos seis|seis fichas|tres remediaciones|tres pares|cumple los mínimos/i);
+  assert.match(cierre, /No hace falta repetir pruebas ni crear fichas para alcanzar una cantidad/);
+  assert.match(cierre, /preservando el permitido/);
+  assert.match(cierre, /huecos explícitos/);
+});
+
+test('documentos cortos sin contratos temporales y con las ocho ayudas copiables', () => {
+  for (const fuente of [ITINERARIO, GUIA, RECURSOS, PROMPTS]) {
+    assert.doesNotMatch(fuente, /180\s*h|9\s*h|8\s*h|30 días|R1|Dedicación acumulada|\d+\s+%|\d+[–-]\d+\s*min/);
   }
+  assert.ok(GUIA.split('\n').length <= 86);
+  assert.ok(RECURSOS.split('\n').length <= 151);
+  assert.ok(PROMPTS.split('\n').length <= 91);
+  assert.equal(extractCodeBlocks(PROMPTS).length, 8);
 });
 
 test('el parser rechaza estructuras que no encajan', () => {
   const base = itinerario({ modulos: [MODULO_VALIDO] });
 
-  // Duración inválida.
+  // Trabajo ausente (no hay una duración que pueda contarse como evidencia).
   assert.throws(
-    () => parseItinerario(itinerario({ modulos: [{ ...MODULO_VALIDO, filas: [{ ...MODULO_VALIDO.filas[0], duracion: '0 h' }, MODULO_VALIDO.filas[1], MODULO_VALIDO.filas[2]] }] })),
-    /duración no interpretable/,
+    () => parseItinerario(base.replace('Trabajo y evidencia. |', ' |')),
+    /no dice qué hay que hacer/,
   );
 
   // Código de actividad repetido.
@@ -194,7 +271,7 @@ test('el parser rechaza estructuras que no encajan', () => {
 
   // Actividad sin código.
   assert.throws(
-    () => parseItinerario(itinerario({ modulos: [{ ...MODULO_VALIDO, filas: [{ codigo: 'X1', titulo: 'Sin código', duracion: '3 h' }, MODULO_VALIDO.filas[1], MODULO_VALIDO.filas[2]] }] })),
+    () => parseItinerario(itinerario({ modulos: [{ ...MODULO_VALIDO, filas: [{ codigo: 'X1', titulo: 'Sin código' }, MODULO_VALIDO.filas[1], MODULO_VALIDO.filas[2]] }] })),
     /sin código/,
   );
 
@@ -233,11 +310,11 @@ test('el parser rechaza estructuras que no encajan', () => {
           '',
           '## Módulo 1 — Título',
           '',
-          '| Actividad | Dedicación acumulada | Trabajo y evidencia | Extra |',
-          '|---|---|---|---|',
-          '| A1 — Una | 3 h | Trabajo | Más |',
-          '| A2 — Dos | 3 h | Trabajo | Más |',
-          '| A3 — Tres | 3 h | Trabajo | Más |',
+          '| Actividad | Trabajo y evidencia | Extra |',
+          '|---|---|---|',
+          '| A1 — Una | Trabajo | Más |',
+          '| A2 — Dos | Trabajo | Más |',
+          '| A3 — Tres | Trabajo | Más |',
           '',
           '## Cierre de la ruta',
           '',
@@ -245,7 +322,7 @@ test('el parser rechaza estructuras que no encajan', () => {
           '',
         ].join('\n'),
       ),
-    /4 columnas en lugar de 3/,
+    /3 columnas en lugar de 2/,
   );
 
   // Tabla con columnas que no son las esperadas.
@@ -257,11 +334,11 @@ test('el parser rechaza estructuras que no encajan', () => {
           '',
           '## Módulo 1 — Título',
           '',
-          '| Actividad | Duración | Trabajo y evidencia |',
-          '|---|---|---|',
-          '| A1 — Una | 3 h | Trabajo |',
-          '| A2 — Dos | 3 h | Trabajo |',
-          '| A3 — Tres | 3 h | Trabajo |',
+          '| Actividad | Texto |',
+          '|---|---|',
+          '| A1 — Una | Trabajo |',
+          '| A2 — Dos | Trabajo |',
+          '| A3 — Tres | Trabajo |',
           '',
           '## Cierre de la ruta',
           '',
@@ -269,7 +346,7 @@ test('el parser rechaza estructuras que no encajan', () => {
           '',
         ].join('\n'),
       ),
-    /no tiene la columna «dedicacion acumulada»/,
+    /no tiene la columna «trabajo y evidencia»/,
   );
 
   // Dos tablas de actividades en el mismo módulo.
@@ -281,17 +358,17 @@ test('el parser rechaza estructuras que no encajan', () => {
           '',
           '## Módulo 1 — Título',
           '',
-          '| Actividad | Dedicación acumulada | Trabajo y evidencia |',
-          '|---|---|---|',
-          '| A1 — Una | 3 h | Trabajo |',
-          '| A2 — Dos | 3 h | Trabajo |',
-          '| A3 — Tres | 3 h | Trabajo |',
+          '| Actividad | Trabajo y evidencia |',
+          '|---|---|',
+          '| A1 — Una | Trabajo |',
+          '| A2 — Dos | Trabajo |',
+          '| A3 — Tres | Trabajo |',
           '',
-          '| Actividad | Dedicación acumulada | Trabajo y evidencia |',
-          '|---|---|---|',
-          '| A4 — Cuatro | 3 h | Trabajo |',
-          '| A5 — Cinco | 3 h | Trabajo |',
-          '| A6 — Seis | 3 h | Trabajo |',
+          '| Actividad | Trabajo y evidencia |',
+          '|---|---|',
+          '| A4 — Cuatro | Trabajo |',
+          '| A5 — Cinco | Trabajo |',
+          '| A6 — Seis | Trabajo |',
           '',
           '## Cierre de la ruta',
           '',
@@ -481,9 +558,6 @@ test('los anchors Unicode siguen el estilo de GitHub', () => {
 });
 
 test('los anchors internos del repo existen de verdad', () => {
-  const ctx = createContext({ docPath: 'Especializacioes/AppSec/ITINERARIO.md', docKey: 'itinerario' });
-  const { html } = renderMarkdown(ITINERARIO, ctx);
-
   const destinos = new Map();
   for (const doc of DOCS) {
     const fuente = readFileSync(`${RAIZ}${doc.path}`, 'utf8');
@@ -493,12 +567,20 @@ test('los anchors internos del repo existen de verdad', () => {
     );
   }
 
-  for (const coincidencia of html.matchAll(/href="#\/doc\?path=([^"&]+)(?:&amp;anchor=([^"&]+))?"/g)) {
-    const path = decodeURIComponent(coincidencia[1]);
-    const anchor = coincidencia[2] ? decodeURIComponent(coincidencia[2]) : '';
-    assert.ok(destinos.has(path), `el destino ${path} debería ser uno de los 4 documentos`);
-    if (anchor) {
-      assert.ok(destinos.get(path).has(anchor), `el anchor #${anchor} debería existir en ${path}`);
+  for (const doc of DOCS) {
+    const ctx = createContext({ docPath: doc.path, docKey: doc.key });
+    const { html } = renderMarkdown(readFileSync(`${RAIZ}${doc.path}`, 'utf8'), ctx);
+    for (const coincidencia of html.matchAll(/href="#\/doc\?path=([^"&]+)(?:&amp;anchor=([^"&]+))?"/g)) {
+      const path = decodeURIComponent(coincidencia[1]);
+      const anchor = coincidencia[2] ? decodeURIComponent(coincidencia[2]) : '';
+      assert.ok(existsSync(`${RAIZ}${path}`), `el destino ${path} debería existir`);
+      if (!destinos.has(path)) {
+        destinos.set(path, new Set(parseMarkdown(readFileSync(`${RAIZ}${path}`, 'utf8'))
+          .filter((b) => b.type === 'heading').map((b) => slugify(b.text))));
+      }
+      if (anchor) {
+        assert.ok(destinos.get(path).has(anchor), `${doc.path}: #${anchor} debería existir en ${path}`);
+      }
     }
   }
 });

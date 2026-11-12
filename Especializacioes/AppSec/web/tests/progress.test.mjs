@@ -337,22 +337,31 @@ test('reiniciar borra solo la clave propia, nunca todo el almacenamiento', () =>
   assert.equal(storage.getItem('otra-cosa'), 'no tocar');
 });
 
-test('las horas marcadas se derivan de las actividades, no de las sesiones', () => {
-  // El módulo de progreso no decide horas: las recibe ya calculadas desde el
-  // itinerario. Este test fija el contrato que consume la UI.
-  const estado = createEmptyState();
-  const actividades = [
-    { id: 'module-1-a1', hours: 2 },
-    { id: 'module-1-a2', hours: 3.5 },
-    { id: 'module-1-a3', hours: 3.5 },
-  ];
+test('los 83 IDs y las 20 claves de notas sobreviven carga, roundtrip e import mixto/legacy', () => {
+  const known = conocidosReales();
+  const ids = Array.from({ length: 20 }, (_, i) =>
+    Array.from({ length: [1, 2, 4].includes(i + 1) ? 5 : 4 }, (_, j) => `module-${i + 1}-a${j + 1}`)).flat();
+  const notas = Array.from({ length: 20 }, (_, i) => `week-${i + 1}`);
+  assert.deepEqual([...known.noteIds], notas);
+  assert.deepEqual([...known.completedIds].filter((id) => id.startsWith('module-')), ids);
 
-  let horas = 0;
-  for (const actividad of actividades) {
-    estado.completed[actividad.id] = true;
-    horas += actividad.hours;
+  for (const marcas of [ids, legacySessionIds(), [...ids, ...legacySessionIds()]]) {
+    const previo = {
+      version: 1,
+      completed: Object.fromEntries(marcas.map((id) => [id, true])),
+      notes: Object.fromEntries(notas.map((id) => [id, `Evidencia anterior ${id}`])),
+    };
+    const storage = memoriaInicial();
+    storage.setItem(STORAGE_KEY, JSON.stringify(previo));
+    const store = createStore({ storage, known });
+    const cargado = store.load();
+    assert.deepEqual(cargado.issues, []);
+    assert.equal(storage.getItem(STORAGE_KEY), JSON.stringify(previo), 'leer no debe migrar ni escribir');
+    const importado = parseImport(serializeState(cargado.state), known);
+    assert.equal(importado.ok, true);
+    assert.deepEqual(importado.issues, []);
+    assert.deepEqual(JSON.parse(JSON.stringify(importado.state)), previo);
+    assert.equal(store.save(importado.state).ok, true);
+    assert.deepEqual(store.load().state, cargado.state);
   }
-
-  assert.equal(horas, 9);
-  assert.equal(Object.keys(estado.completed).length, 3);
 });

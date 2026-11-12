@@ -61,10 +61,8 @@ const dom = {
   cuerpoPrompts: $('cuerpo-prompts'),
 
   valorActividades: $('valor-actividades'),
-  valorHoras: $('valor-horas'),
   valorModulos: $('valor-modulos'),
   barraActividades: $('barra-actividades'),
-  barraHoras: $('barra-horas'),
   barraModulos: $('barra-modulos'),
 
   btnExportar: $('btn-exportar'),
@@ -88,7 +86,6 @@ const dom = {
 const app = {
   vista: 'itinerario',
   modulos: [],
-  schedule: null,
   contextoItinerario: null,
   cache: new Map(),
   progreso: createEmptyState(),
@@ -112,12 +109,6 @@ const ETIQUETAS_DIA = {
   sabado: 'sábado',
   domingo: 'domingo',
 };
-
-/** Horas en formato español: «9 h», «1,5 h». */
-function formatearHoras(valor) {
-  const numero = Number(valor) || 0;
-  return String(Number.isInteger(numero) ? numero : Number(numero.toFixed(2))).replace('.', ',');
-}
 
 /* -------------------------------------------------------------------------- */
 /* Avisos                                                                     */
@@ -271,7 +262,7 @@ function construirModulos(parseado) {
 
     const resumen = document.createElement('span');
     resumen.className = 'modulo-actividades';
-    resumen.textContent = `${modulo.activities.length} actividades · ${formatearHoras(modulo.hours)} h`;
+    resumen.textContent = `${modulo.activities.length} actividades`;
 
     const progreso = document.createElement('span');
     progreso.className = 'modulo-progreso';
@@ -378,9 +369,7 @@ function construirTablaActividades(modulo) {
   const thead = document.createElement('thead');
   const headRow = document.createElement('tr');
   const columnas = [
-    ['Estudiado', 'col-marca'],
     ['Actividad', 'col-actividad'],
-    ['Dedicación acumulada', 'col-duracion'],
     ['Trabajo y evidencia', 'col-evidencia'],
   ];
   for (const [texto, clase] of columnas) {
@@ -396,9 +385,6 @@ function construirTablaActividades(modulo) {
   for (const actividad of modulo.activities) {
     const fila = document.createElement('tr');
     fila.dataset.estudiada = 'false';
-
-    const celdaMarca = document.createElement('td');
-    celdaMarca.className = 'col-marca';
 
     const etiqueta = document.createElement('label');
     etiqueta.className = 'check';
@@ -421,22 +407,16 @@ function construirTablaActividades(modulo) {
     descripcion.id = `desc-${actividad.id}`;
     descripcion.textContent = `Módulo ${modulo.number}, ${actividad.code}: ${actividad.titleText}`;
 
-    celdaMarca.append(etiqueta, descripcion);
-
     const celdaActividad = document.createElement('td');
     celdaActividad.className = 'col-actividad';
     celdaActividad.innerHTML = renderInlineComoParrafo(actividad.labelNodes, app.contextoItinerario);
-
-    const celdaDuracion = document.createElement('td');
-    celdaDuracion.className = 'col-duracion';
-    celdaDuracion.textContent = actividad.durationText;
-    celdaDuracion.title = 'Estimación de tiempo de esta actividad, no de una sesión de 20–30 min';
+    celdaActividad.firstElementChild.prepend(etiqueta, descripcion);
 
     const celdaEvidencia = document.createElement('td');
     celdaEvidencia.className = 'col-evidencia';
     celdaEvidencia.innerHTML = renderInlineComoParrafo(actividad.task, app.contextoItinerario);
 
-    fila.append(celdaMarca, celdaActividad, celdaDuracion, celdaEvidencia);
+    fila.append(celdaActividad, celdaEvidencia);
     tbody.appendChild(fila);
     actividadIndex.set(actividad.id, { actividad, modulo });
   }
@@ -444,15 +424,7 @@ function construirTablaActividades(modulo) {
   tabla.append(caption, thead, tbody);
   wrap.appendChild(tabla);
 
-  const pie = document.createElement('p');
-  pie.className = 'tabla-actividades-pie';
-  pie.textContent =
-    'La dedicación acumulada es la estimación de cada actividad (leer, practicar, redactar evidencia y explicar). El total del módulo es la suma de sus actividades.';
-
-  const contenedor = document.createElement('div');
-  contenedor.className = 'tabla-actividades-caja';
-  contenedor.append(wrap, pie);
-  return contenedor;
+  return wrap;
 }
 
 function construirNotas(modulo) {
@@ -511,14 +483,6 @@ function actividadesCompletadas() {
   return cuenta;
 }
 
-function horasCompletadas() {
-  let horas = 0;
-  for (const [id, info] of actividadIndex) {
-    if (app.progreso.completed[id] === true) horas += info.actividad.hours;
-  }
-  return horas;
-}
-
 function modulosCompletados() {
   let cuenta = 0;
   for (const modulo of app.modulos) {
@@ -530,19 +494,15 @@ function modulosCompletados() {
 }
 
 function actualizarEstadisticas() {
-  const total = app.schedule || { activities: 0, totalHours: 0, modules: 0 };
+  const total = { activities: actividadIndex.size, modules: app.modulos.length };
   const actividades = actividadesCompletadas();
-  const horas = horasCompletadas();
   const modulos = modulosCompletados();
 
   dom.valorActividades.textContent = `${actividades} / ${total.activities}`;
-  dom.valorHoras.textContent = `${formatearHoras(horas)} / ${formatearHoras(total.totalHours)} h`;
   dom.valorModulos.textContent = `${modulos} / ${total.modules}`;
 
   dom.barraActividades.max = String(total.activities || 1);
   dom.barraActividades.value = String(actividades);
-  dom.barraHoras.max = String(total.totalHours || 1);
-  dom.barraHoras.value = String(horas);
   dom.barraModulos.max = String(total.modules || 1);
   dom.barraModulos.value = String(modulos);
 
@@ -582,7 +542,7 @@ function actualizarContadorModulo(modulo) {
 /**
  * Historial del plan anterior: los registros por sesión de día que la versión
  * previa guardaba. Se conservan, pero no acreditan actividades nuevas ni
- * cuentan en las horas, en los porcentajes ni en los módulos completados.
+ * cuentan en las actividades ni en los módulos completados.
  */
 function actualizarHistorial() {
   if (!dom.historial || !dom.historialCuerpo) return;
@@ -620,7 +580,7 @@ function actualizarHistorial() {
   const explicacion = document.createElement('p');
   explicacion.className = 'panel-nota';
   explicacion.textContent =
-    'Registros de la versión anterior de la ruta (uno por sesión de día). No acreditan actividades nuevas: no cuentan en las horas, en los porcentajes ni en los módulos completados. Las notas por módulo se conservan.';
+    'Registros de la versión anterior de la ruta (uno por sesión de día). No acreditan actividades nuevas: no cuentan en las actividades ni en los módulos completados. Las notas por módulo se conservan.';
 
   const conteo = document.createElement('p');
   conteo.className = 'historial-conteo';
@@ -782,7 +742,7 @@ function aplicarFiltro() {
     if (visible) visibles += 1;
   }
 
-  const total = app.schedule ? app.schedule.modules : app.modulos.length;
+  const total = app.modulos.length;
   dom.resultados.textContent = `${visibles} de ${total} módulos visibles.`;
   dom.resultados.hidden = false;
 
@@ -1329,20 +1289,15 @@ async function cargarItinerario() {
   try {
     const fuente = await leerDoc(doc.path);
     const parseado = parseItinerario(fuente);
-    app.schedule = parseado.schedule;
 
     const ctx = createContext({ docPath: doc.path, docKey: 'itinerario' });
     dom.preambulo.innerHTML = renderBlocks(parseado.preamble, ctx);
     dom.cierre.innerHTML = renderBlocks(parseado.closing, ctx);
     if (parseado.title) dom.tituloItinerario.textContent = parseado.title;
 
-    const s = parseado.schedule;
-    // El ritmo es una estimación, no un calendario: la ruta no tiene fecha límite.
-    const semanasLentas = Math.round(s.totalHours / 3);
-    const semanasRapidas = Math.round(s.totalHours / 4);
     dom.horario.textContent =
-      `${s.modules} módulos · ${s.activities} actividades · ${formatearHoras(s.totalHours)} h` +
-      ` · a 3 h/semana ≈ ${semanasLentas} semanas · a 4 h/semana ≈ ${semanasRapidas} semanas · sin fecha límite`;
+      `${parseado.modules.length} módulos · ${parseado.modules.flatMap((modulo) => modulo.activities).length} actividades` +
+      ' · referencia flexible: 2–3 horas semanales · avanza al poder explicar, aplicar y verificar';
 
     construirModulos(parseado);
     dom.errorItinerario.hidden = true;

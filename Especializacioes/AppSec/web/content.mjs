@@ -707,11 +707,8 @@ const MODULO_RE = /^M[oó]dulo\s+(\d+)\s*(?:[—–-]\s*(.*))?$/i;
 /** Código de actividad al inicio de la primera columna: `A1 — Título`. */
 const CODIGO_RE = /^A(\d+)(?=\s|$|[—–-])/;
 
-/** Duración estricta: un número positivo y una unidad (`h` o `min`). */
-const DURACION_RE = /^(\d+(?:[.,]\d+)?)\s*(h|hs|hora|horas|min|minutos|m)$/i;
-
 /** Columnas exactas de la tabla de actividades de cada módulo. */
-const COLUMNAS_ACTIVIDADES = ['actividad', 'dedicacion acumulada', 'trabajo y evidencia'];
+const COLUMNAS_ACTIVIDADES = ['actividad', 'trabajo y evidencia'];
 
 const FIELD_LABELS = [
   { key: 'objetivo', pattern: /^Objetivo verificable:?$/ },
@@ -745,32 +742,9 @@ function inlineText(nodes) {
     .join('');
 }
 
-/** Redondeo a dos decimales: las sumas de medias horas no deben acumular ruido. */
-function redondear(valor) {
-  return Math.round(valor * 100) / 100;
-}
-
 /**
- * Duración de una actividad: un número positivo con una unidad (`h` o `min`).
- * Acepta coma o punto decimal; rechaza cero, negativos y cualquier basura.
- */
-export function parseDuracion(text) {
-  const bruto = String(text == null ? '' : text).trim();
-  if (!bruto) return null;
-  const match = DURACION_RE.exec(bruto);
-  if (!match) return null;
-  const numero = Number(match[1].replace(',', '.'));
-  if (!Number.isFinite(numero) || numero <= 0) return null;
-  const unidad = match[2].toLowerCase();
-  const horas = unidad === 'h' || unidad === 'hs' || unidad === 'hora' || unidad === 'horas'
-    ? numero
-    : numero / 60;
-  return horas > 0 ? redondear(horas) : null;
-}
-
-/**
- * Parsea el itinerario y valida su estructura (módulos, tabla de actividades,
- * duración). Lanza `ItineraryError` si el formato no encaja: la app lo muestra.
+ * Parsea y valida módulos y tablas de actividades.
+ * Lanza `ItineraryError` si el formato no encaja: la app lo muestra.
  */
 export function parseItinerario(source) {
   const blocks = parseMarkdown(source);
@@ -795,7 +769,6 @@ export function parseItinerario(source) {
           headingSlug: slugify(block.text),
           items: [],
           activities: [],
-          hours: 0,
         };
         modules.push(current);
         enCierre = false;
@@ -862,14 +835,13 @@ export function parseItinerario(source) {
     if (tables.length !== 1) {
       throw new ItineraryError(
         `El módulo ${module.number} no tiene una tabla de actividades única (${tables.length}).`,
-        'Cada módulo debe tener una tabla «Actividad | Dedicación acumulada | Trabajo y evidencia».',
+        'Cada módulo debe tener una tabla «Actividad | Trabajo y evidencia».',
       );
     }
     module.activities = parseActivityTable(tables[0].block, module);
-    module.hours = redondear(module.activities.reduce((sum, activity) => sum + activity.hours, 0));
   });
 
-  return { title, preamble, modules, closing, schedule: computeSchedule(modules) };
+  return { title, preamble, modules, closing };
 }
 
 function parseActivityTable(block, module) {
@@ -877,14 +849,14 @@ function parseActivityTable(block, module) {
   if (header.length !== COLUMNAS_ACTIVIDADES.length) {
     throw new ItineraryError(
       `La tabla del módulo ${module.number} tiene ${header.length} columnas en lugar de ${COLUMNAS_ACTIVIDADES.length}.`,
-      'Las columnas son «Actividad», «Dedicación acumulada» y «Trabajo y evidencia».',
+      'Las columnas son «Actividad» y «Trabajo y evidencia».',
     );
   }
   COLUMNAS_ACTIVIDADES.forEach((esperado, indice) => {
     if (header[indice] !== esperado) {
       throw new ItineraryError(
         `La tabla del módulo ${module.number} no tiene la columna «${esperado}» en la posición ${indice + 1}.`,
-        `Las columnas son «Actividad», «Dedicación acumulada» y «Trabajo y evidencia».`,
+        'Las columnas son «Actividad» y «Trabajo y evidencia».',
       );
     }
   });
@@ -905,7 +877,7 @@ function parseActivityTable(block, module) {
       );
     }
 
-    const [celdaActividad, celdaDuracion, celdaTrabajo] = row;
+    const [celdaActividad, celdaTrabajo] = row;
     const codigo = CODIGO_RE.exec(celdaActividad);
     if (!codigo) {
       throw new ItineraryError(
@@ -924,14 +896,6 @@ function parseActivityTable(block, module) {
       throw new ItineraryError(`La actividad «A${numero}» del módulo ${module.number} no tiene título.`);
     }
 
-    const hours = parseDuracion(celdaDuracion);
-    if (hours === null) {
-      throw new ItineraryError(
-        `El módulo ${module.number} tiene una duración no interpretable en «A${numero}»: «${celdaDuracion}».`,
-        'El formato esperado es «2 h», «1,5 h» o «90 min».',
-      );
-    }
-
     if (!celdaTrabajo.trim()) {
       throw new ItineraryError(
         `La actividad «A${numero}» del módulo ${module.number} no dice qué hay que hacer.`,
@@ -947,8 +911,6 @@ function parseActivityTable(block, module) {
       titleText: inlineText(parseInline(titulo)),
       label: celdaActividad,
       labelNodes: parseInline(celdaActividad),
-      hours,
-      durationText: celdaDuracion.trim(),
       task: parseInline(celdaTrabajo),
       taskText: inlineText(parseInline(celdaTrabajo)),
     };
@@ -963,16 +925,4 @@ function parseActivityTable(block, module) {
   }
 
   return activities;
-}
-
-/** Horas y contadores derivados del propio itinerario (nunca una lista manual). */
-export function computeSchedule(modules) {
-  const activities = modules.flatMap((module) => module.activities || []);
-  const totalHours = redondear(activities.reduce((sum, activity) => sum + activity.hours, 0));
-  return {
-    modules: modules.length,
-    activities: activities.length,
-    totalHours,
-    hoursPerModule: modules.map((module) => redondear(module.hours || 0)),
-  };
 }

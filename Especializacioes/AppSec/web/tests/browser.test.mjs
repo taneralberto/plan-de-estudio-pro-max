@@ -320,41 +320,6 @@ after(async () => {
 
 /* --------------------------------- Pruebas -------------------------------- */
 
-/** Horas en formato español, como las muestra la web. */
-const formatoHoras = (valor) => {
-  const numero = Number(valor) || 0;
-  return String(Number.isInteger(numero) ? numero : Number(numero.toFixed(2))).replace('.', ',');
-};
-
-/** Las horas del contador se derivan de los módulos: no se fijan a mano. */
-async function horasTotales() {
-  return evaluate(`(() => {
-    const modulos = [...document.querySelectorAll('#modulos details.modulo')];
-    const horas = modulos.reduce((suma, modulo) => {
-      const texto = modulo.querySelector('.modulo-actividades').textContent;
-      const match = /([\\d,.]+)\\s*h/.exec(texto);
-      return suma + (match ? Number(match[1].replace(',', '.')) : 0);
-    }, 0);
-    return {
-      horas,
-      max: Number(document.getElementById('barra-horas').max),
-      valor: document.getElementById('valor-horas').textContent.trim()
-    };
-  })()`);
-}
-
-/** Duración que la web muestra para una actividad concreta. */
-async function duracionDe(id) {
-  const texto = await evaluate(`(() => {
-    const input = document.getElementById('cb-${id}');
-    if (!input) return null;
-    const celda = input.closest('tr').querySelector('.col-duracion');
-    return celda ? celda.textContent.trim() : null;
-  })()`);
-  if (texto === null) return null;
-  return Number(String(texto).replace(',', '.').replace(/\s*h\s*$/, ''));
-}
-
 test('la web carga 20 módulos y 83 actividades sin errores de consola', async () => {
   const estado = await evaluate(`(() => ({
     modulos: document.querySelectorAll('#modulos details.modulo').length,
@@ -365,7 +330,6 @@ test('la web carga 20 módulos y 83 actividades sin errores de consola', async (
     copiar: document.querySelectorAll('#cuerpo-prompts button[data-copiar]').length,
     notas: document.querySelectorAll('#modulos textarea[data-notas-modulo]').length,
     valorActividades: document.getElementById('valor-actividades').textContent.trim(),
-    valorHoras: document.getElementById('valor-horas').textContent.trim(),
     valorModulos: document.getElementById('valor-modulos').textContent.trim(),
     desarrollo: document.querySelectorAll('#modulos .desarrollo h3').length,
     codigo: document.querySelectorAll('#modulos .md-codigo').length
@@ -380,15 +344,12 @@ test('la web carga 20 módulos y 83 actividades sin errores de consola', async (
   assert.ok(estado.codigo > 0, 'los bloques de código se renderizan junto a la tabla');
   assert.match(estado.horario, /20 módulos/);
   assert.match(estado.horario, /83 actividades/);
-  assert.match(estado.horario, /sin fecha límite/);
-  assert.match(estado.horario, /semanas/);
+  assert.match(estado.horario, /2–3 horas semanales/);
+  assert.doesNotMatch(estado.horario, /≈|\d+ semanas|sesiones/);
+  assert.equal(await evaluate(`document.querySelector('#valor-horas, #barra-horas, .col-duracion')`), null);
   assert.match(estado.titulo, /20 módulos/);
   assert.equal(estado.valorActividades, '0 / 83');
   assert.equal(estado.valorModulos, '0 / 20');
-
-  const horas = await horasTotales();
-  assert.equal(horas.max, horas.horas, 'las horas del contador salen de los módulos');
-  assert.equal(horas.valor, `0 / ${formatoHoras(horas.horas)} h`);
 });
 
 test('marcar dos actividades actualiza las estadísticas', async () => {
@@ -398,19 +359,13 @@ test('marcar dos actividades actualiza las estadísticas', async () => {
     return true;
   })()`);
 
-  const primera = await duracionDe('module-1-a1');
-  const tercera = await duracionDe('module-1-a3');
-  const total = await horasTotales();
-
   const estado = await evaluate(`(() => ({
     valorActividades: document.getElementById('valor-actividades').textContent.trim(),
-    valorHoras: document.getElementById('valor-horas').textContent.trim(),
     contador: document.querySelector('[data-progreso-modulo="1"]').textContent.trim(),
     guardado: window.localStorage.getItem('appsec-progreso-v1')
   }))()`);
 
   assert.equal(estado.valorActividades, '2 / 83');
-  assert.equal(estado.valorHoras, `${formatoHoras(primera + tercera)} / ${formatoHoras(total.horas)} h`);
   assert.equal(estado.contador, '2/5');
   assert.ok(estado.guardado, 'el progreso debe guardarse en localStorage');
   assert.ok(estado.guardado.includes('module-1-a1'));
@@ -429,18 +384,15 @@ test('las notas se guardan y sobreviven a una recarga', async () => {
   await ctx.cdp.send('Page.reload', { ignoreCache: false }, ctx.sessionId);
   await esperarPor("document.body.dataset.ready === '1'", { etiqueta: 'la app lista tras recargar' });
 
-  const total = await horasTotales();
   const estado = await evaluate(`(() => ({
     primera: document.getElementById('cb-module-1-a1').checked,
     tercera: document.getElementById('cb-module-1-a3').checked,
-    nota: document.getElementById('notas-3').value,
-    valorHoras: document.getElementById('valor-horas').textContent.trim()
+    nota: document.getElementById('notas-3').value
   }))()`);
 
   assert.equal(estado.primera, true);
   assert.equal(estado.tercera, true);
   assert.equal(estado.nota, 'Traza sanitizada: request/response anotado.');
-  assert.equal(estado.valorHoras, total.valor);
 });
 
 test('la búsqueda y los filtros no rompen el acordeón', async () => {
@@ -502,10 +454,10 @@ test('la búsqueda y los filtros no rompen el acordeón', async () => {
 });
 
 test('el desarrollo de una actividad es buscable', async () => {
-  // «forma real» solo aparece en el desarrollo de M10-A3, no en su tabla.
+  // Texto del desarrollo de M10-A3, no de la tabla ni del título.
   await evaluate(`(() => {
     const campo = document.getElementById('buscar');
-    campo.value = 'forma real';
+    campo.value = 'resolver la ruta a su forma real';
     campo.dispatchEvent(new Event('input', { bubbles: true }));
     return true;
   })()`);
@@ -975,7 +927,7 @@ test('una importación malformada no pisa el progreso', async () => {
   const antes = await evaluate(`(() => ({
     primera: document.getElementById('cb-module-1-a1').checked,
     tercera: document.getElementById('cb-module-1-a3').checked,
-    horas: document.getElementById('valor-horas').textContent.trim()
+    actividades: document.getElementById('valor-actividades').textContent.trim()
   }))()`);
   assert.equal(antes.primera, true);
 
@@ -997,18 +949,18 @@ test('una importación malformada no pisa el progreso', async () => {
   const despues = await evaluate(`(() => ({
     primera: document.getElementById('cb-module-1-a1').checked,
     tercera: document.getElementById('cb-module-1-a3').checked,
-    horas: document.getElementById('valor-horas').textContent.trim(),
+    actividades: document.getElementById('valor-actividades').textContent.trim(),
     error: document.querySelector('#avisos .aviso-error').textContent
   }))()`);
 
   assert.equal(despues.primera, true, 'una importación inválida no debe desmarcar nada');
   assert.equal(despues.tercera, true);
-  assert.equal(despues.horas, antes.horas);
+  assert.equal(despues.actividades, antes.actividades);
   assert.match(despues.error, /JSON|No se ha importado nada/i);
 });
 
 test('exportar e importar una copia válida mantiene el progreso', async () => {
-  const horasAntes = await evaluate(`document.getElementById('valor-horas').textContent.trim()`);
+  const actividadesAntes = await evaluate(`document.getElementById('valor-actividades').textContent.trim()`);
   const descargas = join(ctx.perfil, 'descargas');
   await ctx.cdp.send('Browser.setDownloadBehavior', {
     behavior: 'allow',
@@ -1048,12 +1000,12 @@ test('exportar e importar una copia válida mantiene el progreso', async () => {
   const despues = await evaluate(`(() => ({
     primera: document.getElementById('cb-module-1-a1').checked,
     tercera: document.getElementById('cb-module-1-a3').checked,
-    horas: document.getElementById('valor-horas').textContent.trim(),
+    actividades: document.getElementById('valor-actividades').textContent.trim(),
     dialogo: document.getElementById('dialogo-confirmar').open
   }))()`);
   assert.equal(despues.primera, true);
   assert.equal(despues.tercera, true);
-  assert.equal(despues.horas, horasAntes);
+  assert.equal(despues.actividades, actividadesAntes);
   assert.equal(despues.dialogo, false);
 });
 
@@ -1159,10 +1111,10 @@ test('un progreso guardado corrupto se avisa y se puede borrar explícitamente',
 
   const limpio = await evaluate(`(() => ({
     guardado: window.localStorage.getItem('appsec-progreso-v1'),
-    horas: document.getElementById('valor-horas').textContent.trim()
+    actividades: document.getElementById('valor-actividades').textContent.trim()
   }))()`);
   assert.ok(limpio.guardado === null || limpio.guardado.includes('"version": 1'));
-  assert.match(limpio.horas, /^0 \/ [\d,.]+ h$/);
+  assert.equal(limpio.actividades, '0 / 83');
 });
 
 test('el buscador incluye el número y el título del módulo', async () => {
@@ -1313,9 +1265,6 @@ test('el lector está oculto mientras está cerrado y se puede volver a abrir', 
 });
 
 test('sin itinerario no se pierde el progreso: error visible y reintento que hidrata', async () => {
-  const total = await horasTotales();
-  const primera = await duracionDe('module-1-a1');
-  const tercera = await duracionDe('module-1-a3');
 
   // Estado previo: dos marcas y una nota.
   await evaluate(`(() => {
@@ -1373,7 +1322,6 @@ test('sin itinerario no se pierde el progreso: error visible y reintento que hid
     tercera: document.getElementById('cb-module-1-a3').checked,
     nota: document.getElementById('notas-2').value,
     actividades: document.getElementById('valor-actividades').textContent.trim(),
-    horas: document.getElementById('valor-horas').textContent.trim(),
     modulos: document.getElementById('valor-modulos').textContent.trim(),
     error: document.getElementById('error-itinerario').hidden,
     exportar: document.getElementById('btn-exportar').disabled
@@ -1383,7 +1331,6 @@ test('sin itinerario no se pierde el progreso: error visible y reintento que hid
   assert.equal(hidratado.tercera, true);
   assert.equal(hidratado.nota, 'Nota previa que debe sobrevivir', 'la nota previa debe volver');
   assert.equal(hidratado.actividades, '2 / 83');
-  assert.equal(hidratado.horas, `${formatoHoras(primera + tercera)} / ${formatoHoras(total.horas)} h`);
   assert.equal(hidratado.modulos, '0 / 20');
   assert.equal(hidratado.error, true, 'el error debe desaparecer tras el reintento');
   assert.equal(hidratado.exportar, false, 'los controles vuelven a estar disponibles');
@@ -1394,20 +1341,19 @@ test('sin itinerario no se pierde el progreso: error visible y reintento que hid
   await ctx.cdp.send('Page.reload', {}, ctx.sessionId);
   await esperarPor("document.body.dataset.ready === '1'", { etiqueta: 'la app lista tras recargar' });
 
-  const segunda = await duracionDe('module-1-a2');
   const final = await evaluate(`(() => ({
     primera: document.getElementById('cb-module-1-a1').checked,
     segunda: document.getElementById('cb-module-1-a2').checked,
     tercera: document.getElementById('cb-module-1-a3').checked,
     nota: document.getElementById('notas-2').value,
-    horas: document.getElementById('valor-horas').textContent.trim()
+    actividades: document.getElementById('valor-actividades').textContent.trim()
   }))()`);
 
   assert.equal(final.primera, true);
   assert.equal(final.segunda, true);
   assert.equal(final.tercera, true);
   assert.equal(final.nota, 'Nota previa que debe sobrevivir');
-  assert.equal(final.horas, `${formatoHoras(primera + segunda + tercera)} / ${formatoHoras(total.horas)} h`);
+  assert.equal(final.actividades, '3 / 83');
 });
 
 test('un error al arrancar se muestra en pantalla en vez de dejar la página en blanco', async () => {
@@ -1442,7 +1388,6 @@ test('un error al arrancar se muestra en pantalla en vez de dejar la página en 
 });
 
 test('tras un reinicio confirmado, la acción vieja de «dato dañado» no borra el progreso nuevo', async () => {
-  const total = await horasTotales();
   await evaluate(`window.localStorage.setItem('appsec-progreso-v1', '{ esto esta roto')`);
   const carga = esperarEvento('Page.loadEventFired');
   await ctx.cdp.send('Page.reload', {}, ctx.sessionId);
@@ -1469,9 +1414,9 @@ test('tras un reinicio confirmado, la acción vieja de «dato dañado» no borra
 
   const trasReinicio = await evaluate(`(() => ({
     accionVieja: [...document.querySelectorAll('#avisos .aviso button')].some((b) => /dañado/i.test(b.textContent)),
-    horas: document.getElementById('valor-horas').textContent.trim()
+    actividades: document.getElementById('valor-actividades').textContent.trim()
   }))()`);
-  assert.equal(trasReinicio.horas, `0 / ${formatoHoras(total.horas)} h`);
+  assert.equal(trasReinicio.actividades, '0 / 83');
   assert.equal(trasReinicio.accionVieja, false, 'la acción de «dato dañado» debe retirarse tras el reinicio');
 
   // Marca nueva: el progreso válido ya existe.
@@ -1484,18 +1429,16 @@ test('tras un reinicio confirmado, la acción vieja de «dato dañado» no borra
 
   const tras = await evaluate(`(() => ({
     marcada: document.getElementById('cb-module-2-a1').checked,
-    horas: document.getElementById('valor-horas').textContent.trim(),
+    actividades: document.getElementById('valor-actividades').textContent.trim(),
     guardado: window.localStorage.getItem('appsec-progreso-v1') || ''
   }))()`);
 
-  const segunda = await duracionDe('module-2-a1');
   assert.equal(tras.marcada, true, 'la acción obsoleta no debe desmarcar el progreso nuevo');
-  assert.equal(tras.horas, `${formatoHoras(segunda)} / ${formatoHoras(total.horas)} h`);
+  assert.equal(tras.actividades, '1 / 83');
   assert.ok(tras.guardado.includes('module-2-a1'), 'el progreso guardado no debe borrarse');
 });
 
 test('importar una copia válida deja obsoleta la acción de borrar el dato dañado', async () => {
-  const total = await horasTotales();
   await evaluate(`window.localStorage.setItem('appsec-progreso-v1', '{ esto esta roto')`);
   const carga = esperarEvento('Page.loadEventFired');
   await ctx.cdp.send('Page.reload', {}, ctx.sessionId);
@@ -1531,15 +1474,13 @@ test('importar una copia válida deja obsoleta la acción de borrar el dato dañ
 
   const trasImportar = await evaluate(`(() => ({
     marcado: document.getElementById('cb-module-3-a1').checked,
-    horas: document.getElementById('valor-horas').textContent.trim(),
+    actividades: document.getElementById('valor-actividades').textContent.trim(),
     accionVieja: [...document.querySelectorAll('#avisos .aviso button')].some((b) => /dañado/i.test(b.textContent)),
     guardado: window.localStorage.getItem('appsec-progreso-v1') || ''
   }))()`);
 
-  const una = await duracionDe('module-3-a1');
-  const tres = await duracionDe('module-3-a3');
   assert.equal(trasImportar.marcado, true, 'la copia válida debe aplicarse');
-  assert.equal(trasImportar.horas, `${formatoHoras(una + tres)} / ${formatoHoras(total.horas)} h`);
+  assert.equal(trasImportar.actividades, '2 / 83');
   assert.equal(trasImportar.accionVieja, false, 'la acción de «dato dañado» debe retirarse tras importar');
   assert.ok(trasImportar.guardado.includes('module-3-a1'));
 
@@ -1549,12 +1490,12 @@ test('importar una copia válida deja obsoleta la acción de borrar el dato dañ
 
   const final = await evaluate(`(() => ({
     marcado: document.getElementById('cb-module-3-a1').checked,
-    horas: document.getElementById('valor-horas').textContent.trim(),
+    actividades: document.getElementById('valor-actividades').textContent.trim(),
     guardado: window.localStorage.getItem('appsec-progreso-v1') || ''
   }))()`);
 
   assert.equal(final.marcado, true, 'la acción obsoleta no debe borrar el progreso importado');
-  assert.equal(final.horas, `${formatoHoras(una + tres)} / ${formatoHoras(total.horas)} h`);
+  assert.equal(final.actividades, '2 / 83');
   assert.ok(final.guardado.includes('module-3-a1'));
 });
 
@@ -1717,13 +1658,13 @@ test('cancelar el borrado del dato dañado conserva el aviso, la RAM y el dato c
   const resuelto = await evaluate(`(() => ({
     marcada: document.getElementById('cb-module-1-a1').checked,
     accion: [...document.querySelectorAll('#avisos .aviso button')].some((b) => /dañado/i.test(b.textContent)),
-    horas: document.getElementById('valor-horas').textContent.trim(),
+    actividades: document.getElementById('valor-actividades').textContent.trim(),
     guardado: window.localStorage.getItem('appsec-progreso-v1') || ''
   }))()`);
 
   assert.equal(resuelto.marcada, false, 'tras borrar, el progreso en RAM se limpia');
   assert.equal(resuelto.accion, false, 'el aviso se retira al resolver');
-  assert.match(resuelto.horas, /^0 \/ [\d,.]+ h$/);
+  assert.equal(resuelto.actividades, '0 / 83');
   assert.ok(!resuelto.guardado.includes('esto esta roto'), 'el dato corrupto debe desaparecer');
 });
 
@@ -1836,13 +1777,8 @@ test('el historial del plan anterior se conserva, se muestra y no cuenta para la
   await ctx.cdp.send('Page.reload', {}, ctx.sessionId);
   await esperarPor("document.body.dataset.ready === '1'", { etiqueta: 'la app lista tras recargar' });
 
-  const total = await horasTotales();
-  const primera = await duracionDe('module-1-a1');
-  const segunda = await duracionDe('module-2-a1');
-
   const estado = await evaluate(`(() => ({
     valorActividades: document.getElementById('valor-actividades').textContent.trim(),
-    valorHoras: document.getElementById('valor-horas').textContent.trim(),
     valorModulos: document.getElementById('valor-modulos').textContent.trim(),
     marcadas: document.querySelectorAll('#modulos tr[data-estudiada="true"]').length,
     historialVisible: !document.getElementById('historial').hidden,
@@ -1854,7 +1790,6 @@ test('el historial del plan anterior se conserva, se muestra y no cuenta para la
 
   assert.equal(estado.valorActividades, '2 / 83', 'el historial no cuenta como actividad');
   assert.equal(estado.marcadas, 2, 'solo las actividades nuevas están marcadas');
-  assert.equal(estado.valorHoras, `${formatoHoras(primera + segunda)} / ${formatoHoras(total.horas)} h`);
   assert.equal(estado.valorModulos, '0 / 20');
   assert.equal(estado.historialVisible, true, 'el historial debe verse');
   assert.match(estado.historial, /140 marcas conservadas/);
@@ -1872,17 +1807,14 @@ test('el historial del plan anterior se conserva, se muestra y no cuenta para la
   await ctx.cdp.send('Page.reload', {}, ctx.sessionId);
   await esperarPor("document.body.dataset.ready === '1'", { etiqueta: 'la app lista tras recargar' });
 
-  const tercera = await duracionDe('module-3-a1');
   const tras = await evaluate(`(() => ({
     valorActividades: document.getElementById('valor-actividades').textContent.trim(),
-    valorHoras: document.getElementById('valor-horas').textContent.trim(),
     historial: document.getElementById('historial').textContent.replace(/\\s+/g, ' ').trim(),
     nota2: document.getElementById('notas-2').value,
     guardado: window.localStorage.getItem('appsec-progreso-v1') || ''
   }))()`);
 
   assert.equal(tras.valorActividades, '3 / 83');
-  assert.equal(tras.valorHoras, `${formatoHoras(primera + segunda + tercera)} / ${formatoHoras(total.horas)} h`);
   assert.match(tras.historial, /140 marcas conservadas/);
   assert.equal(tras.nota2, 'Nota conservada 2');
 
@@ -1907,17 +1839,14 @@ test('con solo historial, los contadores de la ruta actual están a cero y «Con
   await ctx.cdp.send('Page.reload', {}, ctx.sessionId);
   await esperarPor("document.body.dataset.ready === '1'", { etiqueta: 'la app lista tras recargar' });
 
-  const total = await horasTotales();
   const estado = await evaluate(`(() => ({
     valorActividades: document.getElementById('valor-actividades').textContent.trim(),
-    valorHoras: document.getElementById('valor-horas').textContent.trim(),
     valorModulos: document.getElementById('valor-modulos').textContent.trim(),
     marcadas: document.querySelectorAll('#modulos tr[data-estudiada="true"]').length,
     historialVisible: !document.getElementById('historial').hidden
   }))()`);
 
   assert.equal(estado.valorActividades, '0 / 83');
-  assert.equal(estado.valorHoras, `0 / ${formatoHoras(total.horas)} h`);
   assert.equal(estado.valorModulos, '0 / 20');
   assert.equal(estado.marcadas, 0);
   assert.equal(estado.historialVisible, true);
@@ -2014,6 +1943,55 @@ test('exportar e importar una copia con historial conserva las marcas antiguas',
   const guardado = JSON.parse(despues.guardado);
   assert.equal(Object.keys(guardado.completed).length, 143);
   assert.equal(Object.keys(guardado.notes).length, 20);
+});
+
+test('progreso previo completo conserva los 83 IDs, 20 notas e historial al recargar e importar', async () => {
+  const ids = Array.from({ length: 20 }, (_, i) =>
+    Array.from({ length: [1, 2, 4].includes(i + 1) ? 5 : 4 }, (_, j) => `module-${i + 1}-a${j + 1}`)).flat();
+  const dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+  const legacy = Array.from({ length: 20 }, (_, i) => dias.map((dia) => `week-${i + 1}-${dia}`)).flat();
+  const previo = {
+    version: 1,
+    completed: Object.fromEntries([...ids, ...legacy].map((id) => [id, true])),
+    notes: Object.fromEntries(Array.from({ length: 20 }, (_, i) => [`week-${i + 1}`, `Nota previa ${i + 1}`])),
+  };
+  await evaluate(`localStorage.setItem('appsec-progreso-v1', ${JSON.stringify(JSON.stringify(previo))})`);
+  await ctx.cdp.send('Page.reload', {}, ctx.sessionId);
+  await esperarPor("document.body.dataset.ready === '1'", { etiqueta: 'progreso completo hidratado' });
+
+  const comprobar = async () => {
+    const estado = await evaluate(`(() => ({
+      ids: [...document.querySelectorAll('#modulos input[data-actividad]:checked')].map(n => n.dataset.actividad),
+      notas: [...document.querySelectorAll('#modulos textarea[data-notas-modulo]')].map(n => n.value),
+      columnas: [...document.querySelectorAll('.tabla-actividades thead tr')].map(n => n.children.length),
+      actividades: document.getElementById('valor-actividades').textContent.trim(),
+      modulos: document.getElementById('valor-modulos').textContent.trim(),
+      historial: document.getElementById('historial').textContent,
+      guardado: JSON.parse(localStorage.getItem('appsec-progreso-v1'))
+    }))()`);
+    assert.deepEqual(estado.ids, ids);
+    assert.deepEqual(estado.notas, Array.from({ length: 20 }, (_, i) => `Nota previa ${i + 1}`));
+    assert.deepEqual(estado.columnas, Array(20).fill(2));
+    assert.equal(estado.actividades, '83 / 83');
+    assert.equal(estado.modulos, '20 / 20');
+    assert.match(estado.historial, /140 marcas conservadas/);
+    assert.deepEqual(estado.guardado.completed, previo.completed);
+    assert.deepEqual(estado.guardado.notes, previo.notes);
+    assert.equal(estado.guardado.version, 1);
+  };
+  await comprobar();
+
+  // El mismo formato previo se importa sobre un progreso modificado, sin migración.
+  await evaluate(`document.getElementById('cb-module-20-a4').click()`);
+  const archivo = join(ctx.perfil, 'progreso-previo-completo.json');
+  await writeFile(archivo, JSON.stringify(previo), 'utf8');
+  const { root } = await ctx.cdp.send('DOM.getDocument', { depth: -1 }, ctx.sessionId);
+  const { nodeId } = await ctx.cdp.send('DOM.querySelector', { nodeId: root.nodeId, selector: '#input-importar' }, ctx.sessionId);
+  await ctx.cdp.send('DOM.setFileInputFiles', { files: [archivo], nodeId }, ctx.sessionId);
+  await esperarPor(`document.getElementById('dialogo-confirmar').open`, { etiqueta: 'confirmar import completo' });
+  await evaluate(`document.getElementById('confirmar-aceptar').click()`);
+  await esperarPor(`document.getElementById('cb-module-20-a4').checked`, { etiqueta: 'última actividad restaurada' });
+  await comprobar();
 });
 
 test('no hubo errores de consola ni respuestas 404', () => {
